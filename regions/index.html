@@ -37,13 +37,17 @@
     .dong-grid{display:flex;flex-wrap:wrap;gap:8px}
     .dong-chip{font-size:.85rem;padding:7px 16px;border-radius:20px;background:white;color:#510580;border:1.5px solid #d4b8f5;cursor:pointer;text-decoration:none;white-space:nowrap}
     .dong-chip:hover{background:#510580;color:white;border-color:#510580}
-    .no-region-box{background:#f5eefe;border-radius:14px;border:1px solid #d4b8f5;padding:28px 24px;text-align:center;margin-bottom:24px}
+    .no-region-box{background:#f5eefe;border-radius:14px;border:1px solid #d4b8f5;padding:28px 24px;text-align:center;margin-bottom:0}
     .nr-title{font-size:1rem;font-weight:800;color:#370558;margin-bottom:8px}
-    .nr-desc{font-size:.85rem;color:#510580;line-height:1.9;margin-bottom:18px}
-    .nr-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
-    .nr-btn-naver{display:inline-flex;align-items:center;gap:6px;background:#510580;color:white;font-size:.85rem;font-weight:700;padding:11px 22px;border-radius:50px;text-decoration:none;white-space:nowrap}
-    .nr-btn-kakao{display:inline-flex;align-items:center;gap:6px;background:#FEE500;color:#3A1D1D;font-size:.85rem;font-weight:700;padding:11px 22px;border-radius:50px;text-decoration:none;white-space:nowrap}
-    footer{background:#370558;color:rgba(255,255,255,.45);text-align:center;padding:24px;font-size:.78rem;line-height:1.8;margin-top:20px}
+    .nr-desc{font-size:.85rem;color:#510580;line-height:1.9}
+    .cta-sec{background:linear-gradient(140deg,#370558,#510580);padding:52px 24px;text-align:center}
+    .cta-sec h2{font-size:clamp(1.2rem,3vw,1.5rem);font-weight:800;color:white;margin-bottom:8px}
+    .cta-sec p{font-size:.9rem;color:rgba(255,255,255,.75);margin-bottom:28px}
+    .cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+    .cta-phone{background:white;color:#510580;font-size:.95rem;font-weight:800;padding:13px 22px;border-radius:50px;text-decoration:none;box-shadow:0 4px 16px rgba(0,0,0,.18)}
+    .cta-kakao{background:#FEE500;color:#3A1D1D;font-size:.95rem;font-weight:800;padding:13px 22px;border-radius:50px;text-decoration:none;box-shadow:0 4px 16px rgba(254,229,0,.4);display:inline-flex;align-items:center;gap:6px}
+    .cta-form{background:linear-gradient(135deg,#e8439a,#ff6fc1);color:white;font-size:.95rem;font-weight:800;padding:13px 22px;border-radius:50px;text-decoration:none;box-shadow:0 4px 16px rgba(232,67,154,.4)}
+    footer{background:#370558;color:rgba(255,255,255,.45);text-align:center;padding:24px;font-size:.78rem;line-height:1.8;margin-top:0}
     .float-wrap{position:fixed;bottom:28px;right:20px;display:flex;flex-direction:column;align-items:center;gap:10px;z-index:999}
     .float-btn{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 16px rgba(0,0,0,.2);transition:transform .15s;position:relative}
     .float-btn:hover{transform:translateY(-3px)}
@@ -97,13 +101,19 @@
   <div class="no-region-box">
     <div class="nr-title">원하는 지역이 없으신가요?</div>
     <div class="nr-desc">현재 준비 중인 지역일 수도 있습니다.<br>무료 상담을 통해 해당 지역 과외 정보를 받아보시고,<br>무료 시범수업도 신청해 보세요!</div>
-    <div class="nr-btns">
-      <a class="nr-btn-naver" href="https://naver.me/GjySnHpA" target="_blank">📝 무료 상담 신청하기</a>
-      <a class="nr-btn-kakao" href="http://pf.kakao.com/_xjKxcxgn/chat" target="_blank">
-        <svg width="16" height="16" viewBox="0 0 24 24"><path d="M12 3C6.477 3 2 6.477 2 10.8c0 2.7 1.644 5.08 4.148 6.538L5.2 20.4a.3.3 0 0 0 .438.328l4.07-2.7A11.4 11.4 0 0 0 12 18.6c5.523 0 10-3.477 10-7.8S17.523 3 12 3z" fill="#3A1D1D"/></svg>
-        카카오톡 상담
-      </a>
-    </div>
+  </div>
+</div>
+
+<div class="cta-sec">
+  <h2>지금 바로 무료 상담 받으세요</h2>
+  <p>상담 후 무료 시범수업까지 — 부담 없이 시작하세요</p>
+  <div class="cta-btns">
+    <a href="tel:010-5949-9897" class="cta-phone">📞 전화 상담</a>
+    <a href="http://pf.kakao.com/_xjKxcxgn/chat" target="_blank" class="cta-kakao">
+      <svg width="16" height="16" viewBox="0 0 24 24"><path d="M12 3C6.477 3 2 6.477 2 10.8c0 2.7 1.644 5.08 4.148 6.538L5.2 20.4a.3.3 0 0 0 .438.328l4.07-2.7A11.4 11.4 0 0 0 12 18.6c5.523 0 10-3.477 10-7.8S17.523 3 12 3z" fill="#3A1D1D"/></svg>
+      카카오톡 상담
+    </a>
+    <a href="https://naver.me/GjySnHpA" target="_blank" class="cta-form">📝 무료 체험 신청</a>
   </div>
 </div>
 
