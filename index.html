@@ -3,38 +3,226 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>전국 방문 과외 전문 | 제나쌤의 스터디핏 과외</title>
-  <meta name="description" content="서울·경기·인천·부산·대구·대전·광주·울산 전 지역 초·중·고 방문 과외 전문. 국어·영어·수학·과학·사회 맞춤 지도.">
+  <title>전국 방문·화상 과외 전문 | 제나쌤의 스터디핏 과외</title>
+  <meta name="description" content="베테랑 선생님의 1:1 맞춤 과외. 초·중·고 전과목 내신 전문. 무료 시범수업 신청 가능.">
   <link rel="canonical" href="https://zenastudyfit.com/">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;800&display=swap" rel="stylesheet">
   <style>
-    body { font-family:'Noto Sans KR',sans-serif; margin:0; background:#fdf7ff; color:#1a0a24; }
-    header { background:white; padding:14px 24px; border-bottom:2px solid #e8d6f5; display:flex; justify-content:space-between; align-items:center; }
-    .logo { font-size:1.05rem; font-weight:800; color:#510580; text-decoration:none; }
-    .hero { background:linear-gradient(140deg,#370558,#510580,#7b2fa8); color:white; text-align:center; padding:60px 24px; position:relative; overflow:hidden; }
-    .hero::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 60% 60% at 80% 20%,rgba(232,67,154,.22) 0%,transparent 70%); pointer-events:none; }
-    .hero h1 { font-size:clamp(1.6rem,4vw,2.4rem); font-weight:800; margin-bottom:12px; position:relative; }
-    .hero p { opacity:.85; margin-bottom:28px; position:relative; }
-    .btn { background:linear-gradient(135deg,#e8439a,#ff6fc1); color:white; padding:13px 30px; border-radius:50px; text-decoration:none; font-weight:700; box-shadow:0 5px 18px rgba(232,67,154,.35); position:relative; }
-    .container { max-width:900px; margin:0 auto; padding:40px 20px; }
-    h2 { color:#370558; margin-bottom:16px; }
-    h3 { color:#510580; margin:20px 0 8px; font-size:1rem; }
-    ul { list-style:none; display:flex; flex-wrap:wrap; gap:8px; padding:0; }
-    li a { color:#510580; font-size:.85rem; text-decoration:none; background:#f5eefe; padding:4px 10px; border-radius:20px; border:1px solid #e8d6f5; }
-    footer { background:#370558; color:rgba(255,255,255,.45); text-align:center; padding:20px; font-size:.78rem; margin-top:40px; }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Noto Sans KR',sans-serif;background:#fff;color:#1a0a24}
+
+    /* 헤더 */
+    header{background:white;padding:14px 24px;border-bottom:2px solid #e8d6f5;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100}
+    .logo{font-size:1.05rem;font-weight:800;color:#510580;text-decoration:none}
+    nav{display:flex;gap:24px;align-items:center;list-style:none}
+    nav a{font-size:.9rem;color:#1a0a24;text-decoration:none;font-weight:700}
+    .nav-cta{background:linear-gradient(135deg,#e8439a,#ff6fc1);color:white !important;font-size:.85rem;font-weight:700;padding:9px 20px;border-radius:50px;box-shadow:0 4px 14px rgba(232,67,154,.4)}
+
+    /* 히어로 */
+    .hero{background:linear-gradient(140deg,#370558,#510580,#7b2fa8);color:white;padding:60px 24px;text-align:center}
+    .hero-badge{display:inline-block;background:rgba(255,255,255,.15);color:white;font-size:.78rem;font-weight:700;padding:5px 16px;border-radius:20px;margin-bottom:16px;border:1px solid rgba(255,255,255,.3)}
+    .hero h1{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:800;line-height:1.45;margin-bottom:10px;color:white}
+    .hero p{font-size:.95rem;color:white;opacity:.85;margin-bottom:28px}
+    .hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+    .btn-pink{background:linear-gradient(135deg,#e8439a,#ff6fc1);color:white;padding:13px 28px;border-radius:50px;font-weight:700;font-size:.95rem;text-decoration:none;box-shadow:0 4px 14px rgba(232,67,154,.4)}
+    .btn-outline-w{background:transparent;color:white;padding:13px 28px;border-radius:50px;font-weight:700;font-size:.95rem;border:1.5px solid rgba(255,255,255,.5);text-decoration:none}
+
+    /* 스탯 바 */
+    .stats-bar{background:#510580;padding:22px 24px}
+    .stats-inner{max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;text-align:center}
+    .stat-num{font-size:1.3rem;font-weight:800;color:white}
+    .stat-label{font-size:.7rem;color:rgba(255,255,255,.7);margin-top:2px}
+
+    /* 섹션 공통 */
+    .sec{max-width:900px;margin:0 auto;padding:52px 24px}
+    .sec-label{display:inline-block;font-size:.72rem;font-weight:700;color:#7b2fa8;background:#f0e6fc;padding:4px 12px;border-radius:20px;margin-bottom:10px;letter-spacing:.08em}
+    .sec-title{font-size:clamp(1.3rem,3vw,1.6rem);font-weight:800;color:#1a0a24;line-height:1.4;margin-bottom:8px}
+    .sec-sub{font-size:.88rem;color:#6b6b8a;line-height:1.8;margin-bottom:28px}
+    .sec-divider{border:none;border-top:1px solid #f0e6fc;margin:0}
+
+    /* 진단 */
+    .diag-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+    .diag-card{background:#f5eefe;border-radius:12px;padding:18px;border:1.5px solid #e8d6f5}
+    .diag-num{font-size:.72rem;font-weight:800;color:#7b2fa8;margin-bottom:6px}
+    .diag-title{font-size:.9rem;font-weight:800;color:#370558;margin-bottom:4px}
+    .diag-desc{font-size:.78rem;color:#7b2fa8;line-height:1.6}
+
+    /* 학습시스템 */
+    .sys-step{display:flex;gap:16px;align-items:flex-start;padding:20px 0;border-bottom:1px solid #f0e6fc}
+    .sys-step:last-child{border-bottom:none}
+    .step-num{width:36px;height:36px;border-radius:50%;background:#510580;color:white;font-size:.9rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+    .step-title{font-size:.95rem;font-weight:800;color:#370558;margin-bottom:4px}
+    .step-desc{font-size:.83rem;color:#555;line-height:1.7}
+
+    /* 선생님 */
+    .teacher-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
+    .teacher-card{background:white;border-radius:12px;padding:18px;border:1.5px solid #e8d6f5}
+    .teacher-icon{width:40px;height:40px;border-radius:50%;background:#f0e6fc;display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:1.3rem}
+    .teacher-title{font-size:.9rem;font-weight:800;color:#370558;margin-bottom:4px}
+    .teacher-desc{font-size:.78rem;color:#666;line-height:1.6}
+
+    /* 이미지 배너 */
+    .img-banner{position:relative;width:100%;height:320px;overflow:hidden}
+    .img-banner img{width:100%;height:100%;object-fit:cover}
+    .img-overlay{position:absolute;inset:0;background:rgba(55,5,88,.45);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;padding:24px}
+    .img-overlay-title{color:white;font-size:clamp(1.2rem,3vw,1.7rem);font-weight:800;text-align:center;line-height:1.5}
+    .img-overlay-sub{color:rgba(255,255,255,.85);font-size:.9rem;text-align:center}
+
+    /* 후기 */
+    .review-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+    .review-card{background:#f5eefe;border-radius:12px;padding:18px;border:1.5px solid #e8d6f5}
+    .review-badge{display:inline-block;font-size:.72rem;font-weight:700;color:#7b2fa8;background:#e8d6f5;padding:3px 10px;border-radius:20px;margin-bottom:10px}
+    .review-text{font-size:.83rem;color:#370558;line-height:1.8;margin-bottom:10px}
+    .review-author{font-size:.75rem;color:#9b6cc0;font-weight:700}
+
+    /* CTA */
+    .cta-sec{background:linear-gradient(140deg,#370558,#510580);padding:52px 24px;text-align:center}
+    .cta-sec h2{font-size:clamp(1.2rem,3vw,1.5rem);font-weight:800;color:white;margin-bottom:8px}
+    .cta-sec p{font-size:.9rem;color:rgba(255,255,255,.75);margin-bottom:28px}
+    .cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+    .cta-phone{background:white;color:#510580;font-size:.95rem;font-weight:800;padding:13px 22px;border-radius:50px;text-decoration:none;box-shadow:0 4px 16px rgba(0,0,0,.18)}
+    .cta-kakao{background:#FEE500;color:#3A1D1D;font-size:.95rem;font-weight:800;padding:13px 22px;border-radius:50px;text-decoration:none;box-shadow:0 4px 16px rgba(254,229,0,.4);display:inline-flex;align-items:center;gap:6px}
+    .cta-form{background:linear-gradient(135deg,#e8439a,#ff6fc1);color:white;font-size:.95rem;font-weight:800;padding:13px 22px;border-radius:50px;text-decoration:none;box-shadow:0 4px 16px rgba(232,67,154,.4)}
+
+    /* 반응형 */
+    @media(max-width:600px){
+      nav .plain{display:none}
+      .stats-inner{grid-template-columns:repeat(2,1fr)}
+      .img-banner{height:220px}
+      .hero-btns{flex-direction:column;align-items:center}
+      .cta-btns{flex-direction:column;align-items:center}
+    }
+
+    /* 푸터 */
+    footer{background:#370558;color:rgba(255,255,255,.45);text-align:center;padding:24px;font-size:.78rem;line-height:1.8;margin-top:0}
+    footer p{color:rgba(255,255,255,.45);margin:2px 0}
+    footer a{color:rgba(255,255,255,.6);text-decoration:none}
+    footer a:hover{color:rgba(255,255,255,.9)}
   </style>
 </head>
 <body>
-<header><a href="/" class="logo">🎓 제나쌤의 스터디핏 과외</a></header>
+
+<header>
+  <a href="/" class="logo">🎓 제나쌤의 스터디핏 과외</a>
+  <nav>
+    <a href="#" class="plain">수업 안내</a>
+    <a href="/regions/" class="plain">지역 찾기</a>
+    <a href="https://naver.me/GjySnHpA" class="nav-cta" target="_blank">무료 상담 신청</a>
+  </nav>
+</header>
+
 <div class="hero">
-  <h1>전국 방문 과외 전문<br>지역별 맞춤 매칭</h1>
-  <p>서울·경기·인천·부산·대구·대전·광주·울산 방문 수업 가능</p>
-  <a href="https://naver.me/GjySnHpA" class="btn">📝 무료 상담 신청</a>
+  <div class="hero-badge">전국 방문 · 화상 과외 전문</div>
+  <h1>우리 아이 성적 향상,<br>베테랑 선생님과 함께</h1>
+  <p>베테랑 선생님의 1:1 맞춤 수업 · 초·중·고 전과목 내신 전문</p>
+  <div class="hero-btns">
+    <a href="https://naver.me/GjySnHpA" class="btn-pink" target="_blank">📝 무료 상담 신청하기</a>
+    <a href="/regions/" class="btn-outline-w">지역별 과외 찾기 →</a>
+  </div>
 </div>
-<div class="container">
-  <h2>지역별 과외 안내 (465개 페이지)</h2>
-  <h3>서울특별시</h3><ul><li><a href="/서울특별시-강남구-역삼동-초등-국어-과외/">역삼동 초등 국어</a></li><li><a href="/서울특별시-강남구-역삼동-초등-영어-과외/">역삼동 초등 영어</a></li><li><a href="/서울특별시-강남구-역삼동-초등-수학-과외/">역삼동 초등 수학</a></li><li><a href="/서울특별시-강남구-역삼동-초등-과학-과외/">역삼동 초등 과학</a></li><li><a href="/서울특별시-강남구-역삼동-초등-사회-과외/">역삼동 초등 사회</a></li><li><a href="/서울특별시-강남구-역삼동-중등-국어-과외/">역삼동 중등 국어</a></li><li><a href="/서울특별시-강남구-역삼동-중등-영어-과외/">역삼동 중등 영어</a></li><li><a href="/서울특별시-강남구-역삼동-중등-수학-과외/">역삼동 중등 수학</a></li><li><a href="/서울특별시-강남구-역삼동-중등-과학-과외/">역삼동 중등 과학</a></li><li><a href="/서울특별시-강남구-역삼동-중등-사회-과외/">역삼동 중등 사회</a></li><li><a href="/서울특별시-강남구-역삼동-고등-국어-과외/">역삼동 고등 국어</a></li><li><a href="/서울특별시-강남구-역삼동-고등-영어-과외/">역삼동 고등 영어</a></li><li><a href="/서울특별시-강남구-역삼동-고등-수학-과외/">역삼동 고등 수학</a></li><li><a href="/서울특별시-강남구-역삼동-고등-과학-과외/">역삼동 고등 과학</a></li><li><a href="/서울특별시-강남구-역삼동-고등-사회-과외/">역삼동 고등 사회</a></li><li><a href="/서울특별시-강남구-대치동-초등-국어-과외/">대치동 초등 국어</a></li><li><a href="/서울특별시-강남구-대치동-초등-영어-과외/">대치동 초등 영어</a></li><li><a href="/서울특별시-강남구-대치동-초등-수학-과외/">대치동 초등 수학</a></li><li><a href="/서울특별시-강남구-대치동-초등-과학-과외/">대치동 초등 과학</a></li><li><a href="/서울특별시-강남구-대치동-초등-사회-과외/">대치동 초등 사회</a></li><li><a href="/서울특별시-강남구-대치동-중등-국어-과외/">대치동 중등 국어</a></li><li><a href="/서울특별시-강남구-대치동-중등-영어-과외/">대치동 중등 영어</a></li><li><a href="/서울특별시-강남구-대치동-중등-수학-과외/">대치동 중등 수학</a></li><li><a href="/서울특별시-강남구-대치동-중등-과학-과외/">대치동 중등 과학</a></li><li><a href="/서울특별시-강남구-대치동-중등-사회-과외/">대치동 중등 사회</a></li><li><a href="/서울특별시-강남구-대치동-고등-국어-과외/">대치동 고등 국어</a></li><li><a href="/서울특별시-강남구-대치동-고등-영어-과외/">대치동 고등 영어</a></li><li><a href="/서울특별시-강남구-대치동-고등-수학-과외/">대치동 고등 수학</a></li><li><a href="/서울특별시-강남구-대치동-고등-과학-과외/">대치동 고등 과학</a></li><li><a href="/서울특별시-강남구-대치동-고등-사회-과외/">대치동 고등 사회</a></li></ul><h3>경기도</h3><ul><li><a href="/경기도-수원시-영통동-초등-국어-과외/">영통동 초등 국어</a></li><li><a href="/경기도-수원시-영통동-초등-영어-과외/">영통동 초등 영어</a></li><li><a href="/경기도-수원시-영통동-초등-수학-과외/">영통동 초등 수학</a></li><li><a href="/경기도-수원시-영통동-초등-과학-과외/">영통동 초등 과학</a></li><li><a href="/경기도-수원시-영통동-초등-사회-과외/">영통동 초등 사회</a></li><li><a href="/경기도-수원시-영통동-중등-국어-과외/">영통동 중등 국어</a></li><li><a href="/경기도-수원시-영통동-중등-영어-과외/">영통동 중등 영어</a></li><li><a href="/경기도-수원시-영통동-중등-수학-과외/">영통동 중등 수학</a></li><li><a href="/경기도-수원시-영통동-중등-과학-과외/">영통동 중등 과학</a></li><li><a href="/경기도-수원시-영통동-중등-사회-과외/">영통동 중등 사회</a></li><li><a href="/경기도-수원시-영통동-고등-국어-과외/">영통동 고등 국어</a></li><li><a href="/경기도-수원시-영통동-고등-영어-과외/">영통동 고등 영어</a></li><li><a href="/경기도-수원시-영통동-고등-수학-과외/">영통동 고등 수학</a></li><li><a href="/경기도-수원시-영통동-고등-과학-과외/">영통동 고등 과학</a></li><li><a href="/경기도-수원시-영통동-고등-사회-과외/">영통동 고등 사회</a></li><li><a href="/경기도-수원시-팔달동-초등-국어-과외/">팔달동 초등 국어</a></li><li><a href="/경기도-수원시-팔달동-초등-영어-과외/">팔달동 초등 영어</a></li><li><a href="/경기도-수원시-팔달동-초등-수학-과외/">팔달동 초등 수학</a></li><li><a href="/경기도-수원시-팔달동-초등-과학-과외/">팔달동 초등 과학</a></li><li><a href="/경기도-수원시-팔달동-초등-사회-과외/">팔달동 초등 사회</a></li><li><a href="/경기도-수원시-팔달동-중등-국어-과외/">팔달동 중등 국어</a></li><li><a href="/경기도-수원시-팔달동-중등-영어-과외/">팔달동 중등 영어</a></li><li><a href="/경기도-수원시-팔달동-중등-수학-과외/">팔달동 중등 수학</a></li><li><a href="/경기도-수원시-팔달동-중등-과학-과외/">팔달동 중등 과학</a></li><li><a href="/경기도-수원시-팔달동-중등-사회-과외/">팔달동 중등 사회</a></li><li><a href="/경기도-수원시-팔달동-고등-국어-과외/">팔달동 고등 국어</a></li><li><a href="/경기도-수원시-팔달동-고등-영어-과외/">팔달동 고등 영어</a></li><li><a href="/경기도-수원시-팔달동-고등-수학-과외/">팔달동 고등 수학</a></li><li><a href="/경기도-수원시-팔달동-고등-과학-과외/">팔달동 고등 과학</a></li><li><a href="/경기도-수원시-팔달동-고등-사회-과외/">팔달동 고등 사회</a></li></ul><h3>인천광역시</h3><ul><li><a href="/인천광역시-부평구-부평동-초등-국어-과외/">부평동 초등 국어</a></li><li><a href="/인천광역시-부평구-부평동-초등-영어-과외/">부평동 초등 영어</a></li><li><a href="/인천광역시-부평구-부평동-초등-수학-과외/">부평동 초등 수학</a></li><li><a href="/인천광역시-부평구-부평동-초등-과학-과외/">부평동 초등 과학</a></li><li><a href="/인천광역시-부평구-부평동-초등-사회-과외/">부평동 초등 사회</a></li><li><a href="/인천광역시-부평구-부평동-중등-국어-과외/">부평동 중등 국어</a></li><li><a href="/인천광역시-부평구-부평동-중등-영어-과외/">부평동 중등 영어</a></li><li><a href="/인천광역시-부평구-부평동-중등-수학-과외/">부평동 중등 수학</a></li><li><a href="/인천광역시-부평구-부평동-중등-과학-과외/">부평동 중등 과학</a></li><li><a href="/인천광역시-부평구-부평동-중등-사회-과외/">부평동 중등 사회</a></li><li><a href="/인천광역시-부평구-부평동-고등-국어-과외/">부평동 고등 국어</a></li><li><a href="/인천광역시-부평구-부평동-고등-영어-과외/">부평동 고등 영어</a></li><li><a href="/인천광역시-부평구-부평동-고등-수학-과외/">부평동 고등 수학</a></li><li><a href="/인천광역시-부평구-부평동-고등-과학-과외/">부평동 고등 과학</a></li><li><a href="/인천광역시-부평구-부평동-고등-사회-과외/">부평동 고등 사회</a></li><li><a href="/인천광역시-남동구-구월동-초등-국어-과외/">구월동 초등 국어</a></li><li><a href="/인천광역시-남동구-구월동-초등-영어-과외/">구월동 초등 영어</a></li><li><a href="/인천광역시-남동구-구월동-초등-수학-과외/">구월동 초등 수학</a></li><li><a href="/인천광역시-남동구-구월동-초등-과학-과외/">구월동 초등 과학</a></li><li><a href="/인천광역시-남동구-구월동-초등-사회-과외/">구월동 초등 사회</a></li><li><a href="/인천광역시-남동구-구월동-중등-국어-과외/">구월동 중등 국어</a></li><li><a href="/인천광역시-남동구-구월동-중등-영어-과외/">구월동 중등 영어</a></li><li><a href="/인천광역시-남동구-구월동-중등-수학-과외/">구월동 중등 수학</a></li><li><a href="/인천광역시-남동구-구월동-중등-과학-과외/">구월동 중등 과학</a></li><li><a href="/인천광역시-남동구-구월동-중등-사회-과외/">구월동 중등 사회</a></li><li><a href="/인천광역시-남동구-구월동-고등-국어-과외/">구월동 고등 국어</a></li><li><a href="/인천광역시-남동구-구월동-고등-영어-과외/">구월동 고등 영어</a></li><li><a href="/인천광역시-남동구-구월동-고등-수학-과외/">구월동 고등 수학</a></li><li><a href="/인천광역시-남동구-구월동-고등-과학-과외/">구월동 고등 과학</a></li><li><a href="/인천광역시-남동구-구월동-고등-사회-과외/">구월동 고등 사회</a></li></ul><h3>부산광역시</h3><ul><li><a href="/부산광역시-해운대구-좌동-초등-국어-과외/">좌동 초등 국어</a></li><li><a href="/부산광역시-해운대구-좌동-초등-영어-과외/">좌동 초등 영어</a></li><li><a href="/부산광역시-해운대구-좌동-초등-수학-과외/">좌동 초등 수학</a></li><li><a href="/부산광역시-해운대구-좌동-초등-과학-과외/">좌동 초등 과학</a></li><li><a href="/부산광역시-해운대구-좌동-초등-사회-과외/">좌동 초등 사회</a></li><li><a href="/부산광역시-해운대구-좌동-중등-국어-과외/">좌동 중등 국어</a></li><li><a href="/부산광역시-해운대구-좌동-중등-영어-과외/">좌동 중등 영어</a></li><li><a href="/부산광역시-해운대구-좌동-중등-수학-과외/">좌동 중등 수학</a></li><li><a href="/부산광역시-해운대구-좌동-중등-과학-과외/">좌동 중등 과학</a></li><li><a href="/부산광역시-해운대구-좌동-중등-사회-과외/">좌동 중등 사회</a></li><li><a href="/부산광역시-해운대구-좌동-고등-국어-과외/">좌동 고등 국어</a></li><li><a href="/부산광역시-해운대구-좌동-고등-영어-과외/">좌동 고등 영어</a></li><li><a href="/부산광역시-해운대구-좌동-고등-수학-과외/">좌동 고등 수학</a></li><li><a href="/부산광역시-해운대구-좌동-고등-과학-과외/">좌동 고등 과학</a></li><li><a href="/부산광역시-해운대구-좌동-고등-사회-과외/">좌동 고등 사회</a></li><li><a href="/부산광역시-해운대구-반여동-초등-국어-과외/">반여동 초등 국어</a></li><li><a href="/부산광역시-해운대구-반여동-초등-영어-과외/">반여동 초등 영어</a></li><li><a href="/부산광역시-해운대구-반여동-초등-수학-과외/">반여동 초등 수학</a></li><li><a href="/부산광역시-해운대구-반여동-초등-과학-과외/">반여동 초등 과학</a></li><li><a href="/부산광역시-해운대구-반여동-초등-사회-과외/">반여동 초등 사회</a></li><li><a href="/부산광역시-해운대구-반여동-중등-국어-과외/">반여동 중등 국어</a></li><li><a href="/부산광역시-해운대구-반여동-중등-영어-과외/">반여동 중등 영어</a></li><li><a href="/부산광역시-해운대구-반여동-중등-수학-과외/">반여동 중등 수학</a></li><li><a href="/부산광역시-해운대구-반여동-중등-과학-과외/">반여동 중등 과학</a></li><li><a href="/부산광역시-해운대구-반여동-중등-사회-과외/">반여동 중등 사회</a></li><li><a href="/부산광역시-해운대구-반여동-고등-국어-과외/">반여동 고등 국어</a></li><li><a href="/부산광역시-해운대구-반여동-고등-영어-과외/">반여동 고등 영어</a></li><li><a href="/부산광역시-해운대구-반여동-고등-수학-과외/">반여동 고등 수학</a></li><li><a href="/부산광역시-해운대구-반여동-고등-과학-과외/">반여동 고등 과학</a></li><li><a href="/부산광역시-해운대구-반여동-고등-사회-과외/">반여동 고등 사회</a></li></ul><h3>대구광역시</h3><ul><li><a href="/대구광역시-수성구-범어동-초등-국어-과외/">범어동 초등 국어</a></li><li><a href="/대구광역시-수성구-범어동-초등-영어-과외/">범어동 초등 영어</a></li><li><a href="/대구광역시-수성구-범어동-초등-수학-과외/">범어동 초등 수학</a></li><li><a href="/대구광역시-수성구-범어동-초등-과학-과외/">범어동 초등 과학</a></li><li><a href="/대구광역시-수성구-범어동-초등-사회-과외/">범어동 초등 사회</a></li><li><a href="/대구광역시-수성구-범어동-중등-국어-과외/">범어동 중등 국어</a></li><li><a href="/대구광역시-수성구-범어동-중등-영어-과외/">범어동 중등 영어</a></li><li><a href="/대구광역시-수성구-범어동-중등-수학-과외/">범어동 중등 수학</a></li><li><a href="/대구광역시-수성구-범어동-중등-과학-과외/">범어동 중등 과학</a></li><li><a href="/대구광역시-수성구-범어동-중등-사회-과외/">범어동 중등 사회</a></li><li><a href="/대구광역시-수성구-범어동-고등-국어-과외/">범어동 고등 국어</a></li><li><a href="/대구광역시-수성구-범어동-고등-영어-과외/">범어동 고등 영어</a></li><li><a href="/대구광역시-수성구-범어동-고등-수학-과외/">범어동 고등 수학</a></li><li><a href="/대구광역시-수성구-범어동-고등-과학-과외/">범어동 고등 과학</a></li><li><a href="/대구광역시-수성구-범어동-고등-사회-과외/">범어동 고등 사회</a></li><li><a href="/대구광역시-수성구-만촌동-초등-국어-과외/">만촌동 초등 국어</a></li><li><a href="/대구광역시-수성구-만촌동-초등-영어-과외/">만촌동 초등 영어</a></li><li><a href="/대구광역시-수성구-만촌동-초등-수학-과외/">만촌동 초등 수학</a></li><li><a href="/대구광역시-수성구-만촌동-초등-과학-과외/">만촌동 초등 과학</a></li><li><a href="/대구광역시-수성구-만촌동-초등-사회-과외/">만촌동 초등 사회</a></li><li><a href="/대구광역시-수성구-만촌동-중등-국어-과외/">만촌동 중등 국어</a></li><li><a href="/대구광역시-수성구-만촌동-중등-영어-과외/">만촌동 중등 영어</a></li><li><a href="/대구광역시-수성구-만촌동-중등-수학-과외/">만촌동 중등 수학</a></li><li><a href="/대구광역시-수성구-만촌동-중등-과학-과외/">만촌동 중등 과학</a></li><li><a href="/대구광역시-수성구-만촌동-중등-사회-과외/">만촌동 중등 사회</a></li><li><a href="/대구광역시-수성구-만촌동-고등-국어-과외/">만촌동 고등 국어</a></li><li><a href="/대구광역시-수성구-만촌동-고등-영어-과외/">만촌동 고등 영어</a></li><li><a href="/대구광역시-수성구-만촌동-고등-수학-과외/">만촌동 고등 수학</a></li><li><a href="/대구광역시-수성구-만촌동-고등-과학-과외/">만촌동 고등 과학</a></li><li><a href="/대구광역시-수성구-만촌동-고등-사회-과외/">만촌동 고등 사회</a></li></ul><h3>대전광역시</h3><ul><li><a href="/대전광역시-유성구-봉명동-초등-국어-과외/">봉명동 초등 국어</a></li><li><a href="/대전광역시-유성구-봉명동-초등-영어-과외/">봉명동 초등 영어</a></li><li><a href="/대전광역시-유성구-봉명동-초등-수학-과외/">봉명동 초등 수학</a></li><li><a href="/대전광역시-유성구-봉명동-초등-과학-과외/">봉명동 초등 과학</a></li><li><a href="/대전광역시-유성구-봉명동-초등-사회-과외/">봉명동 초등 사회</a></li><li><a href="/대전광역시-유성구-봉명동-중등-국어-과외/">봉명동 중등 국어</a></li><li><a href="/대전광역시-유성구-봉명동-중등-영어-과외/">봉명동 중등 영어</a></li><li><a href="/대전광역시-유성구-봉명동-중등-수학-과외/">봉명동 중등 수학</a></li><li><a href="/대전광역시-유성구-봉명동-중등-과학-과외/">봉명동 중등 과학</a></li><li><a href="/대전광역시-유성구-봉명동-중등-사회-과외/">봉명동 중등 사회</a></li><li><a href="/대전광역시-유성구-봉명동-고등-국어-과외/">봉명동 고등 국어</a></li><li><a href="/대전광역시-유성구-봉명동-고등-영어-과외/">봉명동 고등 영어</a></li><li><a href="/대전광역시-유성구-봉명동-고등-수학-과외/">봉명동 고등 수학</a></li><li><a href="/대전광역시-유성구-봉명동-고등-과학-과외/">봉명동 고등 과학</a></li><li><a href="/대전광역시-유성구-봉명동-고등-사회-과외/">봉명동 고등 사회</a></li></ul><h3>광주광역시</h3><ul><li><a href="/광주광역시-북구-용봉동-초등-국어-과외/">용봉동 초등 국어</a></li><li><a href="/광주광역시-북구-용봉동-초등-영어-과외/">용봉동 초등 영어</a></li><li><a href="/광주광역시-북구-용봉동-초등-수학-과외/">용봉동 초등 수학</a></li><li><a href="/광주광역시-북구-용봉동-초등-과학-과외/">용봉동 초등 과학</a></li><li><a href="/광주광역시-북구-용봉동-초등-사회-과외/">용봉동 초등 사회</a></li><li><a href="/광주광역시-북구-용봉동-중등-국어-과외/">용봉동 중등 국어</a></li><li><a href="/광주광역시-북구-용봉동-중등-영어-과외/">용봉동 중등 영어</a></li><li><a href="/광주광역시-북구-용봉동-중등-수학-과외/">용봉동 중등 수학</a></li><li><a href="/광주광역시-북구-용봉동-중등-과학-과외/">용봉동 중등 과학</a></li><li><a href="/광주광역시-북구-용봉동-중등-사회-과외/">용봉동 중등 사회</a></li><li><a href="/광주광역시-북구-용봉동-고등-국어-과외/">용봉동 고등 국어</a></li><li><a href="/광주광역시-북구-용봉동-고등-영어-과외/">용봉동 고등 영어</a></li><li><a href="/광주광역시-북구-용봉동-고등-수학-과외/">용봉동 고등 수학</a></li><li><a href="/광주광역시-북구-용봉동-고등-과학-과외/">용봉동 고등 과학</a></li><li><a href="/광주광역시-북구-용봉동-고등-사회-과외/">용봉동 고등 사회</a></li></ul><h3>울산광역시</h3><ul><li><a href="/울산광역시-남구-삼산동-초등-국어-과외/">삼산동 초등 국어</a></li><li><a href="/울산광역시-남구-삼산동-초등-영어-과외/">삼산동 초등 영어</a></li><li><a href="/울산광역시-남구-삼산동-초등-수학-과외/">삼산동 초등 수학</a></li><li><a href="/울산광역시-남구-삼산동-초등-과학-과외/">삼산동 초등 과학</a></li><li><a href="/울산광역시-남구-삼산동-초등-사회-과외/">삼산동 초등 사회</a></li><li><a href="/울산광역시-남구-삼산동-중등-국어-과외/">삼산동 중등 국어</a></li><li><a href="/울산광역시-남구-삼산동-중등-영어-과외/">삼산동 중등 영어</a></li><li><a href="/울산광역시-남구-삼산동-중등-수학-과외/">삼산동 중등 수학</a></li><li><a href="/울산광역시-남구-삼산동-중등-과학-과외/">삼산동 중등 과학</a></li><li><a href="/울산광역시-남구-삼산동-중등-사회-과외/">삼산동 중등 사회</a></li><li><a href="/울산광역시-남구-삼산동-고등-국어-과외/">삼산동 고등 국어</a></li><li><a href="/울산광역시-남구-삼산동-고등-영어-과외/">삼산동 고등 영어</a></li><li><a href="/울산광역시-남구-삼산동-고등-수학-과외/">삼산동 고등 수학</a></li><li><a href="/울산광역시-남구-삼산동-고등-과학-과외/">삼산동 고등 과학</a></li><li><a href="/울산광역시-남구-삼산동-고등-사회-과외/">삼산동 고등 사회</a></li></ul>
+
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div><div class="stat-num">1:1</div><div class="stat-label">완전 맞춤 수업</div></div>
+    <div><div class="stat-num">전과목</div><div class="stat-label">초·중·고 전과목</div></div>
+    <div><div class="stat-num">방문·화상</div><div class="stat-label">수업 방식 선택</div></div>
+    <div><div class="stat-num">무료</div><div class="stat-label">시범수업 제공</div></div>
+  </div>
 </div>
-<footer><p>&copy; 2025 제나쌤의 스터디핏 과외 · 문의: 010-5949-9897</p></footer>
+
+<!-- 진단 검사 -->
+<div style="background:#fff">
+<div class="sec">
+  <div class="sec-label">진단 검사</div>
+  <div class="sec-title">우리 아이의 학습 상태,<br>정확하게 파악하고 있나요?</div>
+  <div class="sec-sub">표면적인 성적만으로는 진짜 문제를 알 수 없습니다.<br>상담 전 학습 진단으로 맞춤 학습 방향을 설계해 드립니다.</div>
+  <div class="diag-grid">
+    <div class="diag-card"><div class="diag-num">01</div><div class="diag-title">학습 수준 진단</div><div class="diag-desc">현재 학습 수준과 취약 단원을 정확히 파악합니다</div></div>
+    <div class="diag-card"><div class="diag-num">02</div><div class="diag-title">학습 성향 분석</div><div class="diag-desc">아이에 맞는 최적의 학습 방법을 찾습니다</div></div>
+    <div class="diag-card"><div class="diag-num">03</div><div class="diag-title">목표 설정 상담</div><div class="diag-desc">내신·수능 목표에 맞는 단기·장기 플랜을 수립합니다</div></div>
+    <div class="diag-card"><div class="diag-num">04</div><div class="diag-title">선생님 매칭</div><div class="diag-desc">진단 결과를 바탕으로 최적의 선생님을 배정합니다</div></div>
+  </div>
+</div>
+</div>
+
+<hr class="sec-divider">
+
+<!-- 학습 시스템 -->
+<div style="background:#faf5ff">
+<div class="sec">
+  <div class="sec-label">학습 시스템</div>
+  <div class="sec-title">수업 시작부터 성적 향상까지<br>체계적인 5단계 관리</div>
+  <div class="sec-sub">단순한 과외가 아닙니다. 처음부터 끝까지 책임지는 시스템입니다.</div>
+  <div class="sys-step"><div class="step-num">1</div><div><div class="step-title">무료 상담 · 진단</div><div class="step-desc">학생의 현재 수준, 목표 성적, 학습 성향을 파악합니다</div></div></div>
+  <div class="sys-step"><div class="step-num">2</div><div><div class="step-title">선생님 매칭</div><div class="step-desc">진단 결과에 맞는 검증된 전담 선생님을 배정합니다</div></div></div>
+  <div class="sys-step"><div class="step-num">3</div><div><div class="step-title">무료 시범수업</div><div class="step-desc">첫 수업은 무료로 진행, 수업 방향을 확인하고 결정합니다</div></div></div>
+  <div class="sys-step"><div class="step-num">4</div><div><div class="step-title">맞춤 커리큘럼 수업</div><div class="step-desc">학생 목표에 맞는 커리큘럼으로 매주 체계적으로 수업합니다</div></div></div>
+  <div class="sys-step"><div class="step-num">5</div><div><div class="step-title">정기 피드백 · 성적 관리</div><div class="step-desc">수업 후 학부모님께 학습 현황을 피드백, 성적 향상을 함께 관리합니다</div></div></div>
+</div>
+</div>
+
+<hr class="sec-divider">
+
+<!-- 선생님 자질 -->
+<div style="background:#fff">
+<div class="sec">
+  <div class="sec-label">선생님 자질 · 역량</div>
+  <div class="sec-title">아무 선생님이 아닙니다<br>검증된 베테랑 선생님입니다</div>
+  <div class="sec-sub">제나쌤 스터디핏의 선생님은 까다로운 검증 과정을 통과한 분들입니다.</div>
+  <div class="teacher-grid">
+    <div class="teacher-card"><div class="teacher-icon">🎓</div><div class="teacher-title">학력 · 경력 검증</div><div class="teacher-desc">출신 대학, 전공, 과외 경력을 꼼꼼히 확인합니다</div></div>
+    <div class="teacher-card"><div class="teacher-icon">📋</div><div class="teacher-title">수업 역량 평가</div><div class="teacher-desc">실제 수업 방식과 설명력을 직접 평가합니다</div></div>
+    <div class="teacher-card"><div class="teacher-icon">💬</div><div class="teacher-title">소통 능력</div><div class="teacher-desc">학생·학부모와의 원활한 소통 능력을 중요시합니다</div></div>
+    <div class="teacher-card"><div class="teacher-icon">🔄</div><div class="teacher-title">선생님 교체 보장</div><div class="teacher-desc">수업이 맞지 않으면 언제든 선생님을 교체해 드립니다</div></div>
+  </div>
+</div>
+</div>
+
+<!-- 이미지 배너 -->
+<div class="img-banner">
+  <img src="/images/main-banner.jpg" alt="공부하는 학생">
+  <div class="img-overlay">
+    <div class="img-overlay-title">우리 아이의 성적,<br>지금 바로 바꿀 수 있습니다</div>
+    <div class="img-overlay-sub">베테랑 선생님과 1:1 맞춤 수업으로 시작하세요</div>
+  </div>
+</div>
+
+<!-- 수업 후기 -->
+<div style="background:#faf5ff">
+<div class="sec">
+  <div class="sec-label">수업 후기</div>
+  <div class="sec-title">실제 수강생 후기로<br>직접 확인하세요</div>
+  <div class="sec-sub">수강생 가족분들의 솔직한 후기입니다.</div>
+  <div class="review-grid">
+    <div class="review-card"><div class="review-badge">중3 · 수학</div><div class="review-text">"수학을 포기했던 아이가 선생님 만나고 3개월 만에 60점대에서 90점대로 올랐어요."</div><div class="review-author">남양주시 학부모</div></div>
+    <div class="review-card"><div class="review-badge">고1 · 영어</div><div class="review-text">"내신 준비를 체계적으로 도와주셔서 처음으로 영어 1등급 받았습니다."</div><div class="review-author">구리시 학부모</div></div>
+    <div class="review-card"><div class="review-badge">초5 · 국어</div><div class="review-text">"선생님이 흥미롭게 수업해 주셔서 책 읽는 걸 좋아하게 됐어요!"</div><div class="review-author">서울 강동구 학부모</div></div>
+  </div>
+</div>
+</div>
+
+<!-- CTA -->
+<div class="cta-sec">
+  <h2>지금 바로 무료 상담 받으세요</h2>
+  <p>상담 후 무료 시범수업까지 — 부담 없이 시작하세요</p>
+  <div class="cta-btns">
+    <a href="tel:010-5949-9897" class="cta-phone">📞 전화 상담</a>
+    <a href="http://pf.kakao.com/_xjKxcxgn/chat" target="_blank" class="cta-kakao">
+      <svg width="16" height="16" viewBox="0 0 24 24"><path d="M12 3C6.477 3 2 6.477 2 10.8c0 2.7 1.644 5.08 4.148 6.538L5.2 20.4a.3.3 0 0 0 .438.328l4.07-2.7A11.4 11.4 0 0 0 12 18.6c5.523 0 10-3.477 10-7.8S17.523 3 12 3z" fill="#3A1D1D"/></svg>
+      카카오톡 상담
+    </a>
+    <a href="https://naver.me/GjySnHpA" target="_blank" class="cta-form">📝 무료 체험 신청</a>
+  </div>
+</div>
+
+<footer>
+  <p>제나쌤 스터디핏 · 이수진 · 010-5949-9897 · aquarai@naver.com</p>
+  <p>사업자번호 : 201-81-27348 · 주소 : 서울 동대문구 왕산로 25</p>
+  <p style="margin-top:8px">COPYRIGHT &copy; 제나쌤스터디핏. All Rights Reserved.
+    &nbsp;│&nbsp;<a href="/privacy/" style="color:rgba(255,255,255,.6);text-decoration:none">개인정보처리방침</a>
+    &nbsp;│&nbsp;<a href="/terms/" style="color:rgba(255,255,255,.6);text-decoration:none">이용약관</a>
+  </p>
+</footer>
+
 </body>
 </html>
