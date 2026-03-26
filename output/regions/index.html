@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="naver-site-verification" content="511e0e2c64d12cf657363087cf302e40e3e1ac5c" />
+  <title>전국 방문·화상 과외 전문 | 제나쌤의 스터디핏 과외</title>
+  <meta name="description" content="전국 방문·화상 과외 전문. 베테랑 선생님의 초·중·고 전과목 내신 맞춤 수업. 무료 시범수업 신청 가능.">
+  <link rel="canonical" href="https://zenastudyfit.com/regions/">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;800&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Noto Sans KR',sans-serif;background:#f7f3fb;color:#1a0a24}
+
+    /* 헤더 */
+    header{background:white;padding:14px 24px;border-bottom:2px solid #e8d6f5;display:flex;justify-content:space-between;align-items:center}
+    .logo{font-size:1.05rem;font-weight:800;color:#510580;text-decoration:none}
+
+    /* 히어로 */
+    .hero{background:linear-gradient(140deg,#370558,#510580,#7b2fa8);color:white;text-align:center;padding:48px 24px 40px}
+    .hero-badge{display:inline-block;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:20px;font-size:.78rem;font-weight:700;padding:5px 16px;margin-bottom:14px}
+    .hero h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:800;line-height:1.45;margin-bottom:10px}
+    .hero p{opacity:.8;font-size:.95rem;margin-bottom:24px}
+    .hero-btn{background:linear-gradient(135deg,#e8439a,#ff6fc1);color:white;padding:12px 28px;border-radius:50px;text-decoration:none;font-weight:700;font-size:.95rem;box-shadow:0 5px 18px rgba(232,67,154,.35)}
+
+    /* 필터바 */
+    .filter-bar{background:white;border-bottom:1px solid #e8d6f5;padding:14px 20px;position:sticky;top:0;z-index:10}
+    .filter-inner{max-width:960px;margin:0 auto;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+    .filter-label{font-size:.85rem;color:#7b2fa8;font-weight:700}
+    .filter-select{font-size:.85rem;padding:6px 12px;border-radius:20px;border:1px solid #d4b8f5;background:white;color:#1a0a24;cursor:pointer}
+    .search-input{font-size:.85rem;padding:6px 14px;border-radius:20px;border:1px solid #d4b8f5;background:white;color:#1a0a24;width:150px}
+
+    /* 안내 */
+    .guide{max-width:960px;margin:0 auto;padding:14px 20px 0;font-size:.82rem;color:#7b2fa8}
+
+    /* 본문 */
+    .content{max-width:960px;margin:0 auto;padding:12px 20px 32px;display:flex;flex-direction:column;gap:12px}
+
+    /* 시도 블록 */
+    .city-block{background:white;border:1px solid #e8d6f5;border-radius:14px;overflow:hidden}
+    .city-header{padding:14px 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0e6fc;background:#faf5ff}
+    .city-name{font-size:.95rem;font-weight:800;color:#370558}
+    .city-count{font-size:.72rem;color:#7b2fa8;background:#f0e6fc;padding:3px 10px;border-radius:20px;border:1px solid #e8d6f5}
+    .city-body{padding:16px 18px}
+
+    /* 구 pill */
+    .gu-pills{display:flex;flex-wrap:wrap;gap:8px}
+    .gu-pill{font-size:.82rem;padding:6px 16px;border-radius:20px;background:#f7f3fb;border:1px solid #e8d6f5;color:#510580;cursor:pointer;transition:all .15s;user-select:none}
+    .gu-pill:hover{background:#f0e6fc}
+    .gu-pill.selected{background:#510580;color:white;border-color:#510580}
+
+    /* 동 펼침 영역 */
+    .dong-area{display:none;margin:16px 0 4px;padding:20px;border-radius:12px;background:#faf5ff;border:1px solid #e8d6f5}
+    .dong-area.open{display:block}
+    .dong-area-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+    .dong-area-title{font-size:.75rem;font-weight:700;color:#7b2fa8}
+    .dong-area-close{font-size:.72rem;color:#888;cursor:pointer;padding:3px 10px;border-radius:20px;border:1px solid #e8d6f5;background:white}
+    .dong-chips{display:flex;flex-wrap:wrap;gap:8px}
+    .dong-chip{font-size:.82rem;padding:6px 15px;border-radius:20px;border:1px solid #e8d6f5;background:white;color:#1a0a24;cursor:pointer;text-decoration:none;white-space:nowrap}
+    .dong-chip:hover{background:#510580;color:white;border-color:#510580}
+
+    /* 원하는 지역 없음 */
+    .no-region-wrap{max-width:960px;margin:0 auto;padding:0 20px 24px}
+    .no-region-box{background:white;border:1px solid #e8d6f5;border-radius:14px;padding:28px 24px;text-align:center}
+    .no-region-box h4{font-size:.95rem;font-weight:800;color:#370558;margin-bottom:10px}
+    .no-region-box p{font-size:.85rem;color:#7b2fa8;line-height:1.9}
+
+    /* 하단 CTA */
+    .cta-sec{background:linear-gradient(140deg,#370558,#510580);padding:48px 24px;text-align:center}
+    .cta-sec h2{font-size:clamp(1.2rem,3vw,1.5rem);font-weight:800;color:white;margin-bottom:10px}
+    .cta-sec p{font-size:.9rem;color:rgba(255,255,255,.75);margin-bottom:28px}
+    .cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+    .cta-phone{background:white;color:#510580;font-size:.95rem;font-weight:800;padding:13px 22px;border-radius:50px;text-decoration:none;box-shadow:0 4px 16px rgba(0,0,0,.18)}
+    .cta-kakao{background:#FEE500;color:#3A1D1D;font-size:.95rem;font-weight:800;padding:13px 22px;border-radius:50px;text-decoration:none;box-shadow:0 4px 16px rgba(254,229,0,.4);display:inline-flex;align-items:center;gap:6px}
+    .cta-form{background:linear-gradient(135deg,#e8439a,#ff6fc1);color:white;font-size:.95rem;font-weight:800;padding:13px 22px;border-radius:50px;text-decoration:none;box-shadow:0 4px 16px rgba(232,67,154,.4)}
+
+    /* 푸터 */
+    footer{background:#370558;color:rgba(255,255,255,.45);text-align:center;padding:24px;font-size:.78rem;line-height:1.8;margin-top:0}
+    footer p{color:rgba(255,255,255,.45);margin:2px 0}
+    footer a{color:rgba(255,255,255,.6);text-decoration:none}
+
+    /* 플로팅 버튼 */
+    .float-wrap{position:fixed;bottom:28px;right:20px;display:flex;flex-direction:column;align-items:center;gap:12px;z-index:999}
+    .float-btn{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 16px rgba(0,0,0,.2);transition:transform .15s;position:relative}
+    .float-btn:hover{transform:translateY(-3px)}
+    .float-btn.form{background:#22c55e}
+    .float-btn.kakao{background:#FEE500}
+    .float-btn.phone{background:#4f1787}
+    .float-label{position:absolute;right:62px;background:rgba(30,10,40,.85);color:white;font-size:.7rem;font-weight:700;padding:4px 10px;border-radius:20px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s}
+    .float-btn:hover .float-label{opacity:1}
+
+    @media(max-width:600px){
+      .float-wrap{bottom:20px;right:14px;gap:8px}
+      .float-btn{width:50px;height:50px}
+    }
+  </style>
+</head>
+<body>
+<header><a href="/" class="logo">🎓 제나쌤의 스터디핏 과외</a></header>
+
+<div class="hero">
+  <div class="hero-badge">전국 방문 · 화상 과외 전문</div>
+  <h1>지역별 맞춤 매칭</h1>
+  <p>경험과 노하우의 베테랑 선생님의 전과목 내신 전문 수업</p>
+  <a href="https://naver.me/GjySnHpA" class="hero-btn">📝 무료 상담 신청</a>
+</div>
+
+<div class="filter-bar">
+  <div class="filter-inner">
+    <span class="filter-label">학년</span>
+    <select id="sel-grade" class="filter-select">
+      <option value="">전체</option>
+      <option>초등</option><option>중등</option><option>고등</option>
+    </select>
+    <span class="filter-label">과목</span>
+    <select id="sel-subject" class="filter-select">
+      <option value="">전체</option>
+      <option>국어</option><option>영어</option><option>수학</option><option>과학</option><option>사회</option>
+    </select>
+    <input class="search-input" id="search-input" placeholder="🔍 지역 검색..." oninput="filterRegions(this.value)" />
+  </div>
+</div>
+
+<div class="guide">① 구/군을 클릭하면 동 목록이 펼쳐져요 &nbsp;② 원하는 동을 클릭해 과외를 찾아보세요</div>
+
+<div class="content">
+  <div class="city-block">
+  <div class="city-header">
+    <span class="city-name">서울특별시</span>
+    <span class="city-count">6개 구/시</span>
+  </div>
+  <div class="city-body">
+    <div class="gu-pills"><span class="gu-pill" onclick="toggleDong(this,'서울특별시','서울특별시','강남구')">강남구</span><span class="gu-pill" onclick="toggleDong(this,'서울특별시','서울특별시','송파구')">송파구</span><span class="gu-pill" onclick="toggleDong(this,'서울특별시','서울특별시','노원구')">노원구</span><span class="gu-pill" onclick="toggleDong(this,'서울특별시','서울특별시','마포구')">마포구</span><span class="gu-pill" onclick="toggleDong(this,'서울특별시','서울특별시','영등포구')">영등포구</span><span class="gu-pill" onclick="toggleDong(this,'서울특별시','서울특별시','관악구')">관악구</span></div>
+    <div class="dong-area" id="dong-서울특별시-강남구">
+  <div class="dong-area-header">
+    <span class="dong-area-title">강남구 · 동 선택</span>
+    <span class="dong-area-close" onclick="closeDong('서울특별시','강남구')">닫기</span>
+  </div>
+  <div class="dong-chips"><a class="dong-chip" id="chip-placeholder" data-city="서울특별시" data-gu="강남구" data-dong="개포동">개포동</a><a class="dong-chip" id="chip-placeholder" data-city="서울특별시" data-gu="강남구" data-dong="대치동">대치동</a><a class="dong-chip" id="chip-placeholder" data-city="서울특별시" data-gu="강남구" data-dong="역삼동">역삼동</a></div>
+</div><div class="dong-area" id="dong-서울특별시-송파구">
+  <div class="dong-area-header">
+    <span class="dong-area-title">송파구 · 동 선택</span>
+    <span class="dong-area-close" onclick="closeDong('서울특별시','송파구')">닫기</span>
+  </div>
+  <div class="dong-chips"><a class="dong-chip" id="chip-placeholder" data-city="서울특별시" data-gu="송파구" data-dong="문정동">문정동</a><a class="dong-chip" id="chip-placeholder" data-city="서울특별시" data-gu="송파구" data-dong="잠실동">잠실동</a></div>
+</div><div class="dong-area" id="dong-서울특별시-노원구">
+  <div class="dong-area-header">
+    <span class="dong-area-title">노원구 · 동 선택</span>
+    <span class="dong-area-close" onclick="closeDong('서울특별시','노원구')">닫기</span>
+  </div>
+  <div class="dong-chips"><a class="dong-chip" id="chip-placeholder" data-city="서울특별시" data-gu="노원구" data-dong="상계동">상계동</a><a class="dong-chip" id="chip-placeholder" data-city="서울특별시" data-gu="노원구" data-dong="중계동">중계동</a></div>
+</div><div class="dong-area" id="dong-서울특별시-마포구">
+  <div class="dong-area-header">
+    <span class="dong-area-title">마포구 · 동 선택</span>
+    <span class="dong-area-close" onclick="closeDong('서울특별시','마포구')">닫기</span>
+  </div>
+  <div class="dong-chips"><a class="dong-chip" id="chip-placeholder" data-city="서울특별시" data-gu="마포구" data-dong="합정동">합정동</a></div>
+</div><div class="dong-area" id="dong-서울특별시-영등포구">
+  <div class="dong-area-header">
+    <span class="dong-area-title">영등포구 · 동 선택</span>
+    <span class="dong-area-close" onclick="closeDong('서울특별시','영등포구')">닫기</span>
+  </div>
+  <div class="dong-chips"><a class="dong-chip" id="chip-placeholder" data-city="서울특별시" data-gu="영등포구" data-dong="여의도동">여의도동</a></div>
+</div><div class="dong-area" id="dong-서울특별시-관악구">
+  <div class="dong-area-header">
+    <span class="dong-area-title">관악구 · 동 선택</span>
+    <span class="dong-area-close" onclick="closeDong('서울특별시','관악구')">닫기</span>
+  </div>
+  <div class="dong-chips"><a class="dong-chip" id="chip-placeholder" data-city="서울특별시" data-gu="관악구" data-dong="신림동">신림동</a></div>
+</div>
+  </div>
+</div><div class="city-block">
+  <div class="city-header">
+    <span class="city-name">경기도</span>
+    <span class="city-count">7개 구/시</span>
+  </div>
+  <div class="city-body">
+    <div class="gu-pills"><span class="gu-pill" onclick="toggleDong(this,'경기도','경기도','수원시')">수원시</span><span class="gu-pill" onclick="toggleDong(this,'경기도','경기도','성남시')">성남시</span><span class="gu-pill" onclick="toggleDong(this,'경기도','경기도','남양주시')">남양주시</span><span class="gu-pill" onclick="toggleDong(this,'경기도','경기도','고양시')">고양시</span><span class="gu-pill" onclick="toggleDong(this,'경기도','경기도','용인시')">용인시</span><span class="gu-pill" onclick="toggleDong(this,'경기도','경기도','부천시')">부천시</span><span class="gu-pill" onclick="toggleDong(this,'경기도','경기도','안양시')">안양시</span></div>
+    <div class="dong-area" id="dong-경기도-수원시">
+  <div class="dong-area-header">
+    <span class="dong-area-title">수원시 · 동 선택</span>
+    <span class="dong-area-close" onclick="closeDong('경기도','수원시')">닫기</span>
+  </div>
+  <div class="dong-chips"><a class="dong-chip" id="chip-placeholder" data-city="경기도" data-gu="수원시" data-dong="영통동">영통동</a><a class="dong-chip" id="chip-placeholder" data-city="경기도" data-gu="수원시" data-dong="팔달동">팔달동</a></div>
+</div><div class="dong-area" id="dong-경기도-성남시">
+  <div class="dong-area-header">
+    <span class="dong-area-title">성남시 · 동 선택</span>
+    <span class="dong-area-close" onclick="closeDong('경기도','성남시')">닫기</span>
+  </div>
+  <div class="dong-chips"><a class="dong-chip" id="chip-placeholder" data-city="경기도" data-gu="성남시" data-dong="분당동">분당동</a><a class="dong-chip" id="chip-placeholder" data-city="경기도" data-gu="성남시" data-dong="판교동">판교동</a></div>
+</div><div class="dong-area" id="dong-경기도-남양주시">
+  <div class="dong-area-header">
+    <span class="dong-area-title">남양주시 · 동 선택</span>
+    <span class="dong-area-close" onclick="closeDong('경기도','남양주시')">닫기</span>
+  </div>
+  <div class="dong-chips"><a class="dong-chip" id="chip-placeholder" data-city="경기도" data-gu="남양주시" data-dong="다산동">다산동</a><a class="dong-chip" id="chip-placeholder" data-city="경기도" data-gu="남양주시" data-dong="별내동">별내동</a></div>
+</div><div class="dong-area" id="dong-경기도-고양시">
+  <div class="dong-area-header">
+    <span class="dong-area-title">고양시 · 동 선택</span>
+    <span class="dong-area-close" onclick="closeDong('경기도','고양시')">닫기</span>
+  </div>
+  <div class="dong-chips"><a class="dong-chip" id="chip-placeholder" data-city="경기도" data-gu="고양시" data-dong="일산동">일산동</a></div>
+</div><div class="dong-area" id="dong-경기도-용인시">
+  <div class="dong-area-header">
+    <span class="dong-area-title">용인시 · 동 선택</span>
+    <span class="dong-area-close" onclick="closeDong('경기도','용인시')">닫기</span>
+  </div>
+  <div class="dong-chips"><a class="dong-chip" id="chip-placeholder" data-city="경기도" data-gu="용인시" data-dong="수지동">수지동</a></div>
+</div><div class="dong-area" id="dong-경기도-부천시">
+  <div class="dong-area-header">
+    <span class="dong-area-title">부천시 · 동 선택</span>
+    <span class="dong-area-close" onclick="closeDong('경기도','부천시')">닫기</span>
+  </div>
+  <div class="dong-chips"><a class="dong-chip" id="chip-placeholder" data-city="경기도" data-gu="부천시" data-dong="상동">상동</a></div>
+</div><div class="dong-area" id="dong-경기도-안양시">
+  <div class="dong-area-header">
+    <span class="dong-area-title">안양시 · 동 선택</span>
+    <span class="dong-area-close" onclick="closeDong('경기도','안양시')">닫기</span>
+  </div>
+  <div class="dong-chips"><a class="dong-chip" id="chip-placeholder" data-city="경기도" data-gu="안양시" data-dong="평촌동">평촌동</a></div>
+</div>
+  </div>
+</div><div class="city-block">
+  <div class="city-header">
+    <span class="city-name">인천광역시</span>
+    <span class="city-count">3개 구/시</span>
+  </div>
+  <div class="city-body">
+    <div class="gu-pills"><span class="gu-pill" onclick="toggleDong(this,'인천광역시','인천광역시','부평구')">부평구</span><span class="gu-pill" onclick="toggleDong(this,'인천광역시','인천광역시','남동구')">남동구</span><span class="gu-pill" onclick="toggleDong(this,'인천광역시','인천광역시','연수구')">연수구</span></div>
+    <div class="dong-area" id="dong-인천광역시-부평구">
+  <div class="dong-area-header">
+    <span class="dong-area-title">부평구 · 동 선택</span>
+    <span class="dong-area-close" onclick="closeDong('인천광역시','부평구')">닫기</span>
+  </div>
+  <div class="dong-chips"><a class="dong-chip" id="chip-placeholder" data-city="인천광역시" data-gu="부평구" data-dong="부평동">부평동</a></div>
+</div><div class="dong-area" id="dong-인천광역시-남동구">
+  <div class="dong-area-header">
+    <span class="dong-area-title">남동구 · 동 선택</span>
+    <span class="dong-area-close" onclick="closeDong('인천광역시','남동구')">닫기</span>
+  </div>
+  <div class="dong-chips"><a class="dong-chip" id="chip-placeholder" data-city="인천광역시" data-gu="남동구" data-dong="구월동">구월동</a></div>
+</div><div class="dong-area" id="dong-인천광역시-연수구">
+  <div class="dong-area-header">
+    <span class="dong-area-title">연수구 · 동 선택</span>
+    <span class="dong-area-close" onclick="closeDong('인천광역시','연수구')">닫기</span>
+  </div>
+  <div class="dong-chips"><a class="dong-chip" id="chip-placeholder" data-city="인천광역시" data-gu="연수구" data-dong="송도동">송도동</a></div>
+</div>
+  </div>
+</div><div class="city-block">
+  <div class="city-header">
+    <span class="city-name">부산광역시</span>
+    <span class="city-count">2개 구/시</span>
+  </div>
+  <div class="city-body">
+    <div class="gu-pills"><span class="gu-pill" onclick="toggleDong(this,'부산광역시','부산광역시','해운대구')">해운대구</span><span class="gu-pill" onclick="toggleDong(this,'부산광역시','부산광역시','부산진구')">부산진구</span></div>
+    <div class="dong-area" id="dong-부산광역시-해운대구">
+  <div class="dong-area-header">
+    <span class="dong-area-title">해운대구 · 동 선택</span>
+    <span class="dong-area-close" onclick="closeDong('부산광역시','해운대구')">닫기</span>
+  </div>
+  <div class="dong-chips"><a class="dong-chip" id="chip-placeholder" data-city="부산광역시" data-gu="해운대구" data-dong="반여동">반여동</a><a class="dong-chip" id="chip-placeholder" data-city="부산광역시" data-gu="해운대구" data-dong="좌동">좌동</a></div>
+</div><div class="dong-area" id="dong-부산광역시-부산진구">
+  <div class="dong-area-header">
+    <span class="dong-area-title">부산진구 · 동 선택</span>
+    <span class="dong-area-close" onclick="closeDong('부산광역시','부산진구')">닫기</span>
+  </div>
+  <div class="dong-chips"><a class="dong-chip" id="chip-placeholder" data-city="부산광역시" data-gu="부산진구" data-dong="전포동">전포동</a></div>
+</div>
+  </div>
+</div><div class="city-block">
+  <div class="city-header">
+    <span class="city-name">대구광역시</span>
+    <span class="city-count">1개 구/시</span>
+  </div>
+  <div class="city-body">
+    <div class="gu-pills"><span class="gu-pill" onclick="toggleDong(this,'대구광역시','대구광역시','수성구')">수성구</span></div>
+    <div class="dong-area" id="dong-대구광역시-수성구">
+  <div class="dong-area-header">
+    <span class="dong-area-title">수성구 · 동 선택</span>
+    <span class="dong-area-close" onclick="closeDong('대구광역시','수성구')">닫기</span>
+  </div>
+  <div class="dong-chips"><a class="dong-chip" id="chip-placeholder" data-city="대구광역시" data-gu="수성구" data-dong="만촌동">만촌동</a><a class="dong-chip" id="chip-placeholder" data-city="대구광역시" data-gu="수성구" data-dong="범어동">범어동</a></div>
+</div>
+  </div>
+</div><div class="city-block">
+  <div class="city-header">
+    <span class="city-name">대전광역시</span>
+    <span class="city-count">1개 구/시</span>
+  </div>
+  <div class="city-body">
+    <div class="gu-pills"><span class="gu-pill" onclick="toggleDong(this,'대전광역시','대전광역시','유성구')">유성구</span></div>
+    <div class="dong-area" id="dong-대전광역시-유성구">
+  <div class="dong-area-header">
+    <span class="dong-area-title">유성구 · 동 선택</span>
+    <span class="dong-area-close" onclick="closeDong('대전광역시','유성구')">닫기</span>
+  </div>
+  <div class="dong-chips"><a class="dong-chip" id="chip-placeholder" data-city="대전광역시" data-gu="유성구" data-dong="봉명동">봉명동</a></div>
+</div>
+  </div>
+</div><div class="city-block">
+  <div class="city-header">
+    <span class="city-name">광주광역시</span>
+    <span class="city-count">1개 구/시</span>
+  </div>
+  <div class="city-body">
+    <div class="gu-pills"><span class="gu-pill" onclick="toggleDong(this,'광주광역시','광주광역시','북구')">북구</span></div>
+    <div class="dong-area" id="dong-광주광역시-북구">
+  <div class="dong-area-header">
+    <span class="dong-area-title">북구 · 동 선택</span>
+    <span class="dong-area-close" onclick="closeDong('광주광역시','북구')">닫기</span>
+  </div>
+  <div class="dong-chips"><a class="dong-chip" id="chip-placeholder" data-city="광주광역시" data-gu="북구" data-dong="용봉동">용봉동</a></div>
+</div>
+  </div>
+</div><div class="city-block">
+  <div class="city-header">
+    <span class="city-name">울산광역시</span>
+    <span class="city-count">1개 구/시</span>
+  </div>
+  <div class="city-body">
+    <div class="gu-pills"><span class="gu-pill" onclick="toggleDong(this,'울산광역시','울산광역시','남구')">남구</span></div>
+    <div class="dong-area" id="dong-울산광역시-남구">
+  <div class="dong-area-header">
+    <span class="dong-area-title">남구 · 동 선택</span>
+    <span class="dong-area-close" onclick="closeDong('울산광역시','남구')">닫기</span>
+  </div>
+  <div class="dong-chips"><a class="dong-chip" id="chip-placeholder" data-city="울산광역시" data-gu="남구" data-dong="삼산동">삼산동</a></div>
+</div>
+  </div>
+</div>
+</div>
+
+<div class="no-region-wrap">
+  <div class="no-region-box">
+    <h4>원하는 지역이 없으신가요?</h4>
+    <p>현재 준비 중인 지역일 수도 있습니다. 무료 상담 통해 과외 정보 받아보시고, 무료 시범수업도 신청해보세요.</p>
+  </div>
+</div>
+
+<div class="cta-sec">
+  <h2>지금 바로 무료 상담 받으세요</h2>
+  <p>상담 후 무료 시범수업까지 — 부담 없이 시작하세요</p>
+  <div class="cta-btns">
+    <a href="tel:010-5949-9897" class="cta-phone">📞 전화 상담</a>
+    <a href="http://pf.kakao.com/_xjKxcxgn/chat" target="_blank" class="cta-kakao">
+      <svg width="16" height="16" viewBox="0 0 24 24"><path d="M12 3C6.477 3 2 6.477 2 10.8c0 2.7 1.644 5.08 4.148 6.538L5.2 20.4a.3.3 0 0 0 .438.328l4.07-2.7A11.4 11.4 0 0 0 12 18.6c5.523 0 10-3.477 10-7.8S17.523 3 12 3z" fill="#3A1D1D"/></svg>
+      카카오톡 상담
+    </a>
+    <a href="https://naver.me/GjySnHpA" target="_blank" class="cta-form">📝 무료 체험 신청</a>
+  </div>
+</div>
+
+<footer>
+  <p>제나쌤 스터디핏 · 이수진 · 010-5949-9897 · aquarai@naver.com</p>
+  <p style="margin-top:8px">COPYRIGHT &copy; 제나쌤스터디핏. All Rights Reserved.
+    &nbsp;│&nbsp;<a href="/privacy/" style="color:rgba(255,255,255,.6);text-decoration:none">개인정보처리방침</a>
+    &nbsp;│&nbsp;<a href="/terms/" style="color:rgba(255,255,255,.6);text-decoration:none">이용약관</a>
+  </p>
+</footer>
+
+<!-- 플로팅 버튼: 연필(초록) → 카카오(노랑) → 전화(보라) -->
+<div class="float-wrap">
+  <a href="https://naver.me/GjySnHpA" target="_blank" class="float-btn form">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+    <span class="float-label">무료 체험 신청</span>
+  </a>
+  <a href="http://pf.kakao.com/_xjKxcxgn/chat" target="_blank" class="float-btn kakao">
+    <svg width="26" height="26" viewBox="0 0 24 24"><path d="M12 3C6.477 3 2 6.477 2 10.8c0 2.7 1.644 5.08 4.148 6.538L5.2 20.4a.3.3 0 0 0 .438.328l4.07-2.7A11.4 11.4 0 0 0 12 18.6c5.523 0 10-3.477 10-7.8S17.523 3 12 3z" fill="#3A1D1D"/></svg>
+    <span class="float-label">카카오톡 상담</span>
+  </a>
+  <a href="tel:010-5949-9897" class="float-btn phone">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.63 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.83a16 16 0 0 0 6.29 6.29l.98-.98a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    <span class="float-label">전화 상담</span>
+  </a>
+</div>
+
+<script>
+const REGIONS = [{city:"서울특별시",gu:"강남구",dongs:[{s:"개포동"},{s:"대치동"},{s:"역삼동"}],count:3},{city:"서울특별시",gu:"송파구",dongs:[{s:"문정동"},{s:"잠실동"}],count:2},{city:"서울특별시",gu:"노원구",dongs:[{s:"상계동"},{s:"중계동"}],count:2},{city:"서울특별시",gu:"마포구",dongs:[{s:"합정동"}],count:1},{city:"서울특별시",gu:"영등포구",dongs:[{s:"여의도동"}],count:1},{city:"서울특별시",gu:"관악구",dongs:[{s:"신림동"}],count:1},{city:"경기도",gu:"수원시",dongs:[{s:"영통동"},{s:"팔달동"}],count:2},{city:"경기도",gu:"성남시",dongs:[{s:"분당동"},{s:"판교동"}],count:2},{city:"경기도",gu:"남양주시",dongs:[{s:"다산동"},{s:"별내동"}],count:2},{city:"경기도",gu:"고양시",dongs:[{s:"일산동"}],count:1},{city:"경기도",gu:"용인시",dongs:[{s:"수지동"}],count:1},{city:"경기도",gu:"부천시",dongs:[{s:"상동"}],count:1},{city:"경기도",gu:"안양시",dongs:[{s:"평촌동"}],count:1},{city:"인천광역시",gu:"부평구",dongs:[{s:"부평동"}],count:1},{city:"인천광역시",gu:"남동구",dongs:[{s:"구월동"}],count:1},{city:"인천광역시",gu:"연수구",dongs:[{s:"송도동"}],count:1},{city:"부산광역시",gu:"해운대구",dongs:[{s:"반여동"},{s:"좌동"}],count:2},{city:"부산광역시",gu:"부산진구",dongs:[{s:"전포동"}],count:1},{city:"대구광역시",gu:"수성구",dongs:[{s:"만촌동"},{s:"범어동"}],count:2},{city:"대전광역시",gu:"유성구",dongs:[{s:"봉명동"}],count:1},{city:"광주광역시",gu:"북구",dongs:[{s:"용봉동"}],count:1},{city:"울산광역시",gu:"남구",dongs:[{s:"삼산동"}],count:1}];
+
+function toggleDong(el, citySafe, city, gu) {
+  const guSafe = gu.replace(/ /g, '-');
+  const areaId = 'dong-' + citySafe + '-' + guSafe;
+  const area = document.getElementById(areaId);
+  const block = el.closest('.city-block');
+  const isSelected = el.classList.contains('selected');
+
+  block.querySelectorAll('.gu-pill').forEach(p => p.classList.remove('selected'));
+  block.querySelectorAll('.dong-area').forEach(d => d.classList.remove('open'));
+
+  if (!isSelected && area) {
+    el.classList.add('selected');
+    area.classList.add('open');
+    updateDongLinks(area, city, gu);
+    area.scrollIntoView({behavior:'smooth', block:'nearest'});
+  }
+}
+
+function updateDongLinks(area, city, gu) {
+  const g = document.getElementById('sel-grade').value || '고등';
+  const s = document.getElementById('sel-subject').value || '수학';
+  area.querySelectorAll('.dong-chip').forEach(chip => {
+    const dong = chip.dataset.dong;
+    chip.href = '/' + city.replace(/ /g,'-') + '-' + gu.replace(/ /g,'-') + '-' + dong.replace(/ /g,'-') + '-' + g + '-' + s + '-과외/';
+  });
+}
+
+function closeDong(citySafe, guSafe) {
+  const area = document.getElementById('dong-' + citySafe + '-' + guSafe);
+  if (area) area.classList.remove('open');
+  document.querySelectorAll('.gu-pill').forEach(p => {
+    if (p.textContent.trim() === guSafe.replace(/-/g,' ')) p.classList.remove('selected');
+  });
+}
+
+function filterRegions(val) {
+  const v = val.trim();
+  document.querySelectorAll('.city-block').forEach(block => {
+    if (!v) { block.style.display = ''; return; }
+    const cityName = block.querySelector('.city-name').textContent;
+    const pills = Array.from(block.querySelectorAll('.gu-pill')).map(p => p.textContent);
+    block.style.display = (cityName.includes(v) || pills.some(p => p.includes(v))) ? '' : 'none';
+  });
+}
+</script>
+</body>
+</html>
