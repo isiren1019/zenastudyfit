@@ -1,0 +1,1620 @@
+#!/usr/bin/env python3
+"""
+제나쌤의 스터디핏 과외 — 블로그형 상세페이지 생성기 v2
+- 지역(시/구 + 동) × 학년 × 과목 조합으로 페이지 자동 생성
+- 서론 / 수업특징 / 본론 / 이미지 / FAQ / 결론 / 문의 구조
+- 텍스트 조합 방식으로 페이지마다 다른 본문 생성
+- 동 리스트는 areas.txt 파일로 외부 주입 가능
+"""
+
+import random
+import hashlib
+from pathlib import Path
+from itertools import product
+
+# ══════════════════════════════════════════════════════════
+# ① 기본 설정
+# ══════════════════════════════════════════════════════════
+
+SITE_NAME  = "제나쌤의 스터디핏 과외"
+SITE_DOMAIN = "https://zenastudyfit.com"
+PHONE      = "010-5949-9897"
+KAKAO_URL  = "http://pf.kakao.com/_xjKxcxgn/chat"
+FORM_URL   = "https://naver.me/GjySnHpA"
+
+GRADES   = ["초등", "중등", "고등"]
+SUBJECTS = ["국어", "영어", "수학", "과학", "사회"]
+
+FOOTER_HTML = """<footer>
+  <p>제나쌤 스터디핏 · 이수진 · 010-5949-9897 · aquarai@naver.com</p>
+  <p>사업자번호 : 201-81-27348 · 주소 : 서울 동대문구 왕산로 25</p>
+  <p style="margin-top:8px">COPYRIGHT &copy; 제나쌤스터디핏. All Rights Reserved.
+    &nbsp;│&nbsp;<a href="/privacy/" style="color:rgba(255,255,255,.6);text-decoration:none">개인정보처리방침</a>
+    &nbsp;│&nbsp;<a href="/terms/" style="color:rgba(255,255,255,.6);text-decoration:none">이용약관</a>
+  </p>
+</footer>"""
+
+# ──────────────────────────────────────────────────────────
+# ② 지역 데이터
+#    → areas.txt 가 있으면 그 파일을 읽고,
+#      없으면 아래 SAMPLE_AREAS 를 사용합니다.
+#
+#    areas.txt 형식 (탭 또는 콤마 구분):
+#      시/도    구/군    동
+#      서울특별시  강남구   역삼동
+#      경기도    남양주시  다산동
+#      ...
+# ──────────────────────────────────────────────────────────
+
+SAMPLE_AREAS = [
+    # (시도,  구군,       동)
+    ("서울특별시", "강남구",   "역삼동"),
+    ("서울특별시", "강남구",   "대치동"),
+    ("서울특별시", "강남구",   "개포동"),
+    ("서울특별시", "송파구",   "잠실동"),
+    ("서울특별시", "송파구",   "문정동"),
+    ("서울특별시", "노원구",   "상계동"),
+    ("서울특별시", "노원구",   "중계동"),
+    ("서울특별시", "마포구",   "합정동"),
+    ("서울특별시", "영등포구", "여의도동"),
+    ("서울특별시", "관악구",   "신림동"),
+    ("경기도",    "수원시",   "영통동"),
+    ("경기도",    "수원시",   "팔달동"),
+    ("경기도",    "성남시",   "분당동"),
+    ("경기도",    "성남시",   "판교동"),
+    ("경기도",    "남양주시", "다산동"),
+    ("경기도",    "남양주시", "별내동"),
+    ("경기도",    "고양시",   "일산동"),
+    ("경기도",    "용인시",   "수지동"),
+    ("경기도",    "부천시",   "상동"),
+    ("경기도",    "안양시",   "평촌동"),
+    ("인천광역시", "부평구",  "부평동"),
+    ("인천광역시", "남동구",  "구월동"),
+    ("인천광역시", "연수구",  "송도동"),
+    ("부산광역시", "해운대구","좌동"),
+    ("부산광역시", "해운대구","반여동"),
+    ("부산광역시", "부산진구","전포동"),
+    ("대구광역시", "수성구",  "범어동"),
+    ("대구광역시", "수성구",  "만촌동"),
+    ("대전광역시", "유성구",  "봉명동"),
+    ("광주광역시", "북구",    "용봉동"),
+    ("울산광역시", "남구",    "삼산동"),
+]
+
+
+def load_areas():
+    """areas.txt 가 있으면 읽고, 없으면 샘플 사용"""
+    p = Path("areas.txt")
+    if not p.exists():
+        return SAMPLE_AREAS
+    rows = []
+    for line in p.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line or line.startswith("#"):
+            continue
+        parts = line.replace("\t", ",").split(",")
+        if len(parts) >= 3:
+            rows.append((parts[0].strip(), parts[1].strip(), parts[2].strip()))
+    return rows if rows else SAMPLE_AREAS
+
+
+# ══════════════════════════════════════════════════════════
+# ③ 이미지 파일명 목록
+#    실제 이미지를 /images/ 폴더에 같은 이름으로 넣어주세요.
+# ══════════════════════════════════════════════════════════
+
+IMAGES = [
+    "study-01-desk.jpg",
+    "study-02-book.jpg",
+    "study-03-writing.jpg",
+    "study-04-tutoring.jpg",
+    "study-05-whiteboard.jpg",
+    "study-06-math.jpg",
+    "study-07-english.jpg",
+    "study-08-korean.jpg",
+    "study-09-science.jpg",
+    "study-10-social.jpg",
+    "study-11-result.jpg",
+    "study-12-feedback.jpg",
+    "study-13-smile.jpg",
+]
+
+
+# ══════════════════════════════════════════════════════════
+# ④ 텍스트 조합 데이터 (랜덤 선택용)
+# ══════════════════════════════════════════════════════════
+
+# 학년별 특성
+GRADE_TRAITS = {
+    "초등": [
+        "초등 시기는 학습 습관이 형성되는 가장 중요한 단계입니다.",
+        "초등학생은 기초 개념을 탄탄히 잡아야 중·고등 과정이 수월해집니다.",
+        "초등 과정에서 공부에 흥미를 붙이는 것이 장기적인 학업 성취의 핵심입니다.",
+        "초등학교 시절 형성된 학습 습관은 이후 12년의 학업을 좌우합니다.",
+    ],
+    "중등": [
+        "중학교 시기는 내신 관리가 본격적으로 시작되는 전환점입니다.",
+        "중등 과정에서는 개념 이해와 함께 내신 시험 대비 전략이 필요합니다.",
+        "중학교 성적은 고등학교 입시와 수능 준비의 기초가 됩니다.",
+        "중학생 때 배우는 개념들은 고등 과정 전반에 걸쳐 반복 활용됩니다.",
+    ],
+    "고등": [
+        "고등학교 시기는 수능과 내신을 동시에 잡아야 하는 가장 치열한 단계입니다.",
+        "고등학생은 수능 목표 등급에 맞춘 체계적인 전략이 필요합니다.",
+        "고등 과정에서는 단순 암기가 아닌 개념 응용력을 키우는 것이 핵심입니다.",
+        "고등학교 3년은 대학 입시를 결정하는 결정적인 시간입니다.",
+    ],
+}
+
+# 과목별 특성
+SUBJECT_TRAITS = {
+    "국어": [
+        "국어는 모든 과목의 기초가 되는 언어 능력을 키우는 과목입니다.",
+        "국어 실력은 독해력과 논리적 사고력을 동시에 향상시킵니다.",
+        "국어는 문학과 비문학, 화법과 작문 전 영역을 균형 있게 학습해야 합니다.",
+    ],
+    "영어": [
+        "영어는 내신과 수능 모두에서 높은 비중을 차지하는 핵심 과목입니다.",
+        "영어 실력은 독해·문법·어휘·듣기를 체계적으로 쌓아야 완성됩니다.",
+        "영어는 기초 문법부터 독해 전략까지 단계별로 접근하는 것이 효과적입니다.",
+    ],
+    "수학": [
+        "수학은 개념 이해 없이 문제 풀이만 반복하면 실력이 정체됩니다.",
+        "수학은 개념→유형→실전 3단계 학습이 가장 효과적입니다.",
+        "수학 실력은 꾸준한 반복과 오답 분석으로 완성됩니다.",
+    ],
+    "과학": [
+        "과학은 개념을 실생활과 연결해 이해할 때 오래 기억됩니다.",
+        "과학은 암기보다 원리 이해가 선행되어야 서술형에서도 강해집니다.",
+        "과학 과목은 실험·관찰 내용과 교과 개념을 함께 정리해야 합니다.",
+    ],
+    "사회": [
+        "사회는 방대한 내용을 구조화해서 정리하는 것이 핵심입니다.",
+        "사회는 흐름과 맥락으로 이해하면 암기량이 자연스럽게 줄어듭니다.",
+        "사회 과목은 시사와 연결해 공부하면 흥미와 이해도가 모두 올라갑니다.",
+    ],
+}
+
+# 서론 제목 패턴
+INTRO_TITLES = [
+    "{city} {dong} {grade} {subject} 과외, 왜 지금 시작해야 할까요?",
+    "{dong} {grade} {subject} 과외 선생님을 찾고 계신다면",
+    "{city} {grade} {subject} 과외, 제대로 된 선생님이 필요한 이유",
+    "{dong} 인근에서 {grade} {subject} 과외를 찾는 분들께",
+    "성적이 오르지 않는 {grade} {subject}, 지금 바꿔야 합니다",
+    "{city} {dong} 방문 {grade} {subject} 과외의 모든 것",
+]
+
+# 본론 제목 패턴
+BODY_TITLES = [
+    "전문 선생님의 {grade} {subject} 과외, 이렇게 다릅니다",
+    "{dong} {grade} {subject} 수업 커리큘럼 상세 안내",
+    "실력이 오르는 {subject} 과외의 3가지 핵심 원칙",
+    "{grade} {subject} 내신 대비, 이 방법이 정답입니다",
+    "왜 {dong} 학부모님들이 스터디핏을 선택하는가",
+    "{subject} 점수를 올리는 과외 전문 선생님의 맞춤 전략",
+]
+
+# 결론 제목 패턴
+CONCLUSION_TITLES = [
+    "{dong} {grade} {subject} 과외, 지금 바로 상담 신청하세요",
+    "첫 수업 전 무료 상담으로 시작하세요",
+    "{city} {grade} {subject} 과외 — 전문 선생님과 함께라면 달라집니다",
+    "성적 향상의 첫걸음, 전문 선생님이 함께합니다",
+    "지금 신청하면 {dong} 방문 수업 바로 시작 가능합니다",
+]
+
+# 서론 본문 조각
+INTRO_BODIES = [
+    (
+        "{grade} {subject} 과외를 찾고 계신다면, 단순히 가까운 선생님보다 "
+        "아이의 현재 수준과 목표에 맞는 맞춤형 지도를 해줄 수 있는 선생님이 필요합니다. "
+        "{trait_grade} {trait_subject} "
+        "{city} {dong} 지역에서 방문 과외로 편하게 시작할 수 있습니다."
+    ),
+    (
+        "{city} {dong} 지역에서 {grade} {subject}을(를) 어디서 배워야 할지 고민 중이신가요? "
+        "{trait_grade} 과외 전문 선생님은 {dong} 인근 방문 수업을 통해 "
+        "학생 한 명 한 명에게 맞는 수업을 제공합니다. {trait_subject}"
+    ),
+    (
+        "많은 학부모님들이 {grade} {subject} 과외를 알아볼 때 가장 고민하는 부분은 "
+        "'과연 효과가 있을까?'입니다. "
+        "{trait_subject} {trait_grade} "
+        "과외 전문 선생님은 {city} {dong} 방문 수업으로 학생의 집에서 편안하게 집중할 수 있는 환경을 만들어 드립니다."
+    ),
+]
+
+# 본론 본문 조각 (학년별)
+BODY_BODIES = {
+    "초등": [
+        (
+            "초등 {subject} 과외에서 가장 중요한 것은 '흥미'입니다. "
+            "아이가 공부를 즐겁게 느낄 수 있도록 게임형 학습, 스토리텔링 방식을 적극 활용합니다. "
+            "기초 개념을 쉽고 재미있게 전달하며, 매 수업마다 소소한 성취감을 느낄 수 있도록 설계합니다. "
+            "초등 시기에 {subject}에 자신감을 갖게 되면, 중학교 진학 후에도 자기주도 학습이 자연스럽게 이어집니다. "
+            "{trait_subject} "
+            "수업 후에는 학부모님께 당일 수업 내용과 아이의 반응을 카카오톡으로 공유해드립니다."
+        ),
+        (
+            "초등 {subject} 과외는 단순한 선행보다 현재 학년 수준의 완전한 이해가 우선입니다. "
+            "교과서 중심으로 개념을 완벽히 익힌 뒤, 아이의 속도에 맞춰 다음 단계로 나아갑니다. "
+            "과외 전문 선생님은 초등학생의 집중력 특성을 고려해 40~50분 단위로 수업을 구성하고, "
+            "중간중간 짧은 환기 시간을 넣어 끝까지 집중할 수 있도록 도와줍니다. "
+            "{trait_subject}"
+        ),
+    ],
+    "중등": [
+        (
+            "중학교 {subject} 과외는 내신 시험 일정을 기준으로 커리큘럼을 역설계합니다. "
+            "시험 6주 전부터 단원별 개념 정리 → 기출 분석 → 실전 모의고사 순으로 진행합니다. "
+            "{trait_subject} "
+            "특히 서술형 문제는 중간·기말 모두 배점이 크기 때문에 답안 작성법을 별도로 훈련합니다. "
+            "매 수업 후 오답노트를 함께 작성하며 약점을 체계적으로 보완합니다."
+        ),
+        (
+            "중학교 시기의 {subject} 성적은 고등학교 수업에 직접적인 영향을 줍니다. "
+            "{trait_subject} "
+            "과외 전문 선생님은 중학교 {subject} 수업에서 '왜?'를 먼저 이해하는 방식을 고집합니다. "
+            "단순 암기 대신 원리를 파악하면 응용 문제에서도 흔들리지 않는 실력이 만들어집니다. "
+            "학교 수업 예습·복습 연계 지도로 학교에서도 자신 있게 발표하고 손들 수 있게 됩니다."
+        ),
+    ],
+    "고등": [
+        (
+            "고등 {subject} 과외는 수능과 내신, 두 마리 토끼를 동시에 잡아야 합니다. "
+            "수능 출제 경향을 분석한 커리큘럼으로 진도를 나가되, "
+            "학교 내신 시험 시기에는 해당 학교 기출문제 중심으로 전환합니다. "
+            "{trait_subject} "
+            "1등급을 목표로 한다면 고난도 문제를 반복 풀고 사고 과정을 글로 정리하는 훈련이 필수입니다."
+        ),
+        (
+            "고등학교 {subject} 점수가 오르지 않는 가장 큰 이유는 '개념의 구멍'입니다. "
+            "과외 전문 선생님은 수업 초반에 진단 테스트를 통해 개념 누락 부분을 먼저 확인합니다. "
+            "빠진 개념을 채우고 나면 문제 풀이 속도와 정확도가 동시에 올라갑니다. "
+            "{trait_subject} "
+            "고3 수험생은 모의고사 분석 → 취약 단원 집중 → 실전 훈련 사이클로 수능까지 전략적으로 준비합니다."
+        ),
+    ],
+}
+
+# 결론 본문 조각
+CONCLUSION_BODIES = [
+    (
+        "{city} {dong} {grade} {subject} 과외를 고민 중이시라면 지금 바로 무료 상담을 신청해보세요. "
+        "첫 상담에서는 아이의 현재 수준, 목표 성적, 선호하는 수업 방식을 꼼꼼히 파악합니다. "
+        "상담 후 커리큘럼 초안을 제시해드리며, 수업이 시작되면 매달 학습 리포트를 제공합니다. "
+        "{dong} 인근 방문 수업이 가능하며, 원거리라면 화상 수업으로도 진행할 수 있습니다."
+    ),
+    (
+        "지금 {city} {dong}에서 {grade} {subject} 과외를 찾고 계신다면, "
+        "스터디핏 과외 전문 선생님이 좋은 선택이 될 것입니다. "
+        "수업 횟수와 시간은 학생 스케줄에 맞게 유연하게 조정 가능합니다. "
+        "무료 상담 후 첫 수업까지 보통 3~5일 이내에 시작할 수 있습니다. "
+        "상담은 전화 또는 네이버 폼으로 편하게 신청해주세요."
+    ),
+    (
+        "{grade} {subject} 실력을 올리는 가장 빠른 방법은 자신에게 맞는 선생님을 만나는 것입니다. "
+        "과외 전문 선생님은 {city} {dong} 지역 학생들의 학교 교육과정과 내신 출제 경향을 잘 파악하고 있습니다. "
+        "첫 수업 전 무료 상담을 통해 아이에게 꼭 맞는 수업 계획을 함께 세워보세요."
+    ),
+]
+
+# FAQ — 고정 5개 질문 (모든 페이지 동일)
+FIXED_FAQ = [
+    (
+        "과외 수업은 어떻게 진행이 되나요?",
+        "수업은 학생의 집으로 방문하는 방문과외와 온라인 라이브 화상과외로 수업을 진행합니다. "
+        "학생과 학부모님의 편의에 맞춰서 선택할 수 있습니다. "
+        "방문 수업의 경우 학생이 편안한 환경에서 집중할 수 있으며, "
+        "실시간 라이브 화상 수업은 시간과 장소의 제약 없이 전국의 과목별 선생님을 만나 효율적인 학습을 할 수 있습니다."
+    ),
+    (
+        "선생님은 어떤 분이신가요?",
+        "검증된 경력의 전문 과외 선생님이 수업합니다. "
+        "과외는 학생과 선생님의 합이 중요한 만큼 상담 후 최적의 선생님을 매칭해 드립니다. "
+        "수업 시작이 되더라도 학생과 맞지 않으면 선생님 교체가 가능합니다."
+    ),
+    (
+        "수업료는 얼마인가요?",
+        "학년, 과목, 수업 횟수, 수업 방식에 따라 달라집니다. "
+        "보통 초등학생의 경우 방문 기준 주 2회 1시간의 경우 25만 원대, "
+        "중학생은 33만 원대, 고등학생은 33만 원에서 55만 원 선으로 책정됩니다. "
+        "정확한 수업료는 학생 실력과 목표에 따라 달라질 수 있습니다. "
+        "무료 상담을 통해 학생에게 맞는 수업 계획과 정확한 비용을 안내받으세요."
+    ),
+    (
+        "교재는 어떻게 준비하나요?",
+        "학생이 사용 중인 교재가 맞는 교재라면 그 교재를 활용하기도 하지만, 수준과 목표에 맞는 교재를 선정합니다. "
+        "학교 교과서, 기본서, 심화, 기출문제집을 활용하여 수업을 진행하며, "
+        "필요에 따라 선생님이 직접 맞춤 자료를 제공하기도 합니다."
+    ),
+    (
+        "첫 수업 전에 상담받을 수 있을까요?",
+        "네, 첫 수업 전 무료 상담을 진행합니다. "
+        "전화나 혹은 당장 통화가 어려운 경우 네이버폼으로 무료 상담을 신청하시면 됩니다. "
+        "상담을 통해 학생의 실력과 목표를 파악하여 최적의 계획을 수립하기 때문에, "
+        "상담 후 시범수업을 통해 수업 진행 여부를 결정하시면 됩니다."
+    ),
+]
+
+# 수업 특징 아이템 (랜덤 선택)
+FEATURE_POOL = [
+    ("📍", "방문·화상 모두 가능", "{dong} 및 인근 지역 방문 수업, 원거리는 화상으로 진행합니다."),
+    ("📊", "{subject} 맞춤 커리큘럼", "학생 수준 진단 후 목표에 맞는 커리큘럼을 설계합니다."),
+    ("🎯", "{grade} 전문 지도", "{grade_trait}"),
+    ("💬", "학부모 피드백 제공", "매 수업 후 학습 현황을 카카오톡으로 전달해 드립니다."),
+    ("📝", "오답노트 관리", "틀린 문제를 체계적으로 정리하고 반복 학습으로 완전 이해를 만듭니다."),
+    ("📅", "유연한 수업 일정", "학생의 학교 일정·방과후 활동에 맞춰 수업 시간을 조정합니다."),
+    ("🏆", "내신 집중 대비", "시험 전 6주 내신 모드 전환으로 내신 성적을 집중 관리합니다."),
+    ("🔍", "수준 진단 테스트", "첫 수업 전 진단 테스트로 정확한 현재 수준을 파악합니다."),
+]
+
+GRADE_SHORT_TRAIT = {
+    "초등": "초등 기초를 탄탄히 다져 중학교 과정을 자신 있게 시작합니다.",
+    "중등": "내신 대비부터 고등 선행까지 체계적으로 지도합니다.",
+    "고등": "수능·내신 동시 대비, 목표 대학 합격을 함께 준비합니다.",
+}
+
+
+# ══════════════════════════════════════════════════════════
+# ⑤ 콘텐츠 생성 함수 (텍스트 조합)
+# ══════════════════════════════════════════════════════════
+
+def seed(city, dong, grade, subject):
+    """페이지마다 고유한 시드값 → 항상 같은 랜덤 결과 보장"""
+    key = f"{city}{dong}{grade}{subject}"
+    return int(hashlib.md5(key.encode()).hexdigest(), 16) % (2**32)
+
+
+def pick(rng, lst):
+    return lst[rng.randint(0, len(lst) - 1)]
+
+
+def make_intro(rng, city, dong, grade, subject):
+    title = pick(rng, INTRO_TITLES).format(
+        city=city, dong=dong, grade=grade, subject=subject)
+    body = pick(rng, INTRO_BODIES).format(
+        city=city, dong=dong, grade=grade, subject=subject,
+        trait_grade=pick(rng, GRADE_TRAITS[grade]),
+        trait_subject=pick(rng, SUBJECT_TRAITS[subject]),
+    )
+    return title, body
+
+
+def make_body(rng, city, dong, grade, subject):
+    title = pick(rng, BODY_TITLES).format(
+        city=city, dong=dong, grade=grade, subject=subject)
+    body = pick(rng, BODY_BODIES[grade]).format(
+        city=city, dong=dong, grade=grade, subject=subject,
+        trait_subject=pick(rng, SUBJECT_TRAITS[subject]),
+    )
+    return title, body
+
+
+def make_conclusion(rng, city, dong, grade, subject):
+    title = pick(rng, CONCLUSION_TITLES).format(
+        city=city, dong=dong, grade=grade, subject=subject)
+    body = pick(rng, CONCLUSION_BODIES).format(
+        city=city, dong=dong, grade=grade, subject=subject)
+    return title, body
+
+
+def make_features(rng, subject, grade):
+    pool = list(FEATURE_POOL)
+    rng.shuffle(pool)
+    chosen = pool[:4]
+    result = []
+    for icon, title, desc in chosen:
+        result.append((
+            icon,
+            title.format(subject=subject, grade=grade),
+            desc.format(
+                subject=subject, grade=grade, dong="{dong}",
+                grade_trait=GRADE_SHORT_TRAIT[grade]
+            )
+        ))
+    return result
+
+
+def make_faq(rng, dong, grade):
+    return [(q, a) for q, a in FIXED_FAQ]
+
+
+def pick_images(rng, count=13):
+    return IMAGES  # 항상 01~13 고정 순서
+
+
+# ══════════════════════════════════════════════════════════
+# ⑥ SEO 헬퍼
+# ══════════════════════════════════════════════════════════
+
+def make_meta_description(city, gu, dong, grade, subject):
+    return (
+        f"{city} {gu} {dong} {grade} {subject} 과외 전문 선생님을 찾고 계신가요? "
+        f"제나쌤의 스터디핏 과외에서 {dong} 인근 {grade} {subject} 방문 과외 선생님을 연결해 드립니다. "
+        f"내신·수능 대비, 기초부터 심화까지 맞춤 수업. 무료 상담 가능."
+    )
+
+def make_keywords(city, gu, dong, grade, subject):
+    return ", ".join([
+        f"{dong} {grade} {subject} 과외",
+        f"{city} {gu} {grade} {subject} 과외",
+        f"{city} {grade} {subject} 과외",
+        f"{dong} 과외",
+        f"{city} {gu} 과외",
+        f"{grade} {subject} 과외 선생님",
+        f"{dong} 방문 과외",
+    ])
+
+
+# ══════════════════════════════════════════════════════════
+# ⑦ HTML 생성
+# ══════════════════════════════════════════════════════════
+
+def html_page(city, gu, dong, grade, subject, slug):
+    rng = random.Random(seed(city, dong, grade, subject))
+
+    title_tag = f"{city} {gu} {dong} {grade} {subject} 과외 | {SITE_NAME}"
+    description = make_meta_description(city, gu, dong, grade, subject)
+    keywords    = make_keywords(city, gu, dong, grade, subject)
+    canonical   = f"{SITE_DOMAIN}/{slug}/"
+
+    intro_title,      intro_body      = make_intro(rng, city, dong, grade, subject)
+    body_title,       body_body       = make_body(rng, city, dong, grade, subject)
+    conclusion_title, conclusion_body = make_conclusion(rng, city, dong, grade, subject)
+    features = make_features(rng, subject, grade)
+    faqs     = make_faq(rng, dong, grade)
+    images   = pick_images(rng)
+
+    # ── 수업 특징 HTML ──
+    features_html = ""
+    for icon, ftitle, fdesc in features:
+        features_html += f"""
+        <div class="feature-item">
+          <div class="feature-icon">{icon}</div>
+          <div class="feature-text">
+            <h3>{ftitle}</h3>
+            <p>{fdesc}</p>
+          </div>
+        </div>"""
+
+    # ── FAQ HTML ──
+    faq_html = ""
+    for q, a in faqs:
+        faq_html += f"""
+        <div class="faq-item">
+          <div class="faq-q">Q. {q}</div>
+          <div class="faq-a">{a}</div>
+        </div>"""
+
+    # ── 이미지 HTML (3열 그리드) ──
+    imgs_html = ""
+    for img in images:
+        alt = f"{dong} {grade} {subject} 과외 수업 사진"
+        imgs_html += f'<div class="img-item"><img src="/images/{img}" alt="{alt}" loading="lazy"></div>\n'
+
+    return f"""<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{title_tag}</title>
+  <meta name="description" content="{description}">
+  <meta name="keywords" content="{keywords}">
+  <link rel="canonical" href="{canonical}">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="{title_tag}">
+  <meta property="og:description" content="{description}">
+  <meta property="og:url" content="{canonical}">
+  <meta property="og:site_name" content="{SITE_NAME}">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {{
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "{SITE_NAME}",
+    "description": "{description}",
+    "telephone": "{PHONE}",
+    "url": "{canonical}",
+    "address": {{
+      "@type": "PostalAddress",
+      "addressLocality": "{city}",
+      "addressRegion": "{gu}",
+      "streetAddress": "{dong}"
+    }},
+    "areaServed": "{dong}"
+  }}
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {{
+      --primary:      #510580;
+      --primary-dark: #370558;
+      --primary-light:#7b2fa8;
+      --accent:       #e8439a;
+      --accent-light: #ff6fc1;
+      --accent-glow:  rgba(232,67,154,.3);
+      --bg:           #ffffff;
+      --bg2:          #f5eefe;
+      --text:         #1a0a24;
+      --muted:        #7a5f8a;
+      --border:       #e8d6f5;
+      --white:        #ffffff;
+      --max-w:        780px;
+    }}
+    *, *::before, *::after {{ box-sizing: border-box; margin: 0; padding: 0; }}
+    body {{
+      font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      font-size: 1rem;
+    }}
+
+    /* ── HEADER ── */
+    header {{
+      background: var(--white);
+      border-bottom: 2px solid var(--border);
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      box-shadow: 0 2px 16px rgba(81,5,128,.07);
+    }}
+    .logo {{ font-size: 1.05rem; font-weight: 800; color: var(--primary); text-decoration: none; }}
+    .header-cta {{
+      background: linear-gradient(135deg, var(--accent), var(--accent-light));
+      color: white;
+      padding: 8px 18px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: .85rem;
+      box-shadow: 0 3px 12px var(--accent-glow);
+      white-space: nowrap;
+    }}
+
+    /* ── HERO ── */
+    .hero {{
+      background: linear-gradient(140deg, var(--primary-dark) 0%, var(--primary) 55%, var(--primary-light) 100%);
+      color: white;
+      padding: 56px 24px 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }}
+    .hero::before {{
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 85% 15%, rgba(232,67,154,.22) 0%, transparent 65%);
+      pointer-events: none;
+    }}
+    .hero-badge {{
+      display: inline-block;
+      background: rgba(255,255,255,.15);
+      border: 1px solid rgba(255,255,255,.3);
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .07em;
+      margin-bottom: 16px;
+    }}
+    .hero h1 {{
+      font-size: clamp(1.5rem, 4vw, 2.3rem);
+      font-weight: 800;
+      line-height: 1.3;
+      margin-bottom: 14px;
+      position: relative;
+    }}
+    .hero-sub {{
+      font-size: .95rem;
+      opacity: .85;
+      max-width: 440px;
+      margin: 0 auto 28px;
+    }}
+    .hero-btns {{ display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }}
+    .btn-main {{
+      background: linear-gradient(135deg, var(--accent), var(--accent-light));
+      color: white;
+      padding: 13px 28px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: .95rem;
+      box-shadow: 0 5px 18px var(--accent-glow);
+    }}
+    .btn-outline {{
+      background: rgba(255,255,255,.12);
+      color: white;
+      border: 1.5px solid rgba(255,255,255,.4);
+      padding: 13px 24px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: .95rem;
+    }}
+
+    /* ── LAYOUT ── */
+    .wrap {{ max-width: var(--max-w); margin: 0 auto; padding: 0 20px; }}
+
+    /* ── BREADCRUMB ── */
+    .breadcrumb {{
+      font-size: .78rem;
+      color: var(--muted);
+      padding: 12px 0 8px;
+    }}
+    .breadcrumb a {{ color: var(--primary); text-decoration: none; }}
+
+    /* ── BLOG SECTION (서론/본론/결론) ── */
+    .blog-section {{ padding: 40px 0 20px; }}
+    .blog-section h2 {{
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--border);
+    }}
+    .blog-body {{
+      font-size: .97rem;
+      line-height: 1.9;
+      color: #2d1840;
+      word-break: keep-all;
+    }}
+
+    /* ── DIVIDER ── */
+    .divider {{
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      margin: 8px 0;
+    }}
+
+    /* ── 수업 특징 ── */
+    .feature-section {{ padding: 32px 0; }}
+    .section-label {{
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      font-size: .75rem;
+      font-weight: 700;
+      padding: 3px 12px;
+      border-radius: 4px;
+      margin-bottom: 16px;
+      letter-spacing: .06em;
+    }}
+    .section-title {{
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin-bottom: 20px;
+    }}
+    .feature-list {{ display: flex; flex-direction: column; }}
+    .feature-item {{
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--border);
+    }}
+    .feature-item:last-child {{ border-bottom: none; }}
+    .feature-icon {{
+      font-size: 1.4rem;
+      width: 44px; height: 44px;
+      min-width: 44px;
+      background: var(--bg2);
+      border-radius: 10px;
+      border: 1.5px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }}
+    .feature-text h3 {{
+      font-size: .95rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 3px;
+    }}
+    .feature-text p {{ font-size: .875rem; color: var(--muted); }}
+
+    /* ── 이미지 갤러리 ── */
+    .gallery-section {{ padding: 32px 0; }}
+    .img-grid {{
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }}
+    .img-item img {{
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      border: 1.5px solid var(--border);
+      display: block;
+    }}
+
+    /* ── FAQ ── */
+    .faq-section {{ padding: 32px 0; }}
+    .faq-list {{ display: flex; flex-direction: column; gap: 10px; }}
+    .faq-item {{
+      background: #f5eefe;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 20px;
+    }}
+    .faq-q {{
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 6px;
+      font-size: .95rem;
+    }}
+    .faq-a {{ font-size: .875rem; color: var(--muted); line-height: 1.7; }}
+
+    /* ── CTA 박스 ── */
+    .cta-section {{ padding: 32px 0 48px; }}
+    .cta-box {{
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary), var(--primary-light));
+      color: white;
+      border-radius: 20px;
+      padding: 44px 28px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }}
+    .cta-box::after {{
+      content: '';
+      position: absolute;
+      top: -50px; right: -50px;
+      width: 220px; height: 220px;
+      background: radial-gradient(circle, rgba(232,67,154,.25) 0%, transparent 65%);
+      pointer-events: none;
+    }}
+    .cta-box h2 {{ font-size: 1.4rem; font-weight: 800; margin-bottom: 10px; }}
+    .cta-box p {{ opacity: .85; margin-bottom: 24px; font-size: .95rem; }}
+    .cta-btns {{ display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }}
+    .cta-phone {{
+      background: white;
+      color: var(--primary);
+      font-size: 1rem;
+      font-weight: 800;
+      padding: 13px 22px;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 4px 16px rgba(0,0,0,.18);
+    }}
+    .cta-kakao {{
+      background: #FEE500;
+      color: #3A1D1D;
+      font-size: 1rem;
+      font-weight: 800;
+      padding: 13px 22px;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 4px 16px rgba(254,229,0,.4);
+    }}
+    .cta-form {{
+      background: rgba(255,255,255,.15);
+      color: white;
+      border: 1.5px solid rgba(255,255,255,.45);
+      font-size: 1rem;
+      font-weight: 700;
+      padding: 13px 22px;
+      border-radius: 50px;
+      text-decoration: none;
+    }}
+
+    /* ── FOOTER ── */
+    footer {{
+      background: var(--primary-dark);
+      color: rgba(255,255,255,.45);
+      text-align: center;
+      padding: 24px;
+      font-size: .78rem;
+      line-height: 1.8;
+    }}
+
+    /* ── 플로팅 버튼 ── */
+    .float-wrap {{
+      position: fixed;
+      bottom: 28px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      z-index: 999;
+    }}
+    .float-btn {{
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      text-decoration: none;
+      box-shadow: 0 4px 16px rgba(0,0,0,.2);
+      transition: transform .15s, box-shadow .15s;
+      position: relative;
+    }}
+    .float-btn:hover {{
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0,0,0,.28);
+    }}
+    .float-btn.phone {{
+      background: #510580;
+    }}
+    .float-btn.kakao {{
+      background: #FEE500;
+    }}
+    .float-btn.form {{
+      background: #7b2fa8;
+    }}
+    .float-btn .kakao-icon {{
+      width: 28px;
+      height: 28px;
+    }}
+    .float-label {{
+      position: absolute;
+      right: 62px;
+      background: rgba(30,10,40,.85);
+      color: white;
+      font-size: .7rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 20px;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .2s;
+    }}
+    .float-btn:hover .float-label {{
+      opacity: 1;
+    }}
+    @media (max-width: 600px) {{
+      .float-wrap {{ bottom: 20px; right: 14px; gap: 8px; }}
+      .float-btn {{ width: 50px; height: 50px; font-size: 1.3rem; }}
+      .float-btn .kakao-icon {{ width: 26px; height: 26px; }}
+    }}
+
+    /* ── PC/모바일 분기 ── */
+    @media (max-width: 600px) {{
+      .hero {{ padding: 40px 16px 36px; }}
+      .hero-btns {{ flex-direction: column; align-items: center; }}
+      .img-grid {{ grid-template-columns: repeat(2, 1fr); }}
+      .cta-box {{ padding: 36px 20px; }}
+      .cta-btns {{ flex-direction: column; align-items: center; }}
+      .pc-only {{ display: none !important; }}
+    }}
+    @media (min-width: 601px) {{
+      .mobile-only {{ display: none !important; }}
+    }}
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a href="/" class="logo">🎓 {SITE_NAME}</a>
+  <a href="tel:{PHONE}" class="header-cta mobile-only">📞 무료 상담</a>
+  <a href="{FORM_URL}" target="_blank" class="header-cta pc-only">📝 무료 상담 신청</a>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">{city} {gu} · {dong} 전문</div>
+  <h1>{city} {dong}<br>{grade} {subject} 과외</h1>
+  <p class="hero-sub">방문/화상 수업 · 내신/수능 맞춤 · 무료 시범수업 가능</p>
+  <div class="hero-btns">
+    <a href="tel:{PHONE}" class="btn-main mobile-only">📞 지금 바로 상담하기</a>
+    <a href="{FORM_URL}" target="_blank" class="btn-main pc-only">📝 무료 상담 신청하기</a>
+    <a href="#faq" class="btn-outline">자주 묻는 질문 ↓</a>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- 브레드크럼 -->
+  <nav class="breadcrumb" aria-label="breadcrumb">
+    <a href="/">홈</a> › <a href="/{city}/">{city}</a> › <a href="/{city}/{gu}/">{gu}</a> › {dong} {grade} {subject} 과외
+  </nav>
+
+  <div class="divider"></div>
+
+  <!-- ① 서론 -->
+  <section class="blog-section">
+    <h2>{intro_title}</h2>
+    <p class="blog-body">{intro_body}</p>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ② 수업 특징 -->
+  <section class="feature-section">
+    <span class="section-label">수업 특징</span>
+    <h2 class="section-title">제나쌤스터디핏 과외가 다른 이유</h2>
+    <div class="feature-list">
+      {features_html}
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ③ 본론 -->
+  <section class="blog-section">
+    <h2>{body_title}</h2>
+    <p class="blog-body">{body_body}</p>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ④ 이미지 갤러리 -->
+  <section class="gallery-section">
+    <div class="img-grid">
+      {imgs_html}
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ⑤ FAQ -->
+  <section class="faq-section" id="faq">
+    <span class="section-label">자주 묻는 질문</span>
+    <div class="faq-list">
+      {faq_html}
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ⑥ 결론 -->
+  <section class="blog-section">
+    <h2>{conclusion_title}</h2>
+    <p class="blog-body">{conclusion_body}</p>
+  </section>
+
+  <!-- ⑦ 수업 문의 CTA -->
+  <section class="cta-section">
+    <div class="cta-box">
+      <h2>지금 바로 무료 상담받으세요</h2>
+      <p>{city} {dong} {grade} {subject} 과외 — 빠른 상담, 맞춤 배정</p>
+      <div class="cta-btns">
+        <a href="tel:{PHONE}" class="cta-phone">📞 전화 상담</a>
+        <a href="{KAKAO_URL}" target="_blank" class="cta-kakao">💬 카카오톡 상담</a>
+        <a href="{FORM_URL}" target="_blank" class="cta-form">📝 무료 체험 신청</a>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /wrap -->
+
+{FOOTER_HTML}
+
+<!-- 플로팅 버튼 -->
+<div class="float-wrap">
+    <a href="{FORM_URL}" target="_blank" class="float-btn form">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+      <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+    </svg>
+    <span class="float-label">무료 체험 신청</span>
+  </a>
+  <a href="{KAKAO_URL}" target="_blank" class="float-btn kakao">
+    <svg class="kakao-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 3C6.477 3 2 6.477 2 10.8c0 2.7 1.644 5.08 4.148 6.538L5.2 20.4a.3.3 0 0 0 .438.328l4.07-2.7A11.4 11.4 0 0 0 12 18.6c5.523 0 10-3.477 10-7.8S17.523 3 12 3z" fill="#3A1D1D"/>
+    </svg>
+    <span class="float-label" style="color:white">카카오톡 상담</span>
+  </a>
+      <a href="tel:{PHONE}" class="float-btn phone">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+      <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/>
+    </svg>
+    <span class="float-label">전화 상담</span>
+  </a>
+</div>
+
+</body>
+</html>"""
+
+
+# ══════════════════════════════════════════════════════════
+# ⑧ 인덱스 페이지
+# ══════════════════════════════════════════════════════════
+
+def html_index(all_pages):
+    # 시도 → 구군 → 동 으로 3단계 그룹화 (순서 유지)
+    city_map = {}
+    for slug, city, gu, dong, grade, subject in all_pages:
+        if city not in city_map:
+            city_map[city] = {}
+        if gu not in city_map[city]:
+            city_map[city][gu] = set()
+        city_map[city][gu].add(dong)
+
+    # JS 데이터 생성
+    regions_js = []
+    for city, gu_map in city_map.items():
+        for gu, dongs in gu_map.items():
+            dongs_list = sorted(dongs)
+            dongs_json = "[" + ",".join(f'{{s:"{d}"}}'.replace(" ","-") for d in dongs_list) + "]"
+            regions_js.append(f'{{city:"{city}",gu:"{gu}",dongs:{dongs_json},count:{len(dongs_list)}}}')
+    regions_data = "[" + ",".join(regions_js) + "]"
+
+    # 광역시도별 카드 HTML 생성
+    city_blocks_html = ""
+    for city, gu_map in city_map.items():
+        city_blocks_html += f'<div class="city-block"><div class="city-title">{city}</div><div class="region-grid" id="grid-{city}">'
+        for gu, dongs in gu_map.items():
+            dongs_list = sorted(dongs)
+            count = len(dongs_list)
+            city_blocks_html += f'<div class="region-card" onclick="selectRegion(this,\'{city}\',\'{gu}\')"><div class="rc-city">{city}</div><div class="rc-gu">{gu}</div><div class="rc-count">{count}개 동</div></div>'
+        city_blocks_html += '</div></div>'
+
+    return f"""<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>전국 방문·화상 과외 전문 | {SITE_NAME}</title>
+  <meta name="description" content="전국 방문·화상 과외 전문. 베테랑 선생님의 초·중·고 전과목 내신 맞춤 수업. 무료 시범수업 신청 가능.">
+  <link rel="canonical" href="{SITE_DOMAIN}/">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;800&display=swap" rel="stylesheet">
+  <style>
+    *{{box-sizing:border-box;margin:0;padding:0}}
+    body{{font-family:'Noto Sans KR',sans-serif;background:#ffffff;color:#1a0a24}}
+    header{{background:white;padding:14px 24px;border-bottom:2px solid #e8d6f5;display:flex;justify-content:space-between;align-items:center}}
+    .logo{{font-size:1.05rem;font-weight:800;color:#510580;text-decoration:none}}
+    .hero{{background:linear-gradient(140deg,#370558,#510580,#7b2fa8);color:white;text-align:center;padding:52px 24px}}
+    .hero h1{{font-size:clamp(1.5rem,4vw,2.2rem);font-weight:800;line-height:1.5;margin-bottom:10px}}
+    .hero p{{opacity:.75;font-size:.95rem;margin-bottom:24px}}
+    .hero-btn{{background:linear-gradient(135deg,#e8439a,#ff6fc1);color:white;padding:13px 30px;border-radius:50px;text-decoration:none;font-weight:700;box-shadow:0 5px 18px rgba(232,67,154,.35)}}
+    .filter-bar{{background:white;border-bottom:1px solid #e8d6f5;padding:16px 20px;position:sticky;top:0;z-index:10}}
+    .filter-inner{{max-width:900px;margin:0 auto;display:flex;gap:16px;align-items:center;flex-wrap:wrap;justify-content:center}}
+    .filter-label{{font-size:.9rem;color:#7b2fa8;font-weight:700;white-space:nowrap}}
+    select{{font-size:.95rem;padding:9px 16px;border-radius:20px;border:1.5px solid #d4b8f5;background:white;color:#1a0a24;cursor:pointer}}
+    .divider{{width:1px;height:28px;background:#e8d6f5;flex-shrink:0}}
+    .hint-bar{{max-width:900px;margin:16px auto 0;font-size:.85rem;color:#510580;font-weight:700;padding:10px 20px;background:#f0e6fc;border-radius:8px}}
+    .container{{max-width:900px;margin:0 auto;padding:24px 20px;background:#ffffff}}
+    .city-block{{margin-bottom:32px}}
+    .city-title{{font-size:.82rem;font-weight:700;color:#ffffff;background:#510580;display:inline-block;padding:4px 14px;border-radius:20px;margin-bottom:12px}}
+    .region-grid{{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}}
+    .region-card{{padding:14px 10px;border-radius:12px;border:1.5px solid #e8d6f5;background:#f5eefe;text-align:center;cursor:pointer;transition:border-color .15s}}
+    .region-card:hover{{border-color:#510580;background:#ede0fa}}
+    .region-card.active{{border:2px solid #510580;background:#ede0fa}}
+    .rc-city{{font-size:.7rem;color:#9b6cc0;margin-bottom:3px}}
+    .rc-gu{{font-size:.95rem;font-weight:800;color:#1a0a24}}
+    .rc-count{{font-size:.7rem;color:#7b2fa8;margin-top:3px}}
+    .dong-section{{background:#f5eefe;border-radius:12px;padding:18px;margin-bottom:28px}}
+    .dong-title{{font-size:.85rem;font-weight:700;color:#510580;margin-bottom:12px}}
+    .dong-grid{{display:flex;flex-wrap:wrap;gap:8px}}
+    .dong-chip{{font-size:.85rem;padding:7px 16px;border-radius:20px;background:white;color:#510580;border:1.5px solid #d4b8f5;cursor:pointer;text-decoration:none;white-space:nowrap}}
+    .dong-chip:hover{{background:#510580;color:white;border-color:#510580}}
+    .no-region-box{{background:#f5eefe;border-radius:14px;border:1px solid #d4b8f5;padding:28px 24px;text-align:center;margin-bottom:24px}}
+    .nr-title{{font-size:1rem;font-weight:800;color:#370558;margin-bottom:8px}}
+    .nr-desc{{font-size:.85rem;color:#510580;line-height:1.9;margin-bottom:18px}}
+    .nr-btns{{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}}
+    .nr-btn-naver{{display:inline-flex;align-items:center;gap:6px;background:#510580;color:white;font-size:.85rem;font-weight:700;padding:11px 22px;border-radius:50px;text-decoration:none;white-space:nowrap}}
+    .nr-btn-kakao{{display:inline-flex;align-items:center;gap:6px;background:#FEE500;color:#3A1D1D;font-size:.85rem;font-weight:700;padding:11px 22px;border-radius:50px;text-decoration:none;white-space:nowrap}}
+    footer{{background:#370558;color:rgba(255,255,255,.45);text-align:center;padding:24px;font-size:.78rem;line-height:1.8;margin-top:20px}}
+    .float-wrap{{position:fixed;bottom:28px;right:20px;display:flex;flex-direction:column;align-items:center;gap:10px;z-index:999}}
+    .float-btn{{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 16px rgba(0,0,0,.2);transition:transform .15s;position:relative}}
+    .float-btn:hover{{transform:translateY(-3px)}}
+    .float-btn.phone{{background:#510580}}
+    .float-btn.kakao{{background:#FEE500}}
+    .float-btn.form{{background:#25D366}}
+    .kakao-icon{{width:28px;height:28px}}
+    .float-label{{position:absolute;right:62px;background:rgba(30,10,40,.85);color:white;font-size:.7rem;font-weight:700;padding:4px 10px;border-radius:20px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s}}
+    .float-btn:hover .float-label{{opacity:1}}
+    .hidden{{display:none}}
+    @media(max-width:600px){{.float-wrap{{bottom:20px;right:14px;gap:8px}}.float-btn{{width:50px;height:50px}}}}
+  </style>
+</head>
+<body>
+<header><a href="/" class="logo">🎓 {SITE_NAME}</a></header>
+
+<div class="hero">
+  <h1>전국 방문 · 화상 과외 전문<br>지역별 맞춤 매칭</h1>
+  <p>경험과 노하우의 베테랑 선생님의 전과목 내신 전문 수업</p>
+  <a href="{FORM_URL}" class="hero-btn">📝 무료 상담 신청</a>
+</div>
+
+<div class="filter-bar">
+  <div class="filter-inner">
+    <span class="filter-label">학년</span>
+    <select id="sel-grade" onchange="updateHint()">
+      <option value="">전체</option>
+      <option>초등</option><option>중등</option><option>고등</option>
+    </select>
+    <div class="divider"></div>
+    <span class="filter-label">과목</span>
+    <select id="sel-subject" onchange="updateHint()">
+      <option value="">전체</option>
+      <option>국어</option><option>영어</option><option>수학</option><option>과학</option><option>사회</option>
+    </select>
+  </div>
+</div>
+
+<div class="container">
+  <p class="hint-bar" id="hint">① 학년·과목을 선택하고 &nbsp;② 지역 카드를 클릭하세요</p>
+
+  <div style="margin-top:20px">
+    {city_blocks_html}
+  </div>
+
+  <div class="dong-section hidden" id="dong-section">
+    <div class="dong-title" id="dong-title"></div>
+    <div class="dong-grid" id="dong-grid"></div>
+  </div>
+
+  <div class="no-region-box">
+    <div class="nr-title">원하는 지역이 없으신가요?</div>
+    <div class="nr-desc">현재 준비 중인 지역일 수도 있습니다.<br>무료 상담을 통해 해당 지역 과외 정보를 받아보시고,<br>무료 시범수업도 신청해 보세요!</div>
+    <div class="nr-btns">
+      <a class="nr-btn-naver" href="{FORM_URL}" target="_blank">📝 무료 상담 신청하기</a>
+      <a class="nr-btn-kakao" href="{KAKAO_URL}" target="_blank">
+        <svg width="16" height="16" viewBox="0 0 24 24"><path d="M12 3C6.477 3 2 6.477 2 10.8c0 2.7 1.644 5.08 4.148 6.538L5.2 20.4a.3.3 0 0 0 .438.328l4.07-2.7A11.4 11.4 0 0 0 12 18.6c5.523 0 10-3.477 10-7.8S17.523 3 12 3z" fill="#3A1D1D"/></svg>
+        카카오톡 상담
+      </a>
+    </div>
+  </div>
+</div>
+
+{FOOTER_HTML}
+
+<!-- 플로팅 버튼 -->
+<div class="float-wrap">
+  <a href="{FORM_URL}" target="_blank" class="float-btn form">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+    <span class="float-label">무료 체험 신청</span>
+  </a>
+  <a href="{KAKAO_URL}" target="_blank" class="float-btn kakao">
+    <svg class="kakao-icon" viewBox="0 0 24 24"><path d="M12 3C6.477 3 2 6.477 2 10.8c0 2.7 1.644 5.08 4.148 6.538L5.2 20.4a.3.3 0 0 0 .438.328l4.07-2.7A11.4 11.4 0 0 0 12 18.6c5.523 0 10-3.477 10-7.8S17.523 3 12 3z" fill="#3A1D1D"/></svg>
+    <span class="float-label" style="color:white">카카오톡 상담</span>
+  </a>
+  <a href="tel:{PHONE}" class="float-btn phone">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+    <span class="float-label">전화 상담</span>
+  </a>
+</div>
+
+<script>
+const REGIONS = {regions_data};
+
+function updateHint(){{
+  const g = document.getElementById('sel-grade').value;
+  const s = document.getElementById('sel-subject').value;
+  const hint = document.getElementById('hint');
+  if(g||s){{
+    const parts = [];
+    if(g) parts.push('<strong>'+g+'</strong>');
+    if(s) parts.push('<strong>'+s+'</strong>');
+    hint.innerHTML = '✓ '+parts.join(' · ')+' 선택됨 → 아래에서 지역을 클릭하세요';
+  }} else {{
+    hint.innerHTML = '① 학년·과목을 선택하고 &nbsp;② 지역 카드를 클릭하세요';
+  }}
+  if(currentRegion) renderDongs();
+}}
+
+let currentRegion = null;
+function selectRegion(card, city, gu){{
+  document.querySelectorAll('.region-card').forEach(c=>c.classList.remove('active'));
+  card.classList.add('active');
+  currentRegion = REGIONS.find(r=>r.city===city && r.gu===gu);
+  renderDongs();
+  document.getElementById('dong-section').scrollIntoView({{behavior:'smooth',block:'nearest'}});
+}}
+
+function renderDongs(){{
+  if(!currentRegion) return;
+  const g = document.getElementById('sel-grade').value || '고등';
+  const s = document.getElementById('sel-subject').value || '수학';
+  const sec = document.getElementById('dong-section');
+  const grid = document.getElementById('dong-grid');
+  document.getElementById('dong-title').textContent = currentRegion.city + ' · ' + currentRegion.gu + ' — 동을 선택하세요';
+  grid.innerHTML = '';
+  currentRegion.dongs.forEach(d => {{
+    const chip = document.createElement('a');
+    chip.className = 'dong-chip';
+    chip.textContent = d.s;
+    chip.href = '/' + currentRegion.city.replace(/ /g,'-') + '-' + currentRegion.gu.replace(/ /g,'-') + '-' + d.s.replace(/ /g,'-') + '-' + g + '-' + s + '-과외/';
+    grid.appendChild(chip);
+  }});
+  sec.classList.remove('hidden');
+}}
+</script>
+</body>
+</html>"""
+
+    return f"""<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>전국 방문·화상 과외 전문 | {SITE_NAME}</title>
+  <meta name="description" content="전국 방문·화상 과외 전문. 베테랑 선생님의 초·중·고 전과목 내신 맞춤 수업. 무료 시범수업 신청 가능.">
+  <link rel="canonical" href="{SITE_DOMAIN}/">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;800&display=swap" rel="stylesheet">
+  <style>
+    *{{box-sizing:border-box;margin:0;padding:0}}
+    body{{font-family:'Noto Sans KR',sans-serif;background:#ffffff;color:#1a0a24}}
+    header{{background:white;padding:14px 24px;border-bottom:2px solid #e8d6f5;display:flex;justify-content:space-between;align-items:center}}
+    .logo{{font-size:1.05rem;font-weight:800;color:#510580;text-decoration:none}}
+    .hero{{background:linear-gradient(140deg,#370558,#510580,#7b2fa8);color:white;text-align:center;padding:52px 24px}}
+    .hero h1{{font-size:clamp(1.5rem,4vw,2.2rem);font-weight:800;line-height:1.5;margin-bottom:10px}}
+    .hero p{{opacity:.75;font-size:.95rem;margin-bottom:24px}}
+    .hero-btn{{background:linear-gradient(135deg,#e8439a,#ff6fc1);color:white;padding:13px 30px;border-radius:50px;text-decoration:none;font-weight:700;box-shadow:0 5px 18px rgba(232,67,154,.35)}}
+    .filter-bar{{background:white;border-bottom:1px solid #e8d6f5;padding:16px 20px;position:sticky;top:0;z-index:10}}
+    .filter-inner{{max-width:900px;margin:0 auto;display:flex;gap:16px;align-items:center;flex-wrap:wrap;justify-content:center}}
+    .filter-label{{font-size:.9rem;color:#7b2fa8;font-weight:700;white-space:nowrap}}
+    select{{font-size:.95rem;padding:9px 16px;border-radius:20px;border:1.5px solid #d4b8f5;background:white;color:#1a0a24;cursor:pointer}}
+    .divider{{width:1px;height:28px;background:#e8d6f5;flex-shrink:0}}
+    .hint-bar{{max-width:900px;margin:16px auto 0;font-size:.85rem;color:#510580;font-weight:700;padding:10px 20px;background:#f0e6fc;border-radius:8px;border-left:none}}
+    .container{{max-width:900px;margin:0 auto;padding:20px;background:#ffffff}}
+    .region-grid{{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin-bottom:24px}}
+    .region-card{{padding:14px 10px;border-radius:12px;border:1.5px solid #e8d6f5;background:#f5eefe;text-align:center;cursor:pointer;transition:border-color .15s}}
+    .region-card:hover{{border-color:#510580;background:#ede0fa}}
+    .region-card.active{{border:2px solid #510580;background:#ede0fa}}
+    .region-card .rc-city{{font-size:.7rem;color:#9b6cc0;margin-bottom:3px}}
+    .region-card .rc-gu{{font-size:.95rem;font-weight:800;color:#1a0a24}}
+    .region-card .rc-count{{font-size:.7rem;color:#7b2fa8;margin-top:3px}}
+    .dong-section{{background:#f5eefe;border-radius:12px;padding:16px;margin-bottom:20px}}
+    .dong-title{{font-size:.82rem;font-weight:700;color:#510580;margin-bottom:10px}}
+    .dong-grid{{display:flex;flex-wrap:wrap;gap:7px}}
+    .dong-chip{{font-size:.82rem;padding:6px 14px;border-radius:20px;background:white;color:#510580;border:1.5px solid #d4b8f5;cursor:pointer;text-decoration:none;white-space:nowrap}}
+    .dong-chip:hover{{background:#510580;color:white;border-color:#510580}}
+    .no-region-box{{background:#f5eefe;border-radius:14px;border:1px solid #d4b8f5;padding:28px 24px;text-align:center;margin-bottom:24px}}
+    .nr-title{{font-size:1rem;font-weight:800;color:#370558;margin-bottom:8px}}
+    .nr-desc{{font-size:.85rem;color:#510580;line-height:1.9;margin-bottom:18px}}
+    .nr-btns{{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}}
+    .nr-btn-naver{{display:inline-flex;align-items:center;gap:6px;background:#510580;color:white;font-size:.85rem;font-weight:700;padding:11px 22px;border-radius:50px;text-decoration:none;white-space:nowrap}}
+    .nr-btn-kakao{{display:inline-flex;align-items:center;gap:6px;background:#FEE500;color:#3A1D1D;font-size:.85rem;font-weight:700;padding:11px 22px;border-radius:50px;text-decoration:none;white-space:nowrap}}
+    footer{{background:#370558;color:rgba(255,255,255,.45);text-align:center;padding:24px;font-size:.78rem;line-height:1.8;margin-top:20px}}
+    .float-wrap{{position:fixed;bottom:28px;right:20px;display:flex;flex-direction:column;align-items:center;gap:10px;z-index:999}}
+    .float-btn{{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 16px rgba(0,0,0,.2);transition:transform .15s;position:relative}}
+    .float-btn:hover{{transform:translateY(-3px)}}
+    .float-btn.phone{{background:#510580}}
+    .float-btn.kakao{{background:#FEE500}}
+    .float-btn.form{{background:#25D366}}
+    .kakao-icon{{width:28px;height:28px}}
+    .float-label{{position:absolute;right:62px;background:rgba(30,10,40,.85);color:white;font-size:.7rem;font-weight:700;padding:4px 10px;border-radius:20px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s}}
+    .float-btn:hover .float-label{{opacity:1}}
+    .hidden{{display:none}}
+    @media(max-width:600px){{.float-wrap{{bottom:20px;right:14px;gap:8px}}.float-btn{{width:50px;height:50px}}}}
+  </style>
+</head>
+<body>
+<header><a href="/" class="logo">🎓 {SITE_NAME}</a></header>
+
+<div class="hero">
+  <h1>전국 방문 · 화상 과외 전문<br>지역별 맞춤 매칭</h1>
+  <p>경험과 노하우의 베테랑 선생님의 전과목 내신 전문 수업</p>
+  <a href="{FORM_URL}" class="hero-btn">📝 무료 상담 신청</a>
+</div>
+
+<div class="filter-bar">
+  <div class="filter-inner">
+    <span class="filter-label">학년</span>
+    <select id="sel-grade" onchange="updateHint()">
+      <option value="">전체</option>
+      <option>초등</option><option>중등</option><option>고등</option>
+    </select>
+    <div class="divider"></div>
+    <span class="filter-label">과목</span>
+    <select id="sel-subject" onchange="updateHint()">
+      <option value="">전체</option>
+      <option>국어</option><option>영어</option><option>수학</option><option>과학</option><option>사회</option>
+    </select>
+  </div>
+</div>
+
+<div class="container">
+  <p class="hint-bar" id="hint">① 학년·과목을 선택하고 &nbsp;② 지역 카드를 클릭하세요</p>
+
+  <div class="region-grid" id="region-grid"></div>
+
+  <div class="dong-section hidden" id="dong-section">
+    <div class="dong-title" id="dong-title"></div>
+    <div class="dong-grid" id="dong-grid"></div>
+  </div>
+
+  <div class="no-region-box">
+    <div class="nr-title">원하는 지역이 없으신가요?</div>
+    <div class="nr-desc">현재 준비 중인 지역일 수도 있습니다.<br>무료 상담을 통해 해당 지역 과외 정보를 받아보시고,<br>무료 시범수업도 신청해 보세요!</div>
+    <div class="nr-btns">
+      <a class="nr-btn-naver" href="{FORM_URL}" target="_blank">📝 무료 상담 신청하기</a>
+      <a class="nr-btn-kakao" href="{KAKAO_URL}" target="_blank">
+        <svg width="16" height="16" viewBox="0 0 24 24"><path d="M12 3C6.477 3 2 6.477 2 10.8c0 2.7 1.644 5.08 4.148 6.538L5.2 20.4a.3.3 0 0 0 .438.328l4.07-2.7A11.4 11.4 0 0 0 12 18.6c5.523 0 10-3.477 10-7.8S17.523 3 12 3z" fill="#3A1D1D"/></svg>
+        카카오톡 상담
+      </a>
+    </div>
+  </div>
+</div>
+
+{FOOTER_HTML}
+
+<!-- 플로팅 버튼 -->
+<div class="float-wrap">
+  <a href="{FORM_URL}" target="_blank" class="float-btn form">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+    <span class="float-label">무료 체험 신청</span>
+  </a>
+  <a href="{KAKAO_URL}" target="_blank" class="float-btn kakao">
+    <svg class="kakao-icon" viewBox="0 0 24 24"><path d="M12 3C6.477 3 2 6.477 2 10.8c0 2.7 1.644 5.08 4.148 6.538L5.2 20.4a.3.3 0 0 0 .438.328l4.07-2.7A11.4 11.4 0 0 0 12 18.6c5.523 0 10-3.477 10-7.8S17.523 3 12 3z" fill="#3A1D1D"/></svg>
+    <span class="float-label" style="color:white">카카오톡 상담</span>
+  </a>
+  <a href="tel:{PHONE}" class="float-btn phone">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+    <span class="float-label">전화 상담</span>
+  </a>
+</div>
+
+<script>
+const REGIONS = {regions_data};
+
+// 지역 카드 렌더링
+const grid = document.getElementById('region-grid');
+REGIONS.forEach((r,i) => {{
+  const card = document.createElement('div');
+  card.className = 'region-card';
+  card.innerHTML = `<div class="rc-city">${{r.city}}</div><div class="rc-gu">${{r.gu}}</div><div class="rc-count">${{r.count}}개 동</div>`;
+  card.onclick = () => selectRegion(card, r);
+  grid.appendChild(card);
+}});
+
+function updateHint(){{
+  const g = document.getElementById('sel-grade').value;
+  const s = document.getElementById('sel-subject').value;
+  const hint = document.getElementById('hint');
+  if(g||s){{
+    const parts = [];
+    if(g) parts.push('<strong>'+g+'</strong>');
+    if(s) parts.push('<strong>'+s+'</strong>');
+    hint.innerHTML = '✓ '+parts.join(' · ')+' 선택됨 → 아래에서 지역을 클릭하세요';
+    hint.style.borderLeftColor = '#25D366';
+  }} else {{
+    hint.innerHTML = '① 학년·과목을 선택하고 &nbsp;② 지역 카드를 클릭하세요';
+    hint.style.borderLeftColor = '#510580';
+  }}
+  renderDongs();
+}}
+
+let currentRegion = null;
+function selectRegion(card, r){{
+  document.querySelectorAll('.region-card').forEach(c=>c.classList.remove('active'));
+  card.classList.add('active');
+  currentRegion = r;
+  renderDongs();
+  document.getElementById('dong-section').scrollIntoView({{behavior:'smooth',block:'nearest'}});
+}}
+
+function renderDongs(){{
+  if(!currentRegion) return;
+  const g = document.getElementById('sel-grade').value;
+  const s = document.getElementById('sel-subject').value;
+  const sec = document.getElementById('dong-section');
+  const dongGrid = document.getElementById('dong-grid');
+  const title = document.getElementById('dong-title');
+  title.textContent = currentRegion.city + ' · ' + currentRegion.gu + ' — 동을 선택하세요';
+  dongGrid.innerHTML = '';
+  currentRegion.dongs.forEach(d => {{
+    const chip = document.createElement('a');
+    chip.className = 'dong-chip';
+    chip.textContent = d.s;
+    const grade = g || '고등';
+    const subj = s || '수학';
+    chip.href = '/' + currentRegion.city.replace(/ /g,'-') + '-' + currentRegion.gu.replace(/ /g,'-') + '-' + d.s.replace(/ /g,'-') + '-' + grade + '-' + subj + '-과외/';
+    dongGrid.appendChild(chip);
+  }});
+  sec.classList.remove('hidden');
+}}
+</script>
+</body>
+</html>"""
+
+
+# ══════════════════════════════════════════════════════════
+# ⑩ 개인정보처리방침 / 이용약관
+# ══════════════════════════════════════════════════════════
+
+POLICY_CSS = f"""<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;800&display=swap" rel="stylesheet">
+  <style>
+    *{{box-sizing:border-box;margin:0;padding:0}}
+    body{{font-family:'Noto Sans KR',sans-serif;background:#fff;color:#1a0a24;line-height:1.8}}
+    header{{background:white;padding:14px 24px;border-bottom:2px solid #e8d6f5;display:flex;align-items:center}}
+    .logo{{font-size:1.05rem;font-weight:800;color:#510580;text-decoration:none}}
+    .container{{max-width:800px;margin:0 auto;padding:40px 20px}}
+    h1{{font-size:1.5rem;font-weight:800;color:#370558;margin-bottom:24px;padding-bottom:12px;border-bottom:2px solid #e8d6f5}}
+    h2{{font-size:1rem;font-weight:800;color:#510580;margin:28px 0 8px}}
+    p{{font-size:.9rem;color:#333;margin-bottom:10px}}
+    footer{{background:#370558;color:rgba(255,255,255,.45);text-align:center;padding:16px;font-size:.78rem;line-height:1.6;margin-top:40px}}
+    footer p{{color:rgba(255,255,255,.45);margin:2px 0}}
+    footer a{{color:rgba(255,255,255,.6);text-decoration:none}}
+    footer a:hover{{color:rgba(255,255,255,.9)}}
+  </style>
+</head>
+<body>
+<header><a href="/" class="logo">🎓 {SITE_NAME}</a></header>
+<div class="container">"""
+
+def html_privacy():
+    return POLICY_CSS + f"""
+  <h1>개인정보처리방침</h1>
+  <p>제나쌤 스터디핏(이하 "회사")은 개인정보보호법에 따라 이용자의 개인정보 보호 및 권익을 보호하고 개인정보와 관련한 이용자의 고충을 원활하게 처리할 수 있도록 다음과 같은 처리방침을 두고 있습니다.</p>
+
+  <h2>1. 개인정보의 수집 및 이용 목적</h2>
+  <p>회사는 서비스 제공을 위해 다음의 개인정보를 수집하고 있습니다.</p>
+  <p>· 과외 수업 상담 및 매칭 서비스 제공<br>· 문의 답변 및 서비스 안내<br>· 무료 시범수업 신청 처리</p>
+  <p><strong>수집 항목</strong><br>
+  상담 신청 시: 이름, 연락처(휴대전화번호), 학생 학년, 희망 과목, 거주 지역<br>
+  카카오톡 상담 시: 카카오톡 프로필 정보(닉네임), 상담 내용</p>
+  <p><strong>수집 방법</strong><br>홈페이지 상담 신청 양식, 카카오톡 채널 상담, 전화 상담</p>
+
+  <h2>2. 개인정보의 수집 및 이용 목적</h2>
+  <p>회사는 수집한 개인정보를 다음의 목적을 위해 이용합니다.</p>
+  <p>· 과외 상담 서비스 제공 및 상담 내용 전달, 과외 선생님 매칭을 위한 정보 확인, 서비스 관련 공지사항 전달, 서비스 이용 통계 및 분석</p>
+
+  <h2>3. 개인정보의 보유 및 이용 기간</h2>
+  <p>회사는 개인정보 수집 및 이용 목적이 달성된 후에는 해당 정보를 지체 없이 파기합니다. 단, 관련 법령에 의해 보존할 필요가 있는 경우 해당 법령에서 정한 기간 동안 보존합니다.</p>
+  <p>· 상담 신청 정보: 상담 완료 후 1년간 보관 후 파기</p>
+  <p>전자상거래 등에서의 소비자 보호에 관한 법률에 따른 보존: 계약 또는 청약철회 등에 관한 기록 5년, 소비자의 불만 또는 분쟁 처리에 관한 기록 3년<br>
+  통신비밀보호법에 따른 보존: 웹사이트 방문 기록 3개월</p>
+
+  <h2>4. 개인정보의 제3자 제공</h2>
+  <p>회사는 이용자의 개인정보를 원칙적으로 외부에 제공하지 않습니다. 다만, 이용자가 사전에 동의한 경우 또는 법령의 규정에 의거한 경우에는 예외로 합니다.</p>
+
+  <h2>5. 개인정보의 파기 절차 및 방법</h2>
+  <p>회사는 개인정보 보유 기간의 경과, 처리 목적 달성 등 개인정보가 불필요하게 되었을 때에는 지체 없이 해당 개인정보를 파기합니다.</p>
+  <p>파기 절차: 이용자가 입력한 정보는 목적 달성 후 별도의 DB에 옮겨져 내부 방침 및 기타 관련 법령에 따라 일정 기간 저장된 후 혹은 즉시 파기됩니다.<br>
+  파기 방법: 전자적 파일 형태의 정보는 기록을 재생할 수 없는 기술적 방법을 사용합니다. 종이에 출력된 개인정보는 분쇄기로 분쇄하거나 소각을 통해 파기합니다.</p>
+
+  <h2>6. 이용자의 권리와 그 행사 방법</h2>
+  <p>이용자는 언제든지 자신의 개인정보에 대해 열람, 정정, 삭제, 처리 정지를 요구할 수 있습니다.</p>
+  <p>위 권리 행사는 회사에 대해 전화, 카카오톡 등을 통해 하실 수 있으며, 회사는 이에 대해 지체 없이 조치하겠습니다.</p>
+  <p>이용자가 개인정보의 오류 등에 대한 정정 또는 삭제를 요구한 경우에는 정정 또는 삭제를 완료할 때까지 당해 개인정보를 이용하거나 제공하지 않습니다.</p>
+
+  <h2>7. 개인정보의 안전성 확보 조치</h2>
+  <p>회사는 개인정보의 안전성 확보를 위해 다음과 같은 조치를 취하고 있습니다.</p>
+  <p>관리적 조치: 내부 관리계획 수립 및 시행, 개인정보 취급 직원 최소화<br>
+  기술적 조치: 개인정보처리시스템에 대한 접근 권한 관리, 보안 프로그램 설치 및 갱신<br>
+  물리적 조치: 개인정보가 포함된 서류 및 보조저장매체의 잠금장치가 있는 안전한 장소에 보관</p>
+
+  <h2>8. 개인정보 보호책임자</h2>
+  <p>회사는 개인정보 처리에 관한 업무를 총괄해서 책임지고, 개인정보 처리와 관련한 이용자의 불만 처리 및 피해구제 등을 위하여 아래와 같이 개인정보 보호책임자를 지정하고 있습니다.</p>
+  <p>· 상호: 제나쌤스터디핏<br>· 성명: 이수진<br>· 연락처: 010-5949-9897<br>· 이메일: aquarai@naver.com</p>
+  <p>이용자는 회사의 서비스를 이용하면서 발생한 모든 개인정보 보호 관련 문의, 불만 처리, 피해구제 등에 관한 사항을 개인정보 보호책임자에게 문의하실 수 있습니다.</p>
+
+  <h2>9. 이용자의 권리와 행사 방법</h2>
+  <p>이용자는 언제든지 자신의 개인정보를 조회·수정·삭제·처리 정지를 요청할 수 있습니다. 아래 연락처로 문의해 주세요.</p>
+  <p>· 이메일: aquarai@naver.com<br>· 전화: 010-5949-9897</p>
+
+  <h2>10. 개인정보처리방침의 변경</h2>
+  <p>이 개인정보처리방침은 2025년 1월 1일부터 적용됩니다. 내용이 변경될 경우 웹사이트 공지사항을 통해 공지합니다.</p>
+</div>
+{FOOTER_HTML}
+</body>
+</html>"""
+
+def html_terms():
+    return POLICY_CSS + f"""
+  <h1>이용약관</h1>
+  <p>본 약관은 제나쌤 스터디핏(이하 "회사")이 제공하는 과외 중개 서비스의 이용과 관련하여 회사와 이용자 간의 권리, 의무 및 책임사항을 규정합니다.</p>
+
+  <h2>제1조 (목적)</h2>
+  <p>본 약관은 회사가 운영하는 웹사이트(zenastudyfit.com)에서 제공하는 과외 상담 및 중개 서비스 이용에 관한 조건 및 절차, 회사와 이용자 간의 권리·의무·책임사항을 규정함을 목적으로 합니다.</p>
+
+  <h2>제2조 (서비스의 내용)</h2>
+  <p>회사는 다음과 같은 서비스를 제공합니다.</p>
+  <p>· 지역별 방문·화상 과외 상담 및 매칭 서비스<br>· 무료 시범수업 신청 서비스<br>· 과외 관련 정보 제공 서비스</p>
+
+  <h2>제3조 (서비스 이용)</h2>
+  <p>① 서비스는 회사가 정한 절차에 따라 상담 신청 후 이용 가능합니다.</p>
+  <p>② 이용자는 본 약관 및 관련 법령을 준수하여야 합니다.</p>
+  <p>③ 이용자는 타인의 개인정보를 도용하거나 허위 정보를 제공해서는 안 됩니다.</p>
+
+  <h2>제4조 (서비스 이용 제한)</h2>
+  <p>회사는 다음에 해당하는 경우 서비스 이용을 제한할 수 있습니다.</p>
+  <p>· 허위 정보 제공 또는 타인 정보 도용<br>· 서비스 운영을 방해하는 행위<br>· 기타 관련 법령 위반 행위</p>
+
+  <h2>제5조 (면책조항)</h2>
+  <p>① 회사는 천재지변, 전쟁 등 불가항력적 사유로 서비스를 제공할 수 없는 경우 책임이 면제됩니다.</p>
+  <p>② 회사는 이용자의 귀책 사유로 발생한 서비스 이용 장애에 대해 책임을 지지 않습니다.</p>
+
+  <h2>제6조 (분쟁 해결)</h2>
+  <p>서비스 이용과 관련하여 분쟁이 발생한 경우 회사와 이용자는 상호 협의하여 해결하며, 협의가 이루어지지 않을 경우 관할 법원에 소를 제기할 수 있습니다.</p>
+
+  <h2>제7조 (약관의 효력 및 변경)</h2>
+  <p>본 약관은 2025년 1월 1일부터 적용됩니다. 약관이 변경될 경우 웹사이트 공지사항을 통해 공지합니다.</p>
+
+  <p style="margin-top:24px;color:#510580;font-weight:700">문의: aquarai@naver.com · 010-5949-9897</p>
+</div>
+{FOOTER_HTML}
+</body>
+</html>"""
+
+
+
+
+def generate_sitemap(slugs):
+    urls = [f'  <url><loc>{SITE_DOMAIN}/</loc><priority>1.0</priority></url>']
+    for slug in slugs:
+        urls.append(
+            f'  <url><loc>{SITE_DOMAIN}/{slug}/</loc>'
+            f'<changefreq>monthly</changefreq><priority>0.7</priority></url>'
+        )
+    return (
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+        + "\n".join(urls)
+        + "\n</urlset>"
+    )
+
+def generate_robots():
+    return f"User-agent: *\nAllow: /\nSitemap: {SITE_DOMAIN}/sitemap.xml\n"
+
+
+# ══════════════════════════════════════════════════════════
+# ⑩ 메인 실행
+# ══════════════════════════════════════════════════════════
+
+def main():
+    output_dir = Path("output")
+    output_dir.mkdir(exist_ok=True)
+
+    areas = load_areas()
+    print(f"지역 데이터: {len(areas)}개 동 로드됨")
+
+    all_pages = []   # (slug, city, gu, dong, grade, subject)
+
+    for (city, gu, dong), grade, subject in product(areas, GRADES, SUBJECTS):
+        slug = f"{city}-{gu}-{dong}-{grade}-{subject}-과외".replace(" ", "-")
+        all_pages.append((slug, city, gu, dong, grade, subject))
+
+    total_plan = len(all_pages)
+    print(f"총 {total_plan:,}개 페이지 생성 시작...")
+
+    for i, (slug, city, gu, dong, grade, subject) in enumerate(all_pages, 1):
+        page_dir = output_dir / slug
+        page_dir.mkdir(exist_ok=True)
+        html = html_page(city, gu, dong, grade, subject, slug)
+        (page_dir / "index.html").write_text(html, encoding="utf-8")
+        if i % 500 == 0:
+            print(f"  {i:,}/{total_plan:,} 완료...")
+
+    # 인덱스
+    (output_dir / "index.html").write_text(html_index(all_pages), encoding="utf-8")
+
+    # 개인정보처리방침
+    privacy_dir = output_dir / "privacy"
+    privacy_dir.mkdir(exist_ok=True)
+    (privacy_dir / "index.html").write_text(html_privacy(), encoding="utf-8")
+
+    # 이용약관
+    terms_dir = output_dir / "terms"
+    terms_dir.mkdir(exist_ok=True)
+    (terms_dir / "index.html").write_text(html_terms(), encoding="utf-8")
+
+    # sitemap
+    slugs = [p[0] for p in all_pages]
+    (output_dir / "sitemap.xml").write_text(generate_sitemap(slugs), encoding="utf-8")
+
+    # robots
+    (output_dir / "robots.txt").write_text(generate_robots(), encoding="utf-8")
+
+    total_files = len(list(output_dir.rglob("index.html")))
+    print(f"\n✅ 완료! 총 {total_files:,}개 HTML 파일 생성됨")
+    print(f"📁 출력 폴더: {output_dir.resolve()}")
+    print(f"🗺  sitemap: {SITE_DOMAIN}/sitemap.xml")
+    print(f"\n💡 이미지 폴더: output/images/ 에 아래 파일들을 넣어주세요")
+    for img in IMAGES:
+        print(f"   - {img}")
+
+
+if __name__ == "__main__":
+    main()
