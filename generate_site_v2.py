@@ -497,6 +497,62 @@ def html_page(city, gu, dong, grade, subject, slug):
         alt = f"{dong} {grade} {subject} 과외 수업 사진"
         imgs_html += f'<div class="img-item"><img src="/images/{img}" alt="{alt}" loading="lazy"></div>\n'
 
+    # ── 관련 과목 HTML ──
+    ALL_SUBJECTS = ["국어", "영어", "수학", "과학", "사회"]
+    SUBJECT_ICONS = {"국어": "📖", "영어": "🌍", "수학": "📐", "과학": "🔬", "사회": "🗺️"}
+    SUBJECT_DESC = {
+        "국어": "독해 · 논술",
+        "영어": "문법 · 독해",
+        "수학": "개념 · 문제풀이",
+        "과학": "개념 · 원리",
+        "사회": "흐름 · 암기",
+    }
+    SUBJECT_LIST_DESC = {
+        "국어": "독해력 · 문학 · 비문학 · 서술형 대비",
+        "영어": "문법 · 독해 · 어휘 · 내신 대비",
+        "수학": "개념 이해 · 유형 · 실전 문제풀이",
+        "과학": "개념 · 원리 이해 · 실험 정리 · 서술형",
+        "사회": "흐름 · 맥락 · 암기 전략",
+    }
+
+    # 고등일 때 과학→통합과학, 사회→통합사회
+    def get_display_subject(subj, gr):
+        if gr == "고등":
+            if subj == "과학": return "통합과학"
+            if subj == "사회": return "통합사회"
+        return subj
+
+    related_subjects = [s for s in ALL_SUBJECTS if s != subject]
+
+    # 배너형 HTML
+    related_banner_html = ""
+    for s in related_subjects:
+        disp = get_display_subject(s, grade)
+        desc = SUBJECT_DESC.get(s, "")
+        href = f"/{city}-{gu}-{dong}-{grade}-{s}-과외/".replace(" ", "-")
+        related_banner_html += f"""<a href="{href}" style="background:white;border:1px solid #e8d6f5;border-radius:10px;padding:12px 8px;text-align:center;text-decoration:none;display:block;transition:all .15s" onmouseover="this.style.background='#510580';this.querySelector('.bs').style.color='white';this.querySelector('.bd').style.color='rgba(255,255,255,0.7)'" onmouseout="this.style.background='white';this.querySelector('.bs').style.color='#370558';this.querySelector('.bd').style.color='#9b6cc0'">
+  <div class="bs" style="font-size:.82rem;font-weight:700;color:#370558;margin-bottom:3px">{disp} 과외</div>
+  <div class="bd" style="font-size:.72rem;color:#9b6cc0">{desc}</div>
+</a>"""
+
+    # 리스트형 HTML
+    related_list_html = ""
+    for s in related_subjects:
+        disp = get_display_subject(s, grade)
+        icon = SUBJECT_ICONS.get(s, "📚")
+        list_desc = SUBJECT_LIST_DESC.get(s, "")
+        href = f"/{city}-{gu}-{dong}-{grade}-{s}-과외/".replace(" ", "-")
+        related_list_html += f"""<a href="{href}" style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid #f0e6fc;text-decoration:none;background:white;transition:background .12s" onmouseover="this.style.background='#faf5ff'" onmouseout="this.style.background='white'">
+  <div style="display:flex;align-items:center;gap:10px">
+    <div style="width:30px;height:30px;border-radius:50%;background:#f0e6fc;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">{icon}</div>
+    <div>
+      <div style="font-size:.85rem;font-weight:700;color:#370558">{grade} {disp} 과외</div>
+      <div style="font-size:.72rem;color:#9b6cc0;margin-top:2px">{list_desc}</div>
+    </div>
+  </div>
+  <div style="font-size:.85rem;color:#c9a3e8;flex-shrink:0">→</div>
+</a>"""
+
     return f"""<!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -507,20 +563,12 @@ def html_page(city, gu, dong, grade, subject, slug):
   <meta name="description" content="{description}">
   <meta name="keywords" content="{keywords}">
   <link rel="canonical" href="{canonical}">
-  <link rel="icon" type="image/x-icon" href="/favicon.ico">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <meta property="og:type" content="article">
   <meta property="og:title" content="{title_tag}">
   <meta property="og:description" content="{description}">
   <meta property="og:url" content="{canonical}">
   <meta property="og:site_name" content="{SITE_NAME}">
-  <meta property="og:image" content="{SITE_DOMAIN}/images/og-image.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="{SITE_DOMAIN}/images/og-image.png">
   <script type="application/ld+json">
   {{
     "@context": "https://schema.org",
@@ -953,6 +1001,17 @@ def html_page(city, gu, dong, grade, subject, slug):
     </div>
   </section>
 
+  <!-- ② 관련 과목 배너형 -->
+  <section style="margin-top:20px">
+    <div style="background:#f0e6fc;border:1px solid #d4b8f5;border-radius:14px;padding:18px 20px">
+      <div style="font-size:.72rem;font-weight:700;color:#7b2fa8;margin-bottom:6px">같은 지역 · 같은 학년</div>
+      <div style="font-size:.9rem;font-weight:700;color:#370558;margin-bottom:14px">{dong} {grade} 다른 과목 과외도 찾아보세요</div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">
+        {related_banner_html}
+      </div>
+    </div>
+  </section>
+
   <div class="divider"></div>
 
   <!-- ③ 본론 -->
@@ -1001,6 +1060,17 @@ def html_page(city, gu, dong, grade, subject, slug):
     </div>
   </section>
 
+  <!-- ⑧ 관련 과목 리스트형 -->
+  <section style="margin-top:16px">
+    <div style="background:white;border:1px solid #e8d6f5;border-radius:14px;overflow:hidden">
+      <div style="padding:13px 16px;border-bottom:1px solid #f0e6fc;background:#faf5ff;display:flex;align-items:center;justify-content:space-between">
+        <span style="font-size:.88rem;font-weight:700;color:#370558">{dong} {grade} 다른 과목 과외</span>
+        <span style="font-size:.72rem;color:#9b6cc0">클릭해서 바로 확인 →</span>
+      </div>
+      {related_list_html}
+    </div>
+  </section>
+
 </div><!-- /wrap -->
 
 {FOOTER_HTML}
@@ -1045,20 +1115,7 @@ def html_main():
   <title>전국 방문·화상 과외 전문 | {SITE_NAME}</title>
   <meta name="description" content="베테랑 선생님의 1:1 맞춤 과외. 초·중·고 전과목 내신 전문. 무료 시범수업 신청 가능.">
   <link rel="canonical" href="{SITE_DOMAIN}/">
-  <link rel="icon" type="image/x-icon" href="/favicon.ico">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="전국 방문·화상 과외 전문 | {SITE_NAME}">
-  <meta property="og:description" content="베테랑 선생님의 1:1 맞춤 과외. 초·중·고 전과목 내신 전문. 무료 시범수업 신청 가능.">
-  <meta property="og:url" content="{SITE_DOMAIN}/">
-  <meta property="og:site_name" content="{SITE_NAME}">
-  <meta property="og:image" content="{SITE_DOMAIN}/images/og-image.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="{SITE_DOMAIN}/images/og-image.png">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;800&display=swap" rel="stylesheet">
   <style>
     *{{box-sizing:border-box;margin:0;padding:0}}
     body{{font-family:'Noto Sans KR',sans-serif;background:#fff;color:#1a0a24}}
@@ -1339,20 +1396,6 @@ def html_index(all_pages):
   <title>전국 방문·화상 과외 전문 | {SITE_NAME}</title>
   <meta name="description" content="전국 방문·화상 과외 전문. 베테랑 선생님의 초·중·고 전과목 내신 맞춤 수업. 무료 시범수업 신청 가능.">
   <link rel="canonical" href="{SITE_DOMAIN}/regions/">
-  <link rel="icon" type="image/x-icon" href="/favicon.ico">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="지역별 과외 찾기 | {SITE_NAME}">
-  <meta property="og:description" content="전국 방문·화상 과외 전문. 베테랑 선생님의 초·중·고 전과목 내신 맞춤 수업.">
-  <meta property="og:url" content="{SITE_DOMAIN}/regions/">
-  <meta property="og:site_name" content="{SITE_NAME}">
-  <meta property="og:image" content="{SITE_DOMAIN}/images/og-image.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="{SITE_DOMAIN}/images/og-image.png">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;800&display=swap" rel="stylesheet">
   <style>
     *{{box-sizing:border-box;margin:0;padding:0}}
@@ -1573,10 +1616,6 @@ POLICY_CSS = f"""<!DOCTYPE html>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="naver-site-verification" content="511e0e2c64d12cf657363087cf302e40e3e1ac5c" />
-  <link rel="icon" type="image/x-icon" href="/favicon.ico">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;800&display=swap" rel="stylesheet">
   <style>
     *{{box-sizing:border-box;margin:0;padding:0}}
