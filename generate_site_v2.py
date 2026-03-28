@@ -92,8 +92,8 @@ HEADER_HTML = f"""<header class="site-header">
         </a>
       </div>
     </div>
-    <a href="#" class="nav-link nav-plain">자기주도학습</a>
-    <a href="#" class="nav-link nav-plain">코딩</a>
+    <a href="/self-study/" class="nav-link nav-plain">자기주도학습</a>
+    <a href="/coding/" class="nav-link nav-plain">코딩</a>
     <a href="{FORM_URL}" target="_blank" class="nav-cta-btn">📝 무료 상담 신청</a>
     <button class="hamburger" onclick="openMobileMenu()" aria-label="메뉴">☰</button>
   </nav>
@@ -108,8 +108,8 @@ HEADER_HTML = f"""<header class="site-header">
     <div style="font-size:.72rem;color:#9b6cc0;font-weight:700;margin-bottom:8px;padding:0 4px">일대일 과외</div>
     <a href="/regions/" class="mobile-menu-sub">📍 지역별 과외</a>
     <a href="#" class="mobile-menu-sub">🏫 학교별 과외 <span class="nav-badge-soon">준비중</span></a>
-    <a href="#" class="mobile-menu-item" style="margin-top:8px">자기주도학습</a>
-    <a href="#" class="mobile-menu-item">코딩</a>
+    <a href="/self-study/" class="mobile-menu-item" style="margin-top:8px">자기주도학습</a>
+    <a href="/coding/" class="mobile-menu-item">코딩</a>
     <a href="{FORM_URL}" target="_blank" class="mobile-menu-cta">📝 무료 상담 신청</a>
   </div>
 </div>
@@ -1446,6 +1446,28 @@ def html_main():
   </p>
 </footer>
 
+<!-- 플로팅 버튼 -->
+<div class="float-wrap">
+  <a href="{FORM_URL}" target="_blank" class="float-btn form">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+      <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+    </svg>
+    <span class="float-label">무료 체험 신청</span>
+  </a>
+  <a href="{KAKAO_URL}" target="_blank" class="float-btn kakao">
+    <svg class="kakao-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 3C6.477 3 2 6.477 2 10.8c0 2.7 1.644 5.08 4.148 6.538L5.2 20.4a.3.3 0 0 0 .438.328l4.07-2.7A11.4 11.4 0 0 0 12 18.6c5.523 0 10-3.477 10-7.8S17.523 3 12 3z" fill="#3A1D1D"/>
+    </svg>
+    <span class="float-label">카카오톡 상담</span>
+  </a>
+  <a href="tel:{PHONE}" class="float-btn phone">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+      <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+    </svg>
+    <span class="float-label">전화 상담</span>
+  </a>
+</div>
+
 </body>
 </html>"""
 
@@ -1619,7 +1641,7 @@ def html_index(all_pages):
     <span class="filter-label">과목</span>
     <select id="sel-subject" class="filter-select">
       <option value="">전체</option>
-      <option>국어</option><option>영어</option><option>수학</option><option>과학</option><option>사회</option>
+      <option>국어</option><option>영어</option><option>수학</option><option>과학</option><option>사회</option><option>한국사</option>
     </select>
     <input class="search-input" id="search-input" placeholder="🔍 지역 검색..." oninput="filterRegions(this.value)" />
   </div>
