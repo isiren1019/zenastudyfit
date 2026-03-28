@@ -563,12 +563,20 @@ def html_page(city, gu, dong, grade, subject, slug):
   <meta name="description" content="{description}">
   <meta name="keywords" content="{keywords}">
   <link rel="canonical" href="{canonical}">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <meta property="og:type" content="article">
   <meta property="og:title" content="{title_tag}">
   <meta property="og:description" content="{description}">
   <meta property="og:url" content="{canonical}">
   <meta property="og:site_name" content="{SITE_NAME}">
+  <meta property="og:image" content="{SITE_DOMAIN}/images/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="{SITE_DOMAIN}/images/og-image.png">
   <script type="application/ld+json">
   {{
     "@context": "https://schema.org",
@@ -1115,7 +1123,20 @@ def html_main():
   <title>전국 방문·화상 과외 전문 | {SITE_NAME}</title>
   <meta name="description" content="베테랑 선생님의 1:1 맞춤 과외. 초·중·고 전과목 내신 전문. 무료 시범수업 신청 가능.">
   <link rel="canonical" href="{SITE_DOMAIN}/">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="전국 방문·화상 과외 전문 | {SITE_NAME}">
+  <meta property="og:description" content="베테랑 선생님의 1:1 맞춤 과외. 초·중·고 전과목 내신 전문. 무료 시범수업 신청 가능.">
+  <meta property="og:url" content="{SITE_DOMAIN}/">
+  <meta property="og:site_name" content="{SITE_NAME}">
+  <meta property="og:image" content="{SITE_DOMAIN}/images/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="{SITE_DOMAIN}/images/og-image.png">
   <style>
     *{{box-sizing:border-box;margin:0;padding:0}}
     body{{font-family:'Noto Sans KR',sans-serif;background:#fff;color:#1a0a24}}
@@ -1396,6 +1417,20 @@ def html_index(all_pages):
   <title>전국 방문·화상 과외 전문 | {SITE_NAME}</title>
   <meta name="description" content="전국 방문·화상 과외 전문. 베테랑 선생님의 초·중·고 전과목 내신 맞춤 수업. 무료 시범수업 신청 가능.">
   <link rel="canonical" href="{SITE_DOMAIN}/regions/">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="지역별 과외 찾기 | {SITE_NAME}">
+  <meta property="og:description" content="전국 방문·화상 과외 전문. 베테랑 선생님의 초·중·고 전과목 내신 맞춤 수업.">
+  <meta property="og:url" content="{SITE_DOMAIN}/regions/">
+  <meta property="og:site_name" content="{SITE_NAME}">
+  <meta property="og:image" content="{SITE_DOMAIN}/images/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="{SITE_DOMAIN}/images/og-image.png">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;800&display=swap" rel="stylesheet">
   <style>
     *{{box-sizing:border-box;margin:0;padding:0}}
@@ -1616,6 +1651,10 @@ POLICY_CSS = f"""<!DOCTYPE html>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="naver-site-verification" content="511e0e2c64d12cf657363087cf302e40e3e1ac5c" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;800&display=swap" rel="stylesheet">
   <style>
     *{{box-sizing:border-box;margin:0;padding:0}}
