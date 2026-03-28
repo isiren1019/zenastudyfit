@@ -632,8 +632,18 @@ def html_page(city, gu, dong, grade, subject, slug):
     related_subjects = [s for s in ALL_SUBJECTS if s != subject]
 
     # 배너형 HTML — 현재 과목 제외 5개 중 랜덤 4개 + 자기주도 + 코딩 = 6개 (3×2)
+    # 단, 사회와 한국사는 동시에 나오지 않도록 처리
     import random as _random
-    banner_subjects = _random.sample(related_subjects, min(4, len(related_subjects)))
+    pool = related_subjects[:]
+    # 현재 과목이 사회면 한국사 제거, 현재 과목이 한국사면 사회 제거
+    # 현재 과목이 둘 다 아니면서 pool에 둘 다 있으면 랜덤으로 하나 제거
+    if subject == "사회" and "한국사" in pool:
+        pool.remove("한국사")
+    elif subject == "한국사" and "사회" in pool:
+        pool.remove("사회")
+    elif "사회" in pool and "한국사" in pool:
+        pool.remove(_random.choice(["사회", "한국사"]))
+    banner_subjects = _random.sample(pool, min(4, len(pool)))
     related_banner_html = ""
     for s in banner_subjects:
         disp = get_display_subject(s, grade)
@@ -1341,22 +1351,6 @@ def html_main():
     footer p{{color:rgba(255,255,255,.45);margin:2px 0}}
     footer a{{color:rgba(255,255,255,.6);text-decoration:none}}
     footer a:hover{{color:rgba(255,255,255,.9)}}
-
-    /* 플로팅 버튼 */
-    .float-wrap{{position:fixed;bottom:28px;right:20px;display:flex;flex-direction:column;align-items:center;gap:12px;z-index:400}}
-    .float-btn{{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 16px rgba(0,0,0,.2);transition:transform .15s;position:relative}}
-    .float-btn:hover{{transform:translateY(-3px)}}
-    .float-btn.form{{background:#22c55e}}
-    .float-btn.kakao{{background:#FEE500}}
-    .float-btn.phone{{background:#4f1787}}
-    .float-btn .kakao-icon{{width:28px;height:28px}}
-    .float-label{{position:absolute;right:62px;background:rgba(30,10,40,.85);color:white;font-size:.7rem;font-weight:700;padding:4px 10px;border-radius:20px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s}}
-    .float-btn:hover .float-label{{opacity:1}}
-    @media(max-width:600px){{
-      .float-wrap{{bottom:20px;right:14px;gap:10px}}
-      .float-btn{{width:50px;height:50px}}
-      .float-label{{display:none}}
-    }}
   </style>
   <style>{HEADER_CSS}</style>
 </head>
