@@ -407,9 +407,9 @@
   .nav-link{font-size:.85rem;color:#444;padding:7px 12px;border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:4px;text-decoration:none;white-space:nowrap;font-weight:700;background:none;border:none}
   .nav-link:hover{background:#f5eefe;color:#510580}
   .nav-arrow{font-size:.6rem;color:#aaa;transition:transform .2s;display:inline-block}
-  .nav-item:hover .nav-arrow{transform:rotate(180deg);color:#510580}
+  .nav-arrow.open{transform:rotate(180deg);color:#510580}
   .nav-dropdown{display:none;position:absolute;top:calc(100% + 6px);left:0;background:white;border:1px solid #e8d6f5;border-radius:12px;min-width:210px;overflow:hidden;z-index:300;box-shadow:0 4px 16px rgba(81,5,128,.10)}
-  .nav-item:hover .nav-dropdown{display:block}
+  .nav-dropdown.open{display:block}
   .nav-dropdown-item{display:flex;align-items:center;gap:10px;padding:11px 14px;font-size:.82rem;color:#370558;text-decoration:none;border-bottom:1px solid #f5eefe;transition:background .12s}
   .nav-dropdown-item:last-child{border-bottom:none}
   .nav-dropdown-item:hover{background:#faf5ff}
@@ -443,8 +443,8 @@
   <a href="/" class="site-logo">🎓 제나쌤의 스터디핏 과외</a>
   <nav class="site-nav">
     <div class="nav-item">
-      <span class="nav-link nav-plain">일대일 과외 <span class="nav-arrow">▾</span></span>
-      <div class="nav-dropdown">
+      <span class="nav-link nav-plain" onclick="toggleDropdown(event)" style="cursor:pointer">일대일 과외 <span class="nav-arrow" id="navArrow">▾</span></span>
+      <div class="nav-dropdown" id="navDropdown">
         <a href="/regions/" class="nav-dropdown-item">
           <div class="nav-dropdown-icon">📍</div>
           <div>
@@ -483,6 +483,20 @@
   </div>
 </div>
 <script>
+function toggleDropdown(e){
+  e.stopPropagation();
+  var d=document.getElementById('navDropdown');
+  var a=document.getElementById('navArrow');
+  var isOpen=d.classList.contains('open');
+  d.classList.toggle('open');
+  a.classList.toggle('open');
+}
+document.addEventListener('click',function(){
+  var d=document.getElementById('navDropdown');
+  var a=document.getElementById('navArrow');
+  if(d){d.classList.remove('open');}
+  if(a){a.classList.remove('open');}
+});
 function openMobileMenu(){document.getElementById('mobileMenu').style.display='block';document.body.style.overflow='hidden'}
 function closeMobileMenu(){document.getElementById('mobileMenu').style.display='none';document.body.style.overflow=''}
 function closeMobileMenuOutside(e){if(e.target===document.getElementById('mobileMenu'))closeMobileMenu()}
@@ -560,15 +574,15 @@ function closeMobileMenuOutside(e){if(e.target===document.getElementById('mobile
       <div style="font-size:.72rem;font-weight:700;color:#7b2fa8;margin-bottom:6px">같은 지역 · 같은 학년</div>
       <div style="font-size:.9rem;font-weight:700;color:#370558;margin-bottom:14px">다산동 초등 다른 과목 과외도 찾아보세요</div>
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
-        <a href="/경기도-남양주시-다산동-초등-영어-과외/" style="background:white;border:1px solid #e8d6f5;border-radius:10px;padding:12px 8px;text-align:center;text-decoration:none;display:block;transition:all .15s" onmouseover="this.style.background='#510580';this.querySelector('.bs').style.color='white';this.querySelector('.bd').style.color='rgba(255,255,255,0.7)'" onmouseout="this.style.background='white';this.querySelector('.bs').style.color='#370558';this.querySelector('.bd').style.color='#9b6cc0'">
-  <div class="bs" style="font-size:.82rem;font-weight:700;color:#370558;margin-bottom:3px">영어 과외</div>
-  <div class="bd" style="font-size:.72rem;color:#9b6cc0">문법 · 독해</div>
-</a><a href="/경기도-남양주시-다산동-초등-과학-과외/" style="background:white;border:1px solid #e8d6f5;border-radius:10px;padding:12px 8px;text-align:center;text-decoration:none;display:block;transition:all .15s" onmouseover="this.style.background='#510580';this.querySelector('.bs').style.color='white';this.querySelector('.bd').style.color='rgba(255,255,255,0.7)'" onmouseout="this.style.background='white';this.querySelector('.bs').style.color='#370558';this.querySelector('.bd').style.color='#9b6cc0'">
+        <a href="/경기도-남양주시-다산동-초등-과학-과외/" style="background:white;border:1px solid #e8d6f5;border-radius:10px;padding:12px 8px;text-align:center;text-decoration:none;display:block;transition:all .15s" onmouseover="this.style.background='#510580';this.querySelector('.bs').style.color='white';this.querySelector('.bd').style.color='rgba(255,255,255,0.7)'" onmouseout="this.style.background='white';this.querySelector('.bs').style.color='#370558';this.querySelector('.bd').style.color='#9b6cc0'">
   <div class="bs" style="font-size:.82rem;font-weight:700;color:#370558;margin-bottom:3px">과학 과외</div>
   <div class="bd" style="font-size:.72rem;color:#9b6cc0">개념 · 원리</div>
 </a><a href="/경기도-남양주시-다산동-초등-한국사-과외/" style="background:white;border:1px solid #e8d6f5;border-radius:10px;padding:12px 8px;text-align:center;text-decoration:none;display:block;transition:all .15s" onmouseover="this.style.background='#510580';this.querySelector('.bs').style.color='white';this.querySelector('.bd').style.color='rgba(255,255,255,0.7)'" onmouseout="this.style.background='white';this.querySelector('.bs').style.color='#370558';this.querySelector('.bd').style.color='#9b6cc0'">
   <div class="bs" style="font-size:.82rem;font-weight:700;color:#370558;margin-bottom:3px">한국사 과외</div>
   <div class="bd" style="font-size:.72rem;color:#9b6cc0">흐름 · 사건 · 암기</div>
+</a><a href="/경기도-남양주시-다산동-초등-영어-과외/" style="background:white;border:1px solid #e8d6f5;border-radius:10px;padding:12px 8px;text-align:center;text-decoration:none;display:block;transition:all .15s" onmouseover="this.style.background='#510580';this.querySelector('.bs').style.color='white';this.querySelector('.bd').style.color='rgba(255,255,255,0.7)'" onmouseout="this.style.background='white';this.querySelector('.bs').style.color='#370558';this.querySelector('.bd').style.color='#9b6cc0'">
+  <div class="bs" style="font-size:.82rem;font-weight:700;color:#370558;margin-bottom:3px">영어 과외</div>
+  <div class="bd" style="font-size:.72rem;color:#9b6cc0">문법 · 독해</div>
 </a><a href="/경기도-남양주시-다산동-초등-국어-과외/" style="background:white;border:1px solid #e8d6f5;border-radius:10px;padding:12px 8px;text-align:center;text-decoration:none;display:block;transition:all .15s" onmouseover="this.style.background='#510580';this.querySelector('.bs').style.color='white';this.querySelector('.bd').style.color='rgba(255,255,255,0.7)'" onmouseout="this.style.background='white';this.querySelector('.bs').style.color='#370558';this.querySelector('.bd').style.color='#9b6cc0'">
   <div class="bs" style="font-size:.82rem;font-weight:700;color:#370558;margin-bottom:3px">국어 과외</div>
   <div class="bd" style="font-size:.72rem;color:#9b6cc0">독해 · 논술</div>

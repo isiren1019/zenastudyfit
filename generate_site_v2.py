@@ -41,9 +41,9 @@ HEADER_CSS = """
   .nav-link{font-size:.85rem;color:#444;padding:7px 12px;border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:4px;text-decoration:none;white-space:nowrap;font-weight:700;background:none;border:none}
   .nav-link:hover{background:#f5eefe;color:#510580}
   .nav-arrow{font-size:.6rem;color:#aaa;transition:transform .2s;display:inline-block}
-  .nav-item:hover .nav-arrow{transform:rotate(180deg);color:#510580}
+  .nav-arrow.open{transform:rotate(180deg);color:#510580}
   .nav-dropdown{display:none;position:absolute;top:calc(100% + 6px);left:0;background:white;border:1px solid #e8d6f5;border-radius:12px;min-width:210px;overflow:hidden;z-index:300;box-shadow:0 4px 16px rgba(81,5,128,.10)}
-  .nav-item:hover .nav-dropdown{display:block}
+  .nav-dropdown.open{display:block}
   .nav-dropdown-item{display:flex;align-items:center;gap:10px;padding:11px 14px;font-size:.82rem;color:#370558;text-decoration:none;border-bottom:1px solid #f5eefe;transition:background .12s}
   .nav-dropdown-item:last-child{border-bottom:none}
   .nav-dropdown-item:hover{background:#faf5ff}
@@ -74,8 +74,8 @@ HEADER_HTML = f"""<header class="site-header">
   <a href="/" class="site-logo">🎓 {SITE_NAME}</a>
   <nav class="site-nav">
     <div class="nav-item">
-      <span class="nav-link nav-plain">일대일 과외 <span class="nav-arrow">▾</span></span>
-      <div class="nav-dropdown">
+      <span class="nav-link nav-plain" onclick="toggleDropdown(event)" style="cursor:pointer">일대일 과외 <span class="nav-arrow" id="navArrow">▾</span></span>
+      <div class="nav-dropdown" id="navDropdown">
         <a href="/regions/" class="nav-dropdown-item">
           <div class="nav-dropdown-icon">📍</div>
           <div>
@@ -114,6 +114,20 @@ HEADER_HTML = f"""<header class="site-header">
   </div>
 </div>
 <script>
+function toggleDropdown(e){{
+  e.stopPropagation();
+  var d=document.getElementById('navDropdown');
+  var a=document.getElementById('navArrow');
+  var isOpen=d.classList.contains('open');
+  d.classList.toggle('open');
+  a.classList.toggle('open');
+}}
+document.addEventListener('click',function(){{
+  var d=document.getElementById('navDropdown');
+  var a=document.getElementById('navArrow');
+  if(d){{d.classList.remove('open');}}
+  if(a){{a.classList.remove('open');}}
+}});
 function openMobileMenu(){{document.getElementById('mobileMenu').style.display='block';document.body.style.overflow='hidden'}}
 function closeMobileMenu(){{document.getElementById('mobileMenu').style.display='none';document.body.style.overflow=''}}
 function closeMobileMenuOutside(e){{if(e.target===document.getElementById('mobileMenu'))closeMobileMenu()}}
@@ -1327,22 +1341,6 @@ def html_main():
     footer p{{color:rgba(255,255,255,.45);margin:2px 0}}
     footer a{{color:rgba(255,255,255,.6);text-decoration:none}}
     footer a:hover{{color:rgba(255,255,255,.9)}}
-
-    /* 플로팅 버튼 */
-    .float-wrap{{position:fixed;bottom:28px;right:20px;display:flex;flex-direction:column;align-items:center;gap:12px;z-index:400}}
-    .float-btn{{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 16px rgba(0,0,0,.2);transition:transform .15s;position:relative}}
-    .float-btn:hover{{transform:translateY(-3px)}}
-    .float-btn.form{{background:#22c55e}}
-    .float-btn.kakao{{background:#FEE500}}
-    .float-btn.phone{{background:#4f1787}}
-    .float-btn .kakao-icon{{width:28px;height:28px}}
-    .float-label{{position:absolute;right:62px;background:rgba(30,10,40,.85);color:white;font-size:.7rem;font-weight:700;padding:4px 10px;border-radius:20px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s}}
-    .float-btn:hover .float-label{{opacity:1}}
-    @media(max-width:600px){{
-      .float-wrap{{bottom:20px;right:14px;gap:10px;z-index:400}}
-      .float-btn{{width:50px;height:50px}}
-      .float-label{{display:none}}
-    }}
   </style>
   <style>{HEADER_CSS}</style>
 </head>
