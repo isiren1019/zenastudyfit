@@ -33,6 +33,56 @@ FOOTER_HTML = """<footer>
   </p>
 </footer>"""
 
+HEADER_CSS = """
+  .site-header{background:white;padding:13px 24px;border-bottom:2px solid #e8d6f5;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:200;box-shadow:0 2px 12px rgba(81,5,128,.06)}
+  .site-logo{font-size:1.05rem;font-weight:800;color:#510580;text-decoration:none}
+  .site-nav{display:flex;gap:4px;align-items:center}
+  .nav-item{position:relative}
+  .nav-link{font-size:.85rem;color:#444;padding:7px 12px;border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:4px;text-decoration:none;white-space:nowrap;font-weight:700;background:none;border:none}
+  .nav-link:hover{background:#f5eefe;color:#510580}
+  .nav-arrow{font-size:.6rem;color:#aaa;transition:transform .2s;display:inline-block}
+  .nav-item:hover .nav-arrow{transform:rotate(180deg);color:#510580}
+  .nav-dropdown{display:none;position:absolute;top:calc(100% + 6px);left:0;background:white;border:1px solid #e8d6f5;border-radius:12px;min-width:170px;overflow:hidden;z-index:300;box-shadow:0 4px 16px rgba(81,5,128,.10)}
+  .nav-item:hover .nav-dropdown{display:block}
+  .nav-dropdown-item{display:flex;align-items:center;gap:10px;padding:11px 14px;font-size:.82rem;color:#370558;text-decoration:none;border-bottom:1px solid #f5eefe;transition:background .12s}
+  .nav-dropdown-item:last-child{border-bottom:none}
+  .nav-dropdown-item:hover{background:#faf5ff}
+  .nav-dropdown-icon{width:26px;height:26px;border-radius:6px;background:#f0e6fc;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+  .nav-dropdown-title{font-size:.82rem;font-weight:700;color:#370558}
+  .nav-dropdown-sub{font-size:.7rem;color:#9b6cc0;margin-top:1px}
+  .nav-badge-soon{font-size:.65rem;background:#f0e6fc;color:#7b2fa8;padding:1px 6px;border-radius:10px;margin-left:4px;font-weight:700}
+  .nav-cta-btn{background:linear-gradient(135deg,#e8439a,#ff6fc1);color:white !important;font-size:.82rem;font-weight:700;padding:8px 16px;border-radius:50px;text-decoration:none;white-space:nowrap;box-shadow:0 3px 12px rgba(232,67,154,.35)}
+  @media(max-width:600px){.nav-plain{display:none !important}}
+"""
+
+HEADER_HTML = f"""<header class="site-header">
+  <a href="/" class="site-logo">🎓 {SITE_NAME}</a>
+  <nav class="site-nav">
+    <div class="nav-item">
+      <span class="nav-link nav-plain">일대일 과외 <span class="nav-arrow">▾</span></span>
+      <div class="nav-dropdown">
+        <a href="/regions/" class="nav-dropdown-item">
+          <div class="nav-dropdown-icon">📍</div>
+          <div>
+            <div class="nav-dropdown-title">지역별 과외</div>
+            <div class="nav-dropdown-sub">동네 방문 · 화상 수업</div>
+          </div>
+        </a>
+        <a href="#" class="nav-dropdown-item">
+          <div class="nav-dropdown-icon">🏫</div>
+          <div>
+            <div class="nav-dropdown-title">학교별 과외 <span class="nav-badge-soon">준비중</span></div>
+            <div class="nav-dropdown-sub">학교 내신 전문 대비</div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <a href="#" class="nav-link nav-plain">자기주도학습</a>
+    <a href="#" class="nav-link nav-plain">코딩</a>
+    <a href="{FORM_URL}" target="_blank" class="nav-cta-btn">📝 무료 상담 신청</a>
+  </nav>
+</header>"""
+
 # ──────────────────────────────────────────────────────────
 # ② 지역 데이터
 #    → areas.txt 가 있으면 그 파일을 읽고,
@@ -563,20 +613,12 @@ def html_page(city, gu, dong, grade, subject, slug):
   <meta name="description" content="{description}">
   <meta name="keywords" content="{keywords}">
   <link rel="canonical" href="{canonical}">
-  <link rel="icon" type="image/x-icon" href="/favicon.ico">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <meta property="og:type" content="article">
   <meta property="og:title" content="{title_tag}">
   <meta property="og:description" content="{description}">
   <meta property="og:url" content="{canonical}">
   <meta property="og:site_name" content="{SITE_NAME}">
-  <meta property="og:image" content="{SITE_DOMAIN}/images/og-image.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="{SITE_DOMAIN}/images/og-image.png">
   <script type="application/ld+json">
   {{
     "@context": "https://schema.org",
@@ -961,15 +1003,12 @@ def html_page(city, gu, dong, grade, subject, slug):
       .mobile-only {{ display: none !important; }}
     }}
   </style>
+  <style>{HEADER_CSS}</style>
 </head>
 <body>
 
 <!-- HEADER -->
-<header>
-  <a href="/" class="logo">🎓 {SITE_NAME}</a>
-  <a href="tel:{PHONE}" class="header-cta mobile-only">📞 무료 상담</a>
-  <a href="{FORM_URL}" target="_blank" class="header-cta pc-only">📝 무료 상담 신청</a>
-</header>
+{HEADER_HTML}
 
 <!-- HERO -->
 <div class="hero">
@@ -1123,20 +1162,7 @@ def html_main():
   <title>전국 방문·화상 과외 전문 | {SITE_NAME}</title>
   <meta name="description" content="베테랑 선생님의 1:1 맞춤 과외. 초·중·고 전과목 내신 전문. 무료 시범수업 신청 가능.">
   <link rel="canonical" href="{SITE_DOMAIN}/">
-  <link rel="icon" type="image/x-icon" href="/favicon.ico">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="전국 방문·화상 과외 전문 | {SITE_NAME}">
-  <meta property="og:description" content="베테랑 선생님의 1:1 맞춤 과외. 초·중·고 전과목 내신 전문. 무료 시범수업 신청 가능.">
-  <meta property="og:url" content="{SITE_DOMAIN}/">
-  <meta property="og:site_name" content="{SITE_NAME}">
-  <meta property="og:image" content="{SITE_DOMAIN}/images/og-image.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="{SITE_DOMAIN}/images/og-image.png">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;800&display=swap" rel="stylesheet">
   <style>
     *{{box-sizing:border-box;margin:0;padding:0}}
     body{{font-family:'Noto Sans KR',sans-serif;background:#fff;color:#1a0a24}}
@@ -1229,17 +1255,11 @@ def html_main():
     footer a{{color:rgba(255,255,255,.6);text-decoration:none}}
     footer a:hover{{color:rgba(255,255,255,.9)}}
   </style>
+  <style>{HEADER_CSS}</style>
 </head>
 <body>
 
-<header>
-  <a href="/" class="logo">🎓 {SITE_NAME}</a>
-  <nav>
-    <a href="#" class="plain">수업 안내</a>
-    <a href="/regions/" class="plain">지역 찾기</a>
-    <a href="{FORM_URL}" class="nav-cta" target="_blank">무료 상담 신청</a>
-  </nav>
-</header>
+{HEADER_HTML}
 
 <div class="hero">
   <div class="hero-badge">전국 방문 · 화상 과외 전문</div>
@@ -1417,20 +1437,6 @@ def html_index(all_pages):
   <title>전국 방문·화상 과외 전문 | {SITE_NAME}</title>
   <meta name="description" content="전국 방문·화상 과외 전문. 베테랑 선생님의 초·중·고 전과목 내신 맞춤 수업. 무료 시범수업 신청 가능.">
   <link rel="canonical" href="{SITE_DOMAIN}/regions/">
-  <link rel="icon" type="image/x-icon" href="/favicon.ico">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="지역별 과외 찾기 | {SITE_NAME}">
-  <meta property="og:description" content="전국 방문·화상 과외 전문. 베테랑 선생님의 초·중·고 전과목 내신 맞춤 수업.">
-  <meta property="og:url" content="{SITE_DOMAIN}/regions/">
-  <meta property="og:site_name" content="{SITE_NAME}">
-  <meta property="og:image" content="{SITE_DOMAIN}/images/og-image.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="{SITE_DOMAIN}/images/og-image.png">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;800&display=swap" rel="stylesheet">
   <style>
     *{{box-sizing:border-box;margin:0;padding:0}}
@@ -1518,9 +1524,10 @@ def html_index(all_pages):
       .float-btn{{width:50px;height:50px}}
     }}
   </style>
+  <style>{HEADER_CSS}</style>
 </head>
 <body>
-<header><a href="/" class="logo">🎓 {SITE_NAME}</a></header>
+{HEADER_HTML}
 
 <div class="hero">
   <div class="hero-badge">전국 방문 · 화상 과외 전문</div>
@@ -1651,10 +1658,6 @@ POLICY_CSS = f"""<!DOCTYPE html>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="naver-site-verification" content="511e0e2c64d12cf657363087cf302e40e3e1ac5c" />
-  <link rel="icon" type="image/x-icon" href="/favicon.ico">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;800&display=swap" rel="stylesheet">
   <style>
     *{{box-sizing:border-box;margin:0;padding:0}}
@@ -1670,9 +1673,10 @@ POLICY_CSS = f"""<!DOCTYPE html>
     footer a{{color:rgba(255,255,255,.6);text-decoration:none}}
     footer a:hover{{color:rgba(255,255,255,.9)}}
   </style>
+  <style>{HEADER_CSS}</style>
 </head>
 <body>
-<header><a href="/" class="logo">🎓 {SITE_NAME}</a></header>
+{HEADER_HTML}
 <div class="container">"""
 
 def html_privacy():
