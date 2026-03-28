@@ -1327,6 +1327,22 @@ def html_main():
     footer p{{color:rgba(255,255,255,.45);margin:2px 0}}
     footer a{{color:rgba(255,255,255,.6);text-decoration:none}}
     footer a:hover{{color:rgba(255,255,255,.9)}}
+
+    /* 플로팅 버튼 */
+    .float-wrap{{position:fixed;bottom:28px;right:20px;display:flex;flex-direction:column;align-items:center;gap:12px;z-index:400}}
+    .float-btn{{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 16px rgba(0,0,0,.2);transition:transform .15s;position:relative}}
+    .float-btn:hover{{transform:translateY(-3px)}}
+    .float-btn.form{{background:#22c55e}}
+    .float-btn.kakao{{background:#FEE500}}
+    .float-btn.phone{{background:#4f1787}}
+    .float-btn .kakao-icon{{width:28px;height:28px}}
+    .float-label{{position:absolute;right:62px;background:rgba(30,10,40,.85);color:white;font-size:.7rem;font-weight:700;padding:4px 10px;border-radius:20px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s}}
+    .float-btn:hover .float-label{{opacity:1}}
+    @media(max-width:600px){{
+      .float-wrap{{bottom:20px;right:14px;gap:10px;z-index:400}}
+      .float-btn{{width:50px;height:50px}}
+      .float-label{{display:none}}
+    }}
   </style>
   <style>{HEADER_CSS}</style>
 </head>
