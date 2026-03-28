@@ -92,7 +92,7 @@ HEADER_HTML = f"""<header class="site-header">
         </a>
       </div>
     </div>
-    <a href="#" class="nav-link nav-plain">자기주도학습</a>
+    <a href="/self-study/" class="nav-link nav-plain">자기주도학습</a>
     <a href="/coding/" class="nav-link nav-plain">코딩</a>
     <a href="{FORM_URL}" target="_blank" class="nav-cta-btn">📝 무료 상담 신청</a>
     <button class="hamburger" onclick="openMobileMenu()" aria-label="메뉴">☰</button>
@@ -108,7 +108,7 @@ HEADER_HTML = f"""<header class="site-header">
     <div style="font-size:.72rem;color:#9b6cc0;font-weight:700;margin-bottom:8px;padding:0 4px">일대일 과외</div>
     <a href="/regions/" class="mobile-menu-sub">📍 지역별 과외</a>
     <a href="#" class="mobile-menu-sub">🏫 학교별 과외 <span class="nav-badge-soon">준비중</span></a>
-    <a href="#" class="mobile-menu-item" style="margin-top:8px">자기주도학습</a>
+    <a href="/self-study/" class="mobile-menu-item" style="margin-top:8px">자기주도학습</a>
     <a href="/coding/" class="mobile-menu-item">코딩</a>
     <a href="{FORM_URL}" target="_blank" class="mobile-menu-cta">📝 무료 상담 신청</a>
   </div>
@@ -1855,8 +1855,6 @@ def html_coding():
     .sec-title{{font-size:clamp(1.3rem,3vw,1.7rem);font-weight:800;color:#1a0a24;line-height:1.4;margin-bottom:8px}}
     .sec-sub{{font-size:.88rem;color:#666;line-height:1.8;margin-bottom:28px}}
     .divider{{border:none;border-top:1px solid #f0f0f5;margin:0}}
-
-    /* 히어로 */
     .hero{{background:linear-gradient(140deg,#0a1a3a,#1a3a6a,#2a5aa8);color:white;padding:52px 24px;text-align:center}}
     .hero-badge{{display:inline-block;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:20px;font-size:.78rem;font-weight:700;padding:5px 16px;margin-bottom:14px}}
     .hero h1{{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:800;line-height:1.45;margin-bottom:10px;color:white}}
@@ -1864,34 +1862,24 @@ def html_coding():
     .hero-btns{{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}}
     .btn-blue{{background:linear-gradient(135deg,#2a7fff,#5ba3ff);color:white;padding:13px 28px;border-radius:50px;font-weight:700;font-size:.95rem;text-decoration:none;box-shadow:0 4px 14px rgba(42,127,255,.4)}}
     .btn-outline-w{{background:transparent;color:white;padding:13px 28px;border-radius:50px;font-weight:700;font-size:.95rem;border:1.5px solid rgba(255,255,255,.5);text-decoration:none}}
-
-    /* 왜 코딩인가 */
     .why-grid{{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px}}
     .why-card{{background:#f0f5ff;border-radius:14px;padding:20px 16px;border:1px solid #d0e0ff;text-align:center}}
     .why-icon{{font-size:2rem;margin-bottom:10px}}
     .why-title{{font-size:.9rem;font-weight:800;color:#1a3a6a;margin-bottom:6px}}
     .why-desc{{font-size:.78rem;color:#555;line-height:1.6}}
-
-    /* 수업 대상 */
     .target-grid{{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}}
     .target-card{{background:linear-gradient(135deg,#1a3a6a,#2a5aa8);border-radius:14px;padding:24px 16px;text-align:center}}
     .target-icon{{font-size:2.2rem;margin-bottom:12px}}
     .target-grade{{font-size:1.05rem;font-weight:800;color:white;margin-bottom:8px}}
     .target-desc{{font-size:.78rem;color:rgba(255,255,255,.8);line-height:1.6}}
-
-    /* 특징 */
     .feature-steps{{display:flex;flex-direction:column;gap:16px}}
     .step-item{{display:flex;gap:18px;align-items:flex-start;padding:22px;background:#f8faff;border-radius:14px;border:1px solid #e0eaff}}
     .step-num{{width:40px;height:40px;border-radius:50%;background:#2a7fff;color:white;font-size:.9rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}}
     .step-title{{font-size:.95rem;font-weight:800;color:#1a3a6a;margin-bottom:5px}}
     .step-desc{{font-size:.83rem;color:#555;line-height:1.75}}
-
-    /* 커리큘럼 탭 */
     .curr-tabs{{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}}
     .curr-tab{{padding:8px 20px;border-radius:20px;font-size:.82rem;font-weight:700;border:1.5px solid #d0e0ff;background:white;color:#2a7fff;cursor:pointer;transition:all .15s}}
     .curr-tab.active{{background:#2a7fff;color:white;border-color:#2a7fff}}
-
-    /* 커리큘럼 리스트 */
     .curr-list{{display:flex;flex-direction:column;gap:12px}}
     .curr-item{{background:#f8faff;border:1px solid #e0eaff;border-radius:14px;overflow:hidden}}
     .curr-item-header{{display:flex;align-items:flex-start;gap:14px;padding:18px}}
@@ -1901,8 +1889,6 @@ def html_coding():
     .curr-desc{{font-size:.8rem;color:#555;line-height:1.75}}
     .curr-tags{{padding:0 18px 16px 70px;display:flex;flex-wrap:wrap;gap:5px}}
     .curr-tag{{font-size:.72rem;background:#e8f0ff;color:#1a3a6a;padding:3px 10px;border-radius:20px;border:1px solid #d0e0ff}}
-
-    /* CTA */
     .cta-sec{{background:linear-gradient(140deg,#0a1a3a,#1a3a6a);padding:52px 24px;text-align:center}}
     .cta-sec h2{{font-size:clamp(1.2rem,3vw,1.6rem);font-weight:800;color:white;margin-bottom:10px}}
     .cta-sec p{{font-size:.9rem;color:rgba(255,255,255,.75);margin-bottom:28px}}
@@ -1910,8 +1896,6 @@ def html_coding():
     .cta-phone{{background:white;color:#1a3a6a;font-size:.95rem;font-weight:800;padding:13px 22px;border-radius:50px;text-decoration:none;box-shadow:0 4px 16px rgba(0,0,0,.18)}}
     .cta-kakao{{background:#FEE500;color:#3A1D1D;font-size:.95rem;font-weight:800;padding:13px 22px;border-radius:50px;text-decoration:none;box-shadow:0 4px 16px rgba(254,229,0,.4);display:inline-flex;align-items:center;gap:6px}}
     .cta-form{{background:linear-gradient(135deg,#2a7fff,#5ba3ff);color:white;font-size:.95rem;font-weight:800;padding:13px 22px;border-radius:50px;text-decoration:none;box-shadow:0 4px 16px rgba(42,127,255,.4)}}
-
-    /* 플로팅 */
     .float-wrap{{position:fixed;bottom:28px;right:20px;display:flex;flex-direction:column;align-items:center;gap:12px;z-index:400}}
     .float-btn{{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 16px rgba(0,0,0,.2);transition:transform .15s;position:relative}}
     .float-btn:hover{{transform:translateY(-3px)}}
@@ -1920,11 +1904,9 @@ def html_coding():
     .float-btn.phone{{background:#4f1787}}
     .float-label{{position:absolute;right:62px;background:rgba(30,10,40,.85);color:white;font-size:.7rem;font-weight:700;padding:4px 10px;border-radius:20px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s}}
     .float-btn:hover .float-label{{opacity:1}}
-
     footer{{background:#0a1a3a;color:rgba(255,255,255,.45);text-align:center;padding:24px;font-size:.78rem;line-height:1.8}}
     footer p{{color:rgba(255,255,255,.45);margin:2px 0}}
     footer a{{color:rgba(255,255,255,.6);text-decoration:none}}
-
     @media(max-width:600px){{
       .target-grid{{grid-template-columns:1fr}}
       .hero-btns,.cta-btns{{flex-direction:column;align-items:center}}
@@ -1935,9 +1917,7 @@ def html_coding():
   </style>
 </head>
 <body>
-
 {HEADER_HTML}
-
 <div class="hero">
   <div class="hero-badge">초·중·고 1:1 맞춤 화상 코딩</div>
   <h1>코딩, 지금 시작해야 할<br>가장 중요한 이유</h1>
@@ -1947,10 +1927,7 @@ def html_coding():
     <a href="tel:{PHONE}" class="btn-outline-w">📞 전화 상담</a>
   </div>
 </div>
-
 <div class="wrap">
-
-  <!-- 코딩이 필요한 이유 -->
   <section class="sec">
     <div class="sec-label">코딩이 필요한 이유</div>
     <div class="sec-title">지금 코딩을 배워야 하는 이유</div>
@@ -1962,10 +1939,7 @@ def html_coding():
       <div class="why-card"><div class="why-icon">🎓</div><div class="why-title">입시 · 취업 경쟁력</div><div class="why-desc">소프트웨어 중심 대학, 기업 취업 시 코딩 필수</div></div>
     </div>
   </section>
-
   <hr class="divider">
-
-  <!-- 수업 대상 -->
   <section class="sec">
     <div class="sec-label">수업 대상</div>
     <div class="sec-title">초·중·고 전학년 맞춤 수업 제공</div>
@@ -1976,36 +1950,18 @@ def html_coding():
       <div class="target-card"><div class="target-icon">🎯</div><div class="target-grade">고등학생</div><div class="target-desc">파이썬 심화 · 정보 내신<br>대입 포트폴리오</div></div>
     </div>
   </section>
-
   <hr class="divider">
-
-  <!-- 특징 4가지 -->
   <section class="sec">
     <div class="sec-label">1:1 코딩 수업의 특별한 점</div>
     <div class="sec-title">제나쌤 코딩 수업이 다른 이유</div>
     <div class="feature-steps">
-      <div class="step-item">
-        <div class="step-num">1</div>
-        <div><div class="step-title">학생 수준에 딱 맞는 1:1 맞춤 커리큘럼</div><div class="step-desc">무료 시범수업을 통해 학생의 현재 수준과 관심사를 파악합니다. 코딩의 기본 개념과 동작의 원리를 쉽게 이해할 수 있도록 맞춤 수업으로 진행됩니다.</div></div>
-      </div>
-      <div class="step-item">
-        <div class="step-num">2</div>
-        <div><div class="step-title">전문 코딩 선생님의 실시간 화상 수업</div><div class="step-desc">녹화 강의가 아닌 선생님과 실시간으로 소통하는 화상 수업입니다. 모르는 부분은 바로 질문하고, 코드를 함께 작성하며 빠르게 이해할 수 있습니다. 크롬 브라우저만 있다면 복잡한 프로그램 없이 언제 어디서나 수업 가능합니다.</div></div>
-      </div>
-      <div class="step-item">
-        <div class="step-num">3</div>
-        <div><div class="step-title">차별화된 시스템을 통한 자기주도학습 습관</div><div class="step-desc">학습 단계 종료 후 테스트를 통해 부족한 부분을 보완하고, 매 시간 수업 피드백을 통해 학습 상황과 성취도를 파악하고 소통할 수 있습니다. 또한, 수업 시간 외에도 셀프 스터디 강의실을 통해 언제든 자유롭게 복습, 예습, 실습 가능합니다.</div></div>
-      </div>
-      <div class="step-item">
-        <div class="step-num">4</div>
-        <div><div class="step-title">실제 결과물을 만드는 프로젝트 중심 수업</div><div class="step-desc">배운 내용을 게임, 앱, 웹사이트로 직접 만들어봅니다. 완성된 프로젝트는 포트폴리오로 활용할 수 있어 입시와 취업에도 도움이 됩니다.</div></div>
-      </div>
+      <div class="step-item"><div class="step-num">1</div><div><div class="step-title">학생 수준에 딱 맞는 1:1 맞춤 커리큘럼</div><div class="step-desc">무료 시범수업을 통해 학생의 현재 수준과 관심사를 파악합니다. 코딩의 기본 개념과 동작의 원리를 쉽게 이해할 수 있도록 맞춤 수업으로 진행됩니다.</div></div></div>
+      <div class="step-item"><div class="step-num">2</div><div><div class="step-title">전문 코딩 선생님의 실시간 화상 수업</div><div class="step-desc">녹화 강의가 아닌 선생님과 실시간으로 소통하는 화상 수업입니다. 모르는 부분은 바로 질문하고, 코드를 함께 작성하며 빠르게 이해할 수 있습니다. 크롬 브라우저만 있다면 복잡한 프로그램 없이 언제 어디서나 수업 가능합니다.</div></div></div>
+      <div class="step-item"><div class="step-num">3</div><div><div class="step-title">차별화된 시스템을 통한 자기주도학습 습관</div><div class="step-desc">학습 단계 종료 후 테스트를 통해 부족한 부분을 보완하고, 매 시간 수업 피드백을 통해 학습 상황과 성취도를 파악하고 소통할 수 있습니다. 또한, 수업 시간 외에도 셀프 스터디 강의실을 통해 언제든 자유롭게 복습, 예습, 실습 가능합니다.</div></div></div>
+      <div class="step-item"><div class="step-num">4</div><div><div class="step-title">실제 결과물을 만드는 프로젝트 중심 수업</div><div class="step-desc">배운 내용을 게임, 앱, 웹사이트로 직접 만들어봅니다. 완성된 프로젝트는 포트폴리오로 활용할 수 있어 입시와 취업에도 도움이 됩니다.</div></div></div>
     </div>
   </section>
-
   <hr class="divider">
-
-  <!-- 단계별 커리큘럼 -->
   <section class="sec">
     <div class="sec-label">단계별 커리큘럼</div>
     <div class="sec-title">2가지 과정, 5단계 체계적 학습</div>
@@ -2015,23 +1971,21 @@ def html_coding():
       <div class="curr-tab" onclick="showCurr('py',this)">💻 데이터사이언스 (파이썬)</div>
     </div>
     <div id="curr-js" class="curr-list">
-      <div class="curr-item"><div class="curr-item-header"><div class="curr-icon">L1</div><div class="curr-main"><div class="curr-level">Lv.1 · 프로그래밍 개념 입문</div><div class="curr-title">코딩의 시작, 텍스트 언어로 앱 만들기</div><div class="curr-desc">코딩이 필요한 이유를 이해하고, 자신의 생각을 텍스트 언어로 표현하는 방법을 배워요. 모바일에서도 실행할 수 있는 다양한 주제의 앱을 직접 만들면서 텍스트 언어의 기본 사용법과 순차, 이벤트와 같은 기초 프로그래밍 개념을 완벽하게 익혀요.</div></div></div><div class="curr-tags"><span class="curr-tag">API 사용(기본)</span><span class="curr-tag">API 사용(심화)</span></div></div>
-      <div class="curr-item"><div class="curr-item-header"><div class="curr-icon">L2</div><div class="curr-main"><div class="curr-level">Lv.2 · 프로그래밍 개념 기초</div><div class="curr-title">주요 개념으로 다양한 앱 스스로 제작</div><div class="curr-desc">다양한 프로그래밍 개념이 녹아있는 앱을 스스로 제작하면서 순차, 반복, 선택 구조와 같은 주요 개념을 정확하게 이해할 수 있어요. 컴퓨터 프로그래밍의 주요 개념을 이용하여 같은 문제를 다양한 방법으로 해결해요.</div></div></div><div class="curr-tags"><span class="curr-tag">변수, 조건</span><span class="curr-tag">변수, 조건(심화)</span><span class="curr-tag">복제, 함수, 배열(기본)</span></div></div>
-      <div class="curr-item"><div class="curr-item-header"><div class="curr-icon">L3</div><div class="curr-main"><div class="curr-level">Lv.3 · 프로그래밍 개념 심화</div><div class="curr-title">복잡한 앱을 효율적인 방법으로 제작</div><div class="curr-desc">복잡한 앱을 스스로 제작하면서 복제, 함수, 배열 등과 같은 심화 프로그래밍 개념을 정확하게 이해할 수 있어요. 컴퓨터 프로그래밍의 주요 개념을 이용하여 같은 문제를 효율적인 방법으로 해결해요.</div></div></div><div class="curr-tags"><span class="curr-tag">복제, 함수, 배열, 반복(심화)</span><span class="curr-tag">조건, 복제, 함수, 반복(응용)</span><span class="curr-tag">변수, 조건, 물리, 반복(응용)</span></div></div>
-      <div class="curr-item"><div class="curr-item-header"><div class="curr-icon">L4</div><div class="curr-main"><div class="curr-level">Lv.4 · 프로그래밍 응용 기초</div><div class="curr-title">실제 개발 방법과 알고리즘으로 아이디어 표현</div><div class="curr-desc">지금까지 학습한 프로그래밍의 주요 개념들이 다양하게 구성되어 있는 앱을 제작해요. 실제 개발에서 사용되는 다양한 프로그래밍 방법과 알고리즘을 익혀 자신의 아이디어를 효율적인 방법으로 표현할 수 있어요.</div></div></div><div class="curr-tags"><span class="curr-tag">변수, 조건, 함수, 반복(응용)</span><span class="curr-tag">변수, 조건, 배열(심화)</span><span class="curr-tag">변수, 조건, 함수(심화)</span></div></div>
-      <div class="curr-item"><div class="curr-item-header"><div class="curr-icon">L5</div><div class="curr-main"><div class="curr-level">Lv.5 · 프로그래밍 응용 심화</div><div class="curr-title">심화 개념 활용, 나만의 앱 완성</div><div class="curr-desc">텍스트 코딩이 익숙하면서, 프로그래밍 심화 개념을 활용할 수 있는 학생들을 위한 과정이에요. 지금까지 학습한 프로그래밍의 주요 개념들이 복잡하게 얽혀있는 앱을 제작하고, 실제 개발 과정에 사용되는 다양한 알고리즘을 활용하여 자신의 아이디어를 효율적인 방법으로 표현할 수 있어요.</div></div></div><div class="curr-tags"><span class="curr-tag">함수, 반복, 조건(심화)</span><span class="curr-tag">함수, 복제, 변수(심화)</span><span class="curr-tag">함수, 반복, 복제(심화)</span></div></div>
+      <div class="curr-item"><div class="curr-item-header"><div class="curr-icon">L1</div><div><div class="curr-level">Lv.1 · 프로그래밍 개념 입문</div><div class="curr-title">코딩의 시작, 텍스트 언어로 앱 만들기</div><div class="curr-desc">코딩이 필요한 이유를 이해하고, 자신의 생각을 텍스트 언어로 표현하는 방법을 배워요. 모바일에서도 실행할 수 있는 다양한 주제의 앱을 직접 만들면서 텍스트 언어의 기본 사용법과 순차, 이벤트와 같은 기초 프로그래밍 개념을 완벽하게 익혀요.</div></div></div><div class="curr-tags"><span class="curr-tag">API 사용(기본)</span><span class="curr-tag">API 사용(심화)</span></div></div>
+      <div class="curr-item"><div class="curr-item-header"><div class="curr-icon">L2</div><div><div class="curr-level">Lv.2 · 프로그래밍 개념 기초</div><div class="curr-title">주요 개념으로 다양한 앱 스스로 제작</div><div class="curr-desc">다양한 프로그래밍 개념이 녹아있는 앱을 스스로 제작하면서 순차, 반복, 선택 구조와 같은 주요 개념을 정확하게 이해할 수 있어요. 컴퓨터 프로그래밍의 주요 개념을 이용하여 같은 문제를 다양한 방법으로 해결해요.</div></div></div><div class="curr-tags"><span class="curr-tag">변수, 조건</span><span class="curr-tag">변수, 조건(심화)</span><span class="curr-tag">복제, 함수, 배열(기본)</span></div></div>
+      <div class="curr-item"><div class="curr-item-header"><div class="curr-icon">L3</div><div><div class="curr-level">Lv.3 · 프로그래밍 개념 심화</div><div class="curr-title">복잡한 앱을 효율적인 방법으로 제작</div><div class="curr-desc">복잡한 앱을 스스로 제작하면서 복제, 함수, 배열 등과 같은 심화 프로그래밍 개념을 정확하게 이해할 수 있어요. 컴퓨터 프로그래밍의 주요 개념을 이용하여 같은 문제를 효율적인 방법으로 해결해요.</div></div></div><div class="curr-tags"><span class="curr-tag">복제, 함수, 배열, 반복(심화)</span><span class="curr-tag">조건, 복제, 함수, 반복(응용)</span><span class="curr-tag">변수, 조건, 물리, 반복(응용)</span></div></div>
+      <div class="curr-item"><div class="curr-item-header"><div class="curr-icon">L4</div><div><div class="curr-level">Lv.4 · 프로그래밍 응용 기초</div><div class="curr-title">실제 개발 방법과 알고리즘으로 아이디어 표현</div><div class="curr-desc">지금까지 학습한 프로그래밍의 주요 개념들이 다양하게 구성되어 있는 앱을 제작해요. 실제 개발에서 사용되는 다양한 프로그래밍 방법과 알고리즘을 익혀 자신의 아이디어를 효율적인 방법으로 표현할 수 있어요.</div></div></div><div class="curr-tags"><span class="curr-tag">변수, 조건, 함수, 반복(응용)</span><span class="curr-tag">변수, 조건, 배열(심화)</span><span class="curr-tag">변수, 조건, 함수(심화)</span></div></div>
+      <div class="curr-item"><div class="curr-item-header"><div class="curr-icon">L5</div><div><div class="curr-level">Lv.5 · 프로그래밍 응용 심화</div><div class="curr-title">심화 개념 활용, 나만의 앱 완성</div><div class="curr-desc">텍스트 코딩이 익숙하면서, 프로그래밍 심화 개념을 활용할 수 있는 학생들을 위한 과정이에요. 지금까지 학습한 프로그래밍의 주요 개념들이 복잡하게 얽혀있는 앱을 제작하고, 실제 개발 과정에 사용되는 다양한 알고리즘을 활용하여 자신의 아이디어를 효율적인 방법으로 표현할 수 있어요.</div></div></div><div class="curr-tags"><span class="curr-tag">함수, 반복, 조건(심화)</span><span class="curr-tag">함수, 복제, 변수(심화)</span><span class="curr-tag">함수, 반복, 복제(심화)</span></div></div>
     </div>
     <div id="curr-py" class="curr-list" style="display:none">
-      <div class="curr-item"><div class="curr-item-header"><div class="curr-icon">L1</div><div class="curr-main"><div class="curr-level">Lv.1 · 데이터 분석 기초</div><div class="curr-title">파이썬 기초 문법으로 데이터 분석력 키우기</div><div class="curr-desc">사건을 해결하기 위한 필요 데이터를 수집하고 가공하여 단서로 활용하면서 데이터 분석력을 기를 수 있어요. 변수, 자료형, 제어문 등 파이썬의 기초 문법을 배우며 프로그래밍의 기본 개념을 다져요.</div></div></div><div class="curr-tags"><span class="curr-tag">변수, 자료형, 제어문, 연산자</span><span class="curr-tag">복합제어문, 자료형 변환, 진법, 연산</span><span class="curr-tag">자료형(딕셔너리, 튜플, 집합)</span></div></div>
-      <div class="curr-item"><div class="curr-item-header"><div class="curr-icon">L2</div><div class="curr-main"><div class="curr-level">Lv.2 · 데이터 분석 심화</div><div class="curr-title">함수와 모듈로 프로그래밍 효율성 높이기</div><div class="curr-desc">사용자 함수를 정의하고 호출하여 실행하는 방법을 배워 프로그램의 효율성을 높이고, 프로그래밍 능력을 향상시킬 수 있어요. 파이썬에서 제공하는 모듈을 사용함으로써 복잡한 문제를 쉽게 해결하여 프로그래밍의 심화 개념을 다져요.</div></div></div><div class="curr-tags"><span class="curr-tag">사용자 정의 함수, 반복 흐름 제어</span><span class="curr-tag">모듈, 연산(교체, 비트)</span></div></div>
-      <div class="curr-item"><div class="curr-item-header"><div class="curr-icon">L3</div><div class="curr-main"><div class="curr-level">Lv.3 · 자료구조 기초</div><div class="curr-title">클래스와 자료구조·알고리즘 구현</div><div class="curr-desc">객체 지향 프로그래밍의 원리를 이해하고 클래스를 사용하는 방법을 배우며 스택, 큐, 그래프 자료구조를 익혀요. 연산의 성능과 데이터 등록 순서에 따라 데이터를 다르게 처리하는 알고리즘을 구현해요.</div></div></div><div class="curr-tags"><span class="curr-tag">클래스, 모듈, 해시함수</span><span class="curr-tag">자료구조&알고리즘, 스택, 큐</span><span class="curr-tag">그래프, 인접행렬, 다익스트라 알고리즘</span></div></div>
-      <div class="curr-item"><div class="curr-item-header"><div class="curr-icon">L4</div><div class="curr-main"><div class="curr-level">Lv.4 · 자료구조 심화</div><div class="curr-title">재귀·정렬·탐색 알고리즘으로 효율적 프로그래밍</div><div class="curr-desc">재귀, 정렬, 탐색 알고리즘 등의 원리를 이해하고 구현해보면서 프로그램 실행 로직을 효율적으로 구체화해요. 파이썬의 문법을 응용하면서 자료구조 및 알고리즘의 심화 개념을 다져요.</div></div></div><div class="curr-tags"><span class="curr-tag">트리, 트리탐색, 재귀&선택 정렬 알고리즘</span><span class="curr-tag">탐색&Convex hull 알고리즘, DFS 탐색</span></div></div>
-      <div class="curr-item"><div class="curr-item-header"><div class="curr-icon">L5</div><div class="curr-main"><div class="curr-level">Lv.5 · 인공지능 기초</div><div class="curr-title">빅데이터·AI 기초, 데이터 시각화·분석</div><div class="curr-desc">파이썬의 다양한 라이브러리를 사용하여 CSV 파일 속 데이터를 수집하고 가공하여 데이터를 시각화하고 분석하는 방법을 배워요. 빅데이터 및 인공지능의 기초 개념을 이해하고 활용해요.</div></div></div><div class="curr-tags"><span class="curr-tag">데이터 시각화 및 분석, 파일 입출력</span><span class="curr-tag">인공지능, 지도학습, 비지도학습, 신경망</span></div></div>
+      <div class="curr-item"><div class="curr-item-header"><div class="curr-icon">L1</div><div><div class="curr-level">Lv.1 · 데이터 분석 기초</div><div class="curr-title">파이썬 기초 문법으로 데이터 분석력 키우기</div><div class="curr-desc">사건을 해결하기 위한 필요 데이터를 수집하고 가공하여 단서로 활용하면서 데이터 분석력을 기를 수 있어요. 변수, 자료형, 제어문 등 파이썬의 기초 문법을 배우며 프로그래밍의 기본 개념을 다져요.</div></div></div><div class="curr-tags"><span class="curr-tag">변수, 자료형, 제어문, 연산자</span><span class="curr-tag">복합제어문, 자료형 변환, 진법, 연산</span><span class="curr-tag">자료형(딕셔너리, 튜플, 집합)</span></div></div>
+      <div class="curr-item"><div class="curr-item-header"><div class="curr-icon">L2</div><div><div class="curr-level">Lv.2 · 데이터 분석 심화</div><div class="curr-title">함수와 모듈로 프로그래밍 효율성 높이기</div><div class="curr-desc">사용자 함수를 정의하고 호출하여 실행하는 방법을 배워 프로그램의 효율성을 높이고, 프로그래밍 능력을 향상시킬 수 있어요. 파이썬에서 제공하는 모듈을 사용함으로써 복잡한 문제를 쉽게 해결하여 프로그래밍의 심화 개념을 다져요.</div></div></div><div class="curr-tags"><span class="curr-tag">사용자 정의 함수, 반복 흐름 제어</span><span class="curr-tag">모듈, 연산(교체, 비트)</span></div></div>
+      <div class="curr-item"><div class="curr-item-header"><div class="curr-icon">L3</div><div><div class="curr-level">Lv.3 · 자료구조 기초</div><div class="curr-title">클래스와 자료구조·알고리즘 구현</div><div class="curr-desc">객체 지향 프로그래밍의 원리를 이해하고 클래스를 사용하는 방법을 배우며 스택, 큐, 그래프 자료구조를 익혀요. 연산의 성능과 데이터 등록 순서에 따라 데이터를 다르게 처리하는 알고리즘을 구현해요.</div></div></div><div class="curr-tags"><span class="curr-tag">클래스, 모듈, 해시함수</span><span class="curr-tag">자료구조&알고리즘, 스택, 큐</span><span class="curr-tag">그래프, 인접행렬, 다익스트라 알고리즘</span></div></div>
+      <div class="curr-item"><div class="curr-item-header"><div class="curr-icon">L4</div><div><div class="curr-level">Lv.4 · 자료구조 심화</div><div class="curr-title">재귀·정렬·탐색 알고리즘으로 효율적 프로그래밍</div><div class="curr-desc">재귀, 정렬, 탐색 알고리즘 등의 원리를 이해하고 구현해보면서 프로그램 실행 로직을 효율적으로 구체화해요. 파이썬의 문법을 응용하면서 자료구조 및 알고리즘의 심화 개념을 다져요.</div></div></div><div class="curr-tags"><span class="curr-tag">트리, 트리탐색, 재귀&선택 정렬 알고리즘</span><span class="curr-tag">탐색&Convex hull 알고리즘, DFS 탐색</span></div></div>
+      <div class="curr-item"><div class="curr-item-header"><div class="curr-icon">L5</div><div><div class="curr-level">Lv.5 · 인공지능 기초</div><div class="curr-title">빅데이터·AI 기초, 데이터 시각화·분석</div><div class="curr-desc">파이썬의 다양한 라이브러리를 사용하여 CSV 파일 속 데이터를 수집하고 가공하여 데이터를 시각화하고 분석하는 방법을 배워요. 빅데이터 및 인공지능의 기초 개념을 이해하고 활용해요.</div></div></div><div class="curr-tags"><span class="curr-tag">데이터 시각화 및 분석, 파일 입출력</span><span class="curr-tag">인공지능, 지도학습, 비지도학습, 신경망</span></div></div>
     </div>
   </section>
-
 </div>
-
 <div class="cta-sec">
   <h2>지금 바로 무료 체험 신청하세요</h2>
   <p>첫 수업은 무료 · 부담 없이 경험해 보세요</p>
@@ -2044,9 +1998,7 @@ def html_coding():
     <a href="{CODING_FORM_URL}" target="_blank" class="cta-form">📝 무료 체험 신청</a>
   </div>
 </div>
-
 {FOOTER_HTML}
-
 <div class="float-wrap">
   <a href="{CODING_FORM_URL}" target="_blank" class="float-btn form">
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
@@ -2061,7 +2013,6 @@ def html_coding():
     <span class="float-label">전화 상담</span>
   </a>
 </div>
-
 <script>
 function showCurr(type, el) {{
   document.querySelectorAll('.curr-tab').forEach(t => t.classList.remove('active'));
@@ -2070,6 +2021,189 @@ function showCurr(type, el) {{
   document.getElementById('curr-py').style.display = type === 'py' ? 'flex' : 'none';
 }}
 </script>
+</body>
+</html>"""
+
+
+def html_self_study():
+    return f"""<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="naver-site-verification" content="511e0e2c64d12cf657363087cf302e40e3e1ac5c" />
+  <title>자기주도학습 코칭 | {SITE_NAME}</title>
+  <meta name="description" content="초등 5학년~고등 1:1 화상 자기주도학습 코칭. 해빗·스터디·커리어·감정 코칭으로 공부 방법부터 바꿉니다. 무료 상담 신청 가능.">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="자기주도학습 코칭 | {SITE_NAME}">
+  <meta property="og:description" content="스스로 공부하는 힘을 키우는 1:1 맞춤 자기주도학습 코칭.">
+  <meta property="og:image" content="{SITE_DOMAIN}/images/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;800&display=swap" rel="stylesheet">
+  <style>{HEADER_CSS}</style>
+  <style>
+    *{{box-sizing:border-box;margin:0;padding:0}}
+    body{{font-family:'Noto Sans KR',sans-serif;background:#fff;color:#1a0a24;line-height:1.7}}
+    .wrap{{max-width:860px;margin:0 auto;padding:0 20px}}
+    .sec{{padding:52px 0}}
+    .sec-label{{display:inline-block;font-size:.72rem;font-weight:700;color:#7b2fa8;background:#f0e6fc;padding:4px 12px;border-radius:20px;margin-bottom:10px}}
+    .sec-title{{font-size:clamp(1.3rem,3vw,1.7rem);font-weight:800;color:#1a0a24;line-height:1.4;margin-bottom:8px}}
+    .sec-sub{{font-size:.88rem;color:#666;line-height:1.8;margin-bottom:28px}}
+    .divider{{border:none;border-top:1px solid #f0e6fc;margin:0}}
+    .hero{{background:linear-gradient(140deg,#1a0a24,#370558,#510580);color:white;padding:52px 24px;text-align:center}}
+    .hero-badge{{display:inline-block;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:20px;font-size:.78rem;font-weight:700;padding:5px 16px;margin-bottom:14px}}
+    .hero h1{{font-size:clamp(1.5rem,4vw,2.2rem);font-weight:800;line-height:1.45;margin-bottom:10px;color:white}}
+    .hero p{{font-size:.95rem;opacity:.85;margin-bottom:20px;color:white}}
+    .hero-info{{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:24px}}
+    .hero-info-item{{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:10px;padding:10px 18px;font-size:.85rem;color:white}}
+    .hero-info-item span{{font-weight:700;display:block;font-size:.72rem;opacity:.7;margin-bottom:3px}}
+    .hero-btns{{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}}
+    .btn-pink{{background:linear-gradient(135deg,#e8439a,#ff6fc1);color:white;padding:13px 28px;border-radius:50px;font-weight:700;font-size:.95rem;text-decoration:none;box-shadow:0 4px 14px rgba(232,67,154,.4)}}
+    .btn-outline-w{{background:transparent;color:white;padding:13px 28px;border-radius:50px;font-weight:700;font-size:.95rem;border:1.5px solid rgba(255,255,255,.5);text-decoration:none}}
+    .recommend-list{{display:flex;flex-direction:column;gap:10px}}
+    .recommend-card{{background:#faf5ff;border:1px solid #e8d6f5;border-radius:12px;padding:14px 18px;display:flex;align-items:center;gap:12px}}
+    .rec-icon{{font-size:1.3rem;flex-shrink:0}}
+    .rec-text{{font-size:.88rem;color:#370558;line-height:1.6;font-weight:700}}
+    .coaching-grid{{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}}
+    .coaching-card{{background:white;border:1px solid #e8d6f5;border-radius:14px;padding:22px 18px}}
+    .coaching-icon{{font-size:1.8rem;margin-bottom:12px}}
+    .coaching-badge{{display:inline-block;font-size:.72rem;font-weight:700;color:#510580;background:#f0e6fc;padding:3px 10px;border-radius:20px;margin-bottom:8px}}
+    .coaching-title{{font-size:.95rem;font-weight:800;color:#370558;margin-bottom:8px}}
+    .coaching-desc{{font-size:.83rem;color:#555;line-height:1.7}}
+    .coaching-tags{{margin-top:10px;display:flex;flex-wrap:wrap;gap:5px}}
+    .coaching-tag{{font-size:.72rem;background:#faf5ff;color:#7b2fa8;padding:3px 9px;border-radius:20px;border:1px solid #e8d6f5}}
+    .process-item{{display:flex;gap:16px;align-items:flex-start;padding:20px 0;border-bottom:1px solid #f0e6fc}}
+    .process-item:last-child{{border-bottom:none}}
+    .process-num{{width:38px;height:38px;border-radius:50%;background:#510580;color:white;font-size:.9rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}}
+    .process-title{{font-size:.95rem;font-weight:800;color:#370558;margin-bottom:5px}}
+    .process-desc{{font-size:.83rem;color:#555;line-height:1.7}}
+    .review-grid{{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}}
+    .review-card{{background:#faf5ff;border:1px solid #e8d6f5;border-radius:14px;padding:22px 20px}}
+    .review-quote{{font-size:.9rem;font-weight:800;color:#370558;margin-bottom:12px;line-height:1.5}}
+    .review-quote::before{{content:'"';color:#e8439a;font-size:1.2rem;font-weight:800}}
+    .review-quote::after{{content:'"';color:#e8439a;font-size:1.2rem;font-weight:800}}
+    .review-desc{{font-size:.8rem;color:#555;line-height:1.8;margin-bottom:14px}}
+    .review-author{{font-size:.75rem;color:#9b6cc0;font-weight:700}}
+    .cta-sec{{background:linear-gradient(140deg,#1a0a24,#370558);padding:52px 24px;text-align:center}}
+    .cta-sec h2{{font-size:clamp(1.2rem,3vw,1.6rem);font-weight:800;color:white;margin-bottom:10px}}
+    .cta-sec p{{font-size:.9rem;color:rgba(255,255,255,.75);margin-bottom:28px}}
+    .cta-btns{{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}}
+    .cta-phone{{background:white;color:#510580;font-size:.95rem;font-weight:800;padding:13px 22px;border-radius:50px;text-decoration:none;box-shadow:0 4px 16px rgba(0,0,0,.18)}}
+    .cta-kakao{{background:#FEE500;color:#3A1D1D;font-size:.95rem;font-weight:800;padding:13px 22px;border-radius:50px;text-decoration:none;box-shadow:0 4px 16px rgba(254,229,0,.4);display:inline-flex;align-items:center;gap:6px}}
+    .cta-form{{background:linear-gradient(135deg,#e8439a,#ff6fc1);color:white;font-size:.95rem;font-weight:800;padding:13px 22px;border-radius:50px;text-decoration:none;box-shadow:0 4px 16px rgba(232,67,154,.4)}}
+    .float-wrap{{position:fixed;bottom:28px;right:20px;display:flex;flex-direction:column;align-items:center;gap:12px;z-index:400}}
+    .float-btn{{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 16px rgba(0,0,0,.2);transition:transform .15s;position:relative}}
+    .float-btn:hover{{transform:translateY(-3px)}}
+    .float-btn.form{{background:#22c55e}}
+    .float-btn.kakao{{background:#FEE500}}
+    .float-btn.phone{{background:#4f1787}}
+    .float-label{{position:absolute;right:62px;background:rgba(30,10,40,.85);color:white;font-size:.7rem;font-weight:700;padding:4px 10px;border-radius:20px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s}}
+    .float-btn:hover .float-label{{opacity:1}}
+    footer{{background:#1a0a24;color:rgba(255,255,255,.45);text-align:center;padding:24px;font-size:.78rem;line-height:1.8}}
+    footer p{{color:rgba(255,255,255,.45);margin:2px 0}}
+    footer a{{color:rgba(255,255,255,.6);text-decoration:none}}
+    @media(max-width:600px){{
+      .coaching-grid,.review-grid{{grid-template-columns:1fr}}
+      .hero-btns,.cta-btns{{flex-direction:column;align-items:center}}
+      .float-wrap{{bottom:20px;right:14px;gap:10px}}
+      .float-btn{{width:50px;height:50px}}
+      .float-label{{display:none}}
+    }}
+  </style>
+</head>
+<body>
+{HEADER_HTML}
+<div class="hero">
+  <div class="hero-badge">초등 5학년 ~ 고등 1:1 화상 코칭</div>
+  <h1>성적이 오르지 않는 이유,<br>공부 방법을 모르기 때문입니다.</h1>
+  <p>스스로 공부하는 힘을 키우는 1:1 맞춤 자기주도학습 코칭</p>
+  <div class="hero-info">
+    <div class="hero-info-item"><span>대상</span>초등 5학년 ~ 고등</div>
+    <div class="hero-info-item"><span>방식</span>1:1 화상 수업</div>
+    <div class="hero-info-item"><span>기간</span>월 단위 (주 1회 60분~)</div>
+  </div>
+  <div class="hero-btns">
+    <a href="{FORM_URL}" target="_blank" class="btn-pink">📝 무료 상담 신청하기</a>
+    <a href="tel:{PHONE}" class="btn-outline-w">📞 전화 상담</a>
+  </div>
+</div>
+<div class="wrap">
+  <section class="sec">
+    <div class="sec-label">이런 학생에게 추천해요</div>
+    <div class="sec-title">성적 오르지 않는 아이,<br>원인부터 알아야 합니다.</div>
+    <div class="sec-sub">공부 시간은 많은데 성적이 오르지 않는다면, 공부법부터 바꿔야 합니다.</div>
+    <div class="recommend-list">
+      <div class="recommend-card"><div class="rec-icon">📖</div><div class="rec-text">공부는 하고 싶은데 어떻게 해야 할지 모르는 학생</div></div>
+      <div class="recommend-card"><div class="rec-icon">⏰</div><div class="rec-text">오래 앉아있지만 성적이 오르지 않는 학생</div></div>
+      <div class="recommend-card"><div class="rec-icon">📅</div><div class="rec-text">플래너·시간관리가 안 되고 계획 실천이 어려운 학생</div></div>
+      <div class="recommend-card"><div class="rec-icon">🎯</div><div class="rec-text">자기주도 학습 능력과 공부 습관을 키우고 싶은 학생</div></div>
+      <div class="recommend-card"><div class="rec-icon">😰</div><div class="rec-text">시험만 되면 불안하고 멘탈 관리가 어려운 학생</div></div>
+      <div class="recommend-card"><div class="rec-icon">🔍</div><div class="rec-text">진로가 막막하고 목표 설정이 안 되는 학생</div></div>
+    </div>
+  </section>
+  <hr class="divider">
+  <section class="sec">
+    <div class="sec-label">4가지 맞춤 코칭</div>
+    <div class="sec-title">공부의 구도를 바꾸는<br>4가지 코칭 프로그램</div>
+    <div class="sec-sub">학습 습관부터 진로·멘탈까지, 성적 향상의 근본을 바꿉니다.</div>
+    <div class="coaching-grid">
+      <div class="coaching-card"><div class="coaching-icon">📋</div><div class="coaching-badge">해빗 코칭</div><div class="coaching-title">습관을 잡아주는 코칭</div><div class="coaching-desc">공부 습관과 생활 습관을 함께 잡아줍니다. 꾸준함이 성적을 만든다는 것을 몸으로 익힙니다.</div><div class="coaching-tags"><span class="coaching-tag">공부 습관</span><span class="coaching-tag">생활 루틴</span><span class="coaching-tag">플래너 관리</span></div></div>
+      <div class="coaching-card"><div class="coaching-icon">📚</div><div class="coaching-badge">스터디 코칭</div><div class="coaching-title">나만의 학습법을 찾는 코칭</div><div class="coaching-desc">과목별 최적의 공부법을 찾아드립니다. 오답 분석부터 시험 전략까지 체계적으로 관리합니다.</div><div class="coaching-tags"><span class="coaching-tag">과목별 공부법</span><span class="coaching-tag">오답 분석</span><span class="coaching-tag">시험 전략</span></div></div>
+      <div class="coaching-card"><div class="coaching-icon">🗺️</div><div class="coaching-badge">커리어 코칭</div><div class="coaching-title">진로를 찾아가는 코칭</div><div class="coaching-desc">나의 강점과 관심사를 바탕으로 진로를 탐색하고 구체적인 목표를 설정합니다.</div><div class="coaching-tags"><span class="coaching-tag">진로 탐색</span><span class="coaching-tag">목표 설정</span><span class="coaching-tag">대입 로드맵</span></div></div>
+      <div class="coaching-card"><div class="coaching-icon">💚</div><div class="coaching-badge">감정 코칭</div><div class="coaching-title">멘탈까지 케어하는 코칭</div><div class="coaching-desc">시험 불안, 무기력, 스트레스를 해소하고 긍정적인 학습 동기를 만들어드립니다.</div><div class="coaching-tags"><span class="coaching-tag">스트레스 관리</span><span class="coaching-tag">동기부여</span><span class="coaching-tag">자존감 향상</span></div></div>
+    </div>
+  </section>
+  <hr class="divider">
+  <section class="sec">
+    <div class="sec-label">수업 진행 과정</div>
+    <div class="sec-title">이렇게 진행됩니다</div>
+    <div class="process-item"><div class="process-num">1</div><div><div class="process-title">스타트체크 — 학습 현황 진단</div><div class="process-desc">학습 습관, 공부 방법, 정서 상태 등을 종합적으로 진단합니다. 진단 결과를 바탕으로 맞춤 코칭 커리큘럼을 설계합니다.</div></div></div>
+    <div class="process-item"><div class="process-num">2</div><div><div class="process-title">목표 설정 — 단기/장기 플랜 수립</div><div class="process-desc">학생의 현재 상태와 목표를 함께 확인하고 현실적인 단기·장기 학습 계획을 세웁니다.</div></div></div>
+    <div class="process-item"><div class="process-num">3</div><div><div class="process-title">1:1 화상 코칭 수업 진행</div><div class="process-desc">매주 1회 60분, 전담 코치와 1:1로 진행합니다. 해빗·스터디·커리어·감정 코칭을 학생 상황에 맞게 구성합니다.</div></div></div>
+    <div class="process-item"><div class="process-num">4</div><div><div class="process-title">피드백 & 성장 관리</div><div class="process-desc">매 수업 후 학부모님께 피드백을 제공합니다. 플래너 점검과 습관 트래킹으로 꾸준한 성장을 함께 확인합니다.</div></div></div>
+  </section>
+  <hr class="divider">
+  <section class="sec">
+    <div class="sec-label">수업 후기</div>
+    <div class="sec-title">자기주도학습 코칭이 가져온 놀라운 효과</div>
+    <div class="review-grid">
+      <div class="review-card"><div class="review-quote">드디어 혼자 공부를 해요</div><div class="review-desc">공부해라 잔소리 하다가 하루가 갔었는데 이제 나쁜 엄마에서 탈출한 기분입니다.</div><div class="review-author">김소O 회원 학부모</div></div>
+      <div class="review-card"><div class="review-quote">어떤 걸 준비해야 하는지 알겠어요</div><div class="review-desc">때되면 어떻게든 되겠지 하고 생각해 왔었는데 막상 고등학생이 되니 준비할 게 너무 많더라구요... 지금은 코치님이 있어서 너무 다행이에요.</div><div class="review-author">정지O 회원</div></div>
+      <div class="review-card"><div class="review-quote">계획은 세워도 실천할 줄을 몰랐는데</div><div class="review-desc">코치님이 지속적으로 소통을 해 주시니까 학교 숙제며, 학원 숙제며 이제 곧잘 하고 있어요. 플래너 체크해 놓은 것들 보면 저도 흐뭇하네요.</div><div class="review-author">주경O 회원 학부모</div></div>
+      <div class="review-card"><div class="review-quote">훨씬 여유로워 보이는데 성적은 올랐어요</div><div class="review-desc">미루는 시간이 없어지니 예민하던 아이가 여유로워졌어요.</div><div class="review-author">장민O 회원 학부모</div></div>
+    </div>
+  </section>
+</div>
+<div class="cta-sec">
+  <h2>지금 바로 무료 상담 받으세요</h2>
+  <p>공부법부터 바꾸면 성적이 달라집니다</p>
+  <div class="cta-btns">
+    <a href="tel:{PHONE}" class="cta-phone">📞 전화 상담</a>
+    <a href="{KAKAO_URL}" target="_blank" class="cta-kakao">
+      <svg width="16" height="16" viewBox="0 0 24 24"><path d="M12 3C6.477 3 2 6.477 2 10.8c0 2.7 1.644 5.08 4.148 6.538L5.2 20.4a.3.3 0 0 0 .438.328l4.07-2.7A11.4 11.4 0 0 0 12 18.6c5.523 0 10-3.477 10-7.8S17.523 3 12 3z" fill="#3A1D1D"/></svg>
+      카카오톡 상담
+    </a>
+    <a href="{FORM_URL}" target="_blank" class="cta-form">📝 무료 상담 신청</a>
+  </div>
+</div>
+{FOOTER_HTML}
+<div class="float-wrap">
+  <a href="{FORM_URL}" target="_blank" class="float-btn form">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+    <span class="float-label">무료 상담 신청</span>
+  </a>
+  <a href="{KAKAO_URL}" target="_blank" class="float-btn kakao">
+    <svg width="26" height="26" viewBox="0 0 24 24"><path d="M12 3C6.477 3 2 6.477 2 10.8c0 2.7 1.644 5.08 4.148 6.538L5.2 20.4a.3.3 0 0 0 .438.328l4.07-2.7A11.4 11.4 0 0 0 12 18.6c5.523 0 10-3.477 10-7.8S17.523 3 12 3z" fill="#3A1D1D"/></svg>
+    <span class="float-label">카카오톡 상담</span>
+  </a>
+  <a href="tel:{PHONE}" class="float-btn phone">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.63 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.83a16 16 0 0 0 6.29 6.29l.98-.98a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    <span class="float-label">전화 상담</span>
+  </a>
+</div>
 </body>
 </html>"""
 
@@ -2142,6 +2276,11 @@ def main():
     coding_dir = output_dir / "coding"
     coding_dir.mkdir(exist_ok=True)
     (coding_dir / "index.html").write_text(html_coding(), encoding="utf-8")
+
+    # 자기주도학습 페이지
+    selfstudy_dir = output_dir / "self-study"
+    selfstudy_dir.mkdir(exist_ok=True)
+    (selfstudy_dir / "index.html").write_text(html_self_study(), encoding="utf-8")
 
     # sitemap
     slugs = [p[0] for p in all_pages]
