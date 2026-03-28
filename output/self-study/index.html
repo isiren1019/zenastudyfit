@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="naver-site-verification" content="511e0e2c64d12cf657363087cf302e40e3e1ac5c" />
   <title>자기주도학습 코칭 | 제나쌤의 스터디핏 과외</title>
-  <meta name="description" content="초등 5학년~고등 1:1 화상 자기주도학습 코칭. 해빗·스터디·커리어·감정 코칭으로 공부 방법부터 바꿉니다. 무료 상담 신청 가능.">
+  <meta name="description" content="초등 5학년~고등 1:1 화상 자기주도학습 코칭. 해빗·스터디·커리어·감정 코칭으로 공부 방법부터 바꿉니다.">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -23,9 +23,9 @@
   .nav-link{font-size:.85rem;color:#444;padding:7px 12px;border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:4px;text-decoration:none;white-space:nowrap;font-weight:700;background:none;border:none}
   .nav-link:hover{background:#f5eefe;color:#510580}
   .nav-arrow{font-size:.6rem;color:#aaa;transition:transform .2s;display:inline-block}
-  .nav-item:hover .nav-arrow{transform:rotate(180deg);color:#510580}
+  .nav-arrow.open{transform:rotate(180deg);color:#510580}
   .nav-dropdown{display:none;position:absolute;top:calc(100% + 6px);left:0;background:white;border:1px solid #e8d6f5;border-radius:12px;min-width:210px;overflow:hidden;z-index:300;box-shadow:0 4px 16px rgba(81,5,128,.10)}
-  .nav-item:hover .nav-dropdown{display:block}
+  .nav-dropdown.open{display:block}
   .nav-dropdown-item{display:flex;align-items:center;gap:10px;padding:11px 14px;font-size:.82rem;color:#370558;text-decoration:none;border-bottom:1px solid #f5eefe;transition:background .12s}
   .nav-dropdown-item:last-child{border-bottom:none}
   .nav-dropdown-item:hover{background:#faf5ff}
@@ -68,7 +68,7 @@
     .hero-info-item{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:10px;padding:10px 18px;font-size:.85rem;color:white}
     .hero-info-item span{font-weight:700;display:block;font-size:.72rem;opacity:.7;margin-bottom:3px}
     .hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-    .btn-pink{background:linear-gradient(135deg,#e8439a,#ff6fc1);color:white;padding:13px 28px;border-radius:50px;font-weight:700;font-size:.95rem;text-decoration:none;box-shadow:0 4px 14px rgba(232,67,154,.4)}
+    .btn-pink{background:linear-gradient(135deg,#e8439a,#ff6fc1);color:white;padding:13px 28px;border-radius:50px;font-weight:700;font-size:.95rem;text-decoration:none}
     .btn-outline-w{background:transparent;color:white;padding:13px 28px;border-radius:50px;font-weight:700;font-size:.95rem;border:1.5px solid rgba(255,255,255,.5);text-decoration:none}
     .recommend-list{display:flex;flex-direction:column;gap:10px}
     .recommend-card{background:#faf5ff;border:1px solid #e8d6f5;border-radius:12px;padding:14px 18px;display:flex;align-items:center;gap:12px}
@@ -98,9 +98,9 @@
     .cta-sec h2{font-size:clamp(1.2rem,3vw,1.6rem);font-weight:800;color:white;margin-bottom:10px}
     .cta-sec p{font-size:.9rem;color:rgba(255,255,255,.75);margin-bottom:28px}
     .cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-    .cta-phone{background:white;color:#510580;font-size:.95rem;font-weight:800;padding:13px 22px;border-radius:50px;text-decoration:none;box-shadow:0 4px 16px rgba(0,0,0,.18)}
-    .cta-kakao{background:#FEE500;color:#3A1D1D;font-size:.95rem;font-weight:800;padding:13px 22px;border-radius:50px;text-decoration:none;box-shadow:0 4px 16px rgba(254,229,0,.4);display:inline-flex;align-items:center;gap:6px}
-    .cta-form{background:linear-gradient(135deg,#e8439a,#ff6fc1);color:white;font-size:.95rem;font-weight:800;padding:13px 22px;border-radius:50px;text-decoration:none;box-shadow:0 4px 16px rgba(232,67,154,.4)}
+    .cta-phone{background:white;color:#510580;font-size:.95rem;font-weight:800;padding:13px 22px;border-radius:50px;text-decoration:none}
+    .cta-kakao{background:#FEE500;color:#3A1D1D;font-size:.95rem;font-weight:800;padding:13px 22px;border-radius:50px;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+    .cta-form{background:linear-gradient(135deg,#e8439a,#ff6fc1);color:white;font-size:.95rem;font-weight:800;padding:13px 22px;border-radius:50px;text-decoration:none}
     .float-wrap{position:fixed;bottom:28px;right:20px;display:flex;flex-direction:column;align-items:center;gap:12px;z-index:400}
     .float-btn{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 16px rgba(0,0,0,.2);transition:transform .15s;position:relative}
     .float-btn:hover{transform:translateY(-3px)}
@@ -126,8 +126,8 @@
   <a href="/" class="site-logo">🎓 제나쌤의 스터디핏 과외</a>
   <nav class="site-nav">
     <div class="nav-item">
-      <span class="nav-link nav-plain">일대일 과외 <span class="nav-arrow">▾</span></span>
-      <div class="nav-dropdown">
+      <span class="nav-link nav-plain" onclick="toggleDropdown(event)" style="cursor:pointer">일대일 과외 <span class="nav-arrow" id="navArrow">▾</span></span>
+      <div class="nav-dropdown" id="navDropdown">
         <a href="/regions/" class="nav-dropdown-item">
           <div class="nav-dropdown-icon">📍</div>
           <div>
@@ -166,6 +166,20 @@
   </div>
 </div>
 <script>
+function toggleDropdown(e){
+  e.stopPropagation();
+  var d=document.getElementById('navDropdown');
+  var a=document.getElementById('navArrow');
+  var isOpen=d.classList.contains('open');
+  d.classList.toggle('open');
+  a.classList.toggle('open');
+}
+document.addEventListener('click',function(){
+  var d=document.getElementById('navDropdown');
+  var a=document.getElementById('navArrow');
+  if(d){d.classList.remove('open');}
+  if(a){a.classList.remove('open');}
+});
 function openMobileMenu(){document.getElementById('mobileMenu').style.display='block';document.body.style.overflow='hidden'}
 function closeMobileMenu(){document.getElementById('mobileMenu').style.display='none';document.body.style.overflow=''}
 function closeMobileMenuOutside(e){if(e.target===document.getElementById('mobileMenu'))closeMobileMenu()}
@@ -214,10 +228,10 @@ function closeMobileMenuOutside(e){if(e.target===document.getElementById('mobile
   <section class="sec">
     <div class="sec-label">수업 진행 과정</div>
     <div class="sec-title">이렇게 진행됩니다</div>
-    <div class="process-item"><div class="process-num">1</div><div><div class="process-title">스타트체크 — 학습 현황 진단</div><div class="process-desc">학습 습관, 공부 방법, 정서 상태 등을 종합적으로 진단합니다. 진단 결과를 바탕으로 맞춤 코칭 커리큘럼을 설계합니다.</div></div></div>
-    <div class="process-item"><div class="process-num">2</div><div><div class="process-title">목표 설정 — 단기/장기 플랜 수립</div><div class="process-desc">학생의 현재 상태와 목표를 함께 확인하고 현실적인 단기·장기 학습 계획을 세웁니다.</div></div></div>
-    <div class="process-item"><div class="process-num">3</div><div><div class="process-title">1:1 화상 코칭 수업 진행</div><div class="process-desc">매주 1회 60분, 전담 코치와 1:1로 진행합니다. 해빗·스터디·커리어·감정 코칭을 학생 상황에 맞게 구성합니다.</div></div></div>
-    <div class="process-item"><div class="process-num">4</div><div><div class="process-title">피드백 & 성장 관리</div><div class="process-desc">매 수업 후 학부모님께 피드백을 제공합니다. 플래너 점검과 습관 트래킹으로 꾸준한 성장을 함께 확인합니다.</div></div></div>
+    <div class="process-item"><div class="process-num">1</div><div><div class="process-title">스타트체크 — 학습 현황 진단</div><div class="process-desc">학습 습관, 공부 방법, 정서 상태를 종합적으로 진단하고 맞춤 코칭 커리큘럼을 설계합니다.</div></div></div>
+    <div class="process-item"><div class="process-num">2</div><div><div class="process-title">목표 설정 — 단기/장기 플랜 수립</div><div class="process-desc">현재 상태와 목표를 함께 확인하고 현실적인 단기·장기 학습 계획을 세웁니다.</div></div></div>
+    <div class="process-item"><div class="process-num">3</div><div><div class="process-title">1:1 화상 코칭 수업 진행</div><div class="process-desc">매주 1회 60분, 전담 코치와 1:1로 진행합니다. 해빗·스터디·커리어·감정 코칭을 상황에 맞게 구성합니다.</div></div></div>
+    <div class="process-item"><div class="process-num">4</div><div><div class="process-title">피드백 & 성장 관리</div><div class="process-desc">매 수업 후 학부모님께 피드백을 제공하고 플래너 점검과 습관 트래킹으로 꾸준한 성장을 확인합니다.</div></div></div>
   </section>
   <hr class="divider">
   <section class="sec">
@@ -226,7 +240,7 @@ function closeMobileMenuOutside(e){if(e.target===document.getElementById('mobile
     <div class="review-grid">
       <div class="review-card"><div class="review-quote">드디어 혼자 공부를 해요</div><div class="review-desc">공부해라 잔소리 하다가 하루가 갔었는데 이제 나쁜 엄마에서 탈출한 기분입니다.</div><div class="review-author">김소O 회원 학부모</div></div>
       <div class="review-card"><div class="review-quote">어떤 걸 준비해야 하는지 알겠어요</div><div class="review-desc">때되면 어떻게든 되겠지 하고 생각해 왔었는데 막상 고등학생이 되니 준비할 게 너무 많더라구요... 지금은 코치님이 있어서 너무 다행이에요.</div><div class="review-author">정지O 회원</div></div>
-      <div class="review-card"><div class="review-quote">계획은 세워도 실천할 줄을 몰랐는데</div><div class="review-desc">코치님이 지속적으로 소통을 해 주시니까 학교 숙제며, 학원 숙제며 이제 곧잘 하고 있어요. 플래너 체크해 놓은 것들 보면 저도 흐뭇하네요.</div><div class="review-author">주경O 회원 학부모</div></div>
+      <div class="review-card"><div class="review-quote">계획은 세워도 실천할 줄을 몰랐는데</div><div class="review-desc">코치님이 지속적으로 소통을 해 주시니까 학교 숙제며, 학원 숙제며 이제 곧잘 하고 있어요.</div><div class="review-author">주경O 회원 학부모</div></div>
       <div class="review-card"><div class="review-quote">훨씬 여유로워 보이는데 성적은 올랐어요</div><div class="review-desc">미루는 시간이 없어지니 예민하던 아이가 여유로워졌어요.</div><div class="review-author">장민O 회원 학부모</div></div>
     </div>
   </section>
@@ -236,10 +250,7 @@ function closeMobileMenuOutside(e){if(e.target===document.getElementById('mobile
   <p>공부법부터 바꾸면 성적이 달라집니다</p>
   <div class="cta-btns">
     <a href="tel:010-5949-9897" class="cta-phone">📞 전화 상담</a>
-    <a href="http://pf.kakao.com/_xjKxcxgn/chat" target="_blank" class="cta-kakao">
-      <svg width="16" height="16" viewBox="0 0 24 24"><path d="M12 3C6.477 3 2 6.477 2 10.8c0 2.7 1.644 5.08 4.148 6.538L5.2 20.4a.3.3 0 0 0 .438.328l4.07-2.7A11.4 11.4 0 0 0 12 18.6c5.523 0 10-3.477 10-7.8S17.523 3 12 3z" fill="#3A1D1D"/></svg>
-      카카오톡 상담
-    </a>
+    <a href="http://pf.kakao.com/_xjKxcxgn/chat" target="_blank" class="cta-kakao">💬 카카오톡 상담</a>
     <a href="https://naver.me/GjySnHpA" target="_blank" class="cta-form">📝 무료 상담 신청</a>
   </div>
 </div>

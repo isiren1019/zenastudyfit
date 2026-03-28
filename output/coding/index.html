@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="naver-site-verification" content="511e0e2c64d12cf657363087cf302e40e3e1ac5c" />
   <title>코딩 교육 | 제나쌤의 스터디핏 과외</title>
-  <meta name="description" content="초·중·고 1:1 맞춤 화상 코딩 수업. 자바스크립트 앱창작부터 파이썬 데이터사이언스까지 단계별 커리큘럼. 무료 체험 신청 가능.">
+  <meta name="description" content="초·중·고 1:1 맞춤 화상 코딩 수업. 자바스크립트 앱창작부터 파이썬 데이터사이언스까지 단계별 커리큘럼.">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -23,9 +23,9 @@
   .nav-link{font-size:.85rem;color:#444;padding:7px 12px;border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:4px;text-decoration:none;white-space:nowrap;font-weight:700;background:none;border:none}
   .nav-link:hover{background:#f5eefe;color:#510580}
   .nav-arrow{font-size:.6rem;color:#aaa;transition:transform .2s;display:inline-block}
-  .nav-item:hover .nav-arrow{transform:rotate(180deg);color:#510580}
+  .nav-arrow.open{transform:rotate(180deg);color:#510580}
   .nav-dropdown{display:none;position:absolute;top:calc(100% + 6px);left:0;background:white;border:1px solid #e8d6f5;border-radius:12px;min-width:210px;overflow:hidden;z-index:300;box-shadow:0 4px 16px rgba(81,5,128,.10)}
-  .nav-item:hover .nav-dropdown{display:block}
+  .nav-dropdown.open{display:block}
   .nav-dropdown-item{display:flex;align-items:center;gap:10px;padding:11px 14px;font-size:.82rem;color:#370558;text-decoration:none;border-bottom:1px solid #f5eefe;transition:background .12s}
   .nav-dropdown-item:last-child{border-bottom:none}
   .nav-dropdown-item:hover{background:#faf5ff}
@@ -98,9 +98,9 @@
     .cta-sec h2{font-size:clamp(1.2rem,3vw,1.6rem);font-weight:800;color:white;margin-bottom:10px}
     .cta-sec p{font-size:.9rem;color:rgba(255,255,255,.75);margin-bottom:28px}
     .cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-    .cta-phone{background:white;color:#1a3a6a;font-size:.95rem;font-weight:800;padding:13px 22px;border-radius:50px;text-decoration:none;box-shadow:0 4px 16px rgba(0,0,0,.18)}
-    .cta-kakao{background:#FEE500;color:#3A1D1D;font-size:.95rem;font-weight:800;padding:13px 22px;border-radius:50px;text-decoration:none;box-shadow:0 4px 16px rgba(254,229,0,.4);display:inline-flex;align-items:center;gap:6px}
-    .cta-form{background:linear-gradient(135deg,#2a7fff,#5ba3ff);color:white;font-size:.95rem;font-weight:800;padding:13px 22px;border-radius:50px;text-decoration:none;box-shadow:0 4px 16px rgba(42,127,255,.4)}
+    .cta-phone{background:white;color:#1a3a6a;font-size:.95rem;font-weight:800;padding:13px 22px;border-radius:50px;text-decoration:none}
+    .cta-kakao{background:#FEE500;color:#3A1D1D;font-size:.95rem;font-weight:800;padding:13px 22px;border-radius:50px;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+    .cta-form{background:linear-gradient(135deg,#2a7fff,#5ba3ff);color:white;font-size:.95rem;font-weight:800;padding:13px 22px;border-radius:50px;text-decoration:none}
     .float-wrap{position:fixed;bottom:28px;right:20px;display:flex;flex-direction:column;align-items:center;gap:12px;z-index:400}
     .float-btn{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 16px rgba(0,0,0,.2);transition:transform .15s;position:relative}
     .float-btn:hover{transform:translateY(-3px)}
@@ -126,8 +126,8 @@
   <a href="/" class="site-logo">🎓 제나쌤의 스터디핏 과외</a>
   <nav class="site-nav">
     <div class="nav-item">
-      <span class="nav-link nav-plain">일대일 과외 <span class="nav-arrow">▾</span></span>
-      <div class="nav-dropdown">
+      <span class="nav-link nav-plain" onclick="toggleDropdown(event)" style="cursor:pointer">일대일 과외 <span class="nav-arrow" id="navArrow">▾</span></span>
+      <div class="nav-dropdown" id="navDropdown">
         <a href="/regions/" class="nav-dropdown-item">
           <div class="nav-dropdown-icon">📍</div>
           <div>
@@ -166,6 +166,20 @@
   </div>
 </div>
 <script>
+function toggleDropdown(e){
+  e.stopPropagation();
+  var d=document.getElementById('navDropdown');
+  var a=document.getElementById('navArrow');
+  var isOpen=d.classList.contains('open');
+  d.classList.toggle('open');
+  a.classList.toggle('open');
+}
+document.addEventListener('click',function(){
+  var d=document.getElementById('navDropdown');
+  var a=document.getElementById('navArrow');
+  if(d){d.classList.remove('open');}
+  if(a){a.classList.remove('open');}
+});
 function openMobileMenu(){document.getElementById('mobileMenu').style.display='block';document.body.style.overflow='hidden'}
 function closeMobileMenu(){document.getElementById('mobileMenu').style.display='none';document.body.style.overflow=''}
 function closeMobileMenuOutside(e){if(e.target===document.getElementById('mobileMenu'))closeMobileMenu()}
@@ -209,7 +223,7 @@ function closeMobileMenuOutside(e){if(e.target===document.getElementById('mobile
     <div class="feature-steps">
       <div class="step-item"><div class="step-num">1</div><div><div class="step-title">학생 수준에 딱 맞는 1:1 맞춤 커리큘럼</div><div class="step-desc">무료 시범수업을 통해 학생의 현재 수준과 관심사를 파악합니다. 코딩의 기본 개념과 동작의 원리를 쉽게 이해할 수 있도록 맞춤 수업으로 진행됩니다.</div></div></div>
       <div class="step-item"><div class="step-num">2</div><div><div class="step-title">전문 코딩 선생님의 실시간 화상 수업</div><div class="step-desc">녹화 강의가 아닌 선생님과 실시간으로 소통하는 화상 수업입니다. 모르는 부분은 바로 질문하고, 코드를 함께 작성하며 빠르게 이해할 수 있습니다. 크롬 브라우저만 있다면 복잡한 프로그램 없이 언제 어디서나 수업 가능합니다.</div></div></div>
-      <div class="step-item"><div class="step-num">3</div><div><div class="step-title">차별화된 시스템을 통한 자기주도학습 습관</div><div class="step-desc">학습 단계 종료 후 테스트를 통해 부족한 부분을 보완하고, 매 시간 수업 피드백을 통해 학습 상황과 성취도를 파악하고 소통할 수 있습니다. 또한, 수업 시간 외에도 셀프 스터디 강의실을 통해 언제든 자유롭게 복습, 예습, 실습 가능합니다.</div></div></div>
+      <div class="step-item"><div class="step-num">3</div><div><div class="step-title">차별화된 시스템을 통한 자기주도학습 습관</div><div class="step-desc">학습 단계 종료 후 테스트를 통해 부족한 부분을 보완하고, 매 시간 수업 피드백을 통해 학습 상황과 성취도를 파악하고 소통할 수 있습니다.</div></div></div>
       <div class="step-item"><div class="step-num">4</div><div><div class="step-title">실제 결과물을 만드는 프로젝트 중심 수업</div><div class="step-desc">배운 내용을 게임, 앱, 웹사이트로 직접 만들어봅니다. 완성된 프로젝트는 포트폴리오로 활용할 수 있어 입시와 취업에도 도움이 됩니다.</div></div></div>
     </div>
   </section>
@@ -223,18 +237,18 @@ function closeMobileMenuOutside(e){if(e.target===document.getElementById('mobile
       <div class="curr-tab" onclick="showCurr('py',this)">💻 데이터사이언스 (파이썬)</div>
     </div>
     <div id="curr-js" class="curr-list">
-      <div class="curr-item"><div class="curr-item-header"><div class="curr-icon">L1</div><div><div class="curr-level">Lv.1 · 프로그래밍 개념 입문</div><div class="curr-title">코딩의 시작, 텍스트 언어로 앱 만들기</div><div class="curr-desc">코딩이 필요한 이유를 이해하고, 자신의 생각을 텍스트 언어로 표현하는 방법을 배워요. 모바일에서도 실행할 수 있는 다양한 주제의 앱을 직접 만들면서 텍스트 언어의 기본 사용법과 순차, 이벤트와 같은 기초 프로그래밍 개념을 완벽하게 익혀요.</div></div></div><div class="curr-tags"><span class="curr-tag">API 사용(기본)</span><span class="curr-tag">API 사용(심화)</span></div></div>
-      <div class="curr-item"><div class="curr-item-header"><div class="curr-icon">L2</div><div><div class="curr-level">Lv.2 · 프로그래밍 개념 기초</div><div class="curr-title">주요 개념으로 다양한 앱 스스로 제작</div><div class="curr-desc">다양한 프로그래밍 개념이 녹아있는 앱을 스스로 제작하면서 순차, 반복, 선택 구조와 같은 주요 개념을 정확하게 이해할 수 있어요. 컴퓨터 프로그래밍의 주요 개념을 이용하여 같은 문제를 다양한 방법으로 해결해요.</div></div></div><div class="curr-tags"><span class="curr-tag">변수, 조건</span><span class="curr-tag">변수, 조건(심화)</span><span class="curr-tag">복제, 함수, 배열(기본)</span></div></div>
-      <div class="curr-item"><div class="curr-item-header"><div class="curr-icon">L3</div><div><div class="curr-level">Lv.3 · 프로그래밍 개념 심화</div><div class="curr-title">복잡한 앱을 효율적인 방법으로 제작</div><div class="curr-desc">복잡한 앱을 스스로 제작하면서 복제, 함수, 배열 등과 같은 심화 프로그래밍 개념을 정확하게 이해할 수 있어요. 컴퓨터 프로그래밍의 주요 개념을 이용하여 같은 문제를 효율적인 방법으로 해결해요.</div></div></div><div class="curr-tags"><span class="curr-tag">복제, 함수, 배열, 반복(심화)</span><span class="curr-tag">조건, 복제, 함수, 반복(응용)</span><span class="curr-tag">변수, 조건, 물리, 반복(응용)</span></div></div>
-      <div class="curr-item"><div class="curr-item-header"><div class="curr-icon">L4</div><div><div class="curr-level">Lv.4 · 프로그래밍 응용 기초</div><div class="curr-title">실제 개발 방법과 알고리즘으로 아이디어 표현</div><div class="curr-desc">지금까지 학습한 프로그래밍의 주요 개념들이 다양하게 구성되어 있는 앱을 제작해요. 실제 개발에서 사용되는 다양한 프로그래밍 방법과 알고리즘을 익혀 자신의 아이디어를 효율적인 방법으로 표현할 수 있어요.</div></div></div><div class="curr-tags"><span class="curr-tag">변수, 조건, 함수, 반복(응용)</span><span class="curr-tag">변수, 조건, 배열(심화)</span><span class="curr-tag">변수, 조건, 함수(심화)</span></div></div>
-      <div class="curr-item"><div class="curr-item-header"><div class="curr-icon">L5</div><div><div class="curr-level">Lv.5 · 프로그래밍 응용 심화</div><div class="curr-title">심화 개념 활용, 나만의 앱 완성</div><div class="curr-desc">텍스트 코딩이 익숙하면서, 프로그래밍 심화 개념을 활용할 수 있는 학생들을 위한 과정이에요. 지금까지 학습한 프로그래밍의 주요 개념들이 복잡하게 얽혀있는 앱을 제작하고, 실제 개발 과정에 사용되는 다양한 알고리즘을 활용하여 자신의 아이디어를 효율적인 방법으로 표현할 수 있어요.</div></div></div><div class="curr-tags"><span class="curr-tag">함수, 반복, 조건(심화)</span><span class="curr-tag">함수, 복제, 변수(심화)</span><span class="curr-tag">함수, 반복, 복제(심화)</span></div></div>
+      <div class="curr-item"><div class="curr-item-header"><div class="curr-icon">L1</div><div><div class="curr-level">Lv.1 · 프로그래밍 개념 입문</div><div class="curr-title">코딩의 시작, 텍스트 언어로 앱 만들기</div><div class="curr-desc">코딩이 필요한 이유를 이해하고, 자신의 생각을 텍스트 언어로 표현하는 방법을 배워요. 모바일에서도 실행할 수 있는 다양한 주제의 앱을 직접 만들면서 기초 프로그래밍 개념을 익혀요.</div></div></div><div class="curr-tags"><span class="curr-tag">API 사용(기본)</span><span class="curr-tag">API 사용(심화)</span></div></div>
+      <div class="curr-item"><div class="curr-item-header"><div class="curr-icon">L2</div><div><div class="curr-level">Lv.2 · 프로그래밍 개념 기초</div><div class="curr-title">주요 개념으로 다양한 앱 스스로 제작</div><div class="curr-desc">순차, 반복, 선택 구조와 같은 주요 개념을 정확하게 이해하고 다양한 방법으로 문제를 해결해요.</div></div></div><div class="curr-tags"><span class="curr-tag">변수, 조건</span><span class="curr-tag">변수, 조건(심화)</span><span class="curr-tag">복제, 함수, 배열(기본)</span></div></div>
+      <div class="curr-item"><div class="curr-item-header"><div class="curr-icon">L3</div><div><div class="curr-level">Lv.3 · 프로그래밍 개념 심화</div><div class="curr-title">복잡한 앱을 효율적인 방법으로 제작</div><div class="curr-desc">복제, 함수, 배열 등 심화 개념을 활용해 같은 문제를 효율적인 방법으로 해결해요.</div></div></div><div class="curr-tags"><span class="curr-tag">복제, 함수, 배열, 반복(심화)</span><span class="curr-tag">조건, 복제, 함수, 반복(응용)</span></div></div>
+      <div class="curr-item"><div class="curr-item-header"><div class="curr-icon">L4</div><div><div class="curr-level">Lv.4 · 프로그래밍 응용 기초</div><div class="curr-title">실제 개발 방법과 알고리즘으로 아이디어 표현</div><div class="curr-desc">실제 개발에서 사용되는 다양한 프로그래밍 방법과 알고리즘을 익혀 아이디어를 효율적으로 표현해요.</div></div></div><div class="curr-tags"><span class="curr-tag">변수, 조건, 함수, 반복(응용)</span><span class="curr-tag">변수, 조건, 배열(심화)</span></div></div>
+      <div class="curr-item"><div class="curr-item-header"><div class="curr-icon">L5</div><div><div class="curr-level">Lv.5 · 프로그래밍 응용 심화</div><div class="curr-title">심화 개념 활용, 나만의 앱 완성</div><div class="curr-desc">프로그래밍 심화 개념이 복잡하게 얽혀있는 앱을 제작하고 다양한 알고리즘을 활용해 아이디어를 표현해요.</div></div></div><div class="curr-tags"><span class="curr-tag">함수, 반복, 조건(심화)</span><span class="curr-tag">함수, 복제, 변수(심화)</span></div></div>
     </div>
     <div id="curr-py" class="curr-list" style="display:none">
-      <div class="curr-item"><div class="curr-item-header"><div class="curr-icon">L1</div><div><div class="curr-level">Lv.1 · 데이터 분석 기초</div><div class="curr-title">파이썬 기초 문법으로 데이터 분석력 키우기</div><div class="curr-desc">사건을 해결하기 위한 필요 데이터를 수집하고 가공하여 단서로 활용하면서 데이터 분석력을 기를 수 있어요. 변수, 자료형, 제어문 등 파이썬의 기초 문법을 배우며 프로그래밍의 기본 개념을 다져요.</div></div></div><div class="curr-tags"><span class="curr-tag">변수, 자료형, 제어문, 연산자</span><span class="curr-tag">복합제어문, 자료형 변환, 진법, 연산</span><span class="curr-tag">자료형(딕셔너리, 튜플, 집합)</span></div></div>
-      <div class="curr-item"><div class="curr-item-header"><div class="curr-icon">L2</div><div><div class="curr-level">Lv.2 · 데이터 분석 심화</div><div class="curr-title">함수와 모듈로 프로그래밍 효율성 높이기</div><div class="curr-desc">사용자 함수를 정의하고 호출하여 실행하는 방법을 배워 프로그램의 효율성을 높이고, 프로그래밍 능력을 향상시킬 수 있어요. 파이썬에서 제공하는 모듈을 사용함으로써 복잡한 문제를 쉽게 해결하여 프로그래밍의 심화 개념을 다져요.</div></div></div><div class="curr-tags"><span class="curr-tag">사용자 정의 함수, 반복 흐름 제어</span><span class="curr-tag">모듈, 연산(교체, 비트)</span></div></div>
-      <div class="curr-item"><div class="curr-item-header"><div class="curr-icon">L3</div><div><div class="curr-level">Lv.3 · 자료구조 기초</div><div class="curr-title">클래스와 자료구조·알고리즘 구현</div><div class="curr-desc">객체 지향 프로그래밍의 원리를 이해하고 클래스를 사용하는 방법을 배우며 스택, 큐, 그래프 자료구조를 익혀요. 연산의 성능과 데이터 등록 순서에 따라 데이터를 다르게 처리하는 알고리즘을 구현해요.</div></div></div><div class="curr-tags"><span class="curr-tag">클래스, 모듈, 해시함수</span><span class="curr-tag">자료구조&알고리즘, 스택, 큐</span><span class="curr-tag">그래프, 인접행렬, 다익스트라 알고리즘</span></div></div>
-      <div class="curr-item"><div class="curr-item-header"><div class="curr-icon">L4</div><div><div class="curr-level">Lv.4 · 자료구조 심화</div><div class="curr-title">재귀·정렬·탐색 알고리즘으로 효율적 프로그래밍</div><div class="curr-desc">재귀, 정렬, 탐색 알고리즘 등의 원리를 이해하고 구현해보면서 프로그램 실행 로직을 효율적으로 구체화해요. 파이썬의 문법을 응용하면서 자료구조 및 알고리즘의 심화 개념을 다져요.</div></div></div><div class="curr-tags"><span class="curr-tag">트리, 트리탐색, 재귀&선택 정렬 알고리즘</span><span class="curr-tag">탐색&Convex hull 알고리즘, DFS 탐색</span></div></div>
-      <div class="curr-item"><div class="curr-item-header"><div class="curr-icon">L5</div><div><div class="curr-level">Lv.5 · 인공지능 기초</div><div class="curr-title">빅데이터·AI 기초, 데이터 시각화·분석</div><div class="curr-desc">파이썬의 다양한 라이브러리를 사용하여 CSV 파일 속 데이터를 수집하고 가공하여 데이터를 시각화하고 분석하는 방법을 배워요. 빅데이터 및 인공지능의 기초 개념을 이해하고 활용해요.</div></div></div><div class="curr-tags"><span class="curr-tag">데이터 시각화 및 분석, 파일 입출력</span><span class="curr-tag">인공지능, 지도학습, 비지도학습, 신경망</span></div></div>
+      <div class="curr-item"><div class="curr-item-header"><div class="curr-icon">L1</div><div><div class="curr-level">Lv.1 · 데이터 분석 기초</div><div class="curr-title">파이썬 기초 문법으로 데이터 분석력 키우기</div><div class="curr-desc">변수, 자료형, 제어문 등 파이썬 기초 문법을 배우며 데이터를 수집하고 가공하는 방법을 익혀요.</div></div></div><div class="curr-tags"><span class="curr-tag">변수, 자료형, 제어문, 연산자</span><span class="curr-tag">자료형(딕셔너리, 튜플, 집합)</span></div></div>
+      <div class="curr-item"><div class="curr-item-header"><div class="curr-icon">L2</div><div><div class="curr-level">Lv.2 · 데이터 분석 심화</div><div class="curr-title">함수와 모듈로 프로그래밍 효율성 높이기</div><div class="curr-desc">사용자 함수를 정의하고 모듈을 활용해 복잡한 문제를 효율적으로 해결해요.</div></div></div><div class="curr-tags"><span class="curr-tag">사용자 정의 함수, 반복 흐름 제어</span><span class="curr-tag">모듈, 연산(교체, 비트)</span></div></div>
+      <div class="curr-item"><div class="curr-item-header"><div class="curr-icon">L3</div><div><div class="curr-level">Lv.3 · 자료구조 기초</div><div class="curr-title">클래스와 자료구조·알고리즘 구현</div><div class="curr-desc">클래스, 스택, 큐, 그래프 자료구조를 익히고 알고리즘을 구현해요.</div></div></div><div class="curr-tags"><span class="curr-tag">클래스, 모듈, 해시함수</span><span class="curr-tag">자료구조&알고리즘, 스택, 큐</span></div></div>
+      <div class="curr-item"><div class="curr-item-header"><div class="curr-icon">L4</div><div><div class="curr-level">Lv.4 · 자료구조 심화</div><div class="curr-title">재귀·정렬·탐색 알고리즘으로 효율적 프로그래밍</div><div class="curr-desc">재귀, 정렬, 탐색 알고리즘 원리를 이해하고 구현하며 심화 개념을 다져요.</div></div></div><div class="curr-tags"><span class="curr-tag">트리, 트리탐색, 재귀&선택 정렬</span><span class="curr-tag">DFS 탐색, Convex hull 알고리즘</span></div></div>
+      <div class="curr-item"><div class="curr-item-header"><div class="curr-icon">L5</div><div><div class="curr-level">Lv.5 · 인공지능 기초</div><div class="curr-title">빅데이터·AI 기초, 데이터 시각화·분석</div><div class="curr-desc">파이썬 라이브러리로 데이터를 시각화·분석하고 인공지능의 기초 개념을 이해해요.</div></div></div><div class="curr-tags"><span class="curr-tag">데이터 시각화 및 분석</span><span class="curr-tag">인공지능, 지도학습, 비지도학습</span></div></div>
     </div>
   </section>
 </div>
@@ -243,10 +257,7 @@ function closeMobileMenuOutside(e){if(e.target===document.getElementById('mobile
   <p>첫 수업은 무료 · 부담 없이 경험해 보세요</p>
   <div class="cta-btns">
     <a href="tel:010-5949-9897" class="cta-phone">📞 전화 상담</a>
-    <a href="http://pf.kakao.com/_xjKxcxgn/chat" target="_blank" class="cta-kakao">
-      <svg width="16" height="16" viewBox="0 0 24 24"><path d="M12 3C6.477 3 2 6.477 2 10.8c0 2.7 1.644 5.08 4.148 6.538L5.2 20.4a.3.3 0 0 0 .438.328l4.07-2.7A11.4 11.4 0 0 0 12 18.6c5.523 0 10-3.477 10-7.8S17.523 3 12 3z" fill="#3A1D1D"/></svg>
-      카카오톡 상담
-    </a>
+    <a href="http://pf.kakao.com/_xjKxcxgn/chat" target="_blank" class="cta-kakao">💬 카카오톡 상담</a>
     <a href="https://naver.me/GT40B8Ah" target="_blank" class="cta-form">📝 무료 체험 신청</a>
   </div>
 </div>
