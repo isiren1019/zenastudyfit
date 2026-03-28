@@ -23,7 +23,7 @@ KAKAO_URL  = "http://pf.kakao.com/_xjKxcxgn/chat"
 FORM_URL   = "https://naver.me/GjySnHpA"
 
 GRADES   = ["초등", "중등", "고등"]
-SUBJECTS = ["국어", "영어", "수학", "과학", "사회"]
+SUBJECTS = ["국어", "영어", "수학", "과학", "사회", "한국사"]
 
 FOOTER_HTML = """<footer>
   <p>제나쌤 스터디핏 · 이수진 · 010-5949-9897 · aquarai@naver.com</p>
@@ -92,8 +92,8 @@ HEADER_HTML = f"""<header class="site-header">
         </a>
       </div>
     </div>
-    <a href="/self-study/" class="nav-link nav-plain">자기주도학습</a>
-    <a href="/coding/" class="nav-link nav-plain">코딩</a>
+    <a href="#" class="nav-link nav-plain">자기주도학습</a>
+    <a href="#" class="nav-link nav-plain">코딩</a>
     <a href="{FORM_URL}" target="_blank" class="nav-cta-btn">📝 무료 상담 신청</a>
     <button class="hamburger" onclick="openMobileMenu()" aria-label="메뉴">☰</button>
   </nav>
@@ -108,8 +108,8 @@ HEADER_HTML = f"""<header class="site-header">
     <div style="font-size:.72rem;color:#9b6cc0;font-weight:700;margin-bottom:8px;padding:0 4px">일대일 과외</div>
     <a href="/regions/" class="mobile-menu-sub">📍 지역별 과외</a>
     <a href="#" class="mobile-menu-sub">🏫 학교별 과외 <span class="nav-badge-soon">준비중</span></a>
-    <a href="/self-study/" class="mobile-menu-item" style="margin-top:8px">자기주도학습</a>
-    <a href="/coding/" class="mobile-menu-item">코딩</a>
+    <a href="#" class="mobile-menu-item" style="margin-top:8px">자기주도학습</a>
+    <a href="#" class="mobile-menu-item">코딩</a>
     <a href="{FORM_URL}" target="_blank" class="mobile-menu-cta">📝 무료 상담 신청</a>
   </div>
 </div>
@@ -257,6 +257,11 @@ SUBJECT_TRAITS = {
         "사회는 방대한 내용을 구조화해서 정리하는 것이 핵심입니다.",
         "사회는 흐름과 맥락으로 이해하면 암기량이 자연스럽게 줄어듭니다.",
         "사회 과목은 시사와 연결해 공부하면 흥미와 이해도가 모두 올라갑니다.",
+    ],
+    "한국사": [
+        "한국사는 시대별 흐름을 먼저 잡고 세부 사건을 연결해야 합니다.",
+        "한국사는 단순 암기보다 인과관계와 맥락 이해가 점수를 만듭니다.",
+        "한국사는 수능·내신 필수 과목으로, 체계적인 반복 학습이 효과적입니다.",
     ],
 }
 
@@ -584,14 +589,15 @@ def html_page(city, gu, dong, grade, subject, slug):
         imgs_html += f'<div class="img-item"><img src="/images/{img}" alt="{alt}" loading="lazy"></div>\n'
 
     # ── 관련 과목 HTML ──
-    ALL_SUBJECTS = ["국어", "영어", "수학", "과학", "사회"]
-    SUBJECT_ICONS = {"국어": "📖", "영어": "🌍", "수학": "📐", "과학": "🔬", "사회": "🗺️"}
+    ALL_SUBJECTS = ["국어", "영어", "수학", "과학", "사회", "한국사"]
+    SUBJECT_ICONS = {"국어": "📖", "영어": "🌍", "수학": "📐", "과학": "🔬", "사회": "🗺️", "한국사": "📜"}
     SUBJECT_DESC = {
         "국어": "독해 · 논술",
         "영어": "문법 · 독해",
         "수학": "개념 · 문제풀이",
         "과학": "개념 · 원리",
         "사회": "흐름 · 암기",
+        "한국사": "흐름 · 사건 · 암기",
     }
     SUBJECT_LIST_DESC = {
         "국어": "독해력 · 문학 · 비문학 · 서술형 대비",
@@ -599,6 +605,7 @@ def html_page(city, gu, dong, grade, subject, slug):
         "수학": "개념 이해 · 유형 · 실전 문제풀이",
         "과학": "개념 · 원리 이해 · 실험 정리 · 서술형",
         "사회": "흐름 · 맥락 · 암기 전략",
+        "한국사": "시대별 흐름 · 주요 사건 · 암기 전략",
     }
 
     # 고등일 때 과학→통합과학, 사회→통합사회
@@ -610,9 +617,11 @@ def html_page(city, gu, dong, grade, subject, slug):
 
     related_subjects = [s for s in ALL_SUBJECTS if s != subject]
 
-    # 배너형 HTML (과목 4개 + 자기주도학습 + 코딩 = 6개, 3열×2행)
+    # 배너형 HTML — 현재 과목 제외 5개 중 랜덤 4개 + 자기주도 + 코딩 = 6개 (3×2)
+    import random as _random
+    banner_subjects = _random.sample(related_subjects, min(4, len(related_subjects)))
     related_banner_html = ""
-    for s in related_subjects:
+    for s in banner_subjects:
         disp = get_display_subject(s, grade)
         desc = SUBJECT_DESC.get(s, "")
         href = f"/{city}-{gu}-{dong}-{grade}-{s}-과외/".replace(" ", "-")
@@ -629,7 +638,7 @@ def html_page(city, gu, dong, grade, subject, slug):
   <div class="bd" style="font-size:.72rem;color:#9b6cc0">자바스크립트 · 파이썬</div>
 </a>"""
 
-    # 리스트형 HTML
+    # 리스트형 HTML — 현재 과목 제외 5개 전체 + 자기주도 + 코딩 = 7개
     related_list_html = ""
     for s in related_subjects:
         disp = get_display_subject(s, grade)
@@ -666,7 +675,6 @@ def html_page(city, gu, dong, grade, subject, slug):
   </div>
   <div style="font-size:.85rem;color:#c9a3e8;flex-shrink:0">→</div>
 </a>"""
-
     return f"""<!DOCTYPE html>
 <html lang="ko">
 <head>
