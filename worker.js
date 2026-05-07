@@ -19388,10 +19388,10 @@ function buildKoreanGradeHigh3Page() {
 
     /* ③ 시기별 카드 */
     .phase-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-    .phase-card{padding:14px;border:1px solid #e8d6f5;border-radius:8px;background:white}
+    .phase-card{padding:14px;border:1px solid #e8d6f5;border-radius:8px;background:white;word-break:keep-all}
     .phase-period{font-size:.72rem;color:#7b2fa8;font-weight:700;margin-bottom:4px}
-    .phase-name{font-size:.92rem;font-weight:800;color:#370558;margin-bottom:4px}
-    .phase-desc{font-size:.78rem;color:#666;line-height:1.6}
+    .phase-name{font-size:.92rem;font-weight:800;color:#370558;margin-bottom:4px;word-break:keep-all}
+    .phase-desc{font-size:.78rem;color:#666;line-height:1.6;word-break:keep-all}
 
     /* ④ 영역별 공부법 */
     .area-item{border-left:3px solid #510580;padding:10px 14px;margin-bottom:14px}
@@ -23718,10 +23718,10 @@ function buildKoreanGradePage(gradeKey, subjectKey = "korean") {
     .breadcrumb a:hover{text-decoration:underline}
 
     .phase-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-    .phase-card{padding:14px;border:1px solid #e8d6f5;border-radius:8px;background:white}
+    .phase-card{padding:14px;border:1px solid #e8d6f5;border-radius:8px;background:white;word-break:keep-all}
     .phase-period{font-size:.72rem;color:#7b2fa8;font-weight:700;margin-bottom:4px}
-    .phase-name{font-size:.92rem;font-weight:800;color:#370558;margin-bottom:4px}
-    .phase-desc{font-size:.78rem;color:#666;line-height:1.6}
+    .phase-name{font-size:.92rem;font-weight:800;color:#370558;margin-bottom:4px;word-break:keep-all}
+    .phase-desc{font-size:.78rem;color:#666;line-height:1.6;word-break:keep-all}
 
     .area-item{border-left:3px solid #510580;padding:10px 14px;margin-bottom:14px}
     .area-item:last-child{margin-bottom:0}
@@ -32100,10 +32100,10 @@ function buildKoreanHabitPage(habitKey, categoryKey = "habit", subjectKey = "kor
     .breadcrumb a:hover{text-decoration:underline}
 
     .phase-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-    .phase-card{padding:14px;border:1px solid #e8d6f5;border-radius:8px;background:white}
+    .phase-card{padding:14px;border:1px solid #e8d6f5;border-radius:8px;background:white;word-break:keep-all}
     .phase-period{font-size:.72rem;color:#7b2fa8;font-weight:700;margin-bottom:4px}
-    .phase-name{font-size:.92rem;font-weight:800;color:#370558;margin-bottom:4px}
-    .phase-desc{font-size:.78rem;color:#666;line-height:1.6}
+    .phase-name{font-size:.92rem;font-weight:800;color:#370558;margin-bottom:4px;word-break:keep-all}
+    .phase-desc{font-size:.78rem;color:#666;line-height:1.6;word-break:keep-all}
 
     .area-item{border-left:3px solid #510580;padding:10px 14px;margin-bottom:14px}
     .area-item:last-child{margin-bottom:0}
