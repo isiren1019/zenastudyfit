@@ -17292,6 +17292,10 @@ const LANGUAGE_PAGE_READY = {
     "biz/meeting":         "/language/english/biz/meeting/",
     "biz/negotiation":     "/language/english/biz/negotiation/",
     "biz/presentation":    "/language/english/biz/presentation/",
+    "purpose/travel":      "/language/english/purpose/travel/",
+    "purpose/interview":   "/language/english/purpose/interview/",
+    "purpose/job":         "/language/english/purpose/job/",
+    "purpose/essay":       "/language/english/purpose/essay/",
   },
   japanese: {},
   chinese: {},
@@ -32840,6 +32844,265 @@ const ENGLISH_LANG_BIZ_DATA = {
 };
 
 
+// ============================================================
+// 영어 회화 — 목적별 수업 데이터 (LANG/PURPOSE)
+// 여행 · 면접 · 취업 · 에세이
+// ============================================================
+const ENGLISH_LANG_PURPOSE_DATA = {
+  "travel": {
+    badge: "영어 회화 · 목적별 수업",
+    h1: "여행 영어 1:1 맞춤 회화<br>공항부터 호텔·관광까지 자신감",
+    sub: "여행 · 공항 · 호텔 · 식당 · 관광 · 쇼핑 · 응급 상황",
+    breadcrumb: "여행 영어",
+    tag: "여행 영어",
+    intro: {
+      title: "공항·호텔·식당·관광·응급 상황까지 실전 여행 영어. 짧은 기간 집중 학습으로 자신감 있는 해외여행 준비",
+      body: "여행 영어는 가장 실용적인 영어 학습이에요. 한 번의 해외여행이 1년 영어 공부보다 자신감을 더 키워주거든요. 한국 학생들이 여행 영어에서 정체되는 이유는 \"문법 강박·발음 두려움·즉답 어려움\" 3가지예요. 핵심은 \"실전 상황별 표현 + 발음 자신감 + 즉답 훈련 + 문화 이해\" 4박자입니다. 1:1 화상 여행 영어 수업에서는 학생의 여행 일정·국가에 맞춘 맞춤 표현을 학습하고, 실전 시뮬레이션으로 자신감을 키워요. 학습 단계: (1) 공항·교통 표현 → (2) 호텔·식당·쇼핑 → (3) 관광·문화·일상 → (4) 응급 상황·문제 해결. 4~8주 집중 학습 → \"해외여행 자유\" 가능. 매일 20~30분 + 주 2~3회 1:1 코칭이 가장 효과적인 여행 영어 루틴이에요. 여행 직전 4주 집중이 가장 효율적입니다."
+    },
+    phaseTitle: "단계별 여행 영어 마스터 로드맵",
+    phaseSub: "4단계 학습 흐름",
+    areaTitle: "여행 영어 핵심 4영역",
+    tierTitle: "여행 유형·국가별 처방",
+    phases: [
+      ["1단계", "공항·교통", "체크인·입국·교통 수단"],
+      ["2단계", "호텔·식당·쇼핑", "체크인·주문·결제"],
+      ["3단계", "관광·문화", "관광지·박물관·일상"],
+      ["4단계", "응급 상황", "병원·분실·문제 해결"],
+    ],
+    areas: [
+      {name: "공항·교통 영어 (Airport·Transportation)", body: "여행의 시작이자 가장 중요한 영역이에요. (1) 체크인: \"I'd like to check in·Where can I drop my luggage?·Could I get a window seat?·How much is the baggage fee?\". (2) 보안 검사: \"Do I need to take off my shoes?·Where's the security line?·My boarding pass\". (3) 입국 심사: \"What's the purpose of your visit?·How long will you be staying?·Where are you staying?\". (4) 교통: \"Where's the nearest subway?·How much is the taxi to ...?·Could you take me to ...?·Is this the right train to ...?\". 빈출 50개 표현 정착이 답이에요. 1:1 과외에서 시뮬레이션·발음 추천. 첫 자신감의 결정적 도구예요."},
+      {name: "호텔·식당·쇼핑 영어 (Hotel·Restaurant·Shopping)", body: "여행의 일상이에요. (1) 호텔 체크인: \"I have a reservation under ...·Could I have a quiet room?·What time is breakfast?·Could I have a late checkout?\". (2) 식당: \"A table for two, please·Could I see the menu?·What do you recommend?·Could I have the bill, please?\". (3) 쇼핑: \"How much is this?·Do you have this in size M?·Can I try it on?·Where's the fitting room?·Do you accept credit cards?\". (4) 결제: \"I'd like to pay by credit card·Could I have the receipt?·Is service included?·Tax-free, please\". 매일 한 상황 시뮬레이션 + 1:1 코칭이 답이에요. 1:1 과외에서 즉답·발음 추천."},
+      {name: "관광·문화·일상 영어 (Tourism·Culture)", body: "여행의 즐거움이에요. (1) 관광: \"Where's the entrance?·How much is the ticket?·What time does it close?·Could you take a picture of us?·Is there a guided tour?\". (2) 박물관: \"Is photography allowed?·Where can I get an audio guide?·Where's the gift shop?·Is there a discount for students?\". (3) 길 묻기: \"Excuse me, where is ...?·How can I get to ...?·Is it walking distance?·How long does it take?\". (4) 스몰토크: \"Where are you from?·How long have you been here?·What do you recommend in this area?\". 외국인과의 즐거운 대화 + 1:1 코칭이 답이에요. 여행의 추억이 깊어져요."},
+      {name: "응급 상황·문제 해결 (Emergency·Problem Solving)", body: "여행의 안전망이에요. (1) 분실: \"I lost my passport·My wallet was stolen·I need to report a theft·Where's the nearest police station?\". (2) 의료: \"I'm not feeling well·Could you call a doctor?·Where's the nearest hospital?·I have a stomachache\". (3) 항공편 문제: \"My flight is delayed·I missed my connection·Could I rebook my flight?\". (4) 호텔 문제: \"The AC is not working·There's no hot water·Could you send someone to fix it?·I'd like to change my room\". (5) 의사 소통 문제: \"Could you speak more slowly?·Could you write it down?·I don't understand·Could you repeat that?\". 응급 표현 정착이 안전한 여행의 결정적 도구예요. 1:1 과외에서 시뮬레이션 추천."},
+    ],
+    tiers: [
+      {label: "왕초보 (영어 처음·해외여행 처음)", body: "공항·호텔 기초 표현 + 자신감. 매일 20분 (표현 학습·발음·시뮬레이션). 추천 자료: \"여행 영어 100\"·EBSe 여행 영어·\"English with Lucy\" 입문. 4~8주 집중 → 기본 여행 영어 가능. 1:1 과외에서 발음·자신감·기초 시뮬레이션 추천. 첫 해외여행 자신감의 결정적 도구예요."},
+      {label: "초·중급 (자유여행·일주일 이상)", body: "다양한 상황 표현 + 즉답 훈련. 매일 20~30분 (표현·시뮬레이션·문화 학습). 추천 자료: \"해커스 여행 영어\"·\"Mango Languages\"·여행 유튜브. 4~8주 → 자유여행 + 일상 대화 가능. 1:1 과외에서 다양한 상황 시뮬레이션·표현 다양화 추천. 자유여행의 표준 단계예요."},
+      {label: "중·고급 (한 달살기·장기 여행)", body: "고급 표현 + 외국 친구 사귀기 + 문화 이해. 매일 30분 (표현·문화·외국인 대화). 추천 자료: 다양한 미드·여행 팟캐스트·외국 친구. 4~8주 → 외국인 친구·장기 여행 자유. 1:1 과외에서 고급 표현·문화·뉘앙스 추천. 한 달살기·워킹홀리데이의 결정적 도구예요."},
+      {label: "프리미엄 (출장·고급 여행)", body: "비즈니스 여행 + 고급 호텔 + 미슐랭 식당. 매일 30분 (비즈니스 표현·고급 어휘·뉘앙스). 추천: \"Conde Nast Traveler\"·고급 여행 영상·전문 매체. 4주 → 비즈니스 여행·고급 여행 자유. 1:1 과외에서 비즈니스·고급 표현·뉘앙스 추천. 임원 출장·고급 여행의 결정적 도구."},
+    ],
+    mistakes: [
+      {title: "문법 강박·완벽한 문장만", body: "가장 흔한 실수예요. 여행에서 \"틀리면 안 된다\" 강박이 회화의 적이에요. 처음엔 틀려도 빨리 말하기 → 점진적 정확성. 외국인은 한국 학생 영어 잘못 말해도 친절히 이해해줘요. 일단 말하기 + 1:1 시뮬레이션이 답이에요. 침묵 = 여행 영어의 가장 큰 함정."},
+      {title: "발음 두려움·말하기 회피", body: "\"발음이 안 좋아서 부끄러워요\" 함정. 여행 영어는 발음 100% 정확 X·의사 소통 OK. 외국인은 다양한 액센트에 익숙해서 한국식 발음도 충분히 이해해요. 자신감 + 명확한 의도 전달이 답이에요. 1:1 과외에서 발음 자신감 코칭 추천. 자신감이 여행 영어의 결정적 도구."},
+      {title: "응급 상황 표현 무시", body: "여행 즐거움 표현만 학습하고 응급 상황 무시. 분실·의료·항공 문제 등 응급 상황에서 영어 못 하면 큰 문제. 응급 표현 50개 + 1:1 시뮬레이션이 답이에요. 안전한 여행을 위한 결정적 도구."},
+    ],
+    checklist: [
+      "공항·교통 표현 50개 정착?",
+      "호텔·식당·쇼핑 빈출 표현 자유 사용?",
+      "관광·길 묻기·스몰토크 가능?",
+      "응급 상황 (분실·의료·항공) 표현 정착?",
+      "여행 직전 4주 집중 + 1:1 시뮬레이션?",
+    ],
+    checklistTitle: "여행 영어 체크리스트",
+    checklistSub: "여행 4주 전 점검",
+    faqs: [
+      {q: "여행 영어 학습에 얼마나 걸리나요?", a: "현재 수준에 따라 달라요. (1) 왕초보 → 기본 여행 영어: 4~8주 집중. (2) 초급 → 자유여행: 4~6주. (3) 중급 → 한 달살기: 4주. 여행 직전 집중 학습이 가장 효율적이에요. 매일 20~30분 + 주 2~3회 1:1 코칭이 표준. 여행 후 자신감 폭증 → 영어 학습 동기 부여 효과 큼. 무료 체험 수업에서 진단 + 맞춤 학습 가능합니다."},
+      {q: "여행 영어와 일반 회화 영어 차이가 있나요?", a: "여행 영어는 \"실전 상황 + 즉답\" 중심이에요. 일반 회화 영어는 \"의견 표현 + 자유 대화\" 중심. (1) 여행: 공항·호텔·식당 등 정해진 상황·표현 50~100개. (2) 일반 회화: 다양한 주제·자유 대화. 여행 영어가 더 단기간에 효과적이고 실용적이에요. 여행 영어 → 자신감 → 일반 회화 학습 동기 강화의 사이클이 효과적입니다."},
+      {q: "여행 직전인데 한 달 안에 가능한가요?", a: "가능해요. 4주 집중 학습으로 기본 여행 영어 충분합니다. 핵심: (1) 1주차: 공항·교통 표현 50개. (2) 2주차: 호텔·식당·쇼핑. (3) 3주차: 관광·길 묻기·스몰토크. (4) 4주차: 응급 상황·문제 해결 + 종합 시뮬레이션. 매일 30분 + 주 2~3회 1:1 코칭이 답이에요. 시뮬레이션이 자신감의 결정적 도구입니다."},
+      {q: "원어민 발음이 아니라 의사 소통 가능할까요?", a: "100% 가능해요. 외국인은 다양한 액센트 (인도·중국·한국·일본 등)에 익숙해서 한국식 발음도 충분히 이해해요. 핵심: (1) 명확한 의도 전달. (2) 자신감 있는 톤. (3) 모르는 것 묻기 (\"Could you repeat?·Could you write it down?\"). (4) 천천히·명확히 말하기. 발음 100% 정확 X·자신감과 의도 전달 ○이 답이에요. 1:1 과외에서 자신감 코칭 추천."},
+      {q: "1:1 화상 수업으로 여행 영어 학습이 효과적인가요?", a: "매우 효과적이에요. (1) 학생 여행 일정·국가에 맞춘 맞춤 표현. (2) 실전 시뮬레이션 (강사가 항공사 직원·호텔 직원 역할). (3) 발음·자신감 코칭. (4) 응급 상황 시뮬레이션. (5) 여행 직전 4주 집중. 그룹 수업은 시뮬레이션 어렵고 일률 학습이지만 1:1은 50분 풀 시뮬레이션. 제나쌤 스터디핏은 여행 영어 단기 집중 커리큘럼으로 진행합니다."},
+    ],
+    related: [
+      {label: "영어 면접", href: "/language/english/purpose/interview/"},
+      {label: "영어 취업", href: "/language/english/purpose/job/"},
+      {label: "영어 회화 초급 과정", href: "/language/english/level/elementary/"},
+      {label: "영어 발음 교정", href: "/language/english/skill/pronunciation/"},
+      {label: "영어 회화 메인", href: "/language/english/"},
+    ],
+    tags: ["여행영어", "공항영어", "호텔영어", "해외여행", "자유여행", "1:1여행영어과외"],
+  },
+
+  "interview": {
+    badge: "영어 회화 · 목적별 수업",
+    h1: "영어 면접 1:1 맞춤 대비<br>외국계·이직·유학 면접 정복",
+    sub: "면접 · 자기소개 · 질문 답변 · 행동 면접 · 시뮬레이션",
+    breadcrumb: "영어 면접",
+    tag: "영어 면접",
+    intro: {
+      title: "외국계·이직·유학 면접에서 자신감. 자기소개 + 빈출 질문 답변 + 행동 면접 + 1:1 시뮬레이션으로 면접 합격",
+      body: "영어 면접은 합격의 결정적 도구예요. 한국 지원자가 영어 면접에서 정체되는 이유는 \"답변 통째 외움·즉답 약점·자신감 부족\" 3가지예요. 핵심은 \"답변 템플릿 + 행동 면접 (STAR) + 자신감 + 시뮬레이션\" 4박자입니다. 1:1 화상 영어 면접 수업에서는 학생의 지원 회사·포지션에 맞춘 답변 작성·시뮬레이션·녹음·첨삭을 종합 진행해요. 학습 단계: (1) 자기소개 + 핵심 답변 작성 → (2) 빈출 질문 50개 답변 → (3) 행동 면접 (STAR Method) → (4) 실전 시뮬레이션. 4~8주 집중 → \"외국계·이직·유학 면접 자유\" 가능. 매주 시뮬레이션 1~2회 + 1:1 코칭이 가장 효과적인 루틴이에요. 면접은 학습량보다 시뮬레이션이 핵심입니다. 면접 4주 전 집중 학습이 가장 효율적이에요."
+    },
+    phaseTitle: "단계별 영어 면접 마스터 로드맵",
+    phaseSub: "4단계 학습 흐름",
+    areaTitle: "영어 면접 핵심 4영역",
+    tierTitle: "면접 유형·목적별 처방",
+    phases: [
+      ["1단계", "자기소개 + 핵심 답변", "Tell me about yourself"],
+      ["2단계", "빈출 질문 50개", "장단점·이유·미래 계획"],
+      ["3단계", "행동 면접 (STAR)", "Situation·Task·Action·Result"],
+      ["4단계", "실전 시뮬레이션", "면접 + 1:1 첨삭"],
+    ],
+    areas: [
+      {name: "자기소개 + 핵심 답변 (Tell me about yourself)", body: "면접의 첫 1~2분이 합격을 결정해요. (1) 답변 구조: 현재 (Present) → 과거 (Past) → 미래 (Future). (2) 현재: \"I'm currently working as a ... at ...\". (3) 과거: \"Before that, I worked at ... where I ...\". (4) 미래: \"I'm interested in this role because ... and I'm excited to ...\". (5) 답변 길이: 1~2분 (60~120 단어). 본인 경력 + 회사 매칭 + 1:1 첨삭이 답이에요. 1:1 과외에서 답변 작성·녹음·첨삭 추천. 자기소개 = 면접 합격의 결정적 도구."},
+      {name: "빈출 질문 50개 답변 (Common Questions)", body: "면접 빈출 질문 정복이 답이에요. (1) 강점·약점: \"What are your strengths/weaknesses?·Can you give an example?\". (2) 이직 이유: \"Why are you leaving your current job?·Why this company?\". (3) 미래 계획: \"Where do you see yourself in 5 years?·What are your career goals?\". (4) 어려운 질문: \"Tell me about a difficult situation·How do you handle stress?·What's your biggest failure?\". (5) 회사·역할 관련: \"Why are you interested in this role?·What do you know about our company?·Why should we hire you?\". 빈출 50개 답변 + 1:1 첨삭이 답이에요. 1:1 과외에서 답변 작성·시뮬레이션 추천."},
+      {name: "행동 면접 — STAR Method", body: "외국계 면접의 표준 답변 방식이에요. (1) Situation (상황): 본인이 처한 상황 설명. (2) Task (과제): 본인의 역할·과제. (3) Action (행동): 본인이 취한 구체적 행동. (4) Result (결과): 결과·성과·교훈. (5) 빈출 STAR 질문: \"Tell me about a time when ...·Give me an example of ...·Describe a situation where ...\". 본인 경력에서 STAR 답변 5~10개 작성 + 1:1 첨삭이 답이에요. 외국계 면접 합격의 결정적 도구. 1:1 과외에서 STAR 답변 작성·시뮬레이션 추천."},
+      {name: "실전 시뮬레이션 + 1:1 첨삭", body: "면접은 시뮬레이션 없이 합격 어려워요. (1) 학생 지원 회사·포지션 시뮬레이션. (2) 강사가 면접관 역할 (인사·임원·기술 면접관). (3) 즉답·표정·발음 종합 훈련. (4) 답변 녹음·자기 피드백 + 1:1 첨삭. (5) 매주 시뮬레이션 1~2회. 면접 4주 전 집중 시뮬레이션이 답이에요. 학생의 실제 면접 케이스가 가장 효과적인 학습 자료. 1:1 과외만 가능한 학습 (그룹은 시뮬레이션 어려움). 면접 시뮬레이션이 합격의 결정적 도구예요."},
+    ],
+    tiers: [
+      {label: "신입·이직 (1~3년차)", body: "기본 자기소개 + 빈출 질문 50개. 매주 시뮬레이션 1회 + 답변 작성·첨삭. 추천 자료: \"Cracking the Interview\"·\"HBR Interview Tips\"·외국계 면접 영상. 4~8주 → 기본 면접 가능. 1:1 과외에서 답변 작성·발음·시뮬레이션 추천. 외국계 입사의 첫 단계예요."},
+      {label: "경력직 (5~10년차)", body: "STAR 답변 + 임원 면접 대비. 매주 시뮬레이션 2회 + 정밀 첨삭. 추천 자료: HBR·\"Bloomberg\"·임원 면접 영상. 4~8주 → 경력 면접·임원 면접 자유. 1:1 과외에서 STAR·임원 시뮬레이션 추천. 경력직의 표준 단계."},
+      {label: "임원 면접 (10년차+)", body: "고급 답변 + 전략적 사고 + 자신감. 매주 시뮬레이션 2~3회 + 정밀 첨삭. 추천 자료: HBR·\"WSJ\"·CEO 인터뷰. 4~8주 → 임원 면접 자유. 1:1 과외에서 임원 시뮬레이션·뉘앙스·전략적 답변 추천. 글로벌 임원의 결정적 도구."},
+      {label: "유학 면접 (학부·대학원)", body: "학업·연구 동기 + 미래 계획 + Why this school. 매주 시뮬레이션 2회 + 정밀 첨삭. 추천: 외국 대학 면접 영상·\"Common App Interview\"·유학 가이드. 4~8주 → 명문대 면접 자유. 1:1 과외에서 유학 면접 시뮬레이션·답변 첨삭 추천. 유학 합격의 결정적 도구."},
+    ],
+    mistakes: [
+      {title: "답변 통째 외움·자연스러움 X", body: "가장 흔한 실수예요. 답변 100% 외워서 면접 → 어색·로봇 같음·즉답 어려움. 답안 작성 → 핵심 키워드만 메모 → 자연스럽게 답변이 답이에요. (1) 답안 100% 작성. (2) 핵심 키워드 5~10개 메모. (3) 100번 연습. (4) 메모만 보고 답변. 자연스러운 답변 = 면접관 신뢰의 결정적 도구."},
+      {title: "회사 분석 X·일률 답변", body: "한국 지원자의 함정: 모든 면접에 같은 답변 사용. 회사·포지션 분석 X → \"Why this company?\"에 답변 못 함. 회사 홈페이지·LinkedIn·HBR·뉴스 분석 + 본인 경력 매칭 + 1:1 첨삭이 답이에요. 회사 분석 = 면접 합격의 결정적 도구."},
+      {title: "약점 질문 회피·완벽한 척", body: "\"What's your weakness?\"에 \"I'm a perfectionist·I work too hard\" 같은 가짜 답변 X. 솔직한 약점 + 개선 노력 + 결과가 답이에요. \"My weakness is ... I've been working on it by ... and have seen improvement in ...\". 솔직함 + 성장 마인드가 면접 합격의 결정적 도구. 1:1 과외에서 약점 답변 첨삭 추천."},
+    ],
+    checklist: [
+      "자기소개 1~2분 자유 발화 (Present·Past·Future)?",
+      "빈출 질문 50개 답변 + 1:1 첨삭?",
+      "STAR 답변 5~10개 작성 + 정착?",
+      "회사·포지션 분석 + 본인 경력 매칭?",
+      "면접 직전 시뮬레이션 + 자신감?",
+    ],
+    checklistTitle: "영어 면접 체크리스트",
+    checklistSub: "면접 4주 전 점검",
+    faqs: [
+      {q: "영어 면접 학습에 얼마나 걸리나요?", a: "현재 수준에 따라 달라요. (1) 영어 회화 가능 → 면접 자유: 4~8주 집중. (2) 영어 회화 어려움 → 회화 + 면접 동시: 3~6개월. 면접 직전 4주 집중 학습이 가장 효율적이에요. 매주 시뮬레이션 1~2회 + 1:1 코칭이 답입니다. 8주 시뮬레이션 → 자신감 폭증·합격률 ↑. 무료 체험 수업에서 진단 + 맞춤 학습 가능합니다."},
+      {q: "STAR Method 어떻게 작성하나요?", a: "STAR 4단계 구조: (1) Situation (상황·15초): \"In my previous role, we had a situation where ...·When I was working at ...\". (2) Task (과제·15초): \"My task was to ...·I was responsible for ...\". (3) Action (행동·30~60초): \"I took the following steps ...·First, I ...·Then, I ...·Finally, I ...\". (4) Result (결과·15~30초): \"As a result, ...·This led to ...·The outcome was ...\". 본인 경력에서 STAR 답변 5~10개 작성 + 1:1 첨삭이 답이에요. 외국계 면접 합격의 결정적 도구."},
+      {q: "면접에서 모르는 질문이 나오면 어떻게 답변하나요?", a: "답변 4단계가 답이에요. (1) 인정 + 시간 벌기 (\"That's an interesting question·Let me think for a moment·That's a great question\"). (2) 답변 시작 (\"My initial thought is ...·From my experience, I would say ...\"). (3) 본론 + 본인 의견. (4) 마무리 (\"Does that answer your question?\"). 모르면 인정 (\"I haven't thought about it before, but ...\"). 침묵 X·일단 답변이 답이에요. 1:1 과외에서 즉답 시뮬레이션 추천."},
+      {q: "외국계 면접 vs 한국 회사 영어 면접 차이?", a: "(1) 외국계: STAR Method 표준·행동 면접 위주·즉답 능력 중요. (2) 한국 회사 영어 면접: 자기소개·왜 우리 회사·기본 영어 능력. (3) 외국계는 더 깊이 있는 영어 + 전문성 평가, 한국 회사는 영어 능력 + 한국식 면접 결합. 본인 회사 분석 + 맞춤 답변이 답이에요. 1:1 과외에서 회사·포지션 정밀 분석 가능합니다."},
+      {q: "1:1 화상 수업으로 영어 면접 대비가 효과적인가요?", a: "매우 효과적이에요. (1) 학생 지원 회사·포지션 정밀 분석. (2) 답변 작성·녹음·첨삭. (3) 강사가 인사·임원·기술 면접관 역할 시뮬레이션. (4) 즉답·표정·발음 종합 훈련. (5) 면접 직전 4주 집중. 그룹 수업은 시뮬레이션 어렵지만 1:1은 50분 풀 시뮬레이션. 제나쌤 스터디핏은 면접 정밀 시뮬레이션·답변 첨삭으로 진행합니다."},
+    ],
+    related: [
+      {label: "영어 취업", href: "/language/english/purpose/job/"},
+      {label: "영어 에세이", href: "/language/english/purpose/essay/"},
+      {label: "영어 유학 준비", href: "/language/english/school/study-abroad/"},
+      {label: "영어 회화 고급 과정", href: "/language/english/level/advanced/"},
+      {label: "영어 회화 메인", href: "/language/english/"},
+    ],
+    tags: ["영어면접", "외국계면접", "이직면접", "유학면접", "STAR면접", "1:1면접영어과외"],
+  },
+
+  "job": {
+    badge: "영어 회화 · 목적별 수업",
+    h1: "영어 취업 1:1 맞춤 대비<br>외국계·해외 본사·이직 도전",
+    sub: "취업 · 영어 이력서 · 자기소개서 · 면접 · 영어 인증",
+    breadcrumb: "영어 취업",
+    tag: "영어 취업",
+    intro: {
+      title: "외국계·해외 본사·이직 종합 대비. 영어 이력서·자기소개서·면접·영어 인증까지 1:1 화상 수업으로 정복",
+      body: "영어 취업은 한국 직장인의 결정적 커리어 도전이에요. 외국계 입사·해외 본사 이직·글로벌 기업 진출의 핵심 관문이거든요. 한국 지원자가 영어 취업에서 정체되는 이유는 \"이력서 약점·자기소개서 미숙·면접 두려움·영어 인증 부족\" 4가지예요. 핵심은 \"영어 이력서 + 자기소개서 (Cover Letter) + 면접 + 영어 인증 (TOEIC·OPIc)\" 4박자입니다. 1:1 화상 영어 취업 수업에서는 학생의 목표 회사·포지션에 맞춘 종합 대비를 진행해요. 학습 단계: (1) 영어 이력서 (Resume·CV) 작성 → (2) 자기소개서 (Cover Letter) → (3) 면접 시뮬레이션 → (4) 영어 인증 시험 (TOEIC·OPIc·TOEFL). 3~6개월 학습 → \"외국계·해외 본사 입사 가능\" 수준. 매주 첨삭 + 시뮬레이션 1~2회 + 1:1 코칭이 가장 효과적인 루틴이에요. 영어 취업은 종합 준비가 답입니다."
+    },
+    phaseTitle: "단계별 영어 취업 마스터 로드맵",
+    phaseSub: "4단계 학습 흐름",
+    areaTitle: "영어 취업 핵심 4영역",
+    tierTitle: "경력·목적별 처방",
+    phases: [
+      ["1단계", "영어 이력서", "Resume·CV 작성"],
+      ["2단계", "자기소개서", "Cover Letter"],
+      ["3단계", "면접 시뮬레이션", "행동 면접·기술 면접"],
+      ["4단계", "영어 인증", "TOEIC·OPIc·TOEFL"],
+    ],
+    areas: [
+      {name: "영어 이력서 (Resume·CV) 작성", body: "영어 취업의 첫 관문이에요. (1) Resume (미국식): 1페이지·간결한 형식. (2) CV (Curriculum Vitae·유럽식): 2~3페이지·상세 형식. (3) 표준 구조: Header (이름·연락처) → Summary (3~5문장) → Experience (역순) → Education → Skills. (4) 핵심 표현: Action verbs (Led·Managed·Developed·Achieved·Implemented). (5) 한국식 함정: 너무 길게·불필요한 정보·한국식 직역. 영어 이력서 표준 + 1:1 첨삭이 답이에요. 1:1 과외에서 이력서 정밀 첨삭 추천. 합격의 결정적 첫 단계예요."},
+      {name: "자기소개서 (Cover Letter)", body: "이력서를 보완하는 핵심 영역이에요. (1) 표준 구조: Greeting → Introduction → Why This Role → Why You → Why This Company → Closing. (2) 길이: 1페이지 (300~400 단어). (3) 핵심 표현: \"I'm writing to express my interest in ...·I believe my experience in ... aligns with ...·I would welcome the opportunity to ...\". (4) 회사 매칭: 회사 분석 + 본인 경력 연결. (5) 매주 첨삭 + 회사별 맞춤. 1:1 과외에서 정밀 첨삭·회사별 맞춤 추천. 자기소개서 = 면접 호출의 결정적 도구예요."},
+      {name: "면접 시뮬레이션 (Interview)", body: "취업의 마지막 관문이에요. (1) 1차 면접 (HR·전화): 자기소개·기본 질문. (2) 2차 면접 (직속 상사·기술): STAR 답변·전문성. (3) 3차 면접 (임원): 비전·전략적 사고. (4) 케이스 면접 (컨설팅·전략): 비즈니스 케이스 분석. (5) 매주 시뮬레이션 1~2회 + 1:1 첨삭. 면접 4주 전 집중 학습이 답이에요. 1:1 과외에서 면접 정밀 시뮬레이션 추천. 면접 시뮬레이션 = 합격의 결정적 도구."},
+      {name: "영어 인증 시험 (TOEIC·OPIc·TOEFL)", body: "외국계·해외 본사의 영어 능력 증명이에요. (1) TOEIC: 외국계 800점 + ·해외 본사 850점 +. (2) OPIc: 외국계 IH 표준·해외 본사 AL. (3) TOEFL: 해외 본사 90점 + ·MBA 100점 +. (4) IELTS: 영연방 국가 본사 6.5+. (5) 회사·포지션별 요구 사항 분석 + 1:1 맞춤 학습. 영어 인증이 첫 관문이라 우선 준비가 답이에요. 1:1 과외에서 시험·취업 동시 대비 추천."},
+    ],
+    tiers: [
+      {label: "신입 (취업 준비생)", body: "이력서 + 자기소개서 + 면접 동시 준비. 매주 첨삭 1~2회 + 시뮬레이션. 추천 자료: \"Cracking the PM Interview\"·LinkedIn 채용 공고·HBR Career. 3~6개월 → 외국계 입사 가능. 1:1 과외에서 종합 대비·정밀 첨삭 추천. 첫 외국계 도전의 결정적 단계예요."},
+      {label: "이직 (3~7년차)", body: "경력 이력서 + STAR 답변 + 임원 면접. 매주 첨삭 2회 + 시뮬레이션. 추천 자료: HBR·\"Bloomberg\"·외국계 LinkedIn 분석. 3~6개월 → 외국계 이직 자유. 1:1 과외에서 경력·STAR·임원 시뮬레이션 추천. 객단가 높은 단계."},
+      {label: "임원 이직 (10년차+)", body: "고급 이력서 + 전략적 자기소개 + 임원 면접. 매주 정밀 첨삭 + 임원 시뮬레이션. 추천 자료: HBR·\"WSJ\"·임원 헤드헌터 자료. 3~6개월 → 임원 이직 자유. 1:1 과외에서 임원 정밀 시뮬레이션·전략 답변 추천. 글로벌 임원의 결정적 도구."},
+      {label: "해외 본사 진출", body: "글로벌 본사 + 비자 준비 + 문화 적응. 매주 정밀 첨삭 + 글로벌 시뮬레이션. 추천: HBR·\"WSJ\"·해외 직장 가이드·\"Linkedin Global\". 6개월~1년 → 해외 본사 진출 가능. 1:1 과외에서 글로벌 본사 정밀 대비·문화 적응 추천. 해외 진출의 결정적 도구."},
+    ],
+    mistakes: [
+      {title: "한국 이력서 직역·영어 표준 X", body: "가장 흔한 실수예요. 한국 이력서 (3~5페이지·자기소개·취미) 그대로 영역 → 외국계 거부. 영어 Resume는 1페이지·Action verbs·간결함이 답이에요. \"Led\"·\"Managed\"·\"Achieved\" 등 동사로 시작 + 수치로 결과 명시. 1:1 과외에서 이력서 정밀 첨삭 추천."},
+      {title: "회사·포지션 분석 X·일률 지원", body: "한국 지원자의 함정: 같은 이력서·자기소개서로 100개 회사 지원 → 합격률 0%. 회사 홈페이지·LinkedIn·HBR·뉴스 분석 + 본인 경력 매칭 + 회사별 맞춤 자기소개서가 답이에요. 회사 분석 = 합격의 결정적 도구."},
+      {title: "영어 인증만·실전 영어 X", body: "TOEIC 900·OPIc IH 받고도 면접 답변 못 하는 함정. 영어 인증 ≠ 실전 영어 능력. 시험 점수 + 회화·면접·이력서 영어 동시 학습이 답이에요. 1:1 과외에서 종합 대비 추천. 종합 영어 능력 = 외국계 합격의 결정적 도구."},
+    ],
+    checklist: [
+      "영어 이력서 (1페이지·Action verbs) 정착?",
+      "자기소개서 (1페이지·회사별 맞춤) 정착?",
+      "면접 시뮬레이션 (HR·기술·임원) 자유?",
+      "영어 인증 (TOEIC 800+·OPIc IH+) 충족?",
+      "회사·포지션 분석 + 본인 경력 매칭?",
+    ],
+    checklistTitle: "영어 취업 체크리스트",
+    checklistSub: "월 1회 점검",
+    faqs: [
+      {q: "영어 취업 학습에 얼마나 걸리나요?", a: "현재 수준에 따라 달라요. (1) 영어 회화 가능 + 영어 인증 보유: 3개월 (이력서·자기소개서·면접). (2) 영어 회화 가능 + 인증 X: 6개월 (회화 + 인증 + 취업). (3) 영어 회화 어려움: 1년+ (회화 → 인증 → 취업). 1:1 과외 + 매주 첨삭이 가장 빠른 길이에요. 무료 체험 수업에서 진단 + 맞춤 학습 가능합니다."},
+      {q: "외국계 입사에 필요한 영어 점수는?", a: "회사·포지션에 따라 달라요. (1) 일반 외국계: TOEIC 800·OPIc IM2~IH. (2) 외국계 본사: TOEIC 850·OPIc IH·TOEFL 90+. (3) 글로벌 임원: TOEFL 100+·OPIc AL·실전 영어 자유. (4) MBA·해외 본사: TOEFL 100+·IELTS 7.0+. 회사 채용 공고 분석 + 점수 + 실전 영어 동시 학습이 답이에요. 1:1 과외에서 회사별 맞춤 학습 가능합니다."},
+      {q: "영어 이력서 어떻게 작성하나요?", a: "영어 Resume 표준 4단계: (1) Header (3줄): 이름·이메일·전화·LinkedIn. (2) Summary (3~5문장): 본인 경력·강점·목표. (3) Experience (역순): 회사명·직책·기간 + 핵심 성과 3~5개 (Action verbs + 수치). (4) Education + Skills: 학교·자격증·기술. 1페이지·간결함이 답이에요. 한국식 길게 X·미국식 1페이지 ○. 1:1 과외에서 정밀 첨삭 추천. 합격의 결정적 첫 단계."},
+      {q: "Cover Letter (자기소개서)는 꼭 필요한가요?", a: "외국계는 90% 필수예요. 한국 회사는 선택이지만 외국계는 Cover Letter로 면접 호출 결정. 핵심: (1) 회사 분석 + 본인 경력 매칭. (2) 1페이지·300~400 단어. (3) 회사별 맞춤 (일률 X). (4) Action verbs + 구체적 성과. 1:1 과외에서 회사별 맞춤 첨삭 추천. Cover Letter = 면접 호출의 결정적 도구."},
+      {q: "1:1 화상 수업으로 영어 취업 대비가 효과적인가요?", a: "매우 효과적이에요. (1) 학생 목표 회사·포지션 정밀 분석. (2) 이력서·자기소개서 매주 첨삭. (3) 면접 시뮬레이션 (HR·기술·임원). (4) 영어 인증 시험 동시 대비. (5) 회사별 맞춤 학습. 그룹 수업·취업 학원은 일률 학습이지만 1:1은 본인 목표 회사 맞춤. 제나쌤 스터디핏은 영어 취업 종합 대비 (이력서·자기소개서·면접·인증)로 진행합니다."},
+    ],
+    related: [
+      {label: "영어 면접", href: "/language/english/purpose/interview/"},
+      {label: "영어 에세이", href: "/language/english/purpose/essay/"},
+      {label: "토익 (TOEIC) 대비", href: "/language/english/cert/toeic/"},
+      {label: "오픽 (OPIc) 대비", href: "/language/english/cert/opic/"},
+      {label: "영어 회화 메인", href: "/language/english/"},
+    ],
+    tags: ["영어취업", "외국계취업", "영어이력서", "Cover Letter", "외국계이직", "1:1취업영어과외"],
+  },
+
+  "essay": {
+    badge: "영어 회화 · 목적별 수업",
+    h1: "영어 에세이 1:1 맞춤 첨삭<br>유학·MBA·자기소개서 정복",
+    sub: "에세이 · 자기소개서 · Statement of Purpose · 매주 첨삭",
+    breadcrumb: "영어 에세이",
+    tag: "영어 에세이",
+    intro: {
+      title: "유학·MBA·자기소개서 영어 에세이 정밀 첨삭. 답안 구조 + 진정성 + 학술 영어로 합격 에세이 작성",
+      body: "영어 에세이는 유학·MBA·외국계 입사의 결정적 도구예요. 한국 지원자가 영어 에세이에서 정체되는 이유는 \"한국식 작문·논리 구조 약점·진정성 부족\" 3가지예요. 핵심은 \"답안 구조 + 진정성 + 학술 영어 + 매주 첨삭\" 4박자입니다. 1:1 화상 영어 에세이 수업에서는 학생의 목표 학교·프로그램에 맞춘 정밀 첨삭을 진행해요. 학습 단계: (1) 답안 구조 (Introduction·Body·Conclusion) → (2) 진정성 + 본인 이야기 → (3) 학술 영어 + 표현 다양화 → (4) 매주 정밀 첨삭. 3~6개월 학습 → \"명문대·MBA 합격 에세이\" 작성 가능. 매주 에세이 1편 작성 + 1:1 정밀 첨삭이 가장 효과적인 루틴이에요. 에세이는 학습량보다 첨삭 횟수가 결정적입니다. 본인이 \"좋은 답안\"이라 생각해도 첨삭 받으면 약점이 명확해져요."
+    },
+    phaseTitle: "단계별 영어 에세이 마스터 로드맵",
+    phaseSub: "4단계 학습 흐름",
+    areaTitle: "영어 에세이 핵심 4영역",
+    tierTitle: "에세이 유형·목적별 처방",
+    phases: [
+      ["1단계", "답안 구조", "Introduction·Body·Conclusion"],
+      ["2단계", "진정성", "본인 이야기 + 가치관"],
+      ["3단계", "학술 영어", "표현 다양화 + 정확성"],
+      ["4단계", "매주 첨삭", "정밀 첨삭 + 5~10번 수정"],
+    ],
+    areas: [
+      {name: "에세이 답안 구조 (Introduction → Body → Conclusion)", body: "에세이의 표준 5단락 구조예요. (1) Introduction (10~15%): Hook (인상적 시작) + Thesis (주장). (2) Body (70~80%): 3~5단락 + 각 단락 한 핵심 메시지 + 데이터·예시. (3) Conclusion (10~15%): 요약 + 의미 + 미래. (4) 단락 구조 (PEEL): Point (핵심) → Evidence (근거) → Explanation (설명) → Link (연결). (5) 길이: Common App 650단어·SOP 500~1000단어·MBA 800~1200단어. 답안 구조 + 1:1 첨삭이 답이에요. 1:1 과외에서 구조 학습·정밀 첨삭 추천. 합격 에세이의 결정적 첫 단계."},
+      {name: "진정성 (Authenticity) — 본인 이야기", body: "에세이 합격의 50%는 진정성이에요. (1) 본인 경험 + 진실: 가짜 이야기 X·실제 경험 ○. (2) 성장 과정: 도전·실패·교훈·성장. (3) 가치관: 본인이 중요시하는 가치 + 근거. (4) 미래 계획: 학교·프로그램 + 본인 미래 + 사회 기여. (5) 한국식 \"착한 학생\" X·본인의 독특함 ○. 본인만의 이야기 + 진정성 + 1:1 첨삭이 답이에요. 1:1 과외에서 진정성·본인 이야기 발굴 추천. 진정성 = 합격의 결정적 도구."},
+      {name: "학술 영어 (Academic English) + 표현 다양화", body: "에세이의 영어 정확성이 답이에요. (1) 학술 어휘: implement·undertake·analyze·examine·investigate·demonstrate·establish. (2) 동의어 다양화: \"good\" → \"effective·beneficial·valuable·meaningful·significant\". (3) 연결어: Furthermore·Moreover·However·Nevertheless·Therefore·Consequently. (4) 복잡한 문장 구조: 단순 문장 X·복합 문장 ○ (관계대명사·종속절). (5) 한국식 직역 X·영어 학술 표현 ○. 매주 에세이 + 1:1 첨삭이 답이에요. 1:1 과외에서 학술 표현 학습·정밀 첨삭 추천."},
+      {name: "매주 첨삭 + 5~10번 수정", body: "에세이는 첨삭 횟수가 결정적이에요. (1) 1차 작성: 본인 답안 100% 작성. (2) 1차 첨삭: 구조·논리 점검. (3) 2차 수정: 단락 재구성. (4) 2차 첨삭: 표현·문법 점검. (5) 3~5차 수정: 문장 다듬기·뉘앙스. (6) 최종 첨삭: 미세 조정. 합격 에세이는 5~10번 수정이 표준이에요. 1:1 과외에서 매주 정밀 첨삭이 답이에요. 본인이 \"좋은 답안\"이라 생각해도 첨삭 받으면 약점이 명확해져요. 첨삭 = 합격 에세이의 결정적 도구."},
+    ],
+    tiers: [
+      {label: "유학 학부 (Common App)", body: "본인 이야기 + 성장·가치관 에세이 (650단어). 매주 첨삭 1~2회 + 5~10번 수정. 추천 자료: Common App·\"50 Successful Harvard Application Essays\"·외국 학생 합격 에세이. 3~6개월 → 명문대 합격 에세이. 1:1 과외에서 정밀 첨삭·진정성 발굴 추천. 학부 합격의 결정적 도구예요."},
+      {label: "유학 대학원·MBA (Statement of Purpose)", body: "학업 동기 + 연구 계획 + 미래 (500~1500단어). 매주 첨삭 1~2회 + 정밀 수정. 추천 자료: \"Graduate Admissions Essays\"·MBA 합격 에세이·외국 대학 가이드. 3~6개월 → 명문대 대학원·MBA 합격. 1:1 과외에서 학술 영어·정밀 첨삭 추천. 대학원 합격의 결정적 도구."},
+      {label: "외국계 자기소개서 (Cover Letter)", body: "본인 경력 + 회사 매칭 (300~400단어). 매주 첨삭 1~2회 + 회사별 맞춤. 추천 자료: HBR·LinkedIn 채용 공고·외국계 합격 사례. 3~6개월 → 외국계 합격. 1:1 과외에서 회사별 맞춤·정밀 첨삭 추천. 외국계 합격의 결정적 도구."},
+      {label: "고급 에세이 (Fellowship·Scholarship)", body: "장학금·펠로우십·박사 지원 에세이. 매주 정밀 첨삭 + 5~10번 수정. 추천: 합격 사례·\"Fulbright Scholarship Guide\"·박사 SOP 가이드. 3~6개월 → 장학금·펠로우십 합격. 1:1 과외에서 고급 학술 영어·정밀 첨삭·뉘앙스 추천. 장학금의 결정적 도구."},
+    ],
+    mistakes: [
+      {title: "한국식 작문·\"착한 학생\" 답안", body: "가장 흔한 실수예요. \"부모님 말 잘 듣고·열심히 공부하고·좋은 학생\" 한국식 답안 → 외국 입학사정관에게 어색함. 영어 에세이는 본인의 독특함·도전·실패·성장이 답이에요. 모든 학생이 \"착한 학생\" → 차별화 X. 본인만의 이야기 + 진정성 + 1:1 첨삭이 답이에요."},
+      {title: "추상적 표현·구체성 X", body: "한국 지원자의 함정: \"I learned a lot·I grew as a person·It was a great experience\" 추상 표현 반복. 입학사정관은 구체성·수치·실제 경험을 원해요. \"As a result, I improved my team's productivity by 30%\" 같은 구체성이 답입니다. 1:1 과외에서 구체성 학습 추천."},
+      {title: "첨삭 1번·완성 함정", body: "한국 지원자 80%가 에세이 1번 작성 후 제출. 합격 에세이는 5~10번 수정이 표준이에요. 매주 첨삭 + 5~10번 수정 + 1:1 정밀 코칭이 답입니다. 첨삭 횟수 = 합격의 결정적 도구. 1:1 과외에서 매주 정밀 첨삭 추천."},
+    ],
+    checklist: [
+      "에세이 답안 구조 (Introduction·Body·Conclusion) 정착?",
+      "본인 이야기 + 진정성 + 가치관?",
+      "학술 영어 + 표현 다양화?",
+      "회사·학교·프로그램 분석 + 본인 매칭?",
+      "매주 첨삭 + 5~10번 수정?",
+    ],
+    checklistTitle: "영어 에세이 체크리스트",
+    checklistSub: "주 1회 점검",
+    faqs: [
+      {q: "영어 에세이 학습에 얼마나 걸리나요?", a: "현재 수준에 따라 달라요. (1) 영어 회화·중급 + 첨삭 받은 경험 X: 3~6개월. (2) 영어 회화·고급 + 첨삭 경험: 1~3개월. (3) 영어 회화·초급: 6개월~1년 (회화 + 에세이 동시). 매주 에세이 1편 + 1:1 첨삭 + 5~10번 수정이 답이에요. 합격 에세이는 \"많이 쓰기\"보다 \"많이 수정하기\"가 결정적이에요. 무료 체험 수업에서 진단 가능합니다."},
+      {q: "Common App Essay (650단어) 어떻게 작성하나요?", a: "Common App 4단계 구조: (1) Hook (50~100단어): 인상적 장면·질문·충격적 사실. (2) Setup (100~150단어): 배경 설명·상황. (3) Body (300~400단어): 도전·행동·성장 (구체적 경험). (4) Conclusion (50~100단어): 의미·교훈·미래. 본인의 독특한 경험 + 진정성 + 1:1 정밀 첨삭이 답이에요. 5~10번 수정이 표준. 1:1 과외에서 정밀 첨삭 추천. 합격 에세이의 결정적 도구."},
+      {q: "Statement of Purpose (대학원·MBA) 어떻게 작성하나요?", a: "SOP 5단계 구조: (1) Introduction (15%): 학업 분야 관심 + 본인 배경. (2) Academic Background (20%): 학부·연구·논문. (3) Professional Experience (20%): 직장 경험 + 성과. (4) Why This Program (25%): 학교·교수·프로그램 분석 + 본인 매칭. (5) Future Goals (20%): 졸업 후 계획 + 사회 기여. 학술 영어 + 진정성 + 1:1 첨삭이 답이에요. 5~10번 수정이 답입니다."},
+      {q: "에세이가 너무 어색해요. 어떻게 향상시키나요?", a: "에세이는 첨삭 없이는 절대 향상 안 돼요. 핵심: (1) 답안 구조 (Introduction·Body·Conclusion) 학습. (2) 진정성 + 본인 이야기. (3) 학술 영어 + 표현 다양화. (4) 매주 1편 작성 + 1:1 정밀 첨삭. (5) 5~10번 수정. 본인이 \"좋은 답안\"이라 생각해도 첨삭 받으면 약점 명확해져요. 1:1 과외에서 정밀 첨삭이 답이에요. 무료 체험 수업에서 첨삭 진단 가능."},
+      {q: "1:1 화상 수업으로 영어 에세이 학습이 효과적인가요?", a: "매우 효과적이에요. (1) 학생 목표 학교·프로그램 정밀 분석. (2) 매주 에세이 정밀 첨삭. (3) 5~10번 수정 코칭. (4) 학술 영어 + 진정성 학습. (5) 합격 에세이 사례 분석. 그룹 수업·작문 학원은 일률 학습이지만 1:1은 본인 에세이 정밀 첨삭. 제나쌤 스터디핏은 영어 에세이 정밀 첨삭으로 진행합니다. 합격 에세이의 결정적 도구."},
+    ],
+    related: [
+      {label: "영어 면접", href: "/language/english/purpose/interview/"},
+      {label: "영어 취업", href: "/language/english/purpose/job/"},
+      {label: "영어 유학 준비", href: "/language/english/school/study-abroad/"},
+      {label: "토플 (TOEFL) 대비", href: "/language/english/cert/toefl/"},
+      {label: "영어 회화 메인", href: "/language/english/"},
+    ],
+    tags: ["영어에세이", "Common App", "Statement of Purpose", "MBA에세이", "유학에세이", "1:1에세이첨삭"],
+  },
+};
+
+
 const KOREAN_PERFORM_DATA = {
   "descriptive": {
     badge: "수행평가 & 서술형",
@@ -33345,6 +33608,7 @@ const SUBJECT_CATEGORY_META = {
     "level": { label: "수준별 과정", data: () => ENGLISH_LANG_LEVEL_DATA },
     "school": { label: "내신·진학·유학", data: () => ENGLISH_LANG_SCHOOL_DATA },
     "biz": { label: "비즈니스 영어", data: () => ENGLISH_LANG_BIZ_DATA },
+    "purpose": { label: "목적별 수업", data: () => ENGLISH_LANG_PURPOSE_DATA },
   },
 };
 
@@ -34746,6 +35010,17 @@ Sitemap: ${BASE}/sitemap-schools-3.xml
       const bizKey = engLangBizMatch[1];
       if (ENGLISH_LANG_BIZ_DATA[bizKey]) {
         return new Response(buildKoreanHabitPage(bizKey, "biz", "english_lang"), {
+          headers: { "Content-Type": "text/html;charset=UTF-8" }
+        });
+      }
+    }
+
+    // 영어 회화 목적별 수업 페이지 (/language/english/purpose/{slug}/)
+    const engLangPurposeMatch = path.match(/^\/language\/english\/purpose\/([^\/]+)\/?$/);
+    if (engLangPurposeMatch) {
+      const purposeKey = engLangPurposeMatch[1];
+      if (ENGLISH_LANG_PURPOSE_DATA[purposeKey]) {
+        return new Response(buildKoreanHabitPage(purposeKey, "purpose", "english_lang"), {
           headers: { "Content-Type": "text/html;charset=UTF-8" }
         });
       }
