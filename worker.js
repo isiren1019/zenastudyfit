@@ -17288,6 +17288,10 @@ const LANGUAGE_PAGE_READY = {
     "school/intl-school":  "/language/english/school/intl-school/",
     "school/foreign-lang": "/language/english/school/foreign-lang/",
     "school/study-abroad": "/language/english/school/study-abroad/",
+    "biz/email":           "/language/english/biz/email/",
+    "biz/meeting":         "/language/english/biz/meeting/",
+    "biz/negotiation":     "/language/english/biz/negotiation/",
+    "biz/presentation":    "/language/english/biz/presentation/",
   },
   japanese: {},
   chinese: {},
@@ -32577,6 +32581,265 @@ const ENGLISH_LANG_SCHOOL_DATA = {
 };
 
 
+// ============================================================
+// 영어 회화 — 비즈니스 영어 데이터 (LANG/BIZ)
+// 이메일 · 미팅 · 협상 · 프레젠테이션
+// ============================================================
+const ENGLISH_LANG_BIZ_DATA = {
+  "email": {
+    badge: "영어 회화 · 비즈니스 영어",
+    h1: "비즈니스 이메일 1:1 맞춤 영어<br>외국 동료·바이어와 명확한 소통",
+    sub: "비즈니스 이메일 · 정중함 · 명확성 · 템플릿 · 첨삭",
+    breadcrumb: "비즈니스 이메일 영어",
+    tag: "비즈니스 이메일 영어",
+    intro: {
+      title: "외국 동료·바이어·고객과 정중하고 명확한 영어 이메일 작성. 템플릿 + 매주 첨삭으로 직장인 영어 글쓰기 능력 향상",
+      body: "비즈니스 이메일은 직장인 영어의 시작이자 가장 중요한 영역이에요. 한국 직장인이 영어 이메일에서 정체되는 이유는 \"한국식 직역·정중함 부족·명확성 약점\" 3가지예요. 핵심은 \"비즈니스 이메일 템플릿 + 정중함 + 명확성 + 매주 첨삭\" 4박자입니다. 1:1 화상 비즈니스 이메일 수업에서는 학생의 실제 업무 상황·이메일 유형에 맞춘 템플릿을 학습하고, 매주 작성한 이메일을 첨삭해요. 학습 단계: (1) 이메일 구조 (Subject·Greeting·Body·Closing) → (2) 빈출 표현 50개 (요청·확인·사과·감사) → (3) 정중함 단계별 (formal·semi-formal·casual) → (4) 실전 이메일 + 첨삭. 3~6개월 학습 → \"외국 동료와 자유 이메일 소통\" 가능. 매주 이메일 3~5개 작성 + 1:1 첨삭이 가장 효과적인 루틴이에요. 비즈니스 이메일은 학습량보다 실전 작성·첨삭이 핵심입니다."
+    },
+    phaseTitle: "단계별 비즈니스 이메일 마스터 로드맵",
+    phaseSub: "4단계 학습 흐름",
+    areaTitle: "비즈니스 이메일 핵심 4영역",
+    tierTitle: "직급·상황별 학습 처방",
+    phases: [
+      ["1단계", "이메일 구조", "Subject·Greeting·Body·Closing"],
+      ["2단계", "빈출 표현 50개", "요청·확인·사과·감사"],
+      ["3단계", "정중함 단계", "formal·semi-formal·casual"],
+      ["4단계", "실전 + 첨삭", "매주 이메일 3~5개 첨삭"],
+    ],
+    areas: [
+      {name: "이메일 구조 (Subject → Greeting → Body → Closing)", body: "비즈니스 이메일의 표준 4단계 구조예요. (1) Subject (제목): 한 문장·핵심 명확 (예: \"Q3 Budget Review - Need Your Input by Friday\"). (2) Greeting (인사): 정중함 단계 (Dear Mr./Ms. Smith·Hi John·Hello Team). (3) Body (본론): 인사 → 목적 → 세부 → 요청·결론. 3~5단락. (4) Closing (마무리): Best regards·Kind regards·Thank you·Sincerely. 한국식 \"안녕하세요. ~입니다.\" 직역 X. 영어 비즈니스 표준 구조가 답이에요. 1:1 과외에서 구조 + 템플릿 학습 추천. 첫 단계가 비즈니스 이메일 자신감의 시작."},
+      {name: "빈출 표현 50개 (Common Phrases)", body: "비즈니스 이메일 빈출 표현 정복이 답이에요. (1) 요청: \"Could you please ...?·Would you be able to ...?·I would appreciate it if you could ...\". (2) 확인: \"Just to confirm·I'd like to confirm·Could you confirm ...?\". (3) 사과: \"I apologize for ...·I'm sorry for the delay·Please accept my apologies\". (4) 감사: \"Thank you for ...·I appreciate ...·Thanks for your prompt response\". (5) 답변 약속: \"I will get back to you·I'll follow up·I'll keep you posted\". 빈출 50개 표현 정착이 정중하고 명확한 영어 이메일의 결정적 도구예요. 1:1 과외에서 빈출 표현 학습·즉시 사용 추천."},
+      {name: "정중함 단계 (Formality Levels)", body: "상대·상황별 정중함 단계 조절이 핵심이에요. (1) Formal (외부·고위직·바이어): \"Dear Mr. Smith·I hope this email finds you well·Sincerely\". (2) Semi-formal (동료·일반 거래처): \"Hi John·Thanks for your email·Best regards\". (3) Casual (가까운 동료·내부): \"Hi·Thanks·Cheers\". (4) 한국 직장인의 함정: 모든 이메일을 Formal로 → 어색함. 상황별 적절한 단계 선택이 답이에요. 1:1 과외에서 학생 회사·업무 상황 맞춤 정중함 단계 학습 추천. 정중함 = 비즈니스 신뢰의 결정적 도구예요."},
+      {name: "실전 이메일 + 매주 첨삭", body: "이메일은 첨삭 없이는 점수 안 올라요. (1) 매주 학생이 작성한 실제 이메일 3~5개 첨삭. (2) 문법·어휘·정중함·명확성·구조 전 영역 점검. (3) 더 자연스러운 영어 표현 제안. (4) 한국식 직역 → 영어 표현 변환. (5) 6주 첨삭 → 큰 변화 체감. 학생의 실제 업무 이메일이 가장 효과적인 학습 자료예요. 1:1 과외에서 실시간 첨삭·이메일 작성법 코칭 추천. 매주 첨삭이 비즈니스 이메일의 결정적 도구입니다."},
+    ],
+    tiers: [
+      {label: "신입·주니어 (직장 영어 입문)", body: "이메일 구조 + 기초 표현 정착 단계. 매주 이메일 2~3개 작성 + 1:1 첨삭. 추천 자료: \"비즈니스 영어 이메일 100\"·\"Email English\" by Paul Emmerson·\"HBR Communication\". 3개월 → 기본 이메일 자유 작성. 1:1 과외에서 기초 구조·빈출 표현·첨삭 추천. 신입 직장인의 첫 영어 도전이에요."},
+      {label: "주임·대리 (이메일 빈도 ↑)", body: "다양한 상황별 이메일 + 정중함 단계 정착. 매주 이메일 3~5개 + 1:1 첨삭. 추천 자료: \"Effective Business Communication\"·\"HBR Email Tips\"·외국 동료 이메일 분석. 6개월 → 자연스러운 이메일·다양한 상황 대응. 1:1 과외에서 정중함 단계·실전 첨삭 추천. 직장 영어의 표준 단계예요."},
+      {label: "과장·차장 (대외 협상·고위직 소통)", body: "외부 바이어·고위직 이메일 + 협상 이메일. 매주 이메일 5~7개 + 정밀 첨삭. 추천 자료: \"HBR\"·\"Bloomberg\"·\"Financial Times\"·실제 비즈니스 이메일 분석. 6~12개월 → 외부 협상·고위직 소통 자유. 1:1 과외에서 외부 협상·고위직 이메일·정밀 첨삭 추천. 객단가 높은 단계예요."},
+      {label: "임원·CEO (글로벌 무대)", body: "글로벌 본사·이사회·언론 대응. 매주 이메일 정밀 + 미디어 대응. 추천: \"Wall Street Journal\"·\"Economist\"·CEO 인터뷰 분석. 1:1 과외에서 글로벌 무대 정밀 첨삭·뉘앙스·전문 영역 추천. 일반 학습보다 \"실전 활용\"이 핵심. 글로벌 임원의 결정적 도구예요."},
+    ],
+    mistakes: [
+      {title: "한국식 직역·\"안녕하세요\" 영어 변환", body: "가장 흔한 실수예요. \"안녕하세요. ~입니다.\"를 \"Hello. I am ~.\"으로 직역. 영어 비즈니스 이메일은 한국식과 다른 표준 구조예요. \"Dear Mr. Smith·I hope this email finds you well·I'm writing to ...\". 영어 표준 구조 학습 + 1:1 첨삭이 답이에요. 한국식 직역 = 어색함의 결정적 원인."},
+      {title: "모든 이메일 Formal·어색함", body: "한국 직장인 70%가 모든 이메일을 Formal (\"Dear Mr.·Sincerely\")로 작성. 가까운 동료에게도 너무 거리감. 상황별 정중함 단계 (Formal·Semi-formal·Casual) 조절이 답이에요. 1:1 과외에서 상황별 학습 추천. 정중함 단계 = 비즈니스 신뢰의 결정적 도구."},
+      {title: "이메일 너무 길거나 짧음", body: "한국 직장인의 양극단 함정: (1) 너무 길게 (한국 보고서 스타일·5단락+). (2) 너무 짧게 (한 문장·정보 부족). 비즈니스 이메일은 3~5단락·핵심 명확이 답이에요. 매주 첨삭에서 길이 조절 학습 추천. 적절한 길이가 비즈니스 신뢰의 결정적 도구."},
+    ],
+    checklist: [
+      "이메일 구조 (Subject·Greeting·Body·Closing) 정착?",
+      "빈출 표현 50개 (요청·확인·사과·감사) 자유 사용?",
+      "정중함 단계 (Formal·Semi-formal·Casual) 상황별 조절?",
+      "한국식 직역 X·영어 비즈니스 표준 구조?",
+      "매주 실제 업무 이메일 3~5개 + 1:1 첨삭?",
+    ],
+    checklistTitle: "비즈니스 이메일 체크리스트",
+    checklistSub: "월 1회 점검",
+    faqs: [
+      {q: "영어 이메일이 너무 어색해요. 어떻게 향상시키나요?", a: "이메일은 첨삭 없이는 절대 향상 안 돼요. 핵심: (1) 영어 비즈니스 표준 구조 학습. (2) 빈출 표현 50개 정착. (3) 정중함 단계 조절. (4) 매주 실제 업무 이메일 3~5개 작성 + 1:1 첨삭. (5) 한국식 직역 → 영어 표현 변환 코칭. 6주 첨삭 → 큰 변화 체감해요. 1:1 과외에서 정밀 첨삭이 답입니다."},
+      {q: "Dear Mr.·Hi 어느 게 맞나요?", a: "상황·상대에 따라 달라요. (1) Dear Mr./Ms.: 외부·고위직·첫 인사·중요한 거래처 (Formal). (2) Hi/Hello: 동료·자주 소통하는 거래처 (Semi-formal). (3) Hi·이름만: 가까운 동료·내부 (Casual). 한국 직장인의 함정은 모든 이메일을 Dear로 시작 → 가까운 동료에게 거리감. 상황별 조절이 답이에요. 무료 체험 수업에서 학생 업무 상황 분석 + 맞춤 학습 가능합니다."},
+      {q: "외국인이 보낸 이메일에 답변이 어려워요. 어떻게 하나요?", a: "답변 4단계가 답이에요. (1) 인사 + 답변 시작 (\"Thanks for your email·Hi John·Thank you for reaching out\"). (2) 받은 이메일 핵심 확인 (\"Regarding your question about ...·As for the project ...\"). (3) 답변 본론 (요청·정보·의견). (4) 마무리 (\"Let me know if you have any questions·Looking forward to your reply·Best regards\"). 답변 템플릿 + 1:1 첨삭이 답이에요. 1:1 과외에서 답변 작성법 코칭 추천."},
+      {q: "비즈니스 이메일 학습에 얼마나 걸리나요?", a: "현재 수준에 따라 달라요. (1) 영어 회화 가능 → 비즈니스 이메일 자유: 3~6개월. (2) 영어 회화 어려움 → 회화 + 이메일 동시: 1년+. 매주 이메일 3~5개 작성 + 1:1 첨삭이 가장 빠른 길이에요. 6주 첨삭 → 어색함 큰 폭 감소. 3개월 → 자연스러운 이메일. 6개월 → 다양한 상황 대응 가능."},
+      {q: "1:1 화상 수업으로 비즈니스 이메일 학습이 효과적인가요?", a: "매우 효과적이에요. (1) 학생 실제 업무 이메일 정밀 첨삭. (2) 한국식 직역 → 영어 표현 변환. (3) 정중함 단계·구조 학습. (4) 매주 정기 첨삭으로 누적 학습. (5) 본인 업계·업무 맞춤. 그룹 수업이나 학원은 일률 학습이지만 1:1은 실제 업무 이메일이 학습 자료. 제나쌤 스터디핏은 비즈니스 이메일 정밀 첨삭으로 진행합니다. 무료 체험 수업에서 진단 가능합니다."},
+    ],
+    related: [
+      {label: "비즈니스 미팅·회의", href: "/language/english/biz/meeting/"},
+      {label: "비즈니스 협상", href: "/language/english/biz/negotiation/"},
+      {label: "영어 프레젠테이션", href: "/language/english/biz/presentation/"},
+      {label: "영어 회화 고급 과정", href: "/language/english/level/advanced/"},
+      {label: "영어 회화 메인", href: "/language/english/"},
+    ],
+    tags: ["비즈니스이메일", "영어이메일", "직장영어", "영어첨삭", "이메일템플릿", "1:1비즈니스영어과외"],
+  },
+
+  "meeting": {
+    badge: "영어 회화 · 비즈니스 영어",
+    h1: "영어 미팅·회의 1:1 맞춤 대비<br>외국 동료와 자신감 있는 회의",
+    sub: "미팅 · 회의 · 발언 · 의견 표현 · 질문·답변 · 화상 회의",
+    breadcrumb: "영어 미팅·회의",
+    tag: "영어 미팅·회의",
+    intro: {
+      title: "외국 동료·해외 본사와의 영어 미팅·회의에서 자신감 있게 발언. 발언 템플릿 + 시뮬레이션으로 회의 영어 정복",
+      body: "영어 미팅·회의는 직장인의 가장 부담스러운 영역이에요. 한국 직장인이 영어 회의에서 침묵하는 이유는 \"발언 두려움·즉답 어려움·전문 표현 부족\" 3가지예요. 핵심은 \"회의 발언 템플릿 + 즉답 훈련 + 전문 표현 + 시뮬레이션\" 4박자입니다. 1:1 화상 영어 회의 수업에서는 학생의 실제 회의 상황을 시뮬레이션하며 발언 자신감을 키워요. 학습 단계: (1) 회의 표준 표현 (인사·동의·반대·요청) → (2) 발언 템플릿 (의견·질문·답변) → (3) 화상 회의 영어 (Zoom·Teams) → (4) 실전 시뮬레이션. 3~6개월 학습 → \"30분 영어 회의 자유 발언\" 가능. 매주 회의 시뮬레이션 1~2회 + 1:1 코칭이 가장 효과적인 루틴이에요. 회의 영어는 학습량보다 실전 시뮬레이션이 핵심입니다."
+    },
+    phaseTitle: "단계별 영어 회의 마스터 로드맵",
+    phaseSub: "4단계 학습 흐름",
+    areaTitle: "영어 회의 핵심 4영역",
+    tierTitle: "회의 유형·직급별 처방",
+    phases: [
+      ["1단계", "표준 표현", "인사·동의·반대·요청"],
+      ["2단계", "발언 템플릿", "의견·질문·답변"],
+      ["3단계", "화상 회의", "Zoom·Teams 영어"],
+      ["4단계", "실전 시뮬레이션", "회의 상황 + 1:1 코칭"],
+    ],
+    areas: [
+      {name: "회의 표준 표현 (Standard Phrases)", body: "회의 시작·중간·마무리 표준 표현이 답이에요. (1) 시작: \"Let's get started·Thanks everyone for joining·Let's begin with the agenda\". (2) 의견: \"In my view·From my perspective·I'd like to point out that·I'd like to add\". (3) 동의: \"I agree·That's a great point·I see your point·That makes sense\". (4) 반대: \"I see it differently·I'd like to push back on that·I'm not sure I agree·I have a concern about\". (5) 마무리: \"Let me summarize·To wrap up·Action items are·Thank you all\". 회의 빈출 100개 표현 정착이 답이에요. 1:1 과외에서 표준 표현 + 즉시 사용 추천."},
+      {name: "발언 템플릿 (의견·질문·답변)", body: "회의에서 자신감 있는 발언이 답이에요. (1) 의견 발언: \"I'd like to share my thoughts on ...·From our team's perspective·Based on the data\". (2) 질문: \"Could you elaborate on ...?·What do you mean by ...?·How does this affect ...?·What's the timeline?\". (3) 답변: \"Great question. Let me explain ...·That's a fair point. My response is ...·I'll get back to you on that\". (4) 모르는 것: \"I don't have the data on hand·Let me check and get back to you·I'll need to follow up on that\". 발언 템플릿 정착이 회의 자신감의 결정적 도구예요. 1:1 과외에서 시뮬레이션·즉답 훈련 추천."},
+      {name: "화상 회의 영어 (Zoom·Teams)", body: "코로나 이후 화상 회의가 표준이에요. (1) 시작: \"Can everyone hear me?·Let me share my screen·You're on mute·Can you hear me now?\". (2) 기술 문제: \"My connection is unstable·I'm having technical issues·Can we restart the call?\". (3) 발언 신호: \"I'd like to add something·May I jump in?·I have a quick question\". (4) 마무리: \"Let me drop a link in the chat·I'll send the recording·Thanks for the meeting\". 화상 회의 빈출 50개 표현 정착이 답이에요. 1:1 과외에서 실전 화상 회의 시뮬레이션 추천. 직장인 영어의 결정적 도구입니다."},
+      {name: "실전 시뮬레이션 + 1:1 코칭", body: "회의 영어는 시뮬레이션 없이 향상 X. (1) 학생 실제 회의 상황 (주간·월간·프로젝트·1:1) 시뮬레이션. (2) 강사가 외국 동료·해외 본사·임원 역할. (3) 발언·즉답·반박·질문 종합 훈련. (4) 발음·표현·자신감 즉시 첨삭. (5) 매주 시뮬레이션 1~2회 + 1:1 코칭. 학생의 실제 업무 회의가 가장 효과적인 학습 자료예요. 1:1 과외만 가능한 학습 (그룹은 시간 제약·맞춤 어려움). 회의 시뮬레이션이 직장인 영어 자신감의 결정적 도구예요."},
+    ],
+    tiers: [
+      {label: "신입·주니어 (회의 참여 단계)", body: "회의 표준 표현 + 기초 발언. 매주 시뮬레이션 1회 + 표현 학습. 추천 자료: \"Business English for Meetings\"·\"HBR Meeting Tips\"·외국 동료 회의 영상 분석. 3~6개월 → 회의 기본 발언 가능. 1:1 과외에서 표준 표현·기초 발언·첨삭 추천. 직장 영어의 첫 단계예요."},
+      {label: "주임·대리 (회의 빈도 ↑)", body: "발언 템플릿 + 자신감 정착. 매주 시뮬레이션 2회 + 즉답 훈련. 추천 자료: \"Effective Meeting English\"·HBR·외국 동료와의 실제 회의. 6개월~1년 → 의견 표현·질문·답변 자유. 1:1 과외에서 발언 템플릿·즉답·시뮬레이션 추천. 회의 적극 참여 단계."},
+      {label: "과장·차장 (회의 주도)", body: "회의 주도 + 협상 + 결정. 매주 시뮬레이션 2~3회 + 정밀 첨삭. 추천 자료: HBR·\"Bloomberg\"·CEO 회의 영상 분석. 6개월~1년 → 회의 주도·결정 자유. 1:1 과외에서 회의 주도·협상·임원 시뮬레이션 추천. 객단가 높은 단계."},
+      {label: "임원·CEO (글로벌 임원진)", body: "이사회·해외 본사·미디어 인터뷰. 매주 시뮬레이션 정밀 + 미디어 대응. 추천: TED·\"60 Minutes\"·CEO 인터뷰·이사회 회의록. 1:1 과외에서 글로벌 임원 시뮬레이션·정밀 첨삭·뉘앙스 추천. 일반 학습보다 \"실전 시뮬레이션\"이 핵심. 글로벌 임원의 결정적 도구."},
+    ],
+    mistakes: [
+      {title: "회의에서 침묵·발언 회피", body: "가장 흔한 실수예요. 영어 회의에서 한국 직장인 80%가 침묵. \"틀리면 안 된다·발음이 안 좋다\" 강박이 침묵의 원인. 발언 템플릿 + 1:1 시뮬레이션 + 자신감 코칭이 답이에요. 짧은 발언 (\"I agree·Good point\") 부터 시작 → 점진적 확대. 침묵 = 회의 영어의 가장 큰 함정."},
+      {title: "발언 답안 통째 외움·즉답 X", body: "한국 직장인의 함정: 발언 통째 외움 → 즉흥 대응 어려움. 회의는 즉흥 발언이 답이에요. 발언 템플릿 + 즉답 훈련 + 시뮬레이션이 답입니다. 1:1 과외에서 즉답 코칭 추천. 즉답 능력 = 회의 자신감의 결정적 도구예요."},
+      {title: "전문 표현·뉘앙스 무시", body: "일반 영어로 회의 → 전문성 부족. \"I think\"만 반복 X. \"From my perspective·Based on the data·In my view·I'd like to point out\" 등 다양한 표현이 답이에요. 매주 한 표현 영역 5~10개 학습 + 1:1 사용 추천. 전문 표현 = 회의 신뢰의 결정적 도구."},
+    ],
+    checklist: [
+      "회의 표준 표현 (시작·동의·반대·마무리) 정착?",
+      "발언 템플릿 (의견·질문·답변) 자유 사용?",
+      "화상 회의 영어 (Zoom·Teams 표현) 자유?",
+      "30분 영어 회의 자유 발언 가능?",
+      "매주 회의 시뮬레이션 1~2회 + 1:1 코칭?",
+    ],
+    checklistTitle: "영어 미팅·회의 체크리스트",
+    checklistSub: "월 1회 점검",
+    faqs: [
+      {q: "영어 회의에서 너무 떨려요. 어떻게 자신감을 키우나요?", a: "자신감은 시뮬레이션 + 작은 성공 누적이 답이에요. 핵심: (1) 짧은 발언부터 시작 (\"I agree·Good point·Let me add\"). (2) 발언 템플릿 외우기 → 즉흥 변형. (3) 매주 시뮬레이션 1~2회 + 1:1 코칭. (4) 본인이 익숙한 주제부터 발언. (5) 6주 시뮬레이션 → 큰 변화 체감. 1:1 과외에서 시뮬레이션 + 자신감 코칭이 답이에요. 무료 체험 수업에서 진단 가능합니다."},
+      {q: "회의에서 갑작스런 질문에 답변이 어려워요. 어떻게 하나요?", a: "즉답 4단계가 답이에요. (1) 인정 + 시간 벌기 (\"That's a great question·Let me think for a second\"). (2) 답변 시작 (\"My initial thought is ...·Based on what I know ...\"). (3) 모르면 인정 (\"I don't have the data on hand·Let me check and get back to you\"). (4) 약속 (\"I'll follow up via email·I'll send you the details by EOD\"). 즉답 템플릿 + 1:1 시뮬레이션이 답이에요. 1:1 과외에서 즉답 훈련 추천."},
+      {q: "화상 회의 (Zoom·Teams) 영어 어떻게 준비하나요?", a: "화상 회의 빈출 50개 표현 정착이 답이에요. (1) 기술: \"Can everyone hear me?·You're on mute·Let me share my screen·My connection is unstable\". (2) 발언 신호: \"I'd like to jump in·May I add something?\". (3) 마무리: \"Let me drop a link in the chat·I'll send the recording\". 매주 화상 회의 시뮬레이션 + 1:1 코칭이 답이에요. 코로나 이후 화상 회의가 표준이라 정밀 학습 필수입니다."},
+      {q: "영어 회의 학습에 얼마나 걸리나요?", a: "현재 수준에 따라 달라요. (1) 영어 회화 가능 → 회의 자유 발언: 3~6개월. (2) 영어 회화 어려움 → 회화 + 회의 동시: 1년+. 매주 시뮬레이션 1~2회 + 1:1 코칭이 가장 빠른 길이에요. 6주 시뮬레이션 → 자신감 큰 폭 향상. 3개월 → 자유 발언. 6개월 → 회의 주도 가능. 무료 체험 수업에서 진단 가능합니다."},
+      {q: "1:1 화상 수업으로 영어 회의 학습이 효과적인가요?", a: "매우 효과적이에요. (1) 학생 실제 회의 상황 (주간·월간·프로젝트) 시뮬레이션. (2) 강사가 외국 동료·해외 본사·임원 역할. (3) 발언·즉답·반박 종합 훈련. (4) 발음·표현·자신감 즉시 첨삭. (5) 매주 시뮬레이션. 그룹 수업은 발언 시간 짧고 시뮬레이션 어렵지만 1:1은 50분 풀 시뮬레이션. 제나쌤 스터디핏은 회의 정밀 시뮬레이션으로 진행합니다."},
+    ],
+    related: [
+      {label: "비즈니스 이메일", href: "/language/english/biz/email/"},
+      {label: "비즈니스 협상", href: "/language/english/biz/negotiation/"},
+      {label: "영어 프레젠테이션", href: "/language/english/biz/presentation/"},
+      {label: "영어 회화 고급 과정", href: "/language/english/level/advanced/"},
+      {label: "영어 회화 메인", href: "/language/english/"},
+    ],
+    tags: ["영어회의", "비즈니스미팅", "화상회의영어", "영어발언", "직장영어", "1:1회의영어과외"],
+  },
+
+  "negotiation": {
+    badge: "영어 회화 · 비즈니스 영어",
+    h1: "영어 비즈니스 협상 1:1 대비<br>외국 바이어·파트너 협상력 향상",
+    sub: "협상 · 가격·조건 · 양보·요구 · 윈윈 전략 · 시뮬레이션",
+    breadcrumb: "영어 비즈니스 협상",
+    tag: "영어 비즈니스 협상",
+    intro: {
+      title: "외국 바이어·해외 파트너와의 영어 협상에서 우위. 협상 표현 + 윈윈 전략 + 시뮬레이션으로 협상력 향상",
+      body: "영어 협상은 비즈니스의 가장 어려운 영역이에요. 한국 직장인이 영어 협상에서 정체되는 이유는 \"한국식 협상·정중함 부족·전략 미숙\" 3가지예요. 핵심은 \"협상 표현 + 윈윈 전략 + 양보·요구 균형 + 시뮬레이션\" 4박자입니다. 1:1 화상 영어 협상 수업에서는 학생의 실제 협상 상황 (가격·조건·계약·납기)을 시뮬레이션하며 협상력을 키워요. 학습 단계: (1) 협상 표준 표현 (제안·역제안·양보·요구) → (2) 윈윈 전략 (Both win) → (3) 협상 단계별 표현 (Opening·Bargaining·Closing) → (4) 실전 시뮬레이션. 3~6개월 학습 → \"가격·조건·계약 협상 자유\" 가능. 매주 협상 시뮬레이션 1~2회 + 1:1 코칭이 가장 효과적인 루틴이에요. 협상은 학습량보다 실전 시뮬레이션이 핵심입니다."
+    },
+    phaseTitle: "단계별 영어 협상 마스터 로드맵",
+    phaseSub: "4단계 학습 흐름",
+    areaTitle: "영어 협상 핵심 4영역",
+    tierTitle: "협상 유형·직급별 처방",
+    phases: [
+      ["1단계", "표준 표현", "제안·역제안·양보·요구"],
+      ["2단계", "윈윈 전략", "Both win 사고방식"],
+      ["3단계", "단계별 표현", "Opening·Bargaining·Closing"],
+      ["4단계", "실전 시뮬레이션", "협상 + 1:1 코칭"],
+    ],
+    areas: [
+      {name: "협상 표준 표현 (Negotiation Phrases)", body: "협상 빈출 표현 정복이 답이에요. (1) 제안: \"We're prepared to offer ...·Our proposal is ...·What we can do is ...\". (2) 역제안: \"What if we ...?·Could we consider ...?·How about if ...?\". (3) 양보: \"We can be flexible on ...·We're willing to ...·We could agree to ...\". (4) 요구: \"We need ...·Our requirement is ...·We can't go below ...\". (5) 거절: \"That's not feasible·That doesn't work for us·We can't accommodate that\". (6) 합의: \"We have a deal·We're aligned·That works for us\". 협상 빈출 100개 표현 정착이 답이에요. 1:1 과외에서 협상 표현·즉시 사용 추천."},
+      {name: "윈윈 전략 (Win-Win Strategy)", body: "한국식 \"이기는 협상\" X·\"양쪽이 이기는 협상\"이 답이에요. (1) 양쪽의 욕구·목표 파악: \"What's most important for you?·What's your priority?\". (2) 다양한 선택지 제시: 가격만 X·조건·납기·서비스 등 다양화. (3) 트레이드오프: 한 쪽 양보 → 다른 쪽 요구 (\"If we ..., could you ...?\"). (4) 장기 관계 우선: 단기 이익 X·장기 신뢰. (5) 합의 후 명확한 문서화. 윈윈 전략 = 협상 신뢰의 결정적 도구예요. 1:1 과외에서 전략 학습·시뮬레이션 추천."},
+      {name: "협상 단계별 표현 (Opening·Bargaining·Closing)", body: "협상 3단계별 표현이 답이에요. (1) Opening (도입): \"Thanks for taking the time to meet·Let me share our position·Our objective is ...\". (2) Bargaining (협상): \"We can be flexible on ... if you can ...·Let me see what we can do·Let me run this by my team\". (3) Closing (마무리): \"It sounds like we have a deal·Let me confirm the terms·We'll send the contract by ...\". (4) Walking away: \"I'm afraid we can't accept these terms·Let's revisit this in a week·I think we need to step back\". 단계별 표현 정착이 협상 자신감의 결정적 도구예요. 1:1 과외에서 단계별 시뮬레이션 추천."},
+      {name: "실전 시뮬레이션 + 1:1 코칭", body: "협상은 시뮬레이션 없이 향상 X. (1) 학생 실제 협상 상황 (가격·조건·계약·납기·품질) 시뮬레이션. (2) 강사가 외국 바이어·파트너 역할. (3) 제안·역제안·양보·요구 종합 훈련. (4) 발언·즉답·전략 즉시 첨삭. (5) 매주 시뮬레이션 1~2회 + 1:1 코칭. 학생의 실제 협상 케이스가 가장 효과적인 학습 자료예요. 1:1 과외만 가능한 학습 (그룹은 협상 시뮬레이션 어려움). 협상 시뮬레이션이 비즈니스 협상력의 결정적 도구예요."},
+    ],
+    tiers: [
+      {label: "주니어 (협상 참여)", body: "협상 표준 표현 + 양보·요구 정착. 매주 시뮬레이션 1회 + 표현 학습. 추천 자료: \"Getting to Yes\"·HBR Negotiation·\"Never Split the Difference\". 3~6개월 → 기본 협상 가능. 1:1 과외에서 표준 표현·기초 시뮬레이션 추천. 협상의 첫 단계예요."},
+      {label: "대리·과장 (협상 주도)", body: "윈윈 전략 + 단계별 표현 정착. 매주 시뮬레이션 2회 + 정밀 첨삭. 추천 자료: \"Negotiation Genius\"·HBR·실제 협상 케이스 분석. 6개월~1년 → 협상 주도 가능. 1:1 과외에서 윈윈 전략·시뮬레이션 추천. 협상력의 표준 단계."},
+      {label: "차장·부장 (대규모 협상)", body: "대규모 협상 + 다자간 협상 + 임원 협상. 매주 시뮬레이션 2~3회 + 정밀 첨삭. 추천 자료: HBR·\"Bloomberg\"·임원 협상 영상. 6개월~1년 → 대규모 협상 자유. 1:1 과외에서 대규모·다자간 협상 시뮬레이션 추천. 객단가 높은 단계."},
+      {label: "임원·CEO (M&A·전략 협상)", body: "M&A·합작·전략 파트너십 협상. 매주 정밀 시뮬레이션 + 미디어 대응. 추천: HBR·\"WSJ\"·CEO 협상 영상·M&A 케이스. 1:1 과외에서 M&A·전략 협상 정밀 시뮬레이션·뉘앙스 추천. 일반 학습보다 \"실전 시뮬레이션\"이 핵심. 글로벌 협상의 결정적 도구."},
+    ],
+    mistakes: [
+      {title: "한국식 \"이기는 협상\"·관계 파괴", body: "가장 흔한 실수예요. 가격 한 번에 큰 폭으로 깎으려 함 → 외국 파트너 어색·관계 파괴. 영어 협상은 윈윈이 답이에요. 양쪽 욕구 파악 + 다양한 선택지 + 트레이드오프 + 장기 관계가 답입니다. 1:1 과외에서 윈윈 전략 학습 추천."},
+      {title: "공격적인 표현·관계 파괴", body: "한국식 직역으로 공격적인 표현 사용 → 관계 파괴. \"That's too expensive·You must lower the price\" X. \"That's a bit higher than we expected·Could we explore some options?\" 정중한 영어 협상 표현이 답이에요. 1:1 과외에서 정중함 학습 추천."},
+      {title: "협상 후 문서화 X·기억 의존", body: "한국 직장인의 함정: 협상 후 문서화 X → 나중에 기억 다름·분쟁. 협상 후 즉시 이메일로 합의 내용 정리·확인이 답이에요. \"To recap·As we discussed·Let me confirm\". 1:1 과외에서 합의 이메일 학습 추천. 문서화 = 협상 신뢰의 결정적 도구."},
+    ],
+    checklist: [
+      "협상 표준 표현 (제안·역제안·양보·요구) 정착?",
+      "윈윈 전략 (양쪽 이기는 협상) 사고방식?",
+      "단계별 표현 (Opening·Bargaining·Closing) 자유?",
+      "정중한 영어 협상 (한국식 직역 X)?",
+      "협상 후 합의 이메일·문서화?",
+    ],
+    checklistTitle: "영어 비즈니스 협상 체크리스트",
+    checklistSub: "월 1회 점검",
+    faqs: [
+      {q: "영어 협상에서 가격 깎기 어떻게 시작하나요?", a: "정중한 표현이 답이에요. 핵심: (1) 인정 + 부드러운 시작 (\"We appreciate the proposal·Thanks for the quote·We'd like to discuss the pricing\"). (2) 본인 입장 (\"That's a bit higher than we expected·We had budgeted around ...·Our target is ...\"). (3) 역제안 (\"Could you consider ...?·What if we ...?·How about if we ...?\"). (4) 트레이드오프 (\"If we agree to ..., could you ...?\"). 한국식 \"가격 너무 비싸\" X. 정중한 영어 표현 + 1:1 시뮬레이션이 답이에요."},
+      {q: "외국 파트너가 강하게 요구할 때 어떻게 거절하나요?", a: "거절 4단계가 답이에요. (1) 인정 (\"I understand your position·I see where you're coming from\"). (2) 우리 입장 (\"However, we have constraints·From our side, we need to ...\"). (3) 대안 제시 (\"What we can do is ...·Could we explore ...?·What if we ...?\"). (4) 마무리 (\"Let me see what's possible·Let me run this by my team\"). 직접 \"No\" X. 정중한 거절 + 대안이 답이에요. 1:1 과외에서 거절 표현 학습 추천."},
+      {q: "협상에서 모르는 영어 표현이 나오면 어떻게 하나요?", a: "솔직하게 묻는 게 답이에요. (1) \"Could you elaborate on that?·What do you mean by ...?·Could you rephrase that?\". (2) 모르는 척 X·이해한 척 X → 협상 실패의 결정적 원인. (3) 시간 벌기 (\"Let me think about that·Let me run this by my team·Could we revisit this?\"). 모르는 것을 인정하고 묻는 것이 협상 신뢰의 결정적 도구예요. 1:1 과외에서 즉답·시간 벌기 학습 추천."},
+      {q: "영어 협상 학습에 얼마나 걸리나요?", a: "현재 수준에 따라 달라요. (1) 영어 회화 가능 → 협상 자유: 6개월~1년. (2) 영어 회화 어려움 → 회화 + 협상 동시: 1년+. 매주 시뮬레이션 1~2회 + 1:1 코칭이 가장 빠른 길이에요. 3개월 → 기본 협상 가능. 6개월 → 자유 협상. 1년 → 대규모 협상 가능. 무료 체험 수업에서 진단 가능합니다."},
+      {q: "1:1 화상 수업으로 영어 협상 학습이 효과적인가요?", a: "매우 효과적이에요. (1) 학생 실제 협상 상황 (가격·조건·계약) 시뮬레이션. (2) 강사가 외국 바이어·파트너 역할. (3) 제안·역제안·양보·요구 종합 훈련. (4) 발언·즉답·전략 즉시 첨삭. (5) 매주 시뮬레이션. 그룹 수업은 협상 시뮬레이션 어렵지만 1:1은 50분 풀 시뮬레이션. 제나쌤 스터디핏은 협상 정밀 시뮬레이션으로 진행합니다."},
+    ],
+    related: [
+      {label: "비즈니스 이메일", href: "/language/english/biz/email/"},
+      {label: "비즈니스 미팅·회의", href: "/language/english/biz/meeting/"},
+      {label: "영어 프레젠테이션", href: "/language/english/biz/presentation/"},
+      {label: "영어 회화 고급 과정", href: "/language/english/level/advanced/"},
+      {label: "영어 회화 메인", href: "/language/english/"},
+    ],
+    tags: ["영어협상", "비즈니스협상", "윈윈전략", "외국바이어협상", "직장영어", "1:1협상영어과외"],
+  },
+
+  "presentation": {
+    badge: "영어 회화 · 비즈니스 영어",
+    h1: "영어 프레젠테이션 1:1 맞춤 대비<br>임원·외국 본사 발표 정복",
+    sub: "프레젠테이션 · 구조 · 시각 자료 · Q&A · 자신감 · 시뮬레이션",
+    breadcrumb: "영어 프레젠테이션",
+    tag: "영어 프레젠테이션",
+    intro: {
+      title: "임원·외국 본사·고객·컨퍼런스에서의 영어 발표. 답안 작성 + 시각 자료 + 시뮬레이션으로 발표 자신감 향상",
+      body: "영어 프레젠테이션은 직장인의 가장 큰 부담 영역이에요. 한국 직장인이 영어 발표에서 정체되는 이유는 \"답안 작성 약점·시각 자료 미흡·발표 자신감 부족\" 3가지예요. 핵심은 \"답안 구조 + 시각 자료 + 발음·억양 + Q&A 대응 + 시뮬레이션\" 5박자입니다. 1:1 화상 영어 프레젠테이션 수업에서는 학생의 실제 발표 (월간 보고·프로젝트·임원 보고·외부 발표)를 답안 작성부터 시뮬레이션까지 종합 대비해요. 학습 단계: (1) 답안 구조 (Introduction·Body·Conclusion) → (2) 시각 자료 (PPT·차트) → (3) 발음·억양·전달력 → (4) Q&A 대응 → (5) 실전 시뮬레이션. 3~6개월 학습 → \"30분 영어 발표 + Q&A\" 가능. 매주 발표 시뮬레이션 1~2회 + 1:1 코칭이 가장 효과적인 루틴이에요. 발표는 학습량보다 시뮬레이션이 핵심입니다."
+    },
+    phaseTitle: "단계별 영어 발표 마스터 로드맵",
+    phaseSub: "5단계 학습 흐름",
+    areaTitle: "영어 발표 핵심 4영역",
+    tierTitle: "발표 유형·직급별 처방",
+    phases: [
+      ["1단계", "답안 구조", "Introduction·Body·Conclusion"],
+      ["2단계", "시각 자료", "PPT·차트·시각 표현"],
+      ["3단계", "발음·전달력", "억양·강조·자신감"],
+      ["4단계", "Q&A + 시뮬레이션", "실전 + 1:1 코칭"],
+    ],
+    areas: [
+      {name: "발표 답안 구조 (Introduction → Body → Conclusion)", body: "영어 발표의 표준 3단계 구조예요. (1) Introduction (5~10%): \"Good morning everyone·I'm pleased to be here·Today I'll be talking about ...·By the end of this presentation, you'll ...\". (2) Body (70~80%): 핵심 메시지 3개 (Main Point 1·2·3 + 각각 데이터·예시). (3) Conclusion (10~15%): \"To summarize·In conclusion·Key takeaways are ...·Thank you for your attention. Any questions?\". 각 발표 10~30분 표준. 답안 작성 + 1:1 첨삭이 답이에요. 1:1 과외에서 구조 + 답안 첨삭 추천. 발표 자신감의 첫 단계예요."},
+      {name: "시각 자료 (PPT·차트·시각 표현)", body: "영어 발표의 50%는 시각 자료예요. (1) PPT 표현: \"As you can see in this slide·This chart shows ...·The key takeaway from this chart is ...\". (2) 차트 묘사: \"The line shows·The bar represents·There's a significant increase in ...·The trend is upward\". (3) 데이터 강조: \"What's particularly interesting is ...·I'd like to highlight ...·The most important point here is ...\". (4) 전환: \"Moving on to the next point·Let's now look at ...·This brings me to ...\". 시각 자료 표현 100개 정착이 답이에요. 1:1 과외에서 PPT 첨삭·시각 표현 추천."},
+      {name: "발음·억양·전달력 (Delivery)", body: "발표의 50%는 전달력이에요. (1) 발음: 핵심 단어 정확 발음 (특히 R/L·F/V·TH·강세). (2) 억양: 평서문 내림·의문문 올림·강조 표현. (3) 속도: 일반 회화보다 약간 느리게·명확하게. (4) 멈춤: 핵심 포인트 후 1~2초 멈춤·청중 흡수 시간. (5) 자신감 있는 어조: 단호함 + 친근함. 매일 30분 쉐도잉 + 1:1 발음 첨삭이 답이에요. 1:1 과외에서 발음·억양·전달력 정밀 코칭 추천. 전달력 = 발표 자신감의 결정적 도구예요."},
+      {name: "Q&A 대응 + 실전 시뮬레이션", body: "발표 후 Q&A가 가장 부담스러운 영역이에요. (1) 답변 4단계: 인정 (\"Great question\") → 답변 시작 (\"My response is ...\") → 본론 → 마무리 (\"Does that answer your question?\"). (2) 모르는 질문: \"That's a great question. I don't have the data on hand·Let me get back to you·I'll follow up via email\". (3) 어려운 질문: \"That's a fair point. Let me address that·I see your concern. My response is ...\". (4) 매주 Q&A 시뮬레이션 + 1:1 첨삭. 1:1 과외만 가능한 학습. Q&A 시뮬레이션이 발표 자신감의 결정적 도구예요."},
+    ],
+    tiers: [
+      {label: "주니어 (발표 참여)", body: "기초 발표 구조 + 시각 자료. 매주 시뮬레이션 1회 + 답안 작성·첨삭. 추천 자료: TED Talks (10~15분)·\"HBR Presentation\"·\"Storytelling with Data\". 3~6개월 → 10분 발표 가능. 1:1 과외에서 기초 구조·답안 첨삭·시뮬레이션 추천. 직장 영어의 결정적 단계예요."},
+      {label: "대리·과장 (발표 빈도 ↑)", body: "고급 답안 + 시각 자료 + 전달력. 매주 시뮬레이션 1~2회 + 정밀 첨삭. 추천 자료: TED·HBR·외국 임원 발표 영상·다양한 미디어. 6개월~1년 → 30분 발표 + Q&A 자유. 1:1 과외에서 답안·시각 자료·발음·Q&A 종합 코칭 추천. 발표력의 표준 단계."},
+      {label: "차장·부장 (임원 발표·외부 발표)", body: "임원·외부 컨퍼런스 발표 정복. 매주 시뮬레이션 2회 + 정밀 첨삭. 추천 자료: TED·\"60 Minutes\"·CEO 발표·외부 컨퍼런스. 6개월~1년 → 임원·외부 발표 자유. 1:1 과외에서 임원·외부 발표 정밀 시뮬레이션·뉘앙스 추천. 객단가 높은 단계."},
+      {label: "임원·CEO (글로벌 컨퍼런스)", body: "이사회·해외 본사·미디어·컨퍼런스 발표. 매주 정밀 시뮬레이션 + 미디어 대응. 추천: TED·\"60 Minutes\"·CEO 인터뷰·이사회 영상. 1:1 과외에서 글로벌 임원 시뮬레이션·정밀 첨삭·뉘앙스 추천. 일반 학습보다 \"실전 시뮬레이션\"이 핵심. 글로벌 임원의 결정적 도구."},
+    ],
+    mistakes: [
+      {title: "답안 통째 외움·자연스러움 X", body: "가장 흔한 실수예요. 답안 100% 외워서 발표 → 어색·로봇 같음·즉흥 대응 어려움. 답안 작성 → 핵심 키워드만 메모 → 자연스럽게 말하기가 답이에요. (1) 답안 100% 작성. (2) 핵심 키워드 5~10개 메모. (3) 100번 연습. (4) 메모만 보고 발표. 자연스러운 발표 = 자신감 + 즉흥 대응 + 청중 흡수의 결정적 도구."},
+      {title: "PPT만 읽기·청중 미흡", body: "한국 직장인의 함정: PPT를 그대로 읽음 → 청중 무시. 영어 발표는 PPT는 보조·말이 본론이에요. PPT 읽기 X·청중 보면서 자연스럽게 말하기 ○. 시각 자료 표현 (\"As you can see·This chart shows\") + 청중 시선 + 1:1 시뮬레이션이 답이에요. 청중 시선 = 발표 자신감의 결정적 도구."},
+      {title: "Q&A 회피·답변 피하기", body: "Q&A에서 한국 직장인 50%가 \"I don't know\"로 끝. 모르는 질문도 4단계 답변이 답이에요. (1) 인정 (\"Great question\"). (2) 시간 벌기 (\"Let me think\"). (3) 답변 (모르면 \"I don't have the data on hand·Let me get back to you\"). (4) 약속 (\"I'll follow up via email\"). 1:1 과외에서 Q&A 시뮬레이션 추천."},
+    ],
+    checklist: [
+      "답안 구조 (Introduction·Body·Conclusion) 정착?",
+      "시각 자료 표현 (PPT·차트) 100개 자유 사용?",
+      "발음·억양·전달력 1:1 첨삭?",
+      "Q&A 4단계 답변 (인정·시간·답변·약속) 자유?",
+      "매주 발표 시뮬레이션 1~2회 + 1:1 코칭?",
+    ],
+    checklistTitle: "영어 프레젠테이션 체크리스트",
+    checklistSub: "월 1회 점검",
+    faqs: [
+      {q: "영어 발표에서 너무 떨려요. 어떻게 자신감을 키우나요?", a: "자신감은 시뮬레이션 + 답안 정착 + 발음 자신감이 답이에요. 핵심: (1) 답안 100% 작성 + 100번 연습. (2) 매주 시뮬레이션 1~2회. (3) 발음·억양 1:1 첨삭. (4) 청중 시선·자연스러운 흐름 학습. (5) 본인이 익숙한 주제부터 시작. 6주 시뮬레이션 → 큰 변화 체감. 1:1 과외에서 시뮬레이션 + 자신감 코칭이 답이에요. 무료 체험 수업에서 진단 가능합니다."},
+      {q: "발표 답안 어떻게 작성해야 하나요?", a: "답안 구조 5단계: (1) Introduction (5~10%): 인사·자기소개·발표 주제·목표. (2) Agenda: 발표 흐름 (3개 핵심 포인트). (3) Body (70~80%): 핵심 포인트 3개 + 각각 데이터·예시·차트. (4) Conclusion (10~15%): 요약·핵심 메시지·결론. (5) Q&A: 질문 받고 답변. 각 발표 10~30분 표준. 1:1 과외에서 답안 첨삭·구조 학습 추천. 답안 = 발표 자신감의 결정적 도구."},
+      {q: "PPT를 영어로 어떻게 만드나요?", a: "PPT 4가지 원칙이 답이에요. (1) 한 슬라이드 한 메시지: 너무 많은 정보 X. (2) 단순함: 글자 적게·시각 자료 많이 (차트·그림·아이콘). (3) 대비: 글자색 vs 배경색 명확. (4) 영어 표현: \"As you can see·This chart shows·The key takeaway is·What's particularly interesting is\". 한국식 글자 빽빽 PPT X·영어 표준 PPT가 답이에요. 1:1 과외에서 PPT 첨삭·시각 표현 코칭 추천."},
+      {q: "Q&A에서 모르는 질문이 나오면 어떻게 하나요?", a: "Q&A 4단계 답변이 답이에요. (1) 인정 (\"Great question·That's an interesting question·Thanks for raising that\"). (2) 시간 벌기 (\"Let me think for a moment·That's a complex question\"). (3) 답변 (아는 만큼 답변 + 모르면 인정 \"I don't have the data on hand·Let me get back to you\"). (4) 약속 (\"I'll follow up via email by EOD·I'll send you the details next week\"). 1:1 과외에서 Q&A 시뮬레이션 추천."},
+      {q: "1:1 화상 수업으로 영어 발표 학습이 효과적인가요?", a: "매우 효과적이에요. (1) 학생 실제 발표 (월간·프로젝트·임원·외부) 답안 첨삭. (2) PPT 첨삭 + 시각 표현. (3) 발음·억양·전달력 코칭. (4) Q&A 시뮬레이션. (5) 매주 정기 시뮬레이션. 그룹 수업은 발표 시간 짧지만 1:1은 50분 풀 시뮬레이션. 제나쌤 스터디핏은 발표 종합 코칭 (답안 + PPT + 발음 + Q&A)으로 진행합니다."},
+    ],
+    related: [
+      {label: "비즈니스 이메일", href: "/language/english/biz/email/"},
+      {label: "비즈니스 미팅·회의", href: "/language/english/biz/meeting/"},
+      {label: "비즈니스 협상", href: "/language/english/biz/negotiation/"},
+      {label: "영어 회화 고급 과정", href: "/language/english/level/advanced/"},
+      {label: "영어 회화 메인", href: "/language/english/"},
+    ],
+    tags: ["영어프레젠테이션", "영어발표", "비즈니스발표", "임원발표", "PPT영어", "1:1발표영어과외"],
+  },
+};
+
+
 const KOREAN_PERFORM_DATA = {
   "descriptive": {
     badge: "수행평가 & 서술형",
@@ -33081,6 +33344,7 @@ const SUBJECT_CATEGORY_META = {
     "cert":  { label: "자격증 대비", data: () => ENGLISH_LANG_CERT_DATA },
     "level": { label: "수준별 과정", data: () => ENGLISH_LANG_LEVEL_DATA },
     "school": { label: "내신·진학·유학", data: () => ENGLISH_LANG_SCHOOL_DATA },
+    "biz": { label: "비즈니스 영어", data: () => ENGLISH_LANG_BIZ_DATA },
   },
 };
 
@@ -34471,6 +34735,17 @@ Sitemap: ${BASE}/sitemap-schools-3.xml
       const schoolKey = engLangSchoolMatch[1];
       if (ENGLISH_LANG_SCHOOL_DATA[schoolKey]) {
         return new Response(buildKoreanHabitPage(schoolKey, "school", "english_lang"), {
+          headers: { "Content-Type": "text/html;charset=UTF-8" }
+        });
+      }
+    }
+
+    // 영어 회화 비즈니스 영어 페이지 (/language/english/biz/{slug}/)
+    const engLangBizMatch = path.match(/^\/language\/english\/biz\/([^\/]+)\/?$/);
+    if (engLangBizMatch) {
+      const bizKey = engLangBizMatch[1];
+      if (ENGLISH_LANG_BIZ_DATA[bizKey]) {
+        return new Response(buildKoreanHabitPage(bizKey, "biz", "english_lang"), {
           headers: { "Content-Type": "text/html;charset=UTF-8" }
         });
       }
