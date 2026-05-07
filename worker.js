@@ -33178,27 +33178,32 @@ function buildSubjectHubPage(subjectKey) {
     const newBadge = cat.isNew ? `<span class="cat-new">NEW</span>` : "";
     const highlight = cat.highlight ? " cat-highlight" : "";
 
-    // 영어 과목 허브 준비중 항목 → 회화 허브 크로스링크 맵
+    // 영어 과목 허브 준비중 항목 → 회화 콘텐츠 페이지 크로스링크 맵
+    // 정밀 매핑: 콘텐츠 있는 항목은 콘텐츠 페이지로 직접 연결, 없는 항목은 메인 허브로
     const ENGLISH_CROSS_LINKS = {
-      "speaking/basic":        "/language/english/skill/",
-      "speaking/daily":        "/language/english/skill/",
-      "speaking/pronunciation":"/language/english/skill/",
-      "speaking/fluency":      "/language/english/skill/",
-      "speaking/roleplay":     "/language/english/purpose/",
-      "listening/basic":       "/language/english/skill/",
-      "listening/dictation":   "/language/english/skill/",
-      "listening/pronunciation":"/language/english/skill/",
-      "listening/accent":      "/language/english/skill/",
-      "listening/test":        "/language/english/school/",
-      "writing/essay":         "/language/english/purpose/",
-      "writing/letter":        "/language/english/biz/",
-      "writing/intro":         "/language/english/purpose/",
-      "cert/toeic":            "/language/english/cert/",
-      "cert/toefl":            "/language/english/cert/",
-      "cert/ielts":            "/language/english/cert/",
-      "cert/opic":             "/language/english/cert/",
-      "cert/toeic-speaking":   "/language/english/cert/",
-      "cert/comparison":       "/language/english/cert/",
+      // 회화 (Speaking) — 콘텐츠 매칭
+      "speaking/basic":        "/language/english/skill/pronunciation/", // 기초 회화 → 발음부터
+      "speaking/daily":        "/language/english/skill/speaking/",      // 일상 회화 → 말하기 유창성
+      "speaking/pronunciation":"/language/english/skill/pronunciation/", // 발음 교정 → 발음 페이지
+      "speaking/fluency":      "/language/english/skill/speaking/",      // 유창성 → 말하기 유창성
+      "speaking/roleplay":     "/language/english/skill/speaking/",      // 롤플레이 → 말하기 (롤플레이 다룸)
+      // 듣기 (Listening) — 콘텐츠 매칭
+      "listening/basic":       "/language/english/skill/listening/",     // 기초 듣기 → 듣기 훈련
+      "listening/dictation":   "/language/english/skill/listening/",     // 받아쓰기 → 듣기 훈련
+      "listening/pronunciation":"/language/english/skill/pronunciation/",// 발음·연음 → 발음 교정
+      "listening/accent":      "/language/english/skill/listening/",     // 다양한 억양 → 듣기 훈련
+      "listening/test":        "/language/english/",                     // 시험 듣기 → 메인 허브 (콘텐츠 X)
+      // 작문 (Writing) — 콘텐츠 미작성, 메인 허브로
+      "writing/essay":         "/language/english/",                     // 에세이 → 메인 허브 (purpose/essay 미작성)
+      "writing/letter":        "/language/english/",                     // 편지·이메일 → 메인 허브 (biz/email 미작성)
+      "writing/intro":         "/language/english/",                     // 자기소개서 → 메인 허브
+      // 공인영어시험 (Cert) — 콘텐츠 직접 매칭
+      "cert/toeic":            "/language/english/cert/toeic/",          // TOEIC → 토익 페이지
+      "cert/toefl":            "/language/english/cert/toefl/",          // TOEFL → 토플 페이지
+      "cert/ielts":            "/language/english/cert/ielts/",          // IELTS → 아이엘츠 페이지
+      "cert/opic":             "/language/english/cert/opic/",           // OPIc → 오픽 페이지
+      "cert/toeic-speaking":   "/language/english/cert/toeic/",          // 토익 스피킹 → 토익 페이지 (가장 가까움)
+      "cert/comparison":       "/language/english/",                     // 공인시험 비교 → 메인 허브 (콘텐츠 X)
     };
 
     let itemsHtml = "";
