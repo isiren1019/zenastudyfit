@@ -17123,6 +17123,162 @@ document.getElementById('search-input').addEventListener('input', function() {
 </html>`;
 }
 
+// ============================================================
+// 제2외국어 회화 — 카테고리 풀 데이터 + 페이지 ready 매핑
+// ============================================================
+const LANGUAGE_HUB_CATEGORIES = {
+  english: [
+    { key: "skill", name: "영역별 학습", count: 5, isNew: true, highlight: true,
+      items: [
+        ["pronunciation", "🔊 발음 교정"],
+        ["grammar",       "📚 회화 문법"],
+        ["speaking",      "🗣️ 말하기 유창성"],
+        ["listening",     "👂 듣기 훈련"],
+        ["reading",       "📖 회화 독해"],
+      ]},
+    { key: "level", name: "수준별 과정", count: 4,
+      items: [
+        ["beginner",     "🌱 입문 (왕초보)"],
+        ["elementary",   "📘 초급"],
+        ["intermediate", "💬 중급"],
+        ["advanced",     "🎓 고급"],
+      ]},
+    { key: "cert", name: "자격증 대비", count: 4,
+      items: [
+        ["toeic",  "📊 토익 (TOEIC)"],
+        ["toefl",  "🎓 토플 (TOEFL)"],
+        ["opic",   "🎤 오픽 (OPIc)"],
+        ["ielts",  "🌍 아이엘츠 (IELTS)"],
+      ]},
+    { key: "biz", name: "비즈니스 영어", count: 4,
+      items: [
+        ["email",        "✉️ 비즈니스 이메일"],
+        ["meeting",      "🤝 미팅·회의"],
+        ["negotiation",  "💼 협상"],
+        ["presentation", "📊 프레젠테이션"],
+      ]},
+    { key: "purpose", name: "목적별 수업", count: 4,
+      items: [
+        ["travel",    "✈️ 여행 영어"],
+        ["interview", "🎯 면접 영어"],
+        ["job",       "💼 취업 영어"],
+        ["essay",     "✍️ 에세이"],
+      ]},
+    { key: "school", name: "내신·진학·유학", count: 6,
+      items: [
+        ["naesin",       "📝 학교 내신"],
+        ["listening",    "🎧 듣기평가"],
+        ["performance",  "📋 수행평가"],
+        ["intl-school",  "🏫 국제학교"],
+        ["foreign-lang", "🌐 외고 대비"],
+        ["study-abroad", "✈️ 유학 준비"],
+      ]},
+  ],
+  japanese: [
+    { key: "skill", name: "영역별 학습", count: 5, highlight: true,
+      items: [
+        ["hiragana",    "🈂️ 히라가나·가타카나"],
+        ["kanji",       "漢 한자 학습"],
+        ["grammar",     "📚 일본어 문법"],
+        ["speaking",    "🗣️ 회화·존댓말"],
+        ["listening",   "👂 청해 훈련"],
+      ]},
+    { key: "level", name: "수준별 과정", count: 4,
+      items: [
+        ["beginner",     "🌱 입문 (히라가나부터)"],
+        ["elementary",   "📘 초급 (N5~N4)"],
+        ["intermediate", "💬 중급 (N3~N2)"],
+        ["advanced",     "🎓 고급 (N1)"],
+      ]},
+    { key: "cert", name: "자격증 대비", count: 4,
+      items: [
+        ["jlpt-n5n4", "📊 JLPT N5·N4"],
+        ["jlpt-n3",   "📊 JLPT N3"],
+        ["jlpt-n2",   "🎓 JLPT N2"],
+        ["jlpt-n1",   "🌟 JLPT N1"],
+      ]},
+    { key: "biz", name: "비즈니스 일본어", count: 4,
+      items: [
+        ["email",        "✉️ 비즈니스 이메일 (敬語)"],
+        ["meeting",      "🤝 회의·전화 응대"],
+        ["culture",      "🎌 일본 기업 문화"],
+        ["presentation", "📊 프레젠테이션"],
+      ]},
+    { key: "purpose", name: "목적별 수업", count: 4,
+      items: [
+        ["travel", "✈️ 여행 일본어"],
+        ["anime",  "📺 애니메이션 일본어"],
+        ["drama",  "🎬 드라마 일본어"],
+        ["jpop",   "🎵 J-POP 가사 학습"],
+      ]},
+    { key: "school", name: "진학·유학", count: 4,
+      items: [
+        ["naesin",         "📝 제2외국어 내신"],
+        ["foreign-lang",   "🌐 외고 일본어과"],
+        ["univ-japan",     "🏯 일본 대학 진학"],
+        ["working-holiday","🍙 워홀·취업 준비"],
+      ]},
+  ],
+  chinese: [
+    { key: "skill", name: "영역별 학습", count: 5, highlight: true,
+      items: [
+        ["tones",      "🔊 성조 마스터"],
+        ["pinyin",     "🅰️ 병음 (拼音)"],
+        ["hanzi",      "汉 한자·간체 쓰기"],
+        ["grammar",    "📚 중국어 어순"],
+        ["speaking",   "🗣️ 회화·청취"],
+      ]},
+    { key: "level", name: "수준별 과정", count: 4,
+      items: [
+        ["beginner",     "🌱 입문 (성조부터)"],
+        ["elementary",   "📘 초급 (HSK 1~2)"],
+        ["intermediate", "💬 중급 (HSK 3~4)"],
+        ["advanced",     "🎓 고급 (HSK 5~6)"],
+      ]},
+    { key: "cert", name: "자격증 대비", count: 4,
+      items: [
+        ["hsk-12",  "📊 HSK 1·2급"],
+        ["hsk-34",  "📊 HSK 3·4급"],
+        ["hsk-56",  "🎓 HSK 5·6급"],
+        ["hskk",    "🎤 HSKK (말하기)"],
+      ]},
+    { key: "biz", name: "비즈니스 중국어", count: 4,
+      items: [
+        ["email",        "✉️ 비즈니스 이메일"],
+        ["meeting",      "🤝 회의·협상"],
+        ["culture",      "🐉 중국 기업 문화"],
+        ["presentation", "📊 프레젠테이션"],
+      ]},
+    { key: "purpose", name: "목적별 수업", count: 4,
+      items: [
+        ["travel", "✈️ 여행 중국어"],
+        ["drama",  "🎬 중드 표현 학습"],
+        ["cpop",   "🎵 C-POP 가사 학습"],
+        ["culture","📜 중국 문화·고사성어"],
+      ]},
+    { key: "school", name: "진학·유학", count: 4,
+      items: [
+        ["naesin",      "📝 제2외국어 내신"],
+        ["foreign-lang","🌐 외고 중국어과"],
+        ["univ-china",  "🏯 중국 대학 진학"],
+        ["univ-taiwan", "🏯 대만 대학 진학"],
+      ]},
+  ],
+};
+
+// 완성된 페이지만 매핑 (URL 클릭 가능)
+const LANGUAGE_PAGE_READY = {
+  english: {
+    "skill/pronunciation": "/language/english/skill/pronunciation/",
+    "skill/grammar":       "/language/english/skill/grammar/",
+    "skill/speaking":      "/language/english/skill/speaking/",
+    "skill/listening":     "/language/english/skill/listening/",
+    "skill/reading":       "/language/english/skill/reading/",
+  },
+  japanese: {},
+  chinese: {},
+};
+
 // ── 코딩 페이지 ───────────────────────────────────────────────
 
 function buildLanguagePage(lang) {
@@ -17248,6 +17404,36 @@ function buildLanguagePage(lang) {
       <div style="font-size:.88rem;color:#333;line-height:1.65">${r}</div>
     </div>`).join("");
 
+  // 카테고리 섹션 그리드 (각 카테고리 → 하위 페이지 카드들 직접 렌더)
+  const langCategories = LANGUAGE_HUB_CATEGORIES[lang] || [];
+  const langReadyMap = LANGUAGE_PAGE_READY[lang] || {};
+  const totalLangPages = langCategories.reduce((sum, c) => sum + c.count, 0);
+
+  const categoriesHtml = langCategories.map(cat => {
+    const itemsHtml = cat.items.map(([slug, label]) => {
+      const readyKey = `${cat.key}/${slug}`;
+      const href = langReadyMap[readyKey];
+      if (href) {
+        return `<a href="${href}" class="lang-cat-item"><span class="lang-cat-label">${label}</span><span class="lang-cat-arrow">→</span></a>`;
+      } else {
+        return `<span class="lang-cat-item lang-cat-item-soon"><span class="lang-cat-label">${label}</span><span class="lang-cat-soon-badge">준비중</span></span>`;
+      }
+    }).join("");
+
+    const highlightClass = cat.highlight ? " lang-cat-card-highlight" : "";
+    const newBadge = cat.isNew ? `<span class="lang-cat-new">NEW</span>` : "";
+
+    return `
+    <div class="lang-cat-card${highlightClass}">
+      <div class="lang-cat-head">
+        <div class="lang-cat-title">${cat.name}${newBadge}</div>
+        <div class="lang-cat-count">${cat.count}개</div>
+      </div>
+      <div class="lang-cat-grid">${itemsHtml}</div>
+    </div>`;
+  }).join("");
+
+
   const title = `${m.title} 과외 | 1:1 맞춤 ${m.title} 수업 | ${SITE_NAME}`;
   const desc = `${m.title} 기초부터 자격증까지. 1:1 맞춤 ${m.title} 수업으로 단기간에 실력을 올려요. 무료 체험 수업 신청 가능.`;
   const canonical = `${SITE_DOMAIN}/${m.canonical}/`;
@@ -17284,8 +17470,23 @@ function buildLanguagePage(lang) {
     .btn-outline-w{background:transparent;color:white;padding:13px 28px;border-radius:50px;font-weight:700;font-size:.92rem;border:1.5px solid rgba(255,255,255,.5);text-decoration:none}
     .target-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
     .course-list{display:flex;flex-direction:column;gap:12px}
+    /* 언어 회화 카테고리 섹션 그리드 */
+    .lang-cat-card{background:white;border:1px solid #eee;border-radius:14px;padding:18px;margin-bottom:14px}
+    .lang-cat-card-highlight{border-color:${m.colorMid};background:linear-gradient(135deg,${m.colorLight} 0%,white 60%)}
+    .lang-cat-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid #f0f0f0}
+    .lang-cat-title{font-size:1rem;font-weight:800;color:${m.color1};display:flex;align-items:center;gap:8px;word-break:keep-all}
+    .lang-cat-new{display:inline-block;font-size:.62rem;font-weight:800;color:white;background:${m.colorMid};padding:2px 7px;border-radius:20px;letter-spacing:.05em}
+    .lang-cat-count{font-size:.72rem;font-weight:700;color:${m.colorMid};background:${m.colorLight};padding:3px 10px;border-radius:20px;flex-shrink:0;white-space:nowrap}
+    .lang-cat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:6px}
+    .lang-cat-item{display:flex;justify-content:space-between;align-items:center;padding:11px 13px;background:#fafafa;border:0.5px solid #eee;border-radius:8px;text-decoration:none;color:#222;transition:background .15s,border-color .15s}
+    .lang-cat-item:hover{background:${m.colorLight};border-color:${m.colorMid}}
+    .lang-cat-label{font-size:.85rem;font-weight:600;word-break:keep-all;line-height:1.4}
+    .lang-cat-arrow{font-size:.78rem;color:${m.colorMid};font-weight:700;flex-shrink:0;margin-left:6px}
+    .lang-cat-item-soon{background:#f5f5f5;color:#999;cursor:default}
+    .lang-cat-item-soon:hover{background:#f5f5f5;border-color:#eee}
+    .lang-cat-soon-badge{font-size:.65rem;font-weight:700;color:#999;background:white;padding:2px 8px;border-radius:20px;border:0.5px solid #ddd;flex-shrink:0;margin-left:6px}
     footer{background:#370558;color:rgba(255,255,255,.45);text-align:center;padding:24px;font-size:.78rem;line-height:1.8}
-    @media(max-width:600px){.target-grid{grid-template-columns:1fr}.hero-btns{flex-direction:column;align-items:center}}
+    @media(max-width:600px){.target-grid{grid-template-columns:1fr}.hero-btns{flex-direction:column;align-items:center}.lang-cat-grid{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
@@ -17315,14 +17516,6 @@ ${HEADER_HTML}
     <div class="sec-label">수업 대상</div>
     <div class="sec-title">누구에게 맞는 수업인가요?</div>
     <div class="target-grid" style="margin-top:16px">${targetHtml}</div>
-  </div>
-
-  <hr style="border:none;border-top:1px solid #f0e6fc">
-
-  <div class="sec">
-    <div class="sec-label">Why?</div>
-    <div class="sec-title">${m.title} 과외, 이렇게 다릅니다</div>
-    <div style="margin-top:16px">${reasonsHtml}</div>
   </div>
 
   <hr style="border:none;border-top:1px solid #f0e6fc">
@@ -17362,6 +17555,15 @@ ${HEADER_HTML}
     <div style="font-size:.85rem;color:#777;margin-bottom:20px">목적과 수준에 따라 원하는 과정을 선택해요. 1:1 상담 후 최적 커리큘럼을 제안해드려요.</div>
     <div class="course-list">${coursesHtml}</div>
   </div>
+
+  <div class="sec">
+    <div class="sec-label">수업 가이드</div>
+    <div class="sec-title">${m.title} 회화 — 6개 영역 ${totalLangPages}개 가이드</div>
+    <div style="font-size:.85rem;color:#777;margin-bottom:20px">원하는 목적과 수준에 맞는 가이드를 골라보세요. 클릭하면 자세한 학습법으로 이동합니다.</div>
+    ${categoriesHtml}
+  </div>
+
+  <hr style="border:none;border-top:1px solid #f0e6fc">
 
   <hr style="border:none;border-top:1px solid #f0e6fc">
 
@@ -17409,18 +17611,6 @@ ${HEADER_HTML}
   </div>
 
   <hr style="border:none;border-top:1px solid #f0e6fc">
-
-  <div class="sec">
-    <div class="sec-label">수업 가이드</div>
-    <div class="sec-title">${m.title} 주제별 수업 가이드</div>
-    <div style="font-size:.85rem;color:#777;margin-bottom:20px">원하는 목적과 수준에 맞는 수업 가이드를 선택해보세요.</div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:10px">
-      ${m.cats.slice(0,3).map(c=>`<a href="/language/${lang}/${c.key}/" style="background:white;border:0.5px solid #ddd;border-radius:14px;padding:14px 12px;text-decoration:none;display:block;position:relative;transition:background .15s,border-color .15s" onmouseover="this.style.background='${m.colorLight}';this.style.borderColor='${m.colorMid}'" onmouseout="this.style.background='white';this.style.borderColor='#ddd'"><span style="position:absolute;top:12px;right:12px;font-size:11px;color:#aaa">→</span><div style="font-size:20px;margin-bottom:6px">${c.icon}</div><div style="font-size:12px;font-weight:800;color:#222;margin-bottom:6px">${c.title}</div><div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px">${c.tags.map(t=>`<span style="font-size:10px;background:${m.colorLight};color:${m.color1};padding:2px 7px;border-radius:20px;border:0.5px solid ${m.colorMid}44">${t}</span>`).join("")}</div><span style="font-size:10px;font-weight:700;color:white;background:${m.colorMid};padding:2px 9px;border-radius:20px">${c.count}개 페이지</span></a>`).join("")}
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
-      ${m.cats.slice(3,6).map(c=>`<a href="/language/${lang}/${c.key}/" style="background:white;border:0.5px solid #ddd;border-radius:14px;padding:14px 12px;text-decoration:none;display:block;position:relative;transition:background .15s,border-color .15s" onmouseover="this.style.background='${m.colorLight}';this.style.borderColor='${m.colorMid}'" onmouseout="this.style.background='white';this.style.borderColor='#ddd'"><span style="position:absolute;top:12px;right:12px;font-size:11px;color:#aaa">→</span><div style="font-size:20px;margin-bottom:6px">${c.icon}</div><div style="font-size:12px;font-weight:800;color:#222;margin-bottom:6px">${c.title}</div><div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px">${c.tags.map(t=>`<span style="font-size:10px;background:${m.colorLight};color:${m.color1};padding:2px 7px;border-radius:20px;border:0.5px solid ${m.colorMid}44">${t}</span>`).join("")}</div><span style="font-size:10px;font-weight:700;color:white;background:${m.colorMid};padding:2px 9px;border-radius:20px">${c.count}개 페이지</span></a>`).join("")}
-    </div>
-  </div>
 
 </div>
 
