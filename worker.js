@@ -19150,28 +19150,6 @@ ${HEADER_HTML}
 
   ${categoriesHtml}
 
-  ${subjectKey === "english" ? `
-  <div class="sec">
-    <div class="sec-label">🇺🇸 제2외국어 연계</div>
-    <div class="sec-title" style="margin-bottom:10px">영어 회화 수업도 찾고 있나요?</div>
-    <div style="font-size:.85rem;color:#555;margin-bottom:14px">학교 내신·수능 영어 외에도 생활 영어·비즈니스·자격증·여행 영어까지. 1:1 영어 회화 전문 수업을 확인해보세요.</div>
-    <a href="/language/english/" style="display:flex;align-items:center;justify-content:space-between;padding:16px 18px;background:#e8f0ff;border:1px solid #3370c444;border-radius:14px;text-decoration:none;transition:filter .15s" onmouseover="this.style.filter='brightness(.97)'" onmouseout="this.style.filter='none'">
-      <div style="display:flex;align-items:center;gap:14px">
-        <div style="width:44px;height:44px;border-radius:50%;background:#3370c4;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0">🇺🇸</div>
-        <div>
-          <div style="font-size:.95rem;font-weight:800;color:#1e4d8c;margin-bottom:5px">영어 회화 수업 — 생활·비즈니스·자격증·여행</div>
-          <div style="display:flex;flex-wrap:wrap;gap:5px">
-            <span style="font-size:.72rem;background:rgba(51,112,196,.12);color:#1e4d8c;padding:2px 8px;border-radius:20px">기초~고급 회화</span>
-            <span style="font-size:.72rem;background:rgba(51,112,196,.12);color:#1e4d8c;padding:2px 8px;border-radius:20px">토익·토플·오픽</span>
-            <span style="font-size:.72rem;background:rgba(51,112,196,.12);color:#1e4d8c;padding:2px 8px;border-radius:20px">비즈니스 영어</span>
-            <span style="font-size:.72rem;background:rgba(51,112,196,.12);color:#1e4d8c;padding:2px 8px;border-radius:20px">여행·면접·유학</span>
-          </div>
-        </div>
-      </div>
-      <div style="font-size:1rem;color:#3370c4;font-weight:700;flex-shrink:0">→</div>
-    </a>
-  </div>` : ""}
-
   <div class="sec">
     <div class="sec-title">📚 다른 과목 공부법</div>
     <div class="other-grid">${otherSubjectsHtml}</div>
@@ -31175,6 +31153,325 @@ const ENGLISH_PERFORM_DATA = {
   },
 };
 
+// ============================================================
+// 영어 회화 — 영역별 학습 데이터 (LANG/SKILL)
+// ============================================================
+const ENGLISH_LANG_SKILL_DATA = {
+  "pronunciation": {
+    badge: "영어 회화 · 영역별 학습",
+    h1: "영어 발음 교정 마스터<br>한국인 약점 발음·강세·억양",
+    sub: "R/L · F/V · TH · 강세 · 억양 · 연음 · 입 모양 직접 코칭",
+    breadcrumb: "영어 발음 교정",
+    tag: "영어 발음 교정",
+    intro: {
+      title: "한국인이 자주 틀리는 발음, 1:1 화상 수업으로 입 모양·혀 위치까지 직접 잡아드려요",
+      body: "영어 발음 교정은 회화 실력의 첫 번째 관문이에요. 한국인 화자가 어려워하는 대표 발음은 R/L·F/V·TH·Z 자음과 단모음·이중모음 구분, 그리고 단어 강세·문장 억양·연음입니다. 잘못된 발음 습관은 오래 굳을수록 교정이 어려워지므로 \"빠르게 진단·집중 교정·매일 반복\" 3박자가 핵심이에요. 학습 단계: (1) 진단 (현재 발음 약점 파악) → (2) 자음·모음 개별 교정 (입 모양·혀 위치 시각화) → (3) 단어·문장 강세 적용 → (4) 억양·연음 자연스러운 흐름 완성. 1:1 화상 과외에서는 학생 발화를 실시간 청취·즉시 피드백·반복 훈련이 가능해 그룹 수업 대비 4배 이상 효율이 높아요. 매일 15~20분 쉐도잉 + 주 1~2회 1:1 코칭이 가장 효과적인 루틴입니다."
+    },
+    phaseTitle: "단계별 발음 교정 로드맵",
+    phaseSub: "4단계 학습 흐름",
+    areaTitle: "핵심 4영역",
+    tierTitle: "수준별 발음 교정 처방",
+    phases: [
+      ["1단계", "발음 진단", "자음·모음·강세 약점 파악"],
+      ["2단계", "자음·모음 교정", "입 모양·혀 위치 시각화"],
+      ["3단계", "단어·문장 강세", "리듬·박자 정착"],
+      ["4단계", "억양·연음", "자연스러운 흐름 완성"],
+    ],
+    areas: [
+      {name: "한국인 약점 자음 (R/L·F/V·TH·Z)", body: "한국어에 없는 자음이 발음 교정의 1순위예요. (1) R: 혀끝을 입천장에 닿지 않게 말아 올림 (\"red·right·around\"). (2) L: 혀끝을 윗니 뒤에 붙이고 옆으로 공기 (\"light·love·hello\"). (3) F/V: 윗니로 아랫입술 가볍게 물고 공기 통과 (\"face·five·very\"). (4) TH: 혀끝을 윗니와 아랫니 사이로 살짝 내밀고 공기 (\"think·that·three\"). (5) Z: 입을 살짝 벌리고 성대 진동 (\"zoo·busy·zero\"). 한국식 R(아) → 영어 R, P → F, S → TH로 굳어진 발음은 매주 1~2개씩 집중 교정 + 매일 미니멀페어(rice/lice·fan/pan) 반복이 답이에요."},
+      {name: "단모음·이중모음·schwa (약모음)", body: "모음은 한국어보다 훨씬 다양해요. (1) 단모음 구분: ship/sheep (이/ㅣ:)·full/fool (우/우:)·bad/bed (애/에). (2) 이중모음: boy(오이)·house(아우)·face(에이)·time(아이). (3) schwa /ə/: 강세 없는 음절의 약한 \"어\" 발음 (about·banana·sofa의 마지막 a). schwa는 영어 발음의 50% 이상을 차지하지만 한국 학생이 가장 모르는 영역이에요. 강세 받은 모음은 길고 명확하게, 강세 없는 모음은 schwa로 약하게가 영어다운 발음의 핵심입니다. 1:1 과외에서 minimal pair (최소 대립쌍) 훈련 추천."},
+      {name: "단어 강세·문장 강세·리듬", body: "영어는 강세 박자 언어 (stress-timed)예요. (1) 단어 강세: photograph (PHO-to-graph)·photographer (pho-TOG-ra-pher)·photographic (pho-to-GRAPH-ic). 같은 어근이라도 품사·접미사에 따라 강세가 이동합니다. (2) 문장 강세: 내용어 (명사·동사·형용사)는 강하게, 기능어 (조사·전치사·관사)는 약하게. \"I WANT to GO to the STORE\" → 대문자만 강하게. (3) 리듬: 강세와 강세 사이는 약한 음절을 빠르게 압축. 강세 박자 정착이 \"한국식 또박또박 발음\" 탈출의 결정적 도구예요. 매일 영어 문장 박자 두드리기 + 쉐도잉 추천."},
+      {name: "억양·연음·축약 (Linking & Reduction)", body: "원어민 발음의 자연스러움은 연음과 억양에서 나와요. (1) 연음 (Linking): 자음 + 모음 → 연결 (\"an apple\" → \"a-napple\", \"pick it up\" → \"pi-ki-tup\"). 같은 자음 만나면 한 번만 (\"hot tea\" → \"ho-tea\"). (2) 축약: I am → I'm, going to → gonna, want to → wanna, kind of → kinda. (3) 억양: 평서문은 끝을 내림, 의문문 (Yes/No)은 끝을 올림, Wh- 의문문은 끝을 내림. 감정·강조에 따라 억양이 변하는 것까지 익히면 원어민에 가까워집니다. 미드·팟캐스트 쉐도잉 + 1:1 첨삭이 가장 효과적이에요."},
+    ],
+    tiers: [
+      {label: "초급 (왕초보·기초 회화)", body: "알파벳 발음·기초 자음·모음 정확히 발음부터. 매일 15분 + 미니멀페어 5쌍 (rice/lice·fan/pan·think/sink·very/berry 등). 추천 자료: \"Rachel's English\" 유튜브·\"American Accent Training\" 입문. 1:1 과외에서 입 모양·혀 위치 시각화 코칭 추천. 첫 8주에 자음 교정, 다음 8주에 모음·schwa 추천."},
+      {label: "중급 (회화 가능·발음 다듬기)", body: "강세·억양·리듬 정착 단계. 매일 20분 쉐도잉 + 주 1~2회 1:1 첨삭. 추천 자료: \"BBC Learning English\"·\"Voice of America\"·간단한 미드 (Friends·Modern Family). 단어 강세 100개 + 문장 강세·연음 패턴 정착이 핵심. 1:1 과외에서 학생 발화 녹음·비교 분석·즉시 피드백 추천."},
+      {label: "고급 (자연스러운 회화·뉘앙스)", body: "원어민 수준 억양·연음·축약·뉘앙스 표현. 매일 30분 쉐도잉 + 다양한 액센트 노출 (American·British·Australian). 추천 자료: TED Talks·팟캐스트 (NPR·This American Life)·다양한 미드. 감정·강조 억양·연어 (Collocation)·구어체 표현까지 마스터. 1:1 과외에서 프레젠테이션·인터뷰 시뮬레이션 추천."},
+      {label: "전문가 (비즈니스·국제 무대)", body: "프레젠테이션·협상·미디어 인터뷰용 정확하고 강력한 발음. 매일 30분 + 주제별 어휘 강세·문장 흐름 다듬기. 추천: 영어 발음 코치 1:1 + 실제 발표 영상 녹화·분석. 자기 분야 어휘의 강세·발음 100% 정확이 신뢰감의 결정적 도구. 1:1 과외에서 실전 시뮬레이션 + 영상 첨삭 추천."},
+    ],
+    mistakes: [
+      {title: "한국식 자음으로 굳은 채 회화만 늘리기", body: "가장 흔한 실수예요. R을 \"아\", F를 \"ㅍ\", TH를 \"ㅅ/ㄷ\"로 발음하면 회화가 늘수록 잘못된 습관이 굳어요. 회화 학습 초반 8~12주에 자음 교정 집중이 답입니다. 1:1 과외에서 입 모양·혀 위치 직접 코칭 추천."},
+      {title: "강세·억양 무시하고 또박또박 발음", body: "한국어처럼 모든 음절을 동일한 길이·세기로 발음하면 원어민이 알아듣기 어려워요. 영어는 강세 박자 언어. 강세 받은 음절은 길고 명확하게, 강세 없는 음절은 schwa로 약하게가 답입니다. 매일 박자 두드리기 + 쉐도잉 추천."},
+      {title: "연음·축약 모르고 단어 단위로 발음", body: "\"How are you?\"를 \"하우-아-유\"로 또박또박 발음하면 원어민에게 어색해요. \"하와유\"처럼 연음·축약이 자연스러움의 핵심입니다. 미드·팟캐스트 쉐도잉으로 실전 발음 패턴 익히기 + 1:1 첨삭이 답이에요."},
+    ],
+    checklist: [
+      "한국인 약점 자음 (R·L·F·V·TH·Z) 정확히 발음 가능?",
+      "단모음·이중모음·schwa 구분 발음 가능?",
+      "단어 강세 정확히 (photograph vs photographer)?",
+      "문장 강세·리듬 (내용어 강·기능어 약)?",
+      "연음·축약·억양 자연스럽게 (\"How are you?\" → \"하와유\")?",
+    ],
+    checklistTitle: "발음 교정 체크리스트",
+    checklistSub: "월 1회 점검",
+    faqs: [
+      {q: "발음 교정에 얼마나 걸리나요?", a: "기본 자음·모음 교정은 8~12주면 큰 변화가 보여요. 특정 발음 (R/L 등) 집중 교정은 4~6주로도 가능합니다. 다만 완전히 자연스러운 원어민급 발음까지는 6개월~1년 꾸준한 노출과 훈련이 필요해요. 1:1 과외 + 매일 15~20분 쉐도잉이 가장 효과적인 루틴이에요."},
+      {q: "성인이 되어도 발음 교정 가능한가요?", a: "충분히 가능해요. 성인 학습자는 어린이보다 발음 습관이 굳어 있지만, 명시적 학습 (입 모양·혀 위치 이해) + 반복 훈련으로 충분히 교정됩니다. 30~50대 학습자도 6개월 집중 학습으로 큰 변화를 보이는 경우가 많아요. 다만 어린이보다 시간이 더 걸리고 의식적 노력이 필요합니다. 1:1 과외에서 진단 후 집중 교정 추천."},
+      {q: "쉐도잉이 정말 효과적인가요?", a: "네, 가장 효과적인 발음·억양 학습법이에요. (1) 자료 선택: 본인 수준에 맞는 1~2분 영상 (BBC Learning English·미드 한 장면). (2) 방법: 들으면서 동시에 따라 말하기 (0.5초 정도 늦게). (3) 횟수: 같은 자료 10~20회 반복. (4) 빈도: 매일 15~20분. 단순 듣기보다 입으로 따라하기가 발음 근육 형성의 핵심이에요. 1:1 과외에서 쉐도잉 자료 추천 + 첨삭 가능합니다."},
+      {q: "원어민 강사가 발음 교정에 더 좋지 않나요?", a: "발음 교정은 한국인 강사가 더 효과적인 경우가 많아요. 한국인 학습자가 어려워하는 발음 (R/L·F/V·TH 등)을 정확히 진단·설명할 수 있고, 한국어와의 차이를 명시적으로 가르칠 수 있거든요. 원어민 강사는 \"네 발음이 어색해\"는 알지만 \"왜 어색한지·어떻게 고쳐야 할지\"를 한국식으로 설명하기 어렵습니다. 한국인 강사로 발음 정착 후 원어민과 자유 대화로 다듬는 순서가 효율적이에요."},
+      {q: "1:1 화상 수업으로 발음 교정이 가능한가요?", a: "오히려 화상 수업이 발음 교정에 유리해요. (1) 입 모양·혀 위치 클로즈업 가능 (대면보다 더 잘 보임). (2) 학생 발화 즉시 녹음·재생 비교. (3) 화면 공유로 발음 기호·시각 자료 동시 활용. (4) 시간·장소 제약 없이 매주 정기 수업. 제나쌤 스터디핏은 화상 1:1 발음 교정 전문 커리큘럼으로 매일 짧게·꾸준히 학습 가능합니다."},
+    ],
+    related: [
+      {label: "영어 회화 영역별 학습", href: "/language/english/"},
+      {label: "영어 회화 입문 과정", href: "/language/english/level/beginner/"},
+      {label: "영어 회화 듣기 훈련", href: "/language/english/skill/listening/"},
+      {label: "영어 회화 말하기 유창성", href: "/language/english/skill/speaking/"},
+      {label: "영어 회화 메인", href: "/language/english/"},
+    ],
+    tags: ["영어발음교정", "영어회화", "한국인약점발음", "쉐도잉", "강세억양", "1:1발음과외"],
+  },
+  "grammar": {
+    badge: "영어 회화 · 영역별 학습",
+    h1: "영어 회화 문법 패턴 마스터<br>책 문법이 아닌 실전 회화 문법",
+    sub: "회화 빈출 패턴 50 · 시제 · 조동사 · 자연스러운 표현",
+    breadcrumb: "영어 회화 문법",
+    tag: "영어 회화 문법",
+    intro: {
+      title: "문법책이 아닌 실제 회화에 자주 쓰이는 핵심 패턴 50개를 1:1 화상 수업으로 익혀요",
+      body: "영어 회화 문법은 문법책의 모든 규칙을 외우는 게 아니에요. 실제 원어민이 매일 쓰는 회화 빈출 패턴 50개 정도만 정확히 익히면 일상 대화의 90%를 자유롭게 표현할 수 있습니다. 한국 학생들은 학교에서 문법 시험용 학습은 했지만, \"입에서 바로 나오는 회화 문법\"은 부족한 경우가 대부분이에요. 핵심은 \"필수 시제 4개·조동사 6개·관계대명사·가정법·구동사·전치사\" 6대 영역입니다. 학습 단계: (1) 진단 (현재 회화에 사용 가능한 문법 파악) → (2) 회화 빈출 패턴 50개 입에 붙이기 → (3) 시제·조동사 자연스러운 적용 → (4) 가정법·관계대명사 등 고급 표현 추가. 1:1 화상 과외에서는 학생이 실제 사용하는 표현을 분석해 약점 패턴만 골라 집중 학습이 가능해요. 매일 5문장 만들어 말하기 + 주 1~2회 1:1 첨삭이 가장 효과적입니다."
+    },
+    phaseTitle: "단계별 회화 문법 정복 로드맵",
+    phaseSub: "4단계 학습 흐름",
+    areaTitle: "회화 문법 핵심 4영역",
+    tierTitle: "수준별 회화 문법 처방",
+    phases: [
+      ["1단계", "회화 문법 진단", "현재 사용 가능한 패턴 파악"],
+      ["2단계", "빈출 패턴 50", "입에 붙이기·즉답 훈련"],
+      ["3단계", "시제·조동사", "자연스러운 적용"],
+      ["4단계", "고급 표현", "가정법·관계대명사·뉘앙스"],
+    ],
+    areas: [
+      {name: "필수 시제 4개 (현재·과거·현재완료·미래)", body: "회화에서 가장 많이 쓰는 시제 4개부터 마스터예요. (1) 현재시제: 일상 습관·반복 (\"I work from home\"·\"She drinks coffee every morning\"). (2) 과거시제: 끝난 사건 (\"I went to Japan last year\"·\"He called me yesterday\"). (3) 현재완료: 과거~현재 연결 (\"I have lived here for 5 years\"·\"Have you ever been to Paris?\"). 한국어에 없어 가장 어려움. (4) 미래 (will/be going to): \"will\"은 즉흥 결정 (\"I'll get it!\"), \"be going to\"는 계획 (\"I'm going to Korea next month\"). 이 4개 시제를 입에서 바로 나오게 만드는 게 회화 문법의 80%예요. 1:1 과외에서 시제별 즉답 훈련 추천."},
+      {name: "조동사 6개 (can·will·should·must·may·could)", body: "회화의 뉘앙스는 조동사에서 나와요. (1) can: 능력·허락·가능성 (\"I can speak English\"·\"Can I help you?\"). (2) will: 의지·미래 (\"I will do it\"·\"Will you marry me?\"). (3) should: 권유·당위 (\"You should try this\"·\"What should I do?\"). (4) must: 강한 의무·확신 (\"You must be tired\"·\"I must go now\"). (5) may/might: 약한 가능성·정중한 허락 (\"It may rain\"·\"May I come in?\"). (6) could: can의 과거·정중한 부탁 (\"Could you help me?\"·\"I could swim when I was 5\"). 같은 의미라도 조동사에 따라 정중함·확신도가 달라집니다. 1:1 과외에서 상황별 조동사 선택 훈련 추천."},
+      {name: "관계대명사·접속사 (문장 연결의 핵심)", body: "긴 문장을 자연스럽게 만드는 도구예요. (1) 관계대명사: who(사람)·which(사물)·that(둘 다)·whose(소유)·what(\"~하는 것\"). \"The man who called you is my brother.\" (2) 접속사: and·but·so·because·although·if·when·while. \"I went home because I was tired.\" (3) 의문사 + to부정사: how to·what to·where to (\"I don't know what to say\"). 짧은 문장만 쓰면 어린이 같고, 관계대명사·접속사로 연결해야 성인 대화가 가능해요. 1:1 과외에서 두 문장 연결 훈련 추천."},
+      {name: "가정법·구동사 (Phrasal Verb) — 고급 표현", body: "원어민 같은 자연스러운 회화의 비결이에요. (1) 가정법: \"If I were you, I would...\"(현재 반대)·\"If I had known, I would have...\"(과거 반대). 회화에서 의외로 자주 사용. (2) 구동사 (Phrasal Verb): give up(포기)·look after(돌봄)·put off(연기)·get along(잘 지내다)·run into(우연히 만나다). 원어민 회화의 50% 이상이 구동사. 단어로는 surrender·postpone이라 해도 회화에선 give up·put off가 자연스러워요. 빈출 구동사 100개 + 가정법 5패턴 마스터가 \"중급 → 고급\" 결정적 도구. 1:1 과외에서 미드 구동사 분석 추천."},
+    ],
+    tiers: [
+      {label: "초급 (왕초보·기초 문장)", body: "현재시제·be동사·일반동사 차이부터. 매일 영어 5문장 만들어 말하기 (\"I am a student\"·\"I work from 9 to 6\"·\"I like coffee\"). 추천 자료: \"English Grammar in Use\" Elementary·\"Grammar in Use\" 초급. 1:1 과외에서 기초 문장 100개 패턴 입에 붙이기 추천. 첫 8주에 현재·과거·be동사 정착 추천."},
+      {label: "중급 (회화 가능·문법 다듬기)", body: "현재완료·미래·조동사·관계대명사 정착. 매일 영어 5문장 + 주 1~2회 1:1 첨삭. 추천 자료: \"English Grammar in Use\" Intermediate·\"Grammar in Use\" 중급. 한국 학생이 가장 약한 \"현재완료·관계대명사\" 집중 학습. 1:1 과외에서 미드 한 장면 분석·패턴 추출 추천."},
+      {label: "고급 (자연스러운 회화·뉘앙스)", body: "가정법·구동사·뉘앙스 표현 마스터. 매일 영어 일기 3~5문장 + 구동사 5개 학습. 추천 자료: \"Advanced Grammar in Use\"·구동사 사전 (Longman)·다양한 미드. 빈출 구동사 100개 + 가정법 5패턴이 핵심. 1:1 과외에서 영작 첨삭·뉘앙스 차이 학습 추천."},
+      {label: "전문가 (비즈니스·국제 무대)", body: "비즈니스 표현·정중한 어법·전문 용어 결합. 매일 비즈니스 이메일·미팅 표현 학습 + 주 1회 1:1 영작·발화 첨삭. 추천: HBR·Bloomberg·전문 분야 영어. 정확한 시제·조동사·뉘앙스 선택이 신뢰감의 결정적 도구예요. 1:1 과외에서 실전 시뮬레이션·자기 분야 전문 표현 추천."},
+    ],
+    mistakes: [
+      {title: "문법책 통째 외우기·실전 적용 X", body: "가장 흔한 실수예요. \"English Grammar in Use\" 1권 통째 외워도 회화에서 한 마디도 못 하는 경우 많아요. 핵심은 책 한 단원 학습 → 그 패턴으로 즉시 5문장 만들기 → 입으로 말하기 + 1:1 첨삭. 입에 붙어야 회화 문법이에요."},
+      {title: "현재시제·과거시제만 쓰고 회화 끝내기", body: "한국 학생들의 80%는 회화에서 현재·과거시제만 사용해요. 현재완료·가정법·구동사를 못 써서 어린이 같은 회화에 머무릅니다. 매주 1개 새 시제·표현 학습 + 매일 5번 사용이 답이에요. 1:1 과외에서 약점 시제 진단 추천."},
+      {title: "관계대명사·접속사 없이 짧은 문장만 사용", body: "\"I went to school. I met my friend. We had lunch.\" 식의 짧은 문장만 쓰면 어린이 같아요. \"I went to school where I met my friend, and we had lunch together.\" 처럼 연결해야 성인 회화. 매일 두 문장 연결 훈련 5번이 답입니다."},
+    ],
+    checklist: [
+      "필수 시제 4개 (현재·과거·현재완료·미래) 자유롭게 사용?",
+      "조동사 6개 (can·will·should·must·may·could) 뉘앙스 구분?",
+      "관계대명사·접속사로 두 문장 자연스럽게 연결?",
+      "가정법 5패턴 (If I were·If I had·etc.) 사용 가능?",
+      "빈출 구동사 50개 이상 회화에 자연스럽게 활용?",
+    ],
+    checklistTitle: "회화 문법 체크리스트",
+    checklistSub: "월 1회 점검",
+    faqs: [
+      {q: "문법책 한 권 다 떼면 회화가 되나요?", a: "안 돼요. 문법책 학습과 회화 사용은 다른 능력이에요. \"이해\"는 됐어도 \"입에서 즉시 나오는 것\"은 별도 훈련이 필요합니다. 책 한 단원 학습 후 그 패턴으로 5문장 만들기 + 입으로 말하기 + 1:1 첨삭이 답이에요. 책 1권 통째 학습보다 빈출 패턴 50개 입에 붙이기가 회화엔 훨씬 효과적입니다."},
+      {q: "현재완료 시제가 너무 어려워요.", a: "현재완료는 한국어에 없는 개념이라 가장 어려운 시제예요. 핵심은 \"과거~현재 연결\"입니다. (1) 경험: \"I have been to Paris\" (한 번이라도 가본 적 있다). (2) 계속: \"I have lived here for 5 years\" (5년 전부터 지금까지). (3) 완료: \"I have just finished my work\" (방금 끝남). 매일 현재완료 5문장 만들기 4주만 하면 입에 붙어요. 1:1 과외에서 집중 훈련 추천."},
+      {q: "구동사를 외워도 회화에서 안 나와요.", a: "구동사는 의미만 외우면 안 나와요. \"상황·문맥\"과 함께 학습이 답이에요. 예: \"give up\"을 외울 때 \"I gave up smoking last year\"·\"Don't give up your dream\" 같은 실제 문장 5개를 함께 외우기. 또 미드·유튜브에서 구동사 사용 장면을 찾아 \"이 상황에서 이렇게 쓰는구나\" 익히기. 1:1 과외에서 미드 구동사 분석·즉답 훈련 추천."},
+      {q: "원어민은 문법 틀려도 통하지 않나요?", a: "초급 회화는 가능해요. 다만 시제·조동사·관사 같은 핵심 문법이 자주 틀리면 의미 전달도 어색해지고, 비즈니스·면접 등 공식 자리에서 신뢰감이 떨어져요. 중급 이상으로 가려면 정확한 문법은 필수입니다. 다만 회화는 정확성보다 유창성이 우선이니, 일단 말하고 + 점진적으로 정확성 높이기 순서가 맞아요."},
+      {q: "1:1 화상 수업으로 회화 문법 학습이 효과적인가요?", a: "오히려 화상 수업이 회화 문법에 유리해요. (1) 학생 발화 즉시 첨삭 (\"I goed → went\"). (2) 화면 공유로 패턴 시각화. (3) 매주 정기 수업으로 누적 학습. (4) 약점 패턴만 골라 집중 학습. 그룹 수업은 다른 학생 진도에 맞춰야 하지만 1:1은 100% 본인 약점 중심. 제나쌤 스터디핏은 회화 문법 진단·약점 보완·즉답 훈련 커리큘럼으로 진행합니다."},
+    ],
+    related: [
+      {label: "영어 발음 교정", href: "/language/english/skill/pronunciation/"},
+      {label: "영어 말하기 유창성", href: "/language/english/skill/speaking/"},
+      {label: "영어 듣기 훈련", href: "/language/english/skill/listening/"},
+      {label: "영어 회화 중급 과정", href: "/language/english/level/intermediate/"},
+      {label: "영어 회화 메인", href: "/language/english/"},
+    ],
+    tags: ["영어회화문법", "회화패턴", "시제정복", "조동사", "구동사", "1:1회화과외"],
+  },
+
+  "speaking": {
+    badge: "영어 회화 · 영역별 학습",
+    h1: "영어 말하기 유창성 훈련<br>머릿속 번역 멈추고 즉답하기",
+    sub: "즉답 훈련 · 롤플레이 · 1분 스피치 · 사고 속도 향상",
+    breadcrumb: "영어 말하기 유창성",
+    tag: "영어 말하기 유창성",
+    intro: {
+      title: "머릿속에서 한국어로 번역하는 습관을 멈추고, 영어로 바로 말하는 사고 회로를 1:1 화상 수업으로 만들어요",
+      body: "영어 말하기 유창성의 핵심은 \"문법·어휘를 더 알기\"가 아니에요. 이미 아는 단어와 패턴을 \"머릿속 번역 없이 입에서 바로 나오게\" 만드는 사고 속도 훈련이 핵심입니다. 한국 학생들은 보통 단어·문법은 충분한데 \"What's your hobby?\" 질문에 5초 멈추고 한국어로 답을 만든 뒤 영어로 번역하느라 회화가 끊겨요. 핵심은 \"즉답 훈련 (1초 내 응답)·롤플레이 (실제 상황 시뮬레이션)·1분 스피치 (생각 정리 후 즉시 발화)\" 3박자입니다. 학습 단계: (1) 진단 (현재 응답 속도·끊기는 지점 파악) → (2) 즉답 100문항 반복 → (3) 일상 상황 롤플레이 → (4) 1분 스피치로 즉흥 사고력 완성. 1:1 화상 과외에서는 매 수업 학생이 80% 이상 발화하며, 끊기는 지점·약점 패턴을 즉시 진단·교정합니다. 매일 거울 보고 영어로 5분 자기소개 + 주 1~2회 1:1 코칭이 가장 효과적이에요."
+    },
+    phaseTitle: "단계별 유창성 훈련 로드맵",
+    phaseSub: "4단계 학습 흐름",
+    areaTitle: "유창성 핵심 4영역",
+    tierTitle: "수준별 말하기 처방",
+    phases: [
+      ["1단계", "발화 진단", "응답 속도·끊기는 지점 파악"],
+      ["2단계", "즉답 훈련", "1초 내 응답 100문항"],
+      ["3단계", "롤플레이", "일상 상황 시뮬레이션"],
+      ["4단계", "1분 스피치", "즉흥 사고·발화"],
+    ],
+    areas: [
+      {name: "즉답 훈련 (Rapid Response) — 사고 속도 핵심", body: "유창성의 첫 단계예요. 일상 질문에 1~2초 내 응답하는 훈련. (1) 자기소개 질문 (\"What's your name?·What do you do?·Where are you from?·What's your hobby?\"). (2) 일상 질문 (\"How was your day?·What did you have for lunch?·What's your plan for weekend?\"). (3) 의견 질문 (\"What do you think about this?·Do you like this?·Why?\"). 매일 100문항 즉답 + 1:1 첨삭으로 머릿속 번역 회로를 영어 사고 회로로 바꿉니다. \"답을 잘 말하기\"가 아니라 \"빠르게 말하기\"가 목표예요."},
+      {name: "롤플레이 (Role-play) — 실제 상황 시뮬레이션", body: "실제 사용 상황에서의 발화 훈련이에요. (1) 일상: 식당 주문·길 묻기·쇼핑·병원·전화 받기. (2) 직장: 회의 발언·이메일·프레젠테이션·인터뷰. (3) 여행: 공항·호텔·관광·문제 해결. (4) 사회: 자기소개·스몰토크·친구 모임·약속 잡기. 1:1 과외에서 강사가 상대역을 맡아 실전과 동일한 상황을 매 수업 시뮬레이션. 학생은 즉흥 응답·문제 해결·표현 확장을 동시에 연습해요. 그룹 수업으로는 어렵고 1:1만 가능한 훈련이에요."},
+      {name: "1분 스피치 (Impromptu Speech) — 즉흥 사고력", body: "즉흥적인 주제로 1분 발화 훈련이에요. (1) 일상 주제: 어제 한 일·취미·가족·여행·음식. (2) 의견 주제: SNS 장단점·재택근무·환경 보호·교육·기술. (3) 추상 주제: 행복·성공·우정·시간·돈. 30초 생각 정리 → 1분 발화 → 1:1 피드백 사이클. 단순 답변이 아닌 \"논리·구조·표현 다양성\" 동시 평가. 면접·프레젠테이션·고급 회화의 핵심 기술이에요. 매일 1분 스피치 1주제 + 녹음·자기 피드백이 답이에요."},
+      {name: "표현 확장 (Lexical Variety) — 같은 의미·다른 표현", body: "유창함은 같은 의미를 여러 표현으로 말할 수 있을 때 완성돼요. (1) 동의: \"I think so·I agree·You're right·That's true·Exactly·Absolutely\". (2) 거절: \"I don't think so·I disagree·I'm not sure·That's not quite right·I see your point, but...\". (3) 좋다: \"good·great·nice·awesome·amazing·fantastic·brilliant·wonderful\". (4) 강조: \"really·very·super·extremely·incredibly·absolutely\". 같은 단어 반복 X. 매주 한 표현 영역 5~10개 학습 + 즉시 사용이 \"중급 → 고급\" 결정적 도구. 1:1 과외에서 학생 표현 다양성 진단·확장 추천."},
+    ],
+    tiers: [
+      {label: "초급 (왕초보·기초 문장)", body: "기초 자기소개·일상 질문 답변부터. 매일 거울 보고 5분 자기소개 (\"My name is...·I'm from...·I work as...·I like...\"). 추천 자료: 기초 회화 패턴북·왕초보 영어 회화 유튜브·EBSe. 1:1 과외에서 기초 100문항 즉답 훈련 추천. 첫 8주에 자기소개·일상 질문 응답 정착이 목표예요."},
+      {label: "중급 (회화 가능·유창성 향상)", body: "롤플레이·1분 스피치 도입 단계. 매일 1분 스피치 1주제 + 영어 일기 3문장. 추천 자료: \"60-Second English\" 팟캐스트·\"English with Lucy\" 유튜브·간단한 미드 (Friends·Modern Family). 일상 상황 롤플레이·표현 확장이 핵심. 1:1 과외에서 매 수업 80% 발화·즉시 피드백 추천."},
+      {label: "고급 (자연스러운 회화·즉흥성)", body: "추상 주제 토론·뉘앙스 표현 마스터. 매일 영어 일기 1단락 + 즉흥 토론 1주제. 추천 자료: TED Talks·BBC 6 Minute English·NPR·다양한 미드·팟캐스트. 의견 표현·논리 구조·반박 기술이 핵심. 1:1 과외에서 토론·디베이트·프레젠테이션 시뮬레이션 추천."},
+      {label: "전문가 (비즈니스·국제 무대)", body: "프레젠테이션·협상·미디어 인터뷰 즉흥 응답. 매일 비즈니스 영어 30분 + 주 1회 실전 시뮬레이션 + 영상 첨삭. 추천: HBR·TED·전문 분야 영어. 정확한 표현·자신감 있는 어조·즉흥 대응 능력이 신뢰감의 결정적 도구예요. 1:1 과외에서 실전 시뮬레이션·영상 첨삭 추천."},
+    ],
+    mistakes: [
+      {title: "단어·문법만 더 외우면 회화가 늘 거라 착각", body: "가장 흔한 실수예요. 중급 학생들이 단어·문법은 충분한데 입에서 안 나오는 이유는 \"발화 훈련 부족\". 매일 거울 보고 영어 5분 자기소개·즉답 100문항 + 1:1 코칭이 답이에요. 발화 훈련 없는 단어·문법 학습은 회화에 도움 안 돼요."},
+      {title: "완벽한 문장만 만들려다 침묵", body: "\"틀리면 안 된다\"는 강박이 회화의 적이에요. 처음엔 틀려도 빨리 말하기 → 점진적으로 정확성 높이기 순서가 답입니다. 그룹 수업이나 외국인 모임에서 침묵하지 말고 일단 말하기. 1:1 과외에서 \"빠르게 말하기 → 첨삭\" 사이클이 효과적이에요."},
+      {title: "혼자만 학습·발화 기회 없음", body: "리스닝·읽기는 혼자 가능해도 \"말하기\"는 상대가 필요해요. 1:1 과외 + 영어 모임 + 외국인 친구·태그 등 발화 기회 확보가 답입니다. 셀프톡 (혼잣말 영어)·녹음 후 자기 피드백도 차선책이에요. 매주 영어로 말하는 시간 5시간 이상 확보가 목표예요."},
+    ],
+    checklist: [
+      "자기소개 질문 30개 이상 1~2초 내 즉답 가능?",
+      "일상 상황 롤플레이 (식당·쇼핑·길 묻기 등) 자연스럽게?",
+      "1분 스피치 즉흥 주제로 가능 (30초 준비 후 1분 발화)?",
+      "같은 의미를 5가지 다른 표현으로 말할 수 있음 (동의·거절 등)?",
+      "5분 이상 끊기지 않고 영어로 대화 가능?",
+    ],
+    checklistTitle: "유창성 체크리스트",
+    checklistSub: "월 1회 점검",
+    faqs: [
+      {q: "영어 회화 유창성에 얼마나 걸리나요?", a: "현재 수준에 따라 달라요. (1) 왕초보 → 기초 회화 (자기소개·일상 대화): 6개월 (매일 30분 학습 기준). (2) 기초 → 중급 (의견 표현·30분 대화): 1년. (3) 중급 → 고급 (자연스러운 회화·뉘앙스): 1~2년. (4) 고급 → 원어민급: 평생 학습. 1:1 화상 과외 + 매일 발화 훈련이 가장 빠른 길이에요. 단순 학원만으로는 시간이 2~3배 걸려요."},
+      {q: "머릿속에서 한국어로 번역하는 습관, 어떻게 고치나요?", a: "번역 습관은 \"즉답 훈련 + 영어 사고 훈련\"으로 고쳐요. (1) 즉답 훈련: 질문에 1~2초 내 응답·완벽하지 않아도 일단 말하기. (2) 영어 사고: 매일 5분 영어로 혼잣말 (\"I'm going to the store·I want coffee·Today is...\"). (3) 영어 일기: 매일 3~5문장. 6~12주 꾸준한 훈련이면 입에 영어가 붙어요. 1:1 과외에서 즉답 훈련·셀프톡 코칭 추천."},
+      {q: "원어민과 1:1 회화가 가장 좋지 않나요?", a: "초급·중급은 한국인 강사가 더 효과적이에요. 한국인 강사는 한국 학생이 어디서 막히는지·왜 이 표현이 어색한지 정확히 진단·설명할 수 있고, 모국어로 즉시 이해할 수 있는 문법·뉘앙스 차이를 가르칩니다. 원어민은 \"네 영어가 어색해\"는 알지만 \"왜 어색한지·어떻게 고칠지\"를 한국식으로 설명하기 어려워요. 한국인 강사로 기초·중급 정착 후 원어민과 자유 대화로 다듬는 순서가 효율적입니다."},
+      {q: "유창성과 정확성 중 무엇이 우선인가요?", a: "유창성이 먼저예요. 처음엔 틀려도 빨리 말하기 → 점진적으로 정확성 높이기 순서가 답입니다. \"완벽한 영어\" 강박이 침묵의 가장 큰 원인이에요. 다만 중급 이상에서는 정확성도 함께 키워야 비즈니스·공식 자리에서 신뢰감이 있어요. 단계별 목표: 초급은 유창성 80·정확성 20, 중급은 유창성 60·정확성 40, 고급은 유창성 50·정확성 50."},
+      {q: "1:1 화상 수업으로 유창성 향상 가능한가요?", a: "오히려 화상 1:1이 유창성에 가장 효과적이에요. (1) 매 수업 학생이 80% 이상 발화. (2) 즉시 피드백·교정. (3) 약점 패턴만 골라 집중 훈련. (4) 화면 공유로 시각 자료 활용. (5) 매주 정기 수업으로 누적 학습. 그룹 수업은 학생당 발화 시간이 5~10분뿐이지만, 1:1은 50분 풀 발화 가능해요. 제나쌤 스터디핏은 즉답·롤플레이·1분 스피치 커리큘럼으로 유창성 단계별 향상시킵니다."},
+    ],
+    related: [
+      {label: "영어 발음 교정", href: "/language/english/skill/pronunciation/"},
+      {label: "영어 회화 문법", href: "/language/english/skill/grammar/"},
+      {label: "영어 듣기 훈련", href: "/language/english/skill/listening/"},
+      {label: "영어 회화 중급 과정", href: "/language/english/level/intermediate/"},
+      {label: "영어 회화 메인", href: "/language/english/"},
+    ],
+    tags: ["영어말하기", "유창성훈련", "즉답훈련", "롤플레이", "1분스피치", "1:1영어과외"],
+  },
+
+  "listening": {
+    badge: "영어 회화 · 영역별 학습",
+    h1: "영어 듣기 집중 훈련<br>딕테이션·쉐도잉·다양한 액센트",
+    sub: "받아쓰기 · 쉐도잉 · 청취 단계별 향상 · 액센트 적응",
+    breadcrumb: "영어 듣기 훈련",
+    tag: "영어 듣기 훈련",
+    intro: {
+      title: "받아쓰기·쉐도잉으로 듣기 실력을 단계별로 향상시키고, 다양한 액센트에 적응하는 1:1 화상 수업이에요",
+      body: "영어 듣기는 단순히 많이 듣는다고 늘지 않아요. 정확한 방법론·체계적 단계·꾸준한 노출이 핵심입니다. 한국 학생들은 보통 \"미드 자막 켜고 보기\"·\"팝송 가사 외우기\" 같은 비효율적 학습으로 시간만 쓰는 경우가 많아요. 핵심은 \"딕테이션 (받아쓰기)·쉐도잉 (따라 말하기)·쉽고 짧은 자료 반복·다양한 액센트 노출\" 4박자입니다. 학습 단계: (1) 진단 (현재 청취 가능한 속도·액센트 파악) → (2) 1~2분짜리 짧은 자료 받아쓰기 → (3) 같은 자료 쉐도잉 → (4) 다양한 액센트 (American·British·Australian·Indian) 적응. 1:1 화상 과외에서는 학생 수준에 맞는 자료 선택·받아쓰기 첨삭·이해 안 되는 부분 즉시 분석이 가능해요. 매일 15~20분 딕테이션 + 쉐도잉이 가장 효과적인 루틴입니다."
+    },
+    phaseTitle: "단계별 듣기 훈련 로드맵",
+    phaseSub: "4단계 학습 흐름",
+    areaTitle: "듣기 핵심 4영역",
+    tierTitle: "수준별 듣기 처방",
+    phases: [
+      ["1단계", "청취 진단", "현재 가능한 속도·액센트 파악"],
+      ["2단계", "딕테이션", "1~2분 자료 받아쓰기"],
+      ["3단계", "쉐도잉", "같은 자료 따라 말하기"],
+      ["4단계", "액센트 노출", "American·British·Australian·Indian"],
+    ],
+    areas: [
+      {name: "딕테이션 (Dictation) — 정확한 청취의 시작", body: "영어 듣기의 정석이에요. 1~2분짜리 자료를 들으며 받아쓰는 훈련. (1) 자료 선택: 본인 수준보다 약간 어려운 1~2분 영상 (BBC Learning English·VOA·간단한 미드). (2) 방법: 들으며 받아쓰기 → 정답 비교 → 안 들리는 부분 분석 → 다시 듣기 (3~5회). (3) 빈도: 매일 15분. (4) 목표: 정확도 90% 이상. 단순히 \"무슨 말인지 대충 이해\" 수준에서 \"한 단어도 놓치지 않는\" 정확한 청취로 발전시키는 훈련이에요. 한국 학생이 가장 빨리 효과를 보는 학습법이에요. 1:1 과외에서 첨삭·약점 분석 추천."},
+      {name: "쉐도잉 (Shadowing) — 발음·억양·청취 동시", body: "딕테이션 다음 단계. 들으면서 0.5초 늦게 동시에 따라 말하기. (1) 자료 선택: 딕테이션 끝낸 자료 (이미 내용 100% 이해). (2) 방법: 듣기 + 즉시 따라 말하기 (자막 없이) → 10~20회 반복 → 원어민 억양·속도 100% 모방. (3) 빈도: 매일 15분. (4) 효과: 발음·억양·연음 동시 학습 + 청취 능력 향상. 듣기·말하기 동시 훈련이라 가장 효과적이에요. 추천 자료: BBC 6 Minute English·간단한 미드 한 장면·TED 1~2분 클립. 1:1 과외에서 쉐도잉 자료 추천·첨삭 가능합니다."},
+      {name: "다양한 액센트 적응 (Accent Variety)", body: "원어민 영어는 액센트가 매우 다양해요. (1) American (미국): 가장 표준 (영화·미드 대부분). (2) British (영국): 발음·억양 다름 (Harry Potter·BBC). (3) Australian (호주): R 발음 약·강세 다름. (4) Indian (인도): 빠른 속도·강세 다름·비즈니스 영어 빈출. (5) 그 외: 캐나다·아일랜드·스코틀랜드 등. 학교에서는 American만 배우지만 실제 비즈니스·국제 환경에서는 다양한 액센트 노출이 필수예요. 매주 다른 액센트 자료 1개 학습 + 적응이 답입니다. 1:1 과외에서 학생 목표에 맞는 액센트 선택 학습 추천."},
+      {name: "내용 이해 (Comprehension) — 단순 청취 → 의미 파악", body: "단어 하나하나 들리는 것과 의미 이해는 달라요. (1) 핵심 정보 파악: 누가·언제·어디서·무엇을·왜·어떻게 (5W1H). (2) 주제 추론: 명시되지 않은 주제·의도 파악. (3) 어조·뉘앙스: 화자의 감정·태도·강조점. (4) 문화적 맥락: 영미권 문화 배경 이해. 단순 단어 청취에서 \"행간 의미\" 파악으로 발전이 고급 듣기. 다양한 자료 (뉴스·다큐·드라마·코미디) 노출이 답입니다. 1:1 과외에서 내용 분석·문화 배경 학습 추천."},
+    ],
+    tiers: [
+      {label: "초급 (왕초보·기초 청취)", body: "1분 미만 짧은 자료 + 자막 사용 단계. 매일 15분 듣기 + 받아쓰기 5문장. 추천 자료: \"English Easy Practice\" 유튜브·EBSe·EnglishClub Listening. 1:1 과외에서 기초 자료 선택·받아쓰기 첨삭 추천. 첫 12주에 1~2분 American 자료 100% 이해가 목표."},
+      {label: "중급 (회화 가능·딕테이션 단계)", body: "2~5분 자료 + 자막 없이 도전. 매일 15~20분 딕테이션 + 쉐도잉. 추천 자료: BBC 6 Minute English·VOA Learning English·간단한 미드 (Friends·Modern Family). 자막 없이 80% 이해가 목표. 1:1 과외에서 딕테이션 첨삭·약점 진단 추천."},
+      {label: "고급 (자연스러운 회화·다양한 자료)", body: "10~30분 자료·다양한 액센트 적응. 매일 30분 청취 + 5분 쉐도잉. 추천 자료: TED Talks·NPR·BBC News·다양한 미드·팟캐스트 (This American Life). 자막 없이 95% 이해 + 어조·뉘앙스 파악이 목표. 1:1 과외에서 고급 자료 분석·문화 배경 학습 추천."},
+      {label: "전문가 (비즈니스·국제 무대)", body: "영화·뉴스·미디어 인터뷰·전문 분야 강의 100% 이해. 매일 1시간 청취 + 자기 분야 영어 강의·팟캐스트. 추천: TED Business·HBR Podcast·영어 강의 (Coursera·edX). 액센트 다양성 + 전문 어휘 + 빠른 속도 적응이 핵심. 1:1 과외에서 자기 분야 영어 자료 추천·정밀 분석 추천."},
+    ],
+    mistakes: [
+      {title: "미드·영화 자막 켜고 시청 = 듣기 학습 X", body: "가장 흔한 실수예요. 자막 보면 청취가 아닌 \"읽기\"가 되어 듣기 실력 안 늘어요. 자막 없이 짧은 자료 반복 + 받아쓰기·쉐도잉이 답입니다. 미드·영화는 영어 \"노출용\"이지 학습 자료로는 비효율적이에요."},
+      {title: "긴 자료·어려운 자료부터 도전", body: "30분짜리 TED를 한 번에 들으려는 실수. 본인 수준보다 너무 어려운 자료는 좌절만 가져와요. 1~2분짜리 쉬운 자료 100% 이해 → 점진적 난이도 상승이 답입니다. 매일 짧은 자료 반복이 한 달에 한 번 긴 자료보다 100배 효과적이에요."},
+      {title: "팝송·드라마 가사 외우기 = 듣기 학습", body: "팝송·드라마 대사 통째 외우는 건 듣기 학습이 아니에요. \"이미 아는 가사\"를 듣는 거지 \"새 영어\"를 듣는 게 아니거든요. 진짜 듣기는 처음 듣는 자료를 받아쓰기·쉐도잉하는 훈련. 팝송은 발음·억양 학습엔 좋지만 청취 능력은 따로 훈련이 답입니다."},
+    ],
+    checklist: [
+      "1~2분짜리 American English 자막 없이 90% 이해?",
+      "딕테이션으로 한 단어도 놓치지 않는 정확한 청취?",
+      "쉐도잉으로 원어민 발음·억양 50% 이상 모방?",
+      "다양한 액센트 (British·Australian·Indian) 적응?",
+      "10분 이상 강의·뉴스 자막 없이 80% 이해?",
+    ],
+    checklistTitle: "듣기 훈련 체크리스트",
+    checklistSub: "월 1회 점검",
+    faqs: [
+      {q: "영어 듣기, 매일 얼마나 해야 하나요?", a: "매일 15~30분이 답이에요. 1주일에 한 번 2시간보다 매일 15분이 훨씬 효과적입니다. 듣기는 \"노출 시간\"보다 \"꾸준함\"이 핵심. (1) 매일 딕테이션 15분 (정확한 청취). (2) 매일 쉐도잉 5~10분 (발음·억양). (3) 주말 추가 30분 (다양한 액센트·긴 자료). 3개월이면 큰 변화 체감할 수 있어요."},
+      {q: "받아쓰기 (딕테이션)이 정말 효과적인가요?", a: "네, 가장 효과적인 청취 학습법이에요. 단순 듣기는 \"대충 이해\" 수준에 머무르지만, 받아쓰기는 \"한 단어도 놓치지 않는\" 정확한 청취 능력을 만들어줘요. 안 들리는 부분을 의식적으로 분석·반복하면서 듣기 약점이 정확히 보이거든요. 매일 1~2분짜리 짧은 자료 받아쓰기 12주만 해도 큰 변화 체감해요. 1:1 과외에서 첨삭 추천."},
+      {q: "팟캐스트·미드·뉴스 중 어느 게 좋나요?", a: "수준·목표에 따라 달라요. (1) 초급: \"English Easy Practice\"·BBC Learning English·VOA Learning English (1~2분 짧은 학습용). (2) 중급: BBC 6 Minute English·간단한 미드 (Friends·Modern Family). (3) 고급: TED Talks·팟캐스트 (NPR·This American Life)·뉴스 (BBC·CNN). (4) 전문가: 자기 분야 강의·HBR Podcast·전문 미디어. 본인 수준보다 약간 어려운 자료가 학습 효과 최고예요."},
+      {q: "다양한 액센트는 언제 학습해야 하나요?", a: "중급 이후 도전이 좋아요. 초급·기초 중급은 American English 하나에 집중. (왕초보가 British·Indian까지 동시 학습하면 혼란만 가중) 중급 이후 (Friends·Modern Family 자막 없이 80% 이해 가능 수준) British → Australian → Indian 순서로 매주 하나씩 적응. 비즈니스·국제 환경에서 일하시면 Indian English 적응이 특히 중요해요. 1:1 과외에서 액센트별 자료 추천 가능합니다."},
+      {q: "1:1 화상 수업으로 듣기 학습이 가능한가요?", a: "네, 매우 효과적이에요. (1) 학생 수준에 맞는 자료 선택. (2) 받아쓰기 즉시 첨삭·약점 분석. (3) 안 들리는 부분 발음·연음·강세 분석. (4) 쉐도잉 발화 첨삭. (5) 매주 정기 수업으로 누적 학습. 듣기 학습은 자료 선택과 분석이 핵심인데, 그룹 수업이나 혼자서는 어렵고 1:1만 가능해요. 제나쌤 스터디핏은 듣기 진단·딕테이션·쉐도잉 커리큘럼으로 단계별 향상시킵니다."},
+    ],
+    related: [
+      {label: "영어 발음 교정", href: "/language/english/skill/pronunciation/"},
+      {label: "영어 말하기 유창성", href: "/language/english/skill/speaking/"},
+      {label: "영어 회화 문법", href: "/language/english/skill/grammar/"},
+      {label: "영어 회화 중급 과정", href: "/language/english/level/intermediate/"},
+      {label: "영어 회화 메인", href: "/language/english/"},
+    ],
+    tags: ["영어듣기", "딕테이션", "쉐도잉", "영어청취", "액센트", "1:1영어과외"],
+  },
+
+  "reading": {
+    badge: "영어 회화 · 영역별 학습",
+    h1: "영어 회화 독해<br>읽고 토론하며 표현·어휘 확장",
+    sub: "원서 · 뉴스 · 기사 · 토론 · 어휘 확장 + 의견 표현",
+    breadcrumb: "영어 회화 독해",
+    tag: "영어 회화 독해",
+    intro: {
+      title: "원서·뉴스·기사를 읽고 영어로 토론하며 어휘 확장과 의견 표현을 동시에 학습하는 1:1 화상 수업이에요",
+      body: "회화 독해는 학교 영어 독해와 달라요. 학교 독해는 \"시험 정답 찾기\" 위주지만, 회화 독해는 \"읽은 내용으로 영어로 말하기\"가 목표입니다. 한국 학생들은 학교에서 독해 훈련은 충분하지만 \"읽은 내용을 회화에 활용\"하는 훈련은 부족해요. 핵심은 \"본인 수준에 맞는 자료·읽고 요약·읽고 토론·어휘 즉시 사용\" 4박자입니다. 학습 단계: (1) 진단 (현재 독해 가능 수준·회화 활용도 파악) → (2) 본인 수준 자료 선택 (원서·뉴스·기사) → (3) 읽고 요약·토론 → (4) 새 어휘를 회화에 즉시 활용. 1:1 화상 과외에서는 학생 관심 분야·수준에 맞는 자료 선택·읽고 토론·어휘 활용 첨삭이 가능해요. 매일 30분 영어 자료 읽기 + 5분 요약 (영어로) + 주 1~2회 1:1 토론이 가장 효과적이에요."
+    },
+    phaseTitle: "단계별 회화 독해 로드맵",
+    phaseSub: "4단계 학습 흐름",
+    areaTitle: "회화 독해 핵심 4영역",
+    tierTitle: "수준별 회화 독해 처방",
+    phases: [
+      ["1단계", "독해 진단", "현재 가능한 수준·관심 분야 파악"],
+      ["2단계", "자료 선택", "본인 수준 원서·뉴스·기사"],
+      ["3단계", "읽고 토론", "내용 요약·의견 표현"],
+      ["4단계", "어휘 활용", "새 단어 즉시 회화 사용"],
+    ],
+    areas: [
+      {name: "본인 수준에 맞는 자료 선택", body: "독해 학습의 50%는 자료 선택이에요. (1) 너무 쉬우면: 새 어휘·표현이 없어 학습 효과 낮음. (2) 너무 어려우면: 사전 찾느라 흐름 끊기고 좌절. 적정 난이도: \"한 페이지에 모르는 단어 5~10개\"가 표준. 추천 단계별 자료: 초급은 \"Penguin Readers\" 1~2단계·영어 동화 (Charlotte's Web)·\"Roald Dahl\" 시리즈. 중급은 \"Harry Potter\" 시리즈·간단한 자기계발서 (Atomic Habits·Mindset)·BBC News 6 Minute English. 고급은 The New York Times·The Economist·Atlantic·전문 분야 도서. 1:1 과외에서 본인 관심·수준에 맞는 자료 추천 추천."},
+      {name: "읽고 요약 (Summary) — 핵심 추출 능력", body: "읽기만으로는 회화에 활용 안 돼요. (1) 한 단락 읽기 → (2) 책 덮고 영어로 한 문장 요약 → (3) 5분 후 다시 한 단락 영어로 설명. 단순 \"이해\" 수준에서 \"표현\" 수준으로 발전시키는 훈련. 어휘·문법은 알아도 막상 영어로 말하려면 안 나오는 한국 학생에게 가장 효과적인 학습법이에요. 매일 영어 자료 1단락 읽고 영어로 요약 5분이 답입니다. 1:1 과외에서 요약 첨삭·확장 표현 추천 가능."},
+      {name: "읽고 토론 (Discussion) — 의견 표현 핵심", body: "읽은 내용에 대해 영어로 의견 말하기. (1) 객관식 질문: 누가·언제·어디서 등 (이해도 확인). (2) 주관식 질문: 왜·어떻게·만약 (의견 표현). (3) 토론 질문: 동의·반대·대안 (논리 표현). 단순 독해를 넘어 비판적 사고·의견 표현·논리 구조까지 학습하는 고급 단계. 1:1 과외에서 강사가 토론 상대 역할로 매 수업 50분 중 30분 토론 가능. 그룹 수업으로는 어렵고 1:1만 가능한 훈련이에요."},
+      {name: "어휘·표현 회화 활용 (Active Vocabulary)", body: "독해에서 새 어휘를 만나면 \"즉시 사용\"이 답이에요. (1) 단어 카드: 새 단어 5개·예문 3개씩 작성. (2) 다음 회화에 5번 사용. (3) 1주일 후 회화에서 자연스럽게 나오는지 점검. 단어를 \"이해\" 수준 (Passive Vocabulary)에서 \"사용\" 수준 (Active Vocabulary)으로 전환하는 훈련. 한국 학생들의 어휘량은 충분하지만 회화에 사용 가능한 어휘는 5~10%에 불과해요. 매주 새 어휘 30개 → 회화 활용 10개가 목표. 1:1 과외에서 어휘 활용 첨삭·확장 추천."},
+    ],
+    tiers: [
+      {label: "초급 (왕초보·기초 회화)", body: "쉬운 영어 동화·1단계 Penguin Readers부터. 매일 5분 영어 자료 + 1문장 요약. 추천 자료: \"Penguin Readers\" Level 1~2·Roald Dahl 시리즈·\"Charlie and the Chocolate Factory\"·EBSe Easy English. 1:1 과외에서 자료 추천·기초 요약 첨삭 추천. 첫 12주에 1단락 읽고 영어 1문장 요약이 목표."},
+      {label: "중급 (회화 가능·독해 활용)", body: "Harry Potter·자기계발서 + 영어로 1단락 요약. 매일 15~20분 영어 자료 + 영어로 3~5문장 요약. 추천 자료: \"Harry Potter\" 시리즈·\"Atomic Habits\"·\"Mindset\"·BBC News·간단한 단편 소설. 1:1 과외에서 토론·표현 확장 추천."},
+      {label: "고급 (자연스러운 회화·고급 자료)", body: "NYT·Economist + 영어로 토론·의견 표현. 매일 30분 영어 자료 + 영어로 1단락 요약 + 의견 표현. 추천 자료: The New York Times·The Economist·Atlantic·고급 단편 소설·자기 분야 전문서. 1:1 과외에서 토론·디베이트·비판적 사고 추천."},
+      {label: "전문가 (비즈니스·국제 무대)", body: "HBR·전문 분야 자료 + 자기 분야 영어 강의 분석. 매일 1시간 영어 자료 + 영어로 분석·요약·발표. 추천: HBR·McKinsey Insights·자기 분야 전문서·영어 강의 (Coursera·edX). 비즈니스 어휘·전문 용어·논리 구조가 핵심. 1:1 과외에서 자기 분야 자료 분석·실전 시뮬레이션 추천."},
+    ],
+    mistakes: [
+      {title: "너무 어려운 자료부터 도전", body: "왕초보가 NYT·Economist 도전하는 실수. 본인 수준보다 너무 어려운 자료는 좌절만 가져와요. \"한 페이지에 모르는 단어 5~10개\"가 표준. Penguin Readers 1~2단계부터 시작 → 점진적 난이도 상승이 답입니다. 1:1 과외에서 본인 수준 진단·자료 추천 추천."},
+      {title: "사전만 찾고 흐름 끊기", body: "모르는 단어 나올 때마다 사전 찾으면 흐름 끊겨 회화 활용 안 돼요. (1) 1차 읽기: 사전 X·전체 흐름 파악. (2) 2차 읽기: 모르는 단어 표시·핵심 단어만 사전. (3) 3차 읽기: 표시한 단어 회화에 사용. 흐름 우선·정확성은 다음 단계가 답입니다."},
+      {title: "읽기만 하고 회화에 활용 X", body: "읽기 → 회화 연결 없이는 회화 독해가 아니에요. (1) 매일 1단락 읽고 영어로 요약. (2) 새 어휘 5개 → 회화에 사용. (3) 주 1회 1:1 토론. 독해는 \"입력\"·회화는 \"출력\"이라 별도 훈련이 필요해요. 1:1 과외에서 입출력 동시 훈련 추천."},
+    ],
+    checklist: [
+      "본인 수준에 맞는 자료 선택 가능 (모르는 단어 5~10개/페이지)?",
+      "1단락 읽고 영어로 요약 가능 (3~5문장)?",
+      "읽은 내용에 대해 영어로 의견·토론 가능?",
+      "새 어휘를 1주일 내 회화에 자연스럽게 사용?",
+      "30분 이상 영어 자료 집중 독해 가능?",
+    ],
+    checklistTitle: "회화 독해 체크리스트",
+    checklistSub: "월 1회 점검",
+    faqs: [
+      {q: "어떤 영어 자료부터 읽어야 하나요?", a: "본인 수준에 따라 달라요. (1) 왕초보·초급: \"Penguin Readers\" Level 1~2·Roald Dahl 시리즈 (Charlie and the Chocolate Factory·Matilda)·EBSe Easy English. (2) 기초 중급: \"Harry Potter\" 1~3권·\"The Little Prince\" 영어판·BBC 6 Minute English. (3) 중급: 자기계발서 (Atomic Habits·Mindset)·BBC News·간단한 단편 소설. (4) 고급: The New York Times·The Economist·Atlantic·자기 분야 전문서. \"한 페이지에 모르는 단어 5~10개\"가 적정 수준이에요."},
+      {q: "사전 찾는 게 좋아요? 안 찾는 게 좋아요?", a: "단계별로 다른 전략이 답이에요. (1) 1차 읽기: 사전 X·전체 흐름 파악·문맥으로 의미 추측. (2) 2차 읽기: 핵심 단어 5~10개만 사전·나머지는 패스. (3) 3차 읽기: 표시한 단어 회화에 사용. 모든 단어 사전 찾으면 흐름 끊기고 회화 활용 X. \"흐름 우선·핵심 단어만 사전\"이 답입니다. 1:1 과외에서 효율적 어휘 학습 코칭 추천."},
+      {q: "원서를 한 권 다 읽어야 하나요?", a: "꼭 그렇지 않아요. 한 권 통째 읽기 부담스러우면 \"한 챕터씩\"·\"하루 10페이지\" 같은 작은 목표가 답입니다. 중요한 건 \"매일 꾸준히\"·\"읽고 영어로 요약\"·\"새 어휘 회화 활용\". 한 권 한 달 걸려도 OK. 책을 못 끝내도 매일 30분 영어 노출만으로도 큰 효과예요. 1:1 과외에서 진도 관리·동기 부여 추천."},
+      {q: "독해와 회화 동시 학습이 가능한가요?", a: "오히려 독해가 회화 학습에 도움 돼요. (1) 새 어휘·표현 학습 (회화에 즉시 활용). (2) 의견 표현 자료 (\"이 의견에 동의해? 왜?\"). (3) 문법 패턴 자연스러운 노출. (4) 다양한 주제 어휘 확장. 단, \"읽기만\" 하면 회화로 연결 안 되니 \"읽고 영어로 요약·토론·어휘 활용\" 사이클이 필수예요. 1:1 과외에서 독해 → 회화 연결 코칭 추천."},
+      {q: "1:1 화상 수업으로 회화 독해가 가능한가요?", a: "매우 효과적이에요. (1) 본인 관심·수준에 맞는 자료 추천. (2) 읽기 진도 관리. (3) 매주 토론 상대 (강사). (4) 어휘·표현 첨삭·확장. (5) 의견 표현 첨삭. 회화 독해는 \"읽고 토론·표현 활용\"이 핵심인데 그룹 수업은 토론 시간 제약·자료 일률성 한계가 있어요. 1:1은 본인 관심 분야 자료·30분 토론 가능. 제나쌤 스터디핏은 회화 독해 진단·자료 추천·토론 커리큘럼으로 진행합니다."},
+    ],
+    related: [
+      {label: "영어 발음 교정", href: "/language/english/skill/pronunciation/"},
+      {label: "영어 회화 문법", href: "/language/english/skill/grammar/"},
+      {label: "영어 말하기 유창성", href: "/language/english/skill/speaking/"},
+      {label: "영어 회화 고급 과정", href: "/language/english/level/advanced/"},
+      {label: "영어 회화 메인", href: "/language/english/"},
+    ],
+    tags: ["영어회화독해", "원서읽기", "영어토론", "어휘확장", "의견표현", "1:1영어과외"],
+  },
+};
+
 const KOREAN_PERFORM_DATA = {
   "descriptive": {
     badge: "수행평가 & 서술형",
@@ -31667,6 +31964,16 @@ const SUBJECT_CATEGORY_META = {
     "perform": { label: "수행평가 & 서술형", data: () => HISTORY_PERFORM_DATA },
     "habit": { label: "학습 습관 & 공부법", data: () => HISTORY_HABIT_DATA },
   },
+  // ── 제2외국어 회화 (별도 라우팅: /language/{lang}/{cat}/{slug}/) ──
+  "english_lang": {
+    name: "영어 회화",
+    pathPrefix: "/language/english",
+    breadcrumbHubLabel: "회화 과외",
+    breadcrumbHubUrl: "/language/",
+    breadcrumbSubjectLabel: "영어 회화",
+    breadcrumbSubjectUrl: "/language/english/",
+    "skill": { label: "영역별 학습", data: () => ENGLISH_LANG_SKILL_DATA },
+  },
 };
 
 function buildKoreanHabitPage(habitKey, categoryKey = "habit", subjectKey = "korean") {
@@ -31678,9 +31985,16 @@ function buildKoreanHabitPage(habitKey, categoryKey = "habit", subjectKey = "kor
   const data = dataSource[habitKey];
   if (!data) return build404Page();
 
-  const canonical = `${SITE_DOMAIN}/study/${subjectKey}/${categoryKey}/${habitKey}/`;
+  // 경로 prefix 분기 (제2외국어 회화는 /language/, 그 외는 /study/)
+  const pathPrefix = subjectMeta.pathPrefix || `/study/${subjectKey}`;
+  const canonical = `${SITE_DOMAIN}${pathPrefix}/${categoryKey}/${habitKey}/`;
   const breadcrumbCategory = meta.label;
   const subjectName = subjectMeta.name;
+  // breadcrumb 분기
+  const bcHubLabel = subjectMeta.breadcrumbHubLabel || "과목별 공부법";
+  const bcHubUrl = subjectMeta.breadcrumbHubUrl || "/study/";
+  const bcSubjectLabel = subjectMeta.breadcrumbSubjectLabel || subjectName;
+  const bcSubjectUrl = subjectMeta.breadcrumbSubjectUrl || `/study/${subjectKey}/`;
 
   // 페이지별 의사 갱신일 (SEO 최신성)
   const slugForDate = `${subjectKey}-${categoryKey}-${habitKey}`;
@@ -31883,7 +32197,7 @@ ${HEADER_HTML}
 </div>
 
 <div class="breadcrumb">
-  <a href="/study/">과목별 공부법</a> &gt; <a href="/study/${subjectKey}/">${subjectName}</a> &gt; ${breadcrumbCategory} &gt; ${data.breadcrumb}
+  <a href="${bcHubUrl}">${bcHubLabel}</a> &gt; <a href="${bcSubjectUrl}">${bcSubjectLabel}</a> &gt; ${breadcrumbCategory} &gt; ${data.breadcrumb}
 </div>
 
 <div style="max-width:760px;margin:0 auto;display:flex;align-items:center;gap:8px;padding:6px 16px;font-size:.7rem;color:#999;border-bottom:1px solid #f5eefe">
@@ -33003,6 +33317,17 @@ Sitemap: ${BASE}/sitemap-schools-3.xml
       return new Response(buildLanguagePage("chinese"), {
         headers: { "Content-Type": "text/html;charset=UTF-8" }
       });
+    }
+
+    // 영어 회화 영역별 학습 페이지 (/language/english/skill/{slug}/)
+    const engLangSkillMatch = path.match(/^\/language\/english\/skill\/([^\/]+)\/?$/);
+    if (engLangSkillMatch) {
+      const skillKey = engLangSkillMatch[1];
+      if (ENGLISH_LANG_SKILL_DATA[skillKey]) {
+        return new Response(buildKoreanHabitPage(skillKey, "skill", "english_lang"), {
+          headers: { "Content-Type": "text/html;charset=UTF-8" }
+        });
+      }
     }
 
     // 자기주도학습 페이지
