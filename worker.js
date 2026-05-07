@@ -17278,6 +17278,10 @@ const LANGUAGE_PAGE_READY = {
     "cert/toefl":          "/language/english/cert/toefl/",
     "cert/opic":           "/language/english/cert/opic/",
     "cert/ielts":          "/language/english/cert/ielts/",
+    "level/beginner":      "/language/english/level/beginner/",
+    "level/elementary":    "/language/english/level/elementary/",
+    "level/intermediate":  "/language/english/level/intermediate/",
+    "level/advanced":      "/language/english/level/advanced/",
   },
   japanese: {},
   chinese: {},
@@ -31924,6 +31928,264 @@ const ENGLISH_LANG_CERT_DATA = {
   },
 };
 
+// ============================================================
+// 영어 회화 — 수준별 과정 데이터 (LANG/LEVEL)
+// 입문 · 초급 · 중급 · 고급
+// ============================================================
+const ENGLISH_LANG_LEVEL_DATA = {
+  "beginner": {
+    badge: "영어 회화 · 수준별 과정",
+    h1: "영어 회화 입문 — 왕초보 탈출<br>알파벳·기초 문장부터 차근차근",
+    sub: "왕초보 · 알파벳 · 파닉스 · 기초 인사 · 자기소개",
+    breadcrumb: "영어 회화 입문 (왕초보)",
+    tag: "영어 회화 입문",
+    intro: {
+      title: "영어가 처음이거나 오래 쉬셨던 분, 좌절 없이 시작하는 1:1 화상 입문 수업이에요",
+      body: "영어 회화 입문은 학습의 가장 중요한 단계예요. 첫 3개월의 학습 경험이 평생 영어와의 관계를 결정하거든요. 한국 학생들이 영어 입문에서 좌절하는 이유는 \"문법 먼저·어려운 교재·대형 학원\" 3가지예요. 입문 학습의 핵심은 \"부담 없는 시작·작은 성공 경험·매일 짧게\" 3박자입니다. 1:1 화상 입문 수업에서는 학생의 두려움을 먼저 해소하고, 알파벳·파닉스·기초 인사부터 천천히 시작해요. 학습 단계: (1) 영어 친숙화 (알파벳·기초 발음·인사) → (2) 1인칭 문장 (I am·I like·I have) → (3) 자기소개 + 일상 표현 → (4) 간단한 질문·대답. 6개월 학습 → \"영어로 자기소개·간단한 대화 가능\" 수준 도달이 목표예요. 매일 15분 + 주 2~3회 1:1 코칭이 가장 효과적인 입문 루틴이에요. 무엇보다 \"즐겁게·꾸준히\"가 답이에요."
+    },
+    phaseTitle: "단계별 입문 학습 로드맵",
+    phaseSub: "4단계 학습 흐름",
+    areaTitle: "왕초보 핵심 4영역",
+    tierTitle: "단계별 학습 처방",
+    phases: [
+      ["1단계", "영어 친숙화", "알파벳·파닉스·기초 발음"],
+      ["2단계", "1인칭 문장", "I am·I like·I have 패턴"],
+      ["3단계", "자기소개 완성", "이름·국적·직업·취미"],
+      ["4단계", "일상 표현", "인사·질문·대답"],
+    ],
+    areas: [
+      {name: "알파벳·파닉스·기초 발음", body: "영어의 첫 단계예요. (1) 알파벳 (A~Z): 정확한 이름·발음·대소문자 구분. (2) 파닉스 (Phonics): 글자→소리 연결 (a=애·아, b=ㅂ, c=ㅋ·ㅅ, d=ㄷ 등). (3) 기초 발음: 자음·모음·받침 없는 영어. (4) 한국어와 다른 발음: F/V·R/L·TH·Z. 알파벳 통째 외우기 X. 파닉스로 글자 보고 소리 내기가 답이에요. 매일 5분 알파벳·파닉스 + 1:1 과외에서 발음 교정. 첫 4주에 모든 알파벳 발음 정확이 목표예요."},
+      {name: "기초 1인칭 문장 패턴 50개", body: "왕초보 회화의 시작은 1인칭 문장이에요. (1) Be동사: I am happy·I am Korean·I am 30 years old. (2) 일반동사: I like coffee·I have a dog·I work at home. (3) 부정문: I am not Japanese·I don't like spicy food. (4) 의문문: Are you OK?·Do you like coffee? 50개 패턴 입에 붙이기. 매일 5문장 만들어 거울 보고 말하기 + 1:1 과외에서 즉답 훈련 추천. 입에서 자동으로 나오는 게 답이에요. 첫 8주에 50개 패턴 정착이 목표예요."},
+      {name: "자기소개 완성 (1~2분)", body: "왕초보의 첫 큰 목표는 \"1~2분 자기소개\"예요. (1) 이름·나이: My name is...·I am 30 years old. (2) 국적·고향: I am from Korea·I live in Seoul. (3) 직업·학교: I work at...·I am a student. (4) 가족: I have one sister·My family lives in... (5) 취미: I like reading·In my free time I... 본인 정보로 자기소개 작성 + 100번 반복 + 1:1 첨삭이 답이에요. 첫 12주에 자기소개 자연스러움이 목표 — 큰 자신감의 시작이에요."},
+      {name: "일상 표현 100개 (인사·질문·대답)", body: "일상에서 바로 쓰는 100개 표현 정복이에요. (1) 인사: Hello·Hi·How are you?·Nice to meet you. (2) 감사·사과: Thank you·You're welcome·Sorry·Excuse me. (3) 질문: What's this?·Where is...?·How much?·What time? (4) 대답: Yes·No·Maybe·I don't know·I'm not sure. (5) 일상: I'm hungry·I'm tired·Let's go·Wait a moment. 100개 표현 매일 10개씩 학습 + 1:1 과외에서 실전 사용 코칭 추천. 첫 24주에 100개 표현 자유 사용이 목표예요."},
+    ],
+    tiers: [
+      {label: "0~3개월차 (영어 친숙화)", body: "알파벳·파닉스·기초 인사부터. 매일 15분 (알파벳 5분·기초 인사 5분·동영상 5분). 추천 자료: \"English with Lucy\" 입문 시리즈·\"BBC Learning English\" 입문·EBSe 왕초보 영어. 이 시기는 \"두려움 없애기 + 영어 친숙화\"가 답이에요. 1:1 과외에서 부담 없는 분위기·작은 성공 경험 추천. 큰 진도 X·꾸준함 ○."},
+      {label: "3~6개월차 (1인칭 문장)", body: "Be동사·일반동사 1인칭 문장 50개 정착. 매일 15~20분 (5문장 만들기·기초 듣기·발음 연습). 추천 자료: \"왕초보 영어회화\" 유튜브·\"English Easy Practice\"·\"Mango Languages\". 이 시기는 \"작은 성공 누적\"이 답이에요. 1:1 과외에서 즉답 훈련·자기소개 작성 추천. \"영어로 한 문장도 못 했는데 5문장이나 말할 수 있다!\" 자신감 ↑."},
+      {label: "6~9개월차 (자기소개 완성)", body: "1~2분 자기소개·간단한 대화 가능. 매일 20~30분 (자기소개 연습·기초 듣기·일상 표현). 추천 자료: \"BBC 6 Minute English\" (느린 버전)·간단한 동요·픽사 단편 영화. 이 시기는 \"자신감 + 표현 확장\"이 답이에요. 1:1 과외에서 일상 상황 롤플레이·표현 다양화 추천. 영어로 자기 이야기를 할 수 있는 첫 단계예요."},
+      {label: "9~12개월차 (초급 진입 준비)", body: "100개 표현 + 간단한 일상 대화 가능. 매일 30분 (영어 일기 3문장·일상 회화·기초 영어 자료). 추천 자료: 간단한 미드 (Friends 시즌 1)·EBS 입문 영어·BBC Learning English. 이 시기는 \"초급으로의 자연스러운 진입\"이 답이에요. 1:1 과외에서 초급 진입 진단·다음 커리큘럼 설계 추천. 1년 학습 후엔 영어가 친구가 돼요."},
+    ],
+    mistakes: [
+      {title: "문법 먼저 학습·회화 미루기", body: "가장 흔한 입문 실수예요. \"문법부터 끝내고 회화하자\"는 함정. 6개월 문법 학습 후에도 회화 시작 못 하는 경우 많아요. 회화는 처음부터 함께가 답이에요. 1주차부터 \"My name is...\" 시작 + 매일 5문장 만들기. 1:1 과외에서 문법 + 회화 동시 진행이 효율적이에요."},
+      {title: "어려운 교재·대형 학원·좌절", body: "왕초보가 \"Grammar in Use\" 같은 어려운 교재로 시작하면 좌절만 와요. 입문은 \"쉬움·재미·작은 성공\"이 답이에요. 기초 패턴북·왕초보 유튜브·1:1 과외가 효과적. 대형 학원 그룹 수업은 진도 따라가기 어려워요. 1:1 과외에서 본인 속도 + 부담 없는 학습 추천."},
+      {title: "발음 두려움·말하기 회피", body: "\"발음이 안 좋아서 부끄러워요\" 함정. 발음은 시작부터 완벽할 수 없어요. \"틀려도 일단 말하기 → 점진적 교정\"이 답입니다. 1:1 과외는 1:1이라 다른 학생 시선 X·부담 X·본인 속도. 발음 두려움이 가장 큰 진입 장벽인데 1:1로 극복 가능해요."},
+    ],
+    checklist: [
+      "알파벳 26자 정확한 이름·발음 가능?",
+      "파닉스로 모르는 단어 발음 추측 가능?",
+      "1인칭 문장 50개 (Be동사·일반동사) 입에 붙음?",
+      "1~2분 자기소개 자연스럽게?",
+      "일상 표현 100개 (인사·질문·대답) 자유 사용?",
+    ],
+    checklistTitle: "영어 회화 입문 체크리스트",
+    checklistSub: "월 1회 점검",
+    faqs: [
+      {q: "정말 왕초보인데 1:1 화상 수업 따라갈 수 있을까요?", a: "오히려 왕초보일수록 1:1이 효과적이에요. (1) 그룹 수업은 다른 학생 진도에 맞춰야 하지만 1:1은 100% 본인 속도. (2) 한국어로 충분히 설명드림. (3) 발음·문법 즉시 첨삭. (4) 부담 없는 분위기. 무료 체험 수업에서 진단 후 맞춤 시작 가능합니다. \"영어 한 마디도 못 해요\"도 OK·시작은 알파벳·파닉스부터예요."},
+      {q: "성인이 되어 영어 시작인데 늦지 않았나요?", a: "전혀 늦지 않아요. 30~50대 학습자도 1년 집중 학습으로 기초 회화 가능합니다. 성인 학습의 강점: (1) 학습 동기 명확 (취업·이직·여행). (2) 시간 관리 능력. (3) 모국어로 영어 구조 이해 가능. 단, 어린이보다 발음 습관 굳어 있어 발음 교정에 시간이 더 걸려요. 1:1 과외 + 매일 15분 학습이 가장 빠른 길이에요."},
+      {q: "기초 영어 학습 기간은 얼마나 걸리나요?", a: "현재 수준에 따라 달라요. (1) 왕초보 → 자기소개 가능 (입문 졸업): 6개월. (2) 자기소개 → 일상 대화 (초급 진입): 추가 6~9개월. (3) 일상 대화 → 30분 대화 (중급): 추가 1년. 단, \"매일 15~30분 꾸준\"가 전제예요. 주 1회 2시간보다 매일 15분이 효과적입니다. 1:1 과외 + 매일 학습이 가장 빠른 길이에요."},
+      {q: "원어민 강사 vs 한국인 강사, 입문은 어느 게 좋나요?", a: "입문은 한국인 강사가 더 효과적이에요. (1) 한국어로 문법·발음 차이 설명 가능. (2) 한국 학생이 어려워하는 부분 정확히 알기. (3) 좌절·두려움 공감 + 부드러운 진행. (4) 학습 페이스 한국 학생에 맞춤. 원어민은 입문 영어 설명 어렵고 \"왜 이게 어려운지\" 모름. 입문 6개월~1년은 한국인 강사 + 자유 대화는 원어민 순서가 효율적이에요."},
+      {q: "1:1 화상 수업으로 입문 영어 학습이 효과적인가요?", a: "매우 효과적이에요. (1) 본인 속도 + 부담 없는 분위기. (2) 발음 즉시 첨삭 + 입 모양 클로즈업. (3) 한국어로 충분한 설명. (4) 매일 짧게·정기적 학습. (5) 화면 공유로 시각 자료 활용. 입문은 \"자신감 + 작은 성공\"이 답인데 1:1만 가능해요. 그룹 수업은 다른 학생 비교로 좌절감만 ↑. 제나쌤 스터디핏은 입문 전용 커리큘럼 (알파벳→파닉스→자기소개→일상 표현)으로 진행합니다."},
+    ],
+    related: [
+      {label: "영어 회화 초급 과정", href: "/language/english/level/elementary/"},
+      {label: "영어 발음 교정", href: "/language/english/skill/pronunciation/"},
+      {label: "영어 회화 문법", href: "/language/english/skill/grammar/"},
+      {label: "영어 듣기 훈련", href: "/language/english/skill/listening/"},
+      {label: "영어 회화 메인", href: "/language/english/"},
+    ],
+    tags: ["영어회화입문", "왕초보영어", "기초영어", "알파벳파닉스", "자기소개영어", "1:1입문영어과외"],
+  },
+
+  "elementary": {
+    badge: "영어 회화 · 수준별 과정",
+    h1: "영어 회화 초급 — 일상 대화 완성<br>여행 영어·생존 회화 마스터",
+    sub: "초급 · 일상 표현 · 여행 영어 · 질문법 · 현재형",
+    breadcrumb: "영어 회화 초급 (Beginner)",
+    tag: "영어 회화 초급",
+    intro: {
+      title: "자기소개·일상 표현·간단한 질문/대답까지. 여행 영어 수준의 생존 회화를 1:1 화상 수업으로 완성해요",
+      body: "영어 회화 초급은 \"일상 대화 가능\"을 목표로 해요. 자기소개를 넘어 식당·쇼핑·길 묻기 등 실전 상황에서 영어로 의사소통 가능한 수준입니다. 한국 학생들이 초급에서 정체되는 이유는 \"표현 부족·시제 약점·즉답 어려움\" 3가지예요. 초급 학습의 핵심은 \"확장된 표현 + 시제 정착 + 실전 상황 연습\" 3박자입니다. 1:1 화상 초급 수업에서는 입문 졸업 학생이 일상 대화·여행 영어 수준에 도달하도록 단계별 학습해요. 학습 단계: (1) 표현 확장 (200~300개) → (2) 시제 정착 (현재·과거·미래) → (3) 실전 상황 (식당·쇼핑·길 묻기) → (4) 즉답 훈련. 6~9개월 학습 → \"여행 영어 + 일상 30분 대화\" 수준 도달이 목표예요. 매일 20~30분 + 주 1~2회 1:1 코칭이 가장 효과적인 초급 루틴이에요."
+    },
+    phaseTitle: "단계별 초급 학습 로드맵",
+    phaseSub: "4단계 학습 흐름",
+    areaTitle: "초급 핵심 4영역",
+    tierTitle: "단계별 학습 처방",
+    phases: [
+      ["1단계", "표현 확장", "200~300개 일상 표현"],
+      ["2단계", "시제 정착", "현재·과거·미래"],
+      ["3단계", "실전 상황", "식당·쇼핑·길 묻기"],
+      ["4단계", "즉답 훈련", "1초 내 응답"],
+    ],
+    areas: [
+      {name: "표현 확장 200~300개 (일상·취미·여행)", body: "초급 회화의 첫 단계는 표현량 확장이에요. (1) 일상: 시간·날씨·음식·교통·집·가족. (2) 감정: happy·sad·tired·excited·worried·nervous. (3) 취미: I enjoy ...·In my free time I ...·On weekends I ... (4) 여행: 공항·호텔·관광·교통·음식. (5) 의견: I think·I believe·In my opinion. 100개 입문 표현 + 200개 초급 표현 = 300개 정착이 답이에요. 매일 5개 표현 학습 + 1:1 과외에서 즉시 사용 코칭 추천. 첫 12주에 200개 추가 학습이 목표예요."},
+      {name: "시제 정착 (현재·과거·미래)", body: "초급의 가장 큰 벽은 시제예요. (1) 현재시제: 일상·습관 (I work from 9 to 6·She drinks coffee). (2) 과거시제: 과거 사건 (I went to Japan·He called me). 동사 변형 (go→went·see→saw·eat→ate). (3) 미래: \"will\"은 즉흥 (I'll get it!), \"be going to\"는 계획 (I'm going to Korea). (4) 빈출 동사 50개 시제 변형. 매일 3시제로 영어 일기 1줄 + 1:1 과외에서 즉답 훈련 추천. 첫 24주에 3시제 자연스러움이 목표예요."},
+      {name: "실전 상황 회화 (식당·쇼핑·길 묻기·교통)", body: "초급의 핵심 목표는 \"실전 사용\"이에요. (1) 식당: Can I have ...?·How much is ...?·Could I get the bill, please? (2) 쇼핑: Do you have this in size M?·Can I try it on?·Where's the fitting room? (3) 길 묻기: Excuse me, where is ...?·How can I get to ...?·Is it far from here? (4) 교통: One ticket to ...·When does the next bus leave?·How long does it take? 매주 한 상황 롤플레이 + 1:1 과외에서 시뮬레이션 추천. 여행 영어의 모든 게 정복돼요."},
+      {name: "즉답 훈련 (1초 내 응답)", body: "초급의 분기점은 \"즉답 능력\"이에요. (1) 일상 질문 100개: How was your weekend?·What did you have for lunch?·What's your plan for tomorrow? (2) 의견 질문: What do you think about this?·Do you like Korean food?·Why? (3) 회피 답변 OK: \"That's a good question·Let me think·I'm not sure but...\". (4) 1초 내 응답 = 머릿속 번역 멈춤. 매일 즉답 30개 + 1:1 과외에서 즉답 훈련 추천. 6~9개월 학습 → 즉답 자연스러움이 답이에요."},
+    ],
+    tiers: [
+      {label: "0~3개월차 (입문 졸업·표현 확장)", body: "200~300개 일상 표현 학습 단계. 매일 20분 (표현 5개·기초 듣기·즉답 5개). 추천 자료: \"BBC 6 Minute English\"·\"English with Lucy\"·간단한 픽사 단편. 이 시기는 \"표현 확장 + 자신감\"이 답이에요. 1:1 과외에서 표현 다양화·즉답 훈련 추천. 입문에서 초급으로의 자연스러운 진입이 목표예요."},
+      {label: "3~6개월차 (시제 정착·실전 상황)", body: "현재·과거·미래 시제 + 식당/쇼핑 등 실전 상황. 매일 25~30분 (영어 일기 1줄·롤플레이·즉답 10개). 추천 자료: \"BBC Learning English\" 시제 시리즈·\"60-Second English\" 팟캐스트·간단한 미드 (Friends 시즌 1). 1:1 과외에서 시제 첨삭·롤플레이 추천. 여행 영어 가능 단계예요."},
+      {label: "6~9개월차 (즉답 훈련·자유 대화)", body: "즉답 1초 내 + 30분 자유 대화. 매일 30분 (즉답 30개·영어 일기 3~5문장·미드 1편). 추천 자료: \"Friends\" 전 시즌·\"Modern Family\"·\"How I Met Your Mother\". 1:1 과외에서 자유 대화·즉답 훈련 추천. 일상 30분 대화 자연스러움이 목표예요."},
+      {label: "9~12개월차 (중급 진입 준비)", body: "추상 주제·의견 표현·중급 어휘. 매일 30~40분 (영어 일기 1단락·TED 5분·미드). 추천 자료: TED-Ed·BBC News·\"How I Met Your Mother\"·자기계발서 입문. 1:1 과외에서 중급 진입 진단·의견 표현 코칭 추천. 1년 학습 → 중급 진입이 목표예요. 영어가 진짜 친구가 되는 단계."},
+    ],
+    mistakes: [
+      {title: "표현 양만 늘리고 실전 사용 X", body: "가장 흔한 초급 실수예요. 표현 500개 외워도 회화에서 안 나오는 이유는 \"실전 사용 부족\". 학습한 표현은 즉시 사용·매일 영어 일기·1:1 과외에서 첨삭이 답이에요. 새 표현 5개 → 그날 회화에 5번 사용 사이클이 효과적이에요."},
+      {title: "현재시제만 사용·과거/미래 회피", body: "초급의 80%가 과거시제·미래시제 회피해요. \"I went·I will go\"가 어색하니 모든 걸 현재시제로 (I go·I'm going to). 영어 일기 매일 1줄·과거형 동사 50개 학습 + 1:1 첨삭이 답이에요. 시제 자유 사용이 중급 진입의 결정적 도구예요."},
+      {title: "완벽한 문장만·침묵 함정", body: "\"틀리면 안 된다\" 강박이 회화의 적이에요. 처음엔 틀려도 빨리 말하기 → 점진적 정확성. 그룹 수업·외국인 모임에서 침묵 X·일단 말하기 ○. 1:1 과외는 안전한 공간이라 자유롭게 시도 가능해요. 침묵이 가장 큰 회화 적이에요."},
+    ],
+    checklist: [
+      "200~300개 일상 표현 자유 사용?",
+      "현재·과거·미래 시제 자연스럽게 사용?",
+      "식당·쇼핑·길 묻기 등 실전 상황 가능?",
+      "일상 질문 30개 이상 1초 내 즉답?",
+      "30분 일상 대화 끊김 없이 가능?",
+    ],
+    checklistTitle: "영어 회화 초급 체크리스트",
+    checklistSub: "월 1회 점검",
+    faqs: [
+      {q: "초급에서 중급으로 가는 데 얼마나 걸리나요?", a: "보통 1년~1년 6개월이에요. 핵심: (1) 표현 200→500개 확장. (2) 시제 자유 사용 (현재완료·가정법 추가). (3) 30분 자유 대화 가능. (4) 의견 표현·추상 주제 도입. 매일 30분 + 1:1 과외 + 영어 노출 (미드·팟캐스트)이 가장 빠른 길이에요. 일부 학생은 6~9개월에도 가능하지만 평균 1년이 표준이에요."},
+      {q: "초급 영어로 해외여행 가능한가요?", a: "네, 충분히 가능해요. 초급 6개월 학습 후 \"여행 영어\" 가능합니다. 핵심: (1) 식당 주문·쇼핑·길 묻기 표현. (2) 발음 정확. (3) 자신감 + 회피 답변 OK (\"Sorry, I don't understand\"·\"Could you say that again?\"). 무료 체험 수업에서 여행 영어 진단 + 맞춤 학습 가능. 첫 해외여행 후 영어 자신감이 폭증해요."},
+      {q: "초급에서 가장 어려운 영역은 무엇인가요?", a: "\"즉답\"이에요. 표현·문법은 알지만 머릿속에서 한국어로 답을 만들고 영어로 번역하느라 5초 멈추는 경우가 80%. 핵심: (1) 즉답 100문항 매일 30개. (2) 회피 답변 OK (\"Let me think·That's a good question\"). (3) 영어로 사고 훈련 (영어 일기·셀프톡). (4) 1:1 과외에서 즉답 코칭. 6개월 즉답 훈련 → 머릿속 번역 회로 → 영어 사고 회로 전환이 답입니다."},
+      {q: "초급 학습에 가장 효과적인 자료는 무엇인가요?", a: "수준에 맞는 자료가 답이에요. (1) 듣기: \"BBC 6 Minute English\"·\"English with Lucy\"·\"Friends\" (간단한 미드). (2) 읽기: \"Penguin Readers\" Level 2~3·간단한 동화. (3) 어휘: \"Vocabulary in Use Elementary\"·\"Word Engine\" 초급. (4) 회화: 1:1 과외 + 영어 모임 + 셀프톡. 본인 수준보다 약간 어려운 자료가 학습 효과 최고예요. 무료 체험 수업에서 자료 추천 가능합니다."},
+      {q: "초급 영어 회화에 1:1 과외가 효과적인가요?", a: "매우 효과적이에요. (1) 본인 약점 (시제·즉답·표현) 정확 진단·집중 보완. (2) 매 수업 50분 풀 발화 (그룹은 5~10분). (3) 즉시 첨삭 + 발음 교정. (4) 본인 속도 + 안전한 공간. (5) 매주 정기 수업으로 누적 학습. 그룹 수업은 다른 학생 진도 맞춰야 하고 약점 보완 어려워요. 1:1은 본인 약점만 집중 가능. 제나쌤 스터디핏은 초급 전용 커리큘럼 (표현 확장→시제→실전 상황→즉답)으로 진행합니다."},
+    ],
+    related: [
+      {label: "영어 회화 입문 과정", href: "/language/english/level/beginner/"},
+      {label: "영어 회화 중급 과정", href: "/language/english/level/intermediate/"},
+      {label: "영어 말하기 유창성", href: "/language/english/skill/speaking/"},
+      {label: "영어 듣기 훈련", href: "/language/english/skill/listening/"},
+      {label: "영어 회화 메인", href: "/language/english/"},
+    ],
+    tags: ["영어회화초급", "여행영어", "일상영어회화", "기초영어대화", "초급영어", "1:1초급영어과외"],
+  },
+
+  "intermediate": {
+    badge: "영어 회화 · 수준별 과정",
+    h1: "영어 회화 중급 — 자연스러운 대화<br>의견 표현·30분 대화 가능",
+    sub: "중급 · 의견 표현 · 추상 주제 · 시제·연결어·대화 흐름",
+    breadcrumb: "영어 회화 중급 (Intermediate)",
+    tag: "영어 회화 중급",
+    intro: {
+      title: "원어민과 일상 대화 가능 수준. 의견 표현·시제·연결어로 자연스러운 대화 흐름을 1:1 화상 수업으로 완성해요",
+      body: "영어 회화 중급은 \"자연스러운 대화 흐름\"이 목표예요. 단순 질문/대답을 넘어 의견 표현·추상 주제 토론·30분 자유 대화 가능 수준입니다. 한국 학생들이 중급에서 정체되는 이유는 \"의견 표현 부족·연결어 약점·표현 단조로움\" 3가지예요. 중급 학습의 핵심은 \"의견 표현 + 연결어 + 표현 다양성 + 대화 흐름\" 4박자입니다. 1:1 화상 중급 수업에서는 초급 졸업 학생이 자연스러운 회화 + 추상 주제 토론 가능 수준에 도달하도록 단계별 학습해요. 학습 단계: (1) 의견 표현 정착 → (2) 연결어·시제 확장 (현재완료·가정법) → (3) 추상 주제 토론 → (4) 표현 다양성. 1년~1년 6개월 학습 → \"30분 자유 대화 + 의견 표현\" 수준 도달이 목표예요. 매일 30분 + 주 1~2회 1:1 코칭이 가장 효과적인 중급 루틴이에요."
+    },
+    phaseTitle: "단계별 중급 학습 로드맵",
+    phaseSub: "4단계 학습 흐름",
+    areaTitle: "중급 핵심 4영역",
+    tierTitle: "단계별 학습 처방",
+    phases: [
+      ["1단계", "의견 표현", "I think·In my opinion·From my perspective"],
+      ["2단계", "연결어·시제", "and·but·because·although·현재완료·가정법"],
+      ["3단계", "추상 주제", "환경·기술·교육·문화 토론"],
+      ["4단계", "표현 다양성", "동의·강조·연결 5가지 표현"],
+    ],
+    areas: [
+      {name: "의견 표현 (Express Opinion)", body: "중급의 핵심은 \"의견 표현\"이에요. (1) 의견 표현: I think·I believe·In my opinion·From my perspective·As far as I'm concerned. (2) 동의: I agree·That's true·You're right·Exactly·Absolutely. (3) 부분 동의: I see your point but·That's a good point however·I partly agree. (4) 반대: I don't think so·I disagree·I'm not sure about that·Not necessarily. (5) 이유 설명: because·since·due to·as·that's why. 매일 의견 5번 표현 + 1:1 과외에서 토론 시뮬레이션 추천. 의견 표현이 중급 → 고급의 결정적 도구예요."},
+      {name: "연결어·시제 확장 (현재완료·가정법)", body: "자연스러운 대화의 비결이에요. (1) 연결어: and·but·so·because·although·while·whereas·moreover·however·therefore. (2) 현재완료: \"I have been to Paris\" (경험)·\"I have lived here for 5 years\" (계속). 한국어에 없는 시제로 가장 어려움. (3) 가정법: \"If I were you, I would...\" (현재 반대)·\"If I had known, I would have...\" (과거 반대). (4) 매주 한 시제·연결어 영역 학습 + 즉시 사용. 1:1 과외에서 시제 첨삭·연결어 활용 추천. 짧은 문장 → 긴 자연스러운 문장이 답이에요."},
+      {name: "추상 주제 토론 (Discussion)", body: "중급의 분기점은 \"추상 주제 토론\"이에요. (1) 환경: 기후 변화·재활용·지속 가능성. (2) 기술: SNS·AI·재택근무·자동화. (3) 교육: 한국 교육 vs 외국·온라인 학습·평생 교육. (4) 문화: 한국 문화·외국 문화·세대 차이. (5) 가치관: 행복·성공·우정·돈·시간. 토론 4단계: (1) 자기 의견 1분. (2) 이유 3가지. (3) 예시 1개. (4) 결론. 매주 1주제 토론 + 1:1 과외에서 시뮬레이션 추천. 추상 주제 토론이 고급 진입의 결정적 도구예요."},
+      {name: "표현 다양성 (Lexical Variety)", body: "중급 → 고급의 결정적 차이는 표현 다양성이에요. (1) 좋다: good→great→awesome→amazing→fantastic→brilliant→wonderful. (2) 나쁘다: bad→terrible→awful→horrible→dreadful→appalling. (3) 강조: really→very→super→extremely→incredibly→absolutely. (4) 가능성: maybe→perhaps→probably→possibly→likely→presumably. 같은 표현 반복은 어린이 영어. 매주 한 표현 영역 5~10개 학습 + 즉시 사용 + 1:1 과외에서 표현 다양성 진단 추천. 6개월 → 표현 다양성 정착이 목표예요."},
+    ],
+    tiers: [
+      {label: "0~3개월차 (초급 졸업·의견 표현)", body: "의견 표현 5가지 + 일상 의견. 매일 30분 (의견 표현 5번·영어 일기 3문장·미드 1편). 추천 자료: \"Friends\" 전 시즌·\"Modern Family\"·\"How I Met Your Mother\"·\"BBC News\". 이 시기는 \"의견 표현 + 자연스러움\"이 답이에요. 1:1 과외에서 일상 의견 토론·즉답 추천. 초급에서 중급 진입의 첫 단계."},
+      {label: "3~9개월차 (연결어·시제·추상 주제)", body: "현재완료·가정법·연결어 + 추상 주제 토론. 매일 30~40분 (영어 일기 1단락·TED 10분·미드). 추천 자료: TED Talks (10~15분)·\"BBC News\"·\"How I Met Your Mother\"·자기계발서 (Atomic Habits). 1:1 과외에서 시제 첨삭·연결어 활용·토론 시뮬레이션 추천. 30분 자유 대화 가능 단계."},
+      {label: "9~15개월차 (표현 다양성·자유 대화)", body: "동의·강조·연결 표현 5가지씩 + 자연스러운 흐름. 매일 30~40분 (영어 일기 1단락·미드 1편·팟캐스트). 추천 자료: \"How I Met Your Mother\"·\"NPR This American Life\"·\"60-Minutes\"·전문 분야 영어. 1:1 과외에서 표현 다양화·자유 대화·약점 진단 추천. 추상 주제도 자유 토론 가능."},
+      {label: "15~18개월차 (고급 진입 준비)", body: "복잡한 의견 표현 + 다양한 미드/팟캐스트. 매일 40분~1시간 (영어 일기 한 페이지·미드·팟캐스트). 추천 자료: TED Talks (전체)·\"NPR\"·\"Atlantic\" 기사·\"The Daily\" 팟캐스트. 1:1 과외에서 고급 진입 진단·뉘앙스 표현·고급 어휘 추천. 1년 6개월 학습 → 고급 진입이 목표예요."},
+    ],
+    mistakes: [
+      {title: "단순 시제만 사용·현재완료 회피", body: "가장 흔한 중급 실수예요. \"I have been to Japan\"이 어색하니 \"I went to Japan\"으로 회피. 한국어에 없는 시제라 어렵지만 매일 사용이 답이에요. 영어 일기 매일 + 현재완료 5번 사용 + 1:1 첨삭이 답입니다. 현재완료 자유 사용이 고급 진입의 결정적 도구예요."},
+      {title: "추상 주제 회피·일상 주제만", body: "중급의 80%가 추상 주제 회피해요. \"오늘 점심 뭐 먹었어요?\"는 가능한데 \"환경 보호에 대해 어떻게 생각해?\"는 침묵. 매주 추상 주제 1개 답변 작성 + 1:1 토론이 답이에요. 추상 주제 30개 정복이 고급 진입의 비결입니다."},
+      {title: "표현 단조로움·\"good·very·really\" 반복", body: "중급 학생의 답안: \"It's good. It's very good. It's really good.\" 같은 표현 반복은 중급의 한계예요. 매주 한 표현 영역 5~10개 학습·즉시 사용·1:1 과외에서 다양화 추천. 표현 다양성이 고급 진입의 결정적 도구예요."},
+    ],
+    checklist: [
+      "의견 표현 5가지 (I think·In my opinion·etc.) 자유 사용?",
+      "현재완료·가정법 자연스럽게 사용?",
+      "연결어 (and·but·because·although·while) 활용?",
+      "추상 주제 토론 (환경·기술·교육 등) 가능?",
+      "30분 자유 대화 끊김 없이 가능?",
+    ],
+    checklistTitle: "영어 회화 중급 체크리스트",
+    checklistSub: "월 1회 점검",
+    faqs: [
+      {q: "중급에서 고급으로 가는 데 얼마나 걸리나요?", a: "보통 1~2년이에요. 핵심: (1) 표현 다양성 (동의·강조·연결 5가지씩). (2) 추상 주제 자유 토론. (3) 뉘앙스 표현 (sarcastic·nuanced·subtle). (4) 미드/팟캐스트 자막 없이 90% 이해. 매일 40분 + 1:1 과외 + 영어 노출 최대화가 가장 빠른 길이에요. 중급 → 고급이 가장 큰 벽으로 표준 1년 6개월~2년이에요."},
+      {q: "중급에서 가장 어려운 영역은 무엇인가요?", a: "\"추상 주제 토론\"이에요. 일상 주제는 가능하지만 \"환경·기술·교육·가치관\" 등 추상 주제에서 침묵. 핵심: (1) 추상 주제 30개 답변 작성. (2) 의견 1분 + 이유 3개 + 예시 1개 + 결론 구조. (3) 매주 1:1 토론. (4) 영어 사고 훈련 (영어 일기). 6개월 추상 주제 훈련 → 고급 진입의 결정적 도구입니다."},
+      {q: "현재완료 시제가 너무 어려워요. 어떻게 익히나요?", a: "현재완료는 한국어에 없는 개념이라 가장 어려운 시제예요. (1) 경험: \"I have been to Paris\" (한 번이라도 가본 적). (2) 계속: \"I have lived here for 5 years\". (3) 완료: \"I have just finished\" (방금 끝남). 매일 현재완료 5문장 만들기 + 1:1 첨삭 + 영어 일기에 사용 4주만 하면 입에 붙어요. 1:1 과외에서 집중 훈련 추천."},
+      {q: "중급 영어로 미국 여행·해외 출장 가능한가요?", a: "네, 충분히 가능해요. 중급 6개월 학습 후 \"미국 여행 + 해외 출장\" 가능합니다. 핵심: (1) 호텔 체크인·식당·관광 등 실전 표현. (2) 비즈니스 인사·간단한 회의·스몰토크. (3) 자신감 + 회피 답변 OK. 외국 친구·동료와 일상 대화도 가능해요. 단 비즈니스 협상·전문 분야는 고급 필요. 1:1 과외에서 출장·여행 맞춤 학습 가능합니다."},
+      {q: "중급 학습에 가장 효과적인 자료는 무엇인가요?", a: "수준에 맞는 자료가 답이에요. (1) 듣기·시청: \"How I Met Your Mother\"·\"Modern Family\"·TED Talks (10~15분)·\"BBC News\". (2) 읽기: \"Atomic Habits\"·\"Mindset\"·\"The Power of Habit\"·\"Outliers\". (3) 어휘: \"Vocabulary in Use Intermediate\"·\"4000 Essential English Words\" 4~5권. (4) 회화: 1:1 과외 + 영어 모임 + 외국 친구. 자막 없이 80% 이해 가능 자료가 효과 최고예요. 무료 체험 수업에서 자료 추천 가능합니다."},
+    ],
+    related: [
+      {label: "영어 회화 초급 과정", href: "/language/english/level/elementary/"},
+      {label: "영어 회화 고급 과정", href: "/language/english/level/advanced/"},
+      {label: "영어 회화 문법", href: "/language/english/skill/grammar/"},
+      {label: "영어 말하기 유창성", href: "/language/english/skill/speaking/"},
+      {label: "영어 회화 메인", href: "/language/english/"},
+    ],
+    tags: ["영어회화중급", "의견표현영어", "추상주제토론", "현재완료가정법", "중급영어", "1:1중급영어과외"],
+  },
+
+  "advanced": {
+    badge: "영어 회화 · 수준별 과정",
+    h1: "영어 회화 고급 — 비즈니스·뉘앙스<br>토론·프레젠테이션·협상까지",
+    sub: "고급 · 뉘앙스 · 비즈니스 · 토론 · 프레젠테이션 · 전문 영역",
+    breadcrumb: "영어 회화 고급 (Advanced)",
+    tag: "영어 회화 고급",
+    intro: {
+      title: "비즈니스·전문 분야·뉘앙스 표현. 토론·프레젠테이션·협상까지 가능한 고급 회화를 1:1 화상 수업으로 완성해요",
+      body: "영어 회화 고급은 \"전문 영역 + 뉘앙스 표현\"이 목표예요. 일상 대화를 넘어 비즈니스 회의·프레젠테이션·협상·토론·미디어 인터뷰 가능 수준입니다. 한국 학생들이 고급에서 정체되는 이유는 \"뉘앙스 부족·전문 어휘 약점·문화적 맥락 미숙\" 3가지예요. 고급 학습의 핵심은 \"뉘앙스 + 전문 어휘 + 문화적 맥락 + 자연스러운 흐름\" 4박자입니다. 1:1 화상 고급 수업에서는 중급 졸업 학생이 비즈니스·전문 영역에서 영어를 자유 구사하도록 단계별 학습해요. 학습 단계: (1) 뉘앙스 표현 (sarcastic·subtle·implicit) → (2) 전문 어휘 (자기 분야 영어) → (3) 비즈니스·프레젠테이션 → (4) 토론·협상·미디어 인터뷰. 1~2년 학습 → \"비즈니스 + 전문 분야 자유 구사\" 수준 도달이 목표예요. 매일 40분~1시간 + 주 1~2회 1:1 코칭이 가장 효과적인 고급 루틴이에요."
+    },
+    phaseTitle: "단계별 고급 학습 로드맵",
+    phaseSub: "4단계 학습 흐름",
+    areaTitle: "고급 핵심 4영역",
+    tierTitle: "단계별 학습 처방",
+    phases: [
+      ["1단계", "뉘앙스 표현", "sarcastic·subtle·implicit"],
+      ["2단계", "전문 어휘", "자기 분야 + 비즈니스"],
+      ["3단계", "비즈니스·프레젠테이션", "회의·협상·발표"],
+      ["4단계", "토론·미디어", "디베이트·인터뷰"],
+    ],
+    areas: [
+      {name: "뉘앙스 표현 (Nuance) — 고급의 비결", body: "고급 회화의 핵심은 뉘앙스예요. (1) Sarcasm (반어): \"Oh great\" (실제로는 안 좋음)·\"Just what I needed\" (불만). (2) Subtle (은유): \"That's interesting\" (동의 X·예의)·\"Let's revisit this\" (보류). (3) Implicit (함축): 직접 말하지 않고 암시. (4) Cultural context: 영미권 문화 배경 (Brit. vs Am.·세대·계급). (5) Idiom·Slang: break a leg (행운 빌어)·hit the books (공부)·spill the tea (가십). 매주 뉘앙스 표현 5개 학습 + 미드/팟캐스트 분석 + 1:1 첨삭 추천. 뉘앙스가 원어민 같은 회화의 결정적 도구예요."},
+      {name: "전문 어휘 (Domain Vocabulary)", body: "고급의 분기점은 자기 분야 어휘예요. (1) 비즈니스: revenue·acquisition·stakeholder·KPI·ROI·due diligence. (2) IT: deployment·scalability·infrastructure·architecture·refactoring. (3) 의료: prognosis·intervention·comorbidity·protocol·triage. (4) 법률: jurisdiction·precedent·litigation·contractual·compliance. (5) 학술: hypothesis·correlation·empirical·methodology·implications. 자기 분야 영어 자료 (HBR·전문지)·자기 분야 영어 강의 (Coursera·edX) + 1:1 과외에서 정밀 어휘 학습 추천. 분야별 200~500개 어휘가 답이에요."},
+      {name: "비즈니스 영어 (Business)·프레젠테이션", body: "고급의 핵심 활용 영역이에요. (1) 회의: \"Let's get started·Moving on to the next agenda·Any questions or concerns?\" (2) 의견: \"From my standpoint·In our experience·Based on the data\". (3) 협상: \"Let's see if we can find a middle ground·That's a fair point but·We can compromise on...\" (4) 프레젠테이션: 도입 → 본론 → 결론 + 시각 자료 활용. (5) 이메일: 비즈니스 정중함 + 명확성. 매주 비즈니스 시뮬레이션 + 1:1 코칭 추천. 비즈니스 영어가 직장인 고급의 결정적 도구예요."},
+      {name: "토론·디베이트·미디어 인터뷰", body: "고급의 가장 어려운 영역이에요. (1) 토론: 자기 의견 + 반박 대응 + 논리적 마무리. (2) 디베이트: Pro/Con 양쪽 입장 가능 + 강한 근거. (3) 미디어 인터뷰: 답변 핵심·자신감 있는 어조·시간 관리. (4) 답변 구조: PREP (Point·Reason·Example·Point). (5) 추상 주제: 환경·기술·정책·국제 관계·문화. 매주 토론 1주제 + 1:1 시뮬레이션 추천. 토론 능력이 미디어·국제 회의·MBA의 결정적 도구예요. 1:1 과외에서 디베이트·인터뷰 시뮬레이션 추천."},
+    ],
+    tiers: [
+      {label: "0~6개월차 (중급 졸업·뉘앙스 학습)", body: "Sarcasm·Idiom·문화 맥락 학습. 매일 40분 (영어 일기 한 페이지·미드·팟캐스트·뉘앙스 5개). 추천 자료: 다양한 미드 (Friends·HIMYM·Modern Family·Suits·The Office)·\"NPR\"·\"Atlantic\". 이 시기는 \"뉘앙스 + 자연스러움\"이 답이에요. 1:1 과외에서 뉘앙스 첨삭·미드 표현 분석 추천. 중급에서 고급 진입의 첫 단계."},
+      {label: "6~12개월차 (전문 어휘·비즈니스)", body: "자기 분야 어휘 + 비즈니스 표현 마스터. 매일 40~60분 (전문 어휘 10개·비즈니스 시뮬레이션·자기 분야 영어). 추천 자료: HBR·\"Bloomberg\"·자기 분야 영어 강의 (Coursera·edX)·\"Master Class\". 1:1 과외에서 비즈니스 시뮬레이션·전문 어휘·이메일 첨삭 추천. 직장인 영어 활용 단계."},
+      {label: "12~18개월차 (프레젠테이션·토론)", body: "프레젠테이션 + 토론 + 디베이트. 매일 40분~1시간 (프레젠테이션 연습·토론 시뮬레이션·다양한 미드). 추천 자료: TED Talks (전체)·\"60 Minutes\"·\"This American Life\"·\"Hard Talk\". 1:1 과외에서 프레젠테이션 첨삭·토론 시뮬레이션·디베이트 코칭 추천. MBA·국제 회의 가능 단계."},
+      {label: "18~24개월차 (전문가·미디어)", body: "미디어 인터뷰 + 자기 분야 전문 영역. 매일 1시간 (전문 자료·인터뷰 시뮬레이션·영어 노출 최대화). 추천: \"BBC Hard Talk\"·\"60 Minutes\" 인터뷰·자기 분야 영어 강의. 1:1 과외에서 미디어 인터뷰·정밀 첨삭·뉘앙스 표현 추천. 일반 학습보다 \"실전 시뮬레이션\"이 핵심. 글로벌 무대 가능 단계."},
+    ],
+    mistakes: [
+      {title: "뉘앙스 무시·직역 표현", body: "가장 흔한 고급 실수예요. \"That's interesting\"을 \"흥미롭네요\"로 받아들임. 실제는 동의 X·예의 표현. 미드/팟캐스트로 뉘앙스 노출·1:1 과외에서 문화 맥락 학습이 답이에요. 뉘앙스가 원어민 같은 회화의 결정적 도구예요."},
+      {title: "일반 영어만·전문 어휘 부족", body: "고급 80%가 자기 분야 어휘 약점이에요. 일반 회화는 가능하지만 자기 분야 (IT·의료·법률·금융 등) 영어는 어색. 자기 분야 영어 자료 + 1:1 과외에서 정밀 어휘 학습이 답입니다. 분야별 200~500개 어휘 정착이 답이에요."},
+      {title: "프레젠테이션·토론 회피·일상 회화만", body: "고급은 \"실전 활용\"이 답이에요. 일상 회화만 하다 정체되는 경우 많아요. 매주 프레젠테이션 1회·토론 1주제 시뮬레이션 + 1:1 코칭이 답입니다. 1:1 과외에서 실전 시뮬레이션 추천. 실전 활용이 진짜 고급의 결정적 도구예요."},
+    ],
+    checklist: [
+      "뉘앙스 표현 (sarcastic·subtle·implicit) 이해·사용?",
+      "자기 분야 전문 어휘 200~500개 정착?",
+      "비즈니스 회의·프레젠테이션·이메일 가능?",
+      "추상 주제 토론·디베이트·반박 대응?",
+      "미드·팟캐스트 자막 없이 95% 이해?",
+    ],
+    checklistTitle: "영어 회화 고급 체크리스트",
+    checklistSub: "월 1회 점검",
+    faqs: [
+      {q: "고급에서 원어민 수준까지 가능한가요?", a: "원어민 수준은 평생 학습이지만, \"원어민에 가까운 자연스러움\"은 1~2년 추가 학습으로 가능합니다. 핵심: (1) 뉘앙스 마스터. (2) Idiom·Slang 200개+. (3) 다양한 액센트 적응 (American·British·Australian). (4) 자기 분야 영어 노출 최대화. (5) 매주 1:1 첨삭 + 영어 사고 정착. 단, 어린 시절부터 학습하지 않은 이상 발음·억양에 약간의 차이는 남을 수 있어요. 그래도 의사소통·전문 영역은 원어민 수준 가능합니다."},
+      {q: "고급에서 가장 어려운 영역은 무엇인가요?", a: "\"뉘앙스\"이에요. 직역으로는 이해 못 하는 함축적 표현 (sarcasm·subtle agreement·implicit refusal)이 가장 어려워요. 한국어에 없는 영미권 문화 맥락이라 노출 + 분석이 답입니다. 다양한 미드 (Friends·HIMYM·Suits)·팟캐스트·1:1 과외에서 뉘앙스 학습이 답이에요. 6개월 뉘앙스 훈련 → 고급의 결정적 도구입니다."},
+      {q: "고급 영어로 영어권 회사 입사·이직 가능한가요?", a: "네, 충분히 가능해요. 고급 6개월~1년 학습 후 \"외국계 입사·해외 본사 이직\" 가능합니다. 핵심: (1) 영어 인터뷰 (자기소개·경력·미래 계획). (2) 비즈니스 회의 + 프레젠테이션. (3) 영어 이메일 + 협업. (4) 자기 분야 전문 어휘. 무료 체험 수업에서 외국계 인터뷰 진단 + 맞춤 학습 가능. 영어 회화 + 자기 분야 영어 동시 학습이 답이에요."},
+      {q: "원어민 강사 vs 한국인 강사, 고급은 어느 게 좋나요?", a: "고급도 한국인 강사가 효과적이에요. (1) 한국인이 자주 틀리는 뉘앙스·표현 정확 진단. (2) 한국어와의 차이 명시적 설명. (3) 매주 정기 첨삭. 단 자유 대화 연습은 원어민도 좋아요. 고급 학습은 한국인 강사 (정밀 첨삭·정확성) + 원어민 (자유 대화·노출) 병행이 가장 효율적이에요. 제나쌤 스터디핏은 한국인 전담 강사 + 정밀 첨삭으로 진행합니다."},
+      {q: "고급 학습에 가장 효과적인 자료는 무엇인가요?", a: "다양한 자료 노출이 답이에요. (1) 미드: Friends·HIMYM·Modern Family·Suits·The Office·Breaking Bad. (2) 팟캐스트: NPR·This American Life·The Daily·Hard Talk. (3) 미디어: BBC News·CNN·Bloomberg·HBR. (4) 강의: TED Talks·Coursera·edX·Master Class. (5) 책: 자기 분야 전문서·뉴욕 타임스 베스트셀러·Atlantic. 자막 없이 95% 이해 자료가 효과 최고예요. 매일 다양한 액센트 노출이 결정적 도구입니다."},
+    ],
+    related: [
+      {label: "영어 회화 중급 과정", href: "/language/english/level/intermediate/"},
+      {label: "비즈니스 이메일", href: "/language/english/biz/email/"},
+      {label: "비즈니스 미팅", href: "/language/english/biz/meeting/"},
+      {label: "영어 프레젠테이션", href: "/language/english/biz/presentation/"},
+      {label: "영어 회화 메인", href: "/language/english/"},
+    ],
+    tags: ["영어회화고급", "비즈니스영어", "프레젠테이션영어", "영어토론", "고급영어", "1:1고급영어과외"],
+  },
+};
+
 const KOREAN_PERFORM_DATA = {
   "descriptive": {
     badge: "수행평가 & 서술형",
@@ -32426,6 +32688,7 @@ const SUBJECT_CATEGORY_META = {
     breadcrumbSubjectUrl: "/language/english/",
     "skill": { label: "영역별 학습", data: () => ENGLISH_LANG_SKILL_DATA },
     "cert":  { label: "자격증 대비", data: () => ENGLISH_LANG_CERT_DATA },
+    "level": { label: "수준별 과정", data: () => ENGLISH_LANG_LEVEL_DATA },
   },
 };
 
@@ -33794,6 +34057,17 @@ Sitemap: ${BASE}/sitemap-schools-3.xml
       const certKey = engLangCertMatch[1];
       if (ENGLISH_LANG_CERT_DATA[certKey]) {
         return new Response(buildKoreanHabitPage(certKey, "cert", "english_lang"), {
+          headers: { "Content-Type": "text/html;charset=UTF-8" }
+        });
+      }
+    }
+
+    // 영어 회화 수준별 과정 페이지 (/language/english/level/{slug}/)
+    const engLangLevelMatch = path.match(/^\/language\/english\/level\/([^\/]+)\/?$/);
+    if (engLangLevelMatch) {
+      const levelKey = engLangLevelMatch[1];
+      if (ENGLISH_LANG_LEVEL_DATA[levelKey]) {
+        return new Response(buildKoreanHabitPage(levelKey, "level", "english_lang"), {
           headers: { "Content-Type": "text/html;charset=UTF-8" }
         });
       }
