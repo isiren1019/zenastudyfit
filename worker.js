@@ -17254,14 +17254,13 @@ const LANGUAGE_HUB_CATEGORIES = {
         ["travel", "✈️ 여행 중국어"],
         ["drama",  "🎬 중드 표현 학습"],
         ["cpop",   "🎵 C-POP 가사 학습"],
-        ["culture","📜 중국 문화·고사성어"],
+        ["idiom",  "📜 중국 문화·고사성어"],
       ]},
-    { key: "school", name: "진학·유학", count: 4,
+    { key: "school", name: "진학·유학", count: 3,
       items: [
         ["naesin",      "📝 제2외국어 내신"],
         ["foreign-lang","🌐 외고 중국어과"],
         ["univ-china",  "🏯 중국 대학 진학"],
-        ["univ-taiwan", "🏯 대만 대학 진학"],
       ]},
   ],
 };
