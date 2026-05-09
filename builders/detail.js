@@ -1,0 +1,279 @@
+// ================================================================
+// builders/detail.js — 지역×학년×과목 상세 페이지 빌더
+// 변경 빈도: 중간 (가장 많이 호출되는 페이지 — 메인 SEO 타깃)
+// 의존:
+//   - config.js (SITE_NAME, SITE_DOMAIN, FORM_URL, KAKAO_URL, PHONE)
+//   - layout.js (HEADER_CSS, HEADER_HTML, FOOTER_HTML, FLOAT_CSS, FLOAT_HTML)
+//   - utils.js (getDisplaySubject, regionVars, seededRandom, getPageDates, buildBreadcrumbJsonLd, buildSocialMeta, buildShareButtons)
+//   - content-pools.js (makeIntro, makeBody, makeConclusion, makeFeatures, FIXED_FAQ)
+//   - builders/_helpers.js (buildGradeRoadmapCards)
+//
+// 함수:
+//   - buildDetailPage(city, gu, dong, grade, subject, slug)
+//     → 약 54,414개 페이지의 핵심 빌더 (3,024 지역 × 3 학년 × 6 과목)
+//     → 시드 기반 결정적 콘텐츠 생성 (같은 슬러그는 항상 같은 HTML)
+//
+// 라우팅:
+//   /{시도}-{시군구}-{동}-{학년}-{과목}-과외/
+//   예: /서울특별시-강남구-대치동-고등-수학-과외/
+// ================================================================
+
+import { SITE_NAME, SITE_DOMAIN, FORM_URL, KAKAO_URL, PHONE } from '../config.js';
+import { HEADER_CSS, HEADER_HTML, FOOTER_HTML, FLOAT_CSS, FLOAT_HTML } from '../layout.js';
+import {
+  getDisplaySubject, regionVars, seededRandom, getPageDates,
+  buildBreadcrumbJsonLd, buildSocialMeta, buildShareButtons
+} from '../utils.js';
+import { makeIntro, makeBody, makeConclusion, makeFeatures, FIXED_FAQ } from '../content-pools.js';
+import { buildGradeRoadmapCards } from './_helpers.js';
+
+
+// ── 지역×학년×과목 상세 페이지 ────────────────────────────────
+export function buildDetailPage(city, gu, dong, grade, subject, slug) {
+  const dispSubject = getDisplaySubject(subject, grade);
+  const canonical = `${SITE_DOMAIN}/${slug}/`;
+  // 단일 지역(시·시·시) 또는 시·구·구 패턴에서 중복 제거
+  const reg = regionVars(city, gu, dong);
+  const titleRegion = (gu === dong) ? `${city} ${gu}` : `${city} ${gu} ${dong}`;
+  const titleTag = `${titleRegion} ${grade} ${subject} 과외 | ${SITE_NAME}`;
+  const description = `${titleRegion} ${grade} ${dispSubject} 과외 전문 선생님을 찾고 계신가요? 제나쌤의 스터디핏 과외에서 ${reg.region_short} 인근 ${grade} ${dispSubject} 과외 선생님을 연결해 드립니다. 내신·수능 대비, 기초부터 심화까지 맞춤 수업. 무료 상담 가능.`;
+
+  // seeded rng
+  const seedVal = slug.split("").reduce((a,c,i) => (a + c.charCodeAt(0) * (i+1)) % 2147483647, 0);
+  const rng = seededRandom(seedVal);
+
+  // 페이지별 의사 갱신일 (SEO 최신성)
+  const dates = getPageDates(slug);
+
+  // JSON-LD BreadcrumbList (검색엔진용 구조화 데이터)
+  const breadcrumbItems = [
+    { name: "홈", url: `${SITE_DOMAIN}/` },
+    { name: "지역별 과외", url: `${SITE_DOMAIN}/regions/` },
+    { name: city, url: `${SITE_DOMAIN}/regions/${encodeURIComponent(city)}/` },
+  ];
+  if (gu !== dong) {
+    breadcrumbItems.push({ name: `${gu} ${dong}`, url: canonical });
+  } else {
+    breadcrumbItems.push({ name: gu, url: canonical });
+  }
+  breadcrumbItems.push({ name: `${grade} ${dispSubject} 과외`, url: canonical });
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd(breadcrumbItems);
+
+  const [introTitle, introBody] = makeIntro(rng, city, gu, dong, grade, subject);
+  const [bodyTitle, bodyBody] = makeBody(rng, city, gu, dong, grade, subject);
+  const [conclusionTitle, conclusionBody] = makeConclusion(rng, city, gu, dong, grade, subject);
+  const features = makeFeatures(rng, subject, grade);
+
+  const ALL_SUBJECTS = ["국어","영어","수학","과학","사회","한국사"];
+  const SUBJECT_ICONS = {"국어":"📖","영어":"🌍","수학":"📐","과학":"🔬","사회":"🗺️","한국사":"📜"};
+  const SUBJECT_DESC = {"국어":"독해 · 논술","영어":"문법 · 독해","수학":"개념 · 문제풀이","과학":"개념 · 원리","사회":"흐름 · 암기","한국사":"흐름 · 사건 · 암기"};
+  const SUBJECT_LIST_DESC = {"국어":"독해력 · 문학 · 비문학 · 서술형 대비","영어":"문법 · 독해 · 어휘 · 내신 대비","수학":"개념 이해 · 유형 · 실전 문제풀이","과학":"개념 · 원리 이해 · 실험 정리 · 서술형","사회":"흐름 · 맥락 · 암기 전략","한국사":"시대별 흐름 · 주요 사건 · 암기 전략"};
+
+  const relatedSubjects = ALL_SUBJECTS.filter(s => s !== subject);
+  let pool = [...relatedSubjects];
+  if (subject === "사회" && pool.includes("한국사")) pool = pool.filter(s => s !== "한국사");
+  else if (subject === "한국사" && pool.includes("사회")) pool = pool.filter(s => s !== "사회");
+  else if (pool.includes("사회") && pool.includes("한국사")) {
+    pool = pool.filter(s => s !== (rng() > 0.5 ? "사회" : "한국사"));
+  }
+  for (let i = pool.length-1; i>0; i--) {
+    const j = Math.floor(rng()*(i+1));
+    [pool[i],pool[j]] = [pool[j],pool[i]];
+  }
+
+
+  let listHtml = "";
+  for (const s of relatedSubjects) {
+    const disp = getDisplaySubject(s, grade);
+    const icon = SUBJECT_ICONS[s]||"📚";
+    const listDesc = SUBJECT_LIST_DESC[s]||"";
+    const href = `/${city}-${gu}-${dong}-${grade}-${s}-과외/`.replace(/ /g,"-");
+    listHtml += `<a href="${href}" style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid #f0e6fc;text-decoration:none;background:white;transition:background .12s" onmouseover="this.style.background='#faf5ff'" onmouseout="this.style.background='white'"><div style="display:flex;align-items:center;gap:10px"><div style="width:30px;height:30px;border-radius:50%;background:#f0e6fc;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">${icon}</div><div><div style="font-size:.85rem;font-weight:700;color:#370558">${grade} ${disp} 과외</div><div style="font-size:.72rem;color:#9b6cc0;margin-top:2px">${listDesc}</div></div></div><div style="font-size:.85rem;color:#c9a3e8;flex-shrink:0">→</div></a>`;
+  }
+  listHtml += `<a href="/self-study/" style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid #f0e6fc;text-decoration:none;background:white;transition:background .12s" onmouseover="this.style.background='#faf5ff'" onmouseout="this.style.background='white'"><div style="display:flex;align-items:center;gap:10px"><div style="width:30px;height:30px;border-radius:50%;background:#f0e6fc;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">📋</div><div><div style="font-size:.85rem;font-weight:700;color:#370558">공부 습관 완성 과외</div><div style="font-size:.72rem;color:#9b6cc0;margin-top:2px">과목별 공부법 · 플랜 관리 · 자기주도학습</div></div></div><div style="font-size:.85rem;color:#c9a3e8;flex-shrink:0">→</div></a>`;
+  listHtml += `<a href="/coding/" style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;text-decoration:none;background:white;transition:background .12s" onmouseover="this.style.background='#faf5ff'" onmouseout="this.style.background='white'"><div style="display:flex;align-items:center;gap:10px"><div style="width:30px;height:30px;border-radius:50%;background:#f0e6fc;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">💻</div><div><div style="font-size:.85rem;font-weight:700;color:#370558">AI 시대 코딩 과외</div><div style="font-size:.72rem;color:#9b6cc0;margin-top:2px">자바스크립트 · 파이썬을 통한 컴퓨팅 사고력</div></div></div><div style="font-size:.85rem;color:#c9a3e8;flex-shrink:0">→</div></a>`;
+
+  let featuresHtml = "";
+  for (const [icon, title, desc] of features) {
+    featuresHtml += `<div class="feature-item"><div class="feature-icon">${icon}</div><div><div class="feature-title">${title}</div><div class="feature-desc">${desc}</div></div></div>`;
+  }
+
+  let faqHtml = "";
+  for (const [q, a] of FIXED_FAQ) {
+    faqHtml += `<div class="faq-item"><div class="faq-q">Q. ${q}</div><div class="faq-a">${a}</div></div>`;
+  }
+
+  return `<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>${titleTag}</title>
+  <meta name="description" content="${description}">
+  <link rel="canonical" href="${canonical}">
+  ${buildSocialMeta({ title: titleTag, description, canonical, ogType: "article", imageAlt: `${titleRegion} ${grade} ${dispSubject} 과외` })}
+  <meta property="article:published_time" content="${dates.publishedISO}">
+  <meta property="article:modified_time" content="${dates.modifiedISO}">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "${titleTag.replace(/"/g, '\\"')}",
+    "datePublished": "${dates.publishedISO}",
+    "dateModified": "${dates.modifiedISO}",
+    "author": {"@type": "Person", "name": "이수진"},
+    "publisher": {"@type": "Organization", "name": "${SITE_NAME}", "url": "${SITE_DOMAIN}"},
+    "mainEntityOfPage": {"@type": "WebPage", "@id": "${canonical}"}
+  }
+  </script>
+  ${breadcrumbJsonLd}
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;800&display=swap" rel="stylesheet">
+  <style>
+    ${HEADER_CSS}
+    ${FLOAT_CSS}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Noto Sans KR',sans-serif;background:#fff;color:#1a0a24;line-height:1.7}
+    .wrap{max-width:680px;margin:0 auto;padding:0 16px 32px}
+    .hero{background:linear-gradient(135deg,#370558,#510580,#7b2fa8);color:white;padding:36px 20px;text-align:center}
+    .hero-badge{display:inline-block;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:20px;font-size:.72rem;font-weight:700;padding:4px 14px;margin-bottom:12px}
+    .hero h1{font-size:clamp(1.4rem,4vw,2rem);font-weight:800;line-height:1.4;margin-bottom:8px;color:white}
+    .hero-sub{font-size:.85rem;opacity:.85;margin-bottom:20px}
+    .hero-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+    .btn-white{background:white;color:#510580;padding:11px 20px;border-radius:50px;font-weight:700;font-size:.88rem;text-decoration:none}
+    .btn-kakao{background:#FEE500;color:#3A1D1D;padding:11px 20px;border-radius:50px;font-weight:700;font-size:.88rem;text-decoration:none}
+    .sec{background:white;border-radius:0;padding:24px 0;margin-top:0;border:none;border-bottom:1px solid #f0e6fc}
+    .sec:last-of-type{border-bottom:none}
+    .sec-label{font-size:.7rem;font-weight:700;color:#7b2fa8;background:#f0e6fc;display:inline-block;padding:3px 10px;border-radius:20px;margin-bottom:8px}
+    .sec-title{font-size:1rem;font-weight:800;color:#370558;margin-bottom:10px;line-height:1.5}
+    .sec-body{font-size:.85rem;color:#444;line-height:1.85}
+    .feature-item{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #f5eefe}
+    .feature-item:last-child{border-bottom:none}
+    .feature-icon{width:36px;height:36px;min-width:36px;background:#f0e6fc;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:1.1rem}
+    .feature-title{font-size:.88rem;font-weight:700;color:#370558;margin-bottom:3px}
+    .feature-desc{font-size:.78rem;color:#666;line-height:1.6}
+    .faq-item{padding:14px 0;border-bottom:1px solid #f5eefe}
+    .faq-item:last-child{border-bottom:none}
+    .faq-q{font-size:.88rem;font-weight:700;color:#370558;margin-bottom:6px}
+    .faq-a{font-size:.82rem;color:#555;line-height:1.75}
+    .cta-sec{background:linear-gradient(135deg,#370558,#510580);border-radius:16px;padding:24px 20px;margin-top:24px;text-align:center}
+    .cta-sec h2{font-size:1.1rem;font-weight:800;color:white;margin-bottom:6px}
+    .cta-sec p{font-size:.82rem;color:rgba(255,255,255,.75);margin-bottom:16px}
+    .cta-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+    .cta-phone{background:white;color:#510580;font-size:.88rem;font-weight:700;padding:10px 18px;border-radius:50px;text-decoration:none}
+    .cta-kakao{background:#FEE500;color:#3A1D1D;font-size:.88rem;font-weight:700;padding:10px 18px;border-radius:50px;text-decoration:none}
+    .cta-form{background:linear-gradient(135deg,#e8439a,#ff6fc1);color:white;font-size:.88rem;font-weight:700;padding:10px 18px;border-radius:50px;text-decoration:none}
+    footer{background:#370558;color:rgba(255,255,255,.45);text-align:center;padding:20px;font-size:.75rem;line-height:1.8;margin-top:0}
+    footer p{color:rgba(255,255,255,.45);margin:2px 0}
+    footer a{color:rgba(255,255,255,.6);text-decoration:none}
+    footer a{color:rgba(255,255,255,.6);text-decoration:none}
+    @media(max-width:600px){.hero-btns,.cta-btns{flex-direction:column;align-items:center}}
+  </style>
+</head>
+<body>
+${HEADER_HTML}
+<div class="hero">
+  <div class="hero-badge">${gu === dong ? gu : `${gu} · ${dong}`} 전문</div>
+  <h1>${gu === dong ? gu : `${gu} ${dong}`}<br>${grade} ${dispSubject} 과외</h1>
+  <p class="hero-sub">방문/화상 수업 · 내신/수능 맞춤 · 무료 시범수업 가능</p>
+  <div class="hero-btns">
+    <a href="${FORM_URL}" target="_blank" class="btn-white">📝 체험신청</a>
+    <a href="${KAKAO_URL}" target="_blank" class="btn-kakao">💬 카카오톡</a>
+  </div>
+</div>
+
+<div class="wrap">
+  <nav style="padding:10px 0;font-size:.75rem;color:#9b6cc0">
+    <a href="/" style="color:#9b6cc0;text-decoration:none">홈</a> &gt;
+    <a href="/regions/" style="color:#9b6cc0;text-decoration:none">${city}</a> &gt;
+    ${grade} ${dispSubject} 과외
+  </nav>
+
+  <div style="display:flex;align-items:center;gap:8px;padding:6px 0;font-size:.7rem;color:#999;border-bottom:1px solid #f5eefe">
+    <span>📅 최종 업데이트: ${dates.modifiedKR}</span>
+    <span style="color:#ddd">|</span>
+    <span>최초 게시: ${dates.publishedKR}</span>
+  </div>
+
+  <!-- 서론 -->
+  <div class="sec">
+    <div class="sec-label">과외 소개</div>
+    <div class="sec-title">${introTitle}</div>
+    <div class="sec-body">${introBody}</div>
+  </div>
+
+  <!-- 수업 특징 -->
+  <div class="sec">
+    <div class="sec-label">수업 특징</div>
+    <div class="sec-title">제나쌤스터디핏 과외가 다른 이유</div>
+    ${featuresHtml}
+  </div>
+
+  <!-- 본론 -->
+  <div class="sec">
+    <div class="sec-label">수업 안내</div>
+    <div class="sec-title">${bodyTitle}</div>
+    <div class="sec-body">${bodyBody}</div>
+  </div>
+
+  ${buildGradeRoadmapCards(grade, subject)}
+
+  <!-- 이미지 그리드 -->
+  <div style="margin-top:24px;display:flex;flex-direction:column;gap:12px">
+    <img src="/images/study-01-desk.jpg" alt="${dong} ${grade} ${subject} 과외 수업 사진" loading="lazy" style="width:100%;height:auto;border-radius:10px;border:1px solid #e8d6f5;display:block">
+    <img src="/images/study-02-book.jpg" alt="${dong} ${grade} ${subject} 과외 수업 사진" loading="lazy" style="width:100%;height:auto;border-radius:10px;border:1px solid #e8d6f5;display:block">
+    <img src="/images/study-03-writing.jpg" alt="${dong} ${grade} ${subject} 과외 수업 사진" loading="lazy" style="width:100%;height:auto;border-radius:10px;border:1px solid #e8d6f5;display:block">
+    <img src="/images/study-04-tutoring.jpg" alt="${dong} ${grade} ${subject} 과외 수업 사진" loading="lazy" style="width:100%;height:auto;border-radius:10px;border:1px solid #e8d6f5;display:block">
+    <img src="/images/study-05-whiteboard.jpg" alt="${dong} ${grade} ${subject} 과외 수업 사진" loading="lazy" style="width:100%;height:auto;border-radius:10px;border:1px solid #e8d6f5;display:block">
+    <img src="/images/study-06-math.jpg" alt="${dong} ${grade} ${subject} 과외 수업 사진" loading="lazy" style="width:100%;height:auto;border-radius:10px;border:1px solid #e8d6f5;display:block">
+    <img src="/images/study-07-english.jpg" alt="${dong} ${grade} ${subject} 과외 수업 사진" loading="lazy" style="width:100%;height:auto;border-radius:10px;border:1px solid #e8d6f5;display:block">
+    <img src="/images/study-08-korean.jpg" alt="${dong} ${grade} ${subject} 과외 수업 사진" loading="lazy" style="width:100%;height:auto;border-radius:10px;border:1px solid #e8d6f5;display:block">
+    <img src="/images/study-09-science.jpg" alt="${dong} ${grade} ${subject} 과외 수업 사진" loading="lazy" style="width:100%;height:auto;border-radius:10px;border:1px solid #e8d6f5;display:block">
+    <img src="/images/study-10-social.jpg" alt="${dong} ${grade} ${subject} 과외 수업 사진" loading="lazy" style="width:100%;height:auto;border-radius:10px;border:1px solid #e8d6f5;display:block">
+    <img src="/images/study-11-result.jpg" alt="${dong} ${grade} ${subject} 과외 수업 사진" loading="lazy" style="width:100%;height:auto;border-radius:10px;border:1px solid #e8d6f5;display:block">
+    <img src="/images/study-12-feedback.jpg" alt="${dong} ${grade} ${subject} 과외 수업 사진" loading="lazy" style="width:100%;height:auto;border-radius:10px;border:1px solid #e8d6f5;display:block">
+    <img src="/images/study-13-smile.jpg" alt="${dong} ${grade} ${subject} 과외 수업 사진" loading="lazy" style="width:100%;height:auto;border-radius:10px;border:1px solid #e8d6f5;display:block">
+  </div>
+
+  <!-- 결론 -->
+  <div class="sec">
+    <div class="sec-label">마무리</div>
+    <div class="sec-title">${conclusionTitle}</div>
+    <div class="sec-body">${conclusionBody}</div>
+  </div>
+
+  <!-- FAQ -->
+  <div style="background:#faf5ff;border-radius:14px;padding:20px;margin-top:24px;border:1px solid #e8d6f5">
+    <div class="sec-label">자주 묻는 질문</div>
+    <div class="sec-title">과외 신청 전 궁금한 점</div>
+    ${faqHtml}
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-sec">
+    <h2>지금 바로 무료 상담받으세요</h2>
+    <p>${gu === dong ? gu : `${gu} ${dong}`} ${grade} ${dispSubject} 과외 — 빠른 상담, 맞춤 배정</p>
+    <div class="cta-btns">
+      <a href="tel:${PHONE}" class="cta-phone">📞 전화</a>
+      <a href="${KAKAO_URL}" target="_blank" class="cta-kakao">💬 카카오톡</a>
+      <a href="${FORM_URL}" target="_blank" class="cta-form">📝 체험신청</a>
+    </div>
+  </div>
+
+  ${buildShareButtons(titleTag, canonical)}
+
+  <!-- 리스트형 관련 과목 -->
+  <div style="background:white;border:1px solid #e8d6f5;border-radius:14px;overflow:hidden;margin-top:10px;margin-bottom:48px">
+    <div style="padding:13px 16px;border-bottom:1px solid #f0e6fc;background:#faf5ff;display:flex;align-items:center;justify-content:space-between">
+      <span style="font-size:.88rem;font-weight:700;color:#370558">${dong} ${grade} 다른 과목 과외</span>
+      <span style="font-size:.72rem;color:#9b6cc0">클릭해서 바로 확인 →</span>
+    </div>
+    ${listHtml}
+  </div>
+</div>
+
+${FOOTER_HTML}
+${FLOAT_HTML}
+</body>
+</html>`;
+}
