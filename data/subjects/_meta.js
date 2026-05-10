@@ -60,7 +60,7 @@ import {
 } from './japanese-lang.js';
 import {
   CHINESE_LANG_CERT_DATA, CHINESE_LANG_LEVEL_DATA, CHINESE_LANG_SKILL_DATA,
-  CHINESE_LANG_PURPOSE_DATA, CHINESE_LANG_SCHOOL_DATA,
+  CHINESE_LANG_PURPOSE_DATA, CHINESE_LANG_SCHOOL_DATA, CHINESE_LANG_BIZ_DATA,
 } from './chinese-lang.js';
 
 
@@ -162,11 +162,12 @@ export const SUBJECT_CATEGORY_META = {
     breadcrumbHubUrl: "/language/",
     breadcrumbSubjectLabel: "중국어 회화",
     breadcrumbSubjectUrl: "/language/chinese/",
-    "skill":   { label: "영역별 학습", data: () => CHINESE_LANG_SKILL_DATA },
-    "level":   { label: "수준별 과정", data: () => CHINESE_LANG_LEVEL_DATA },
-    "cert":    { label: "자격증 대비", data: () => CHINESE_LANG_CERT_DATA },
-    "purpose": { label: "목적별 수업", data: () => CHINESE_LANG_PURPOSE_DATA },
-    "school":  { label: "진학·유학",   data: () => CHINESE_LANG_SCHOOL_DATA },
+    "skill":   { label: "영역별 학습",     data: () => CHINESE_LANG_SKILL_DATA },
+    "level":   { label: "수준별 과정",     data: () => CHINESE_LANG_LEVEL_DATA },
+    "cert":    { label: "자격증 대비",     data: () => CHINESE_LANG_CERT_DATA },
+    "biz":     { label: "비즈니스 중국어", data: () => CHINESE_LANG_BIZ_DATA },
+    "purpose": { label: "목적별 수업",     data: () => CHINESE_LANG_PURPOSE_DATA },
+    "school":  { label: "진학·유학",       data: () => CHINESE_LANG_SCHOOL_DATA },
   },
 };
 
@@ -550,9 +551,16 @@ export const LANGUAGE_PAGE_READY = {
     "cert/hsk-34":         "/language/chinese/cert/hsk-34/",
     "cert/hsk-56":         "/language/chinese/cert/hsk-56/",
     "cert/hskk":           "/language/chinese/cert/hskk/",
+    "biz/email":           "/language/chinese/biz/email/",
+    "biz/meeting":         "/language/chinese/biz/meeting/",
+    "biz/culture":         "/language/chinese/biz/culture/",
+    "biz/presentation":    "/language/chinese/biz/presentation/",
     "purpose/travel":      "/language/chinese/purpose/travel/",
     "purpose/drama":       "/language/chinese/purpose/drama/",
+    "purpose/cpop":        "/language/chinese/purpose/cpop/",
+    "purpose/idiom":       "/language/chinese/purpose/idiom/",
     "school/foreign-lang": "/language/chinese/school/foreign-lang/",
     "school/naesin":       "/language/chinese/school/naesin/",
+    "school/univ-china":   "/language/chinese/school/univ-china/",
   },
 };
