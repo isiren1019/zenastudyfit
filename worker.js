@@ -54,7 +54,7 @@ import {
 } from './data/subjects/japanese-lang.js';
 import {
   CHINESE_LANG_CERT_DATA, CHINESE_LANG_LEVEL_DATA, CHINESE_LANG_SKILL_DATA,
-  CHINESE_LANG_PURPOSE_DATA, CHINESE_LANG_SCHOOL_DATA,
+  CHINESE_LANG_PURPOSE_DATA, CHINESE_LANG_SCHOOL_DATA, CHINESE_LANG_BIZ_DATA,
 } from './data/subjects/chinese-lang.js';
 
 // ── 빌더 ─────────────────────────────────────────────────────
@@ -394,6 +394,17 @@ Sitemap: ${BASE}/sitemap-schools-3.xml
       const schoolKey = chnLangSchoolMatch[1];
       if (CHINESE_LANG_SCHOOL_DATA[schoolKey]) {
         return new Response(buildKoreanHabitPage(schoolKey, "school", "chinese_lang"), {
+          headers: { "Content-Type": "text/html;charset=UTF-8" }
+        });
+      }
+    }
+
+    // 중국어 회화 비즈니스 중국어 페이지 (/language/chinese/biz/{slug}/)
+    const chnLangBizMatch = path.match(/^\/language\/chinese\/biz\/([^\/]+)\/?$/);
+    if (chnLangBizMatch) {
+      const bizKey = chnLangBizMatch[1];
+      if (CHINESE_LANG_BIZ_DATA[bizKey]) {
+        return new Response(buildKoreanHabitPage(bizKey, "biz", "chinese_lang"), {
           headers: { "Content-Type": "text/html;charset=UTF-8" }
         });
       }
