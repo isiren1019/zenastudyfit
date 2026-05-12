@@ -391,6 +391,12 @@ export function buildSubjectHubPage(subjectKey) {
       "mistake/careless": "/study/math/mistake/careless/",
       "mistake/misread": "/study/math/mistake/misread/",
       "mistake/check": "/study/math/mistake/check/",
+      "high/calculus-basic": "/study/math/high/calculus-basic/",
+      "high/calculus-advanced": "/study/math/high/calculus-advanced/",
+      "high/statistics-basic": "/study/math/high/statistics-basic/",
+      "high/statistics-advanced": "/study/math/high/statistics-advanced/",
+      "high/geometry-basic": "/study/math/high/geometry-basic/",
+      "high/geometry-advanced": "/study/math/high/geometry-advanced/",
     },
     "science": {
       "grade/elem1": "/study/science/grade/elem1/",
