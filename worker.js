@@ -30,7 +30,7 @@ import {
 } from './data/subjects/english.js';
 import {
   MATH_EXAM_DATA, MATH_HABIT_DATA, MATH_CONCEPT_DATA,
-  MATH_TYPE_DATA, MATH_PERFORM_DATA,
+  MATH_TYPE_DATA, MATH_PERFORM_DATA, MATH_SUNEUNG_DATA,
 } from './data/subjects/math.js';
 import {
   SCIENCE_EXAM_DATA, SCIENCE_HABIT_DATA, SCIENCE_BIOLOGY_DATA,
@@ -628,6 +628,17 @@ Sitemap: ${BASE}/sitemap-schools-3.xml
         const typeKey = mathTypeMatch[1];
         if (MATH_TYPE_DATA[typeKey]) {
           return new Response(buildKoreanHabitPage(typeKey, "type", "math"), {
+            headers: { "Content-Type": "text/html;charset=UTF-8" }
+          });
+        }
+      }
+
+      // 수학 수능 영역별 페이지 (common/calculus/statistics/geometry/choice/strategy)
+      const mathSuneungMatch = path.match(/^\/study\/math\/suneung\/([^\/]+)\/?$/);
+      if (mathSuneungMatch) {
+        const suneungKey = mathSuneungMatch[1];
+        if (MATH_SUNEUNG_DATA[suneungKey]) {
+          return new Response(buildKoreanHabitPage(suneungKey, "suneung", "math"), {
             headers: { "Content-Type": "text/html;charset=UTF-8" }
           });
         }
