@@ -386,6 +386,11 @@ export function buildSubjectHubPage(subjectKey) {
       "suneung/geometry": "/study/math/suneung/geometry/",
       "suneung/choice": "/study/math/suneung/choice/",
       "suneung/strategy": "/study/math/suneung/strategy/",
+      "mistake/pattern": "/study/math/mistake/pattern/",
+      "mistake/calculation": "/study/math/mistake/calculation/",
+      "mistake/careless": "/study/math/mistake/careless/",
+      "mistake/misread": "/study/math/mistake/misread/",
+      "mistake/check": "/study/math/mistake/check/",
     },
     "science": {
       "grade/elem1": "/study/science/grade/elem1/",
