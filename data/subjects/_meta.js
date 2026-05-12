@@ -37,7 +37,7 @@ import {
 import {
   MATH_GRADE_DATA, MATH_EXAM_DATA, MATH_HABIT_DATA,
   MATH_CONCEPT_DATA, MATH_TYPE_DATA, MATH_PERFORM_DATA,
-  MATH_SUNEUNG_DATA, MATH_MISTAKE_DATA,
+  MATH_SUNEUNG_DATA, MATH_MISTAKE_DATA, MATH_HIGH_DATA,
 } from './math.js';
 import {
   SCIENCE_GRADE_DATA, SCIENCE_EXAM_DATA, SCIENCE_HABIT_DATA,
@@ -104,6 +104,7 @@ export const SUBJECT_CATEGORY_META = {
     "type": { label: "유형별 풀이", data: () => MATH_TYPE_DATA },
     "suneung": { label: "수능 수학 영역별", data: () => MATH_SUNEUNG_DATA },
     "mistake": { label: "오답·실수 줄이기", data: () => MATH_MISTAKE_DATA },
+    "high": { label: "미적분·확통·기하", data: () => MATH_HIGH_DATA },
   },
   "science": {
     name: "과학",
