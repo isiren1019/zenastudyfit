@@ -37,6 +37,7 @@ import {
 import {
   MATH_GRADE_DATA, MATH_EXAM_DATA, MATH_HABIT_DATA,
   MATH_CONCEPT_DATA, MATH_TYPE_DATA, MATH_PERFORM_DATA,
+  MATH_SUNEUNG_DATA,
 } from './math.js';
 import {
   SCIENCE_GRADE_DATA, SCIENCE_EXAM_DATA, SCIENCE_HABIT_DATA,
@@ -101,6 +102,7 @@ export const SUBJECT_CATEGORY_META = {
     "perform": { label: "수행평가 & 서술형", data: () => MATH_PERFORM_DATA },
     "concept": { label: "수학 개념 정리", data: () => MATH_CONCEPT_DATA },
     "type": { label: "유형별 풀이", data: () => MATH_TYPE_DATA },
+    "suneung": { label: "수능 수학 영역별", data: () => MATH_SUNEUNG_DATA },
   },
   "science": {
     name: "과학",
