@@ -41,7 +41,8 @@ import {
 } from './math.js';
 import {
   SCIENCE_GRADE_DATA, SCIENCE_EXAM_DATA, SCIENCE_HABIT_DATA,
-  SCIENCE_BIOLOGY_DATA, SCIENCE_PHYSICS_DATA, SCIENCE_PERFORM_DATA,
+  SCIENCE_BIOLOGY_DATA, SCIENCE_PHYSICS_DATA, SCIENCE_CHEMISTRY_DATA,
+  SCIENCE_PERFORM_DATA,
 } from './science.js';
 import {
   SOCIAL_GRADE_DATA, SOCIAL_EXAM_DATA, SOCIAL_HABIT_DATA,
@@ -112,6 +113,7 @@ export const SUBJECT_CATEGORY_META = {
     "perform": { label: "수행평가 & 서술형", data: () => SCIENCE_PERFORM_DATA },
     "biology": { label: "생명과학", data: () => SCIENCE_BIOLOGY_DATA },
     "physics": { label: "물리", data: () => SCIENCE_PHYSICS_DATA },
+    "chemistry": { label: "화학", data: () => SCIENCE_CHEMISTRY_DATA },
     "habit": { label: "학습 습관 & 공부법", data: () => SCIENCE_HABIT_DATA },
   },
   "social": {
