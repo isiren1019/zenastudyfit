@@ -380,6 +380,12 @@ export function buildSubjectHubPage(subjectKey) {
       "type/sequence": "/study/math/type/sequence/",
       "type/case": "/study/math/type/case/",
       "type/application": "/study/math/type/application/",
+      "suneung/common": "/study/math/suneung/common/",
+      "suneung/calculus": "/study/math/suneung/calculus/",
+      "suneung/statistics": "/study/math/suneung/statistics/",
+      "suneung/geometry": "/study/math/suneung/geometry/",
+      "suneung/choice": "/study/math/suneung/choice/",
+      "suneung/strategy": "/study/math/suneung/strategy/",
     },
     "science": {
       "grade/elem1": "/study/science/grade/elem1/",
