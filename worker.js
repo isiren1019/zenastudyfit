@@ -31,6 +31,7 @@ import {
 import {
   MATH_EXAM_DATA, MATH_HABIT_DATA, MATH_CONCEPT_DATA,
   MATH_TYPE_DATA, MATH_PERFORM_DATA, MATH_SUNEUNG_DATA,
+  MATH_MISTAKE_DATA,
 } from './data/subjects/math.js';
 import {
   SCIENCE_EXAM_DATA, SCIENCE_HABIT_DATA, SCIENCE_BIOLOGY_DATA,
@@ -639,6 +640,17 @@ Sitemap: ${BASE}/sitemap-schools-3.xml
         const suneungKey = mathSuneungMatch[1];
         if (MATH_SUNEUNG_DATA[suneungKey]) {
           return new Response(buildKoreanHabitPage(suneungKey, "suneung", "math"), {
+            headers: { "Content-Type": "text/html;charset=UTF-8" }
+          });
+        }
+      }
+
+      // 수학 오답·실수 줄이기 페이지 (pattern/calculation/careless/misread/check)
+      const mathMistakeMatch = path.match(/^\/study\/math\/mistake\/([^\/]+)\/?$/);
+      if (mathMistakeMatch) {
+        const mistakeKey = mathMistakeMatch[1];
+        if (MATH_MISTAKE_DATA[mistakeKey]) {
+          return new Response(buildKoreanHabitPage(mistakeKey, "mistake", "math"), {
             headers: { "Content-Type": "text/html;charset=UTF-8" }
           });
         }
