@@ -35,7 +35,7 @@ import {
 } from './data/subjects/math.js';
 import {
   SCIENCE_EXAM_DATA, SCIENCE_HABIT_DATA, SCIENCE_BIOLOGY_DATA,
-  SCIENCE_PHYSICS_DATA, SCIENCE_PERFORM_DATA,
+  SCIENCE_PHYSICS_DATA, SCIENCE_CHEMISTRY_DATA, SCIENCE_PERFORM_DATA,
 } from './data/subjects/science.js';
 import {
   SOCIAL_EXAM_DATA, SOCIAL_HABIT_DATA, SOCIAL_SOCIETY_DATA,
@@ -706,6 +706,17 @@ Sitemap: ${BASE}/sitemap-schools-3.xml
         const physicsKey = sciPhysicsMatch[1];
         if (SCIENCE_PHYSICS_DATA[physicsKey]) {
           return new Response(buildKoreanHabitPage(physicsKey, "physics", "science"), {
+            headers: { "Content-Type": "text/html;charset=UTF-8" }
+          });
+        }
+      }
+
+      // 과학 화학 페이지 (atom/bond/reaction/acid/organic/practice)
+      const sciChemistryMatch = path.match(/^\/study\/science\/chemistry\/([^\/]+)\/?$/);
+      if (sciChemistryMatch) {
+        const chemistryKey = sciChemistryMatch[1];
+        if (SCIENCE_CHEMISTRY_DATA[chemistryKey]) {
+          return new Response(buildKoreanHabitPage(chemistryKey, "chemistry", "science"), {
             headers: { "Content-Type": "text/html;charset=UTF-8" }
           });
         }
