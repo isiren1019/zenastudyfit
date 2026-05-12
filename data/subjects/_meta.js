@@ -37,11 +37,11 @@ import {
 import {
   MATH_GRADE_DATA, MATH_EXAM_DATA, MATH_HABIT_DATA,
   MATH_CONCEPT_DATA, MATH_TYPE_DATA, MATH_PERFORM_DATA,
+  MATH_SUNEUNG_DATA, MATH_MISTAKE_DATA, MATH_HIGH_DATA,
 } from './math.js';
 import {
   SCIENCE_GRADE_DATA, SCIENCE_EXAM_DATA, SCIENCE_HABIT_DATA,
-  SCIENCE_BIOLOGY_DATA, SCIENCE_PHYSICS_DATA, SCIENCE_CHEMISTRY_DATA,
-  SCIENCE_PERFORM_DATA,
+  SCIENCE_BIOLOGY_DATA, SCIENCE_PHYSICS_DATA, SCIENCE_PERFORM_DATA,
 } from './science.js';
 import {
   SOCIAL_GRADE_DATA, SOCIAL_EXAM_DATA, SOCIAL_HABIT_DATA,
@@ -102,6 +102,9 @@ export const SUBJECT_CATEGORY_META = {
     "perform": { label: "수행평가 & 서술형", data: () => MATH_PERFORM_DATA },
     "concept": { label: "수학 개념 정리", data: () => MATH_CONCEPT_DATA },
     "type": { label: "유형별 풀이", data: () => MATH_TYPE_DATA },
+    "suneung": { label: "수능 수학 영역별", data: () => MATH_SUNEUNG_DATA },
+    "mistake": { label: "오답·실수 줄이기", data: () => MATH_MISTAKE_DATA },
+    "high": { label: "미적분·확통·기하", data: () => MATH_HIGH_DATA },
   },
   "science": {
     name: "과학",
@@ -109,7 +112,6 @@ export const SUBJECT_CATEGORY_META = {
     "perform": { label: "수행평가 & 서술형", data: () => SCIENCE_PERFORM_DATA },
     "biology": { label: "생명과학", data: () => SCIENCE_BIOLOGY_DATA },
     "physics": { label: "물리", data: () => SCIENCE_PHYSICS_DATA },
-    "chemistry": { label: "화학", data: () => SCIENCE_CHEMISTRY_DATA },
     "habit": { label: "학습 습관 & 공부법", data: () => SCIENCE_HABIT_DATA },
   },
   "social": {
@@ -226,10 +228,6 @@ export const SUBJECT_HUB_DATA = {
         items: [["basic","수와 연산"],["algebra","문자와 식"],["function","함수 개념"],["geometry","도형 개념"],["probability","확률·통계 기초"],["limit","극한 개념"],["derivative","미분 개념"],["integral","적분 개념"]] },
       { key: "type", name: "유형별 풀이", count: 8,
         items: [["equation","방정식 유형"],["inequality","부등식 유형"],["graph","그래프 유형"],["proof","증명 유형"],["max-min","최대·최소 유형"],["sequence","수열 유형"],["case","경우의 수 유형"],["application","활용 문제"]] },
-      { key: "advanced", name: "응용·심화 문제", count: 6,
-        items: [["thinking","사고력 문제"],["combined","융합형 문제"],["new","신유형 대응"],["real","실생활 응용"],["competition","경시·올림피아드 입문"],["essay","수리 논술"]] },
-      { key: "descriptive", name: "서술형 풀이", count: 5,
-        items: [["structure","답안 구조"],["proof","증명 서술"],["application","활용 서술"],["scoring","채점 기준 분석"],["practice","서술형 연습"]] },
       { key: "exam", name: "시험 대비", count: 6,
         items: [["naesin","내신 시험 대비"],["past","기출문제 분석"],["killer","킬러 문항 풀이"],["time","시간 관리 전략"],["mock","모의고사 대비"],["suneung","수능 수학 대비"]] },
       { key: "mistake", name: "오답·실수 줄이기", count: 5,
