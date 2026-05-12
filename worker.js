@@ -31,7 +31,7 @@ import {
 import {
   MATH_EXAM_DATA, MATH_HABIT_DATA, MATH_CONCEPT_DATA,
   MATH_TYPE_DATA, MATH_PERFORM_DATA, MATH_SUNEUNG_DATA,
-  MATH_MISTAKE_DATA,
+  MATH_MISTAKE_DATA, MATH_HIGH_DATA,
 } from './data/subjects/math.js';
 import {
   SCIENCE_EXAM_DATA, SCIENCE_HABIT_DATA, SCIENCE_BIOLOGY_DATA,
@@ -651,6 +651,17 @@ Sitemap: ${BASE}/sitemap-schools-3.xml
         const mistakeKey = mathMistakeMatch[1];
         if (MATH_MISTAKE_DATA[mistakeKey]) {
           return new Response(buildKoreanHabitPage(mistakeKey, "mistake", "math"), {
+            headers: { "Content-Type": "text/html;charset=UTF-8" }
+          });
+        }
+      }
+
+      // 수학 미적분·확통·기하 페이지 (calculus-basic/calculus-advanced/statistics-basic/statistics-advanced/geometry-basic/geometry-advanced)
+      const mathHighMatch = path.match(/^\/study\/math\/high\/([^\/]+)\/?$/);
+      if (mathHighMatch) {
+        const highKey = mathHighMatch[1];
+        if (MATH_HIGH_DATA[highKey]) {
+          return new Response(buildKoreanHabitPage(highKey, "high", "math"), {
             headers: { "Content-Type": "text/html;charset=UTF-8" }
           });
         }
