@@ -42,7 +42,7 @@ import {
 import {
   SCIENCE_GRADE_DATA, SCIENCE_EXAM_DATA, SCIENCE_HABIT_DATA,
   SCIENCE_BIOLOGY_DATA, SCIENCE_PHYSICS_DATA, SCIENCE_CHEMISTRY_DATA,
-  SCIENCE_EARTH_DATA, SCIENCE_PERFORM_DATA,
+  SCIENCE_EARTH_DATA, SCIENCE_INTEGRATED_DATA, SCIENCE_PERFORM_DATA,
 } from './science.js';
 import {
   SOCIAL_GRADE_DATA, SOCIAL_EXAM_DATA, SOCIAL_HABIT_DATA,
@@ -115,6 +115,7 @@ export const SUBJECT_CATEGORY_META = {
     "physics": { label: "물리", data: () => SCIENCE_PHYSICS_DATA },
     "chemistry": { label: "화학", data: () => SCIENCE_CHEMISTRY_DATA },
     "earth": { label: "지구과학", data: () => SCIENCE_EARTH_DATA },
+    "integrated": { label: "통합과학", data: () => SCIENCE_INTEGRATED_DATA },
     "habit": { label: "학습 습관 & 공부법", data: () => SCIENCE_HABIT_DATA },
   },
   "social": {
