@@ -444,6 +444,12 @@ export function buildSubjectHubPage(subjectKey) {
       "chemistry/acid": "/study/science/chemistry/acid/",
       "chemistry/organic": "/study/science/chemistry/organic/",
       "chemistry/practice": "/study/science/chemistry/practice/",
+      "earth/astronomy": "/study/science/earth/astronomy/",
+      "earth/geology": "/study/science/earth/geology/",
+      "earth/atmosphere": "/study/science/earth/atmosphere/",
+      "earth/ocean": "/study/science/earth/ocean/",
+      "earth/climate": "/study/science/earth/climate/",
+      "earth/practice": "/study/science/earth/practice/",
     },
     "history": {
       "grade/elem1": "/study/history/grade/elem1/",
