@@ -269,10 +269,6 @@ export const SUBJECT_HUB_DATA = {
         items: [["cell","세포와 생명 활동"],["genetics","유전·진화"],["ecology","생태계"],["body","인체 구조와 기능"],["microbiology","미생물·면역"],["practice","생명과학 실전 풀이"]] },
       { key: "earth", name: "지구과학", count: 6,
         items: [["astronomy","천체·우주"],["geology","지각·암석·광물"],["atmosphere","대기·기상"],["ocean","해양·해류"],["climate","기후 변화·지구 환경"],["practice","지구과학 실전 풀이"]] },
-      { key: "lab", name: "과학 탐구·실험", count: 5,
-        items: [["method","과학적 탐구 방법"],["design","실험 설계"],["report","실험 보고서"],["data","데이터 분석"],["safety","실험실 안전"]] },
-      { key: "writing", name: "과학 글쓰기·서술형", count: 4,
-        items: [["concept","개념 서술"],["explanation","현상 설명"],["argument","과학적 논증"],["report","보고서·논문"]] },
     ],
   },
 
