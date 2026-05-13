@@ -42,7 +42,7 @@ import {
 import {
   SCIENCE_GRADE_DATA, SCIENCE_EXAM_DATA, SCIENCE_HABIT_DATA,
   SCIENCE_BIOLOGY_DATA, SCIENCE_PHYSICS_DATA, SCIENCE_CHEMISTRY_DATA,
-  SCIENCE_PERFORM_DATA,
+  SCIENCE_EARTH_DATA, SCIENCE_PERFORM_DATA,
 } from './science.js';
 import {
   SOCIAL_GRADE_DATA, SOCIAL_EXAM_DATA, SOCIAL_HABIT_DATA,
@@ -114,6 +114,7 @@ export const SUBJECT_CATEGORY_META = {
     "biology": { label: "생명과학", data: () => SCIENCE_BIOLOGY_DATA },
     "physics": { label: "물리", data: () => SCIENCE_PHYSICS_DATA },
     "chemistry": { label: "화학", data: () => SCIENCE_CHEMISTRY_DATA },
+    "earth": { label: "지구과학", data: () => SCIENCE_EARTH_DATA },
     "habit": { label: "학습 습관 & 공부법", data: () => SCIENCE_HABIT_DATA },
   },
   "social": {
@@ -266,7 +267,7 @@ export const SUBJECT_HUB_DATA = {
       { key: "biology", name: "생명과학", count: 6,
         items: [["cell","세포와 생명 활동"],["genetics","유전·진화"],["ecology","생태계"],["body","인체 구조와 기능"],["microbiology","미생물·면역"],["practice","생명과학 실전 풀이"]] },
       { key: "earth", name: "지구과학", count: 6,
-        items: [["geology","지질·암석"],["atmosphere","대기·해양"],["weather","기상·기후"],["astronomy","천문·우주"],["earth-system","지구 시스템"],["practice","지구과학 실전 풀이"]] },
+        items: [["astronomy","천체·우주"],["geology","지각·암석·광물"],["atmosphere","대기·기상"],["ocean","해양·해류"],["climate","기후 변화·지구 환경"],["practice","지구과학 실전 풀이"]] },
       { key: "lab", name: "과학 탐구·실험", count: 5,
         items: [["method","과학적 탐구 방법"],["design","실험 설계"],["report","실험 보고서"],["data","데이터 분석"],["safety","실험실 안전"]] },
       { key: "writing", name: "과학 글쓰기·서술형", count: 4,
