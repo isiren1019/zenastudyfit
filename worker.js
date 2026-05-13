@@ -36,7 +36,7 @@ import {
 import {
   SCIENCE_EXAM_DATA, SCIENCE_HABIT_DATA, SCIENCE_BIOLOGY_DATA,
   SCIENCE_PHYSICS_DATA, SCIENCE_CHEMISTRY_DATA, SCIENCE_EARTH_DATA,
-  SCIENCE_PERFORM_DATA,
+  SCIENCE_INTEGRATED_DATA, SCIENCE_PERFORM_DATA,
 } from './data/subjects/science.js';
 import {
   SOCIAL_EXAM_DATA, SOCIAL_HABIT_DATA, SOCIAL_SOCIETY_DATA,
@@ -729,6 +729,17 @@ Sitemap: ${BASE}/sitemap-schools-3.xml
         const earthKey = sciEarthMatch[1];
         if (SCIENCE_EARTH_DATA[earthKey]) {
           return new Response(buildKoreanHabitPage(earthKey, "earth", "science"), {
+            headers: { "Content-Type": "text/html;charset=UTF-8" }
+          });
+        }
+      }
+
+      // 과학 통합과학 페이지 (overview/matter/system/evolution/environment/future)
+      const sciIntegratedMatch = path.match(/^\/study\/science\/integrated\/([^\/]+)\/?$/);
+      if (sciIntegratedMatch) {
+        const integratedKey = sciIntegratedMatch[1];
+        if (SCIENCE_INTEGRATED_DATA[integratedKey]) {
+          return new Response(buildKoreanHabitPage(integratedKey, "integrated", "science"), {
             headers: { "Content-Type": "text/html;charset=UTF-8" }
           });
         }
