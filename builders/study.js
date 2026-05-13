@@ -450,6 +450,12 @@ export function buildSubjectHubPage(subjectKey) {
       "earth/ocean": "/study/science/earth/ocean/",
       "earth/climate": "/study/science/earth/climate/",
       "earth/practice": "/study/science/earth/practice/",
+      "integrated/overview": "/study/science/integrated/overview/",
+      "integrated/matter": "/study/science/integrated/matter/",
+      "integrated/system": "/study/science/integrated/system/",
+      "integrated/evolution": "/study/science/integrated/evolution/",
+      "integrated/environment": "/study/science/integrated/environment/",
+      "integrated/future": "/study/science/integrated/future/",
     },
     "history": {
       "grade/elem1": "/study/history/grade/elem1/",
