@@ -23,6 +23,7 @@ import { GRADE_SUBJECT_META, SUBJECT_HUB_DATA } from './data/subjects/_meta.js';
 import {
   KOREAN_EXAM_DATA, KOREAN_GRAMMAR_DATA, KOREAN_LITERACY_DATA,
   KOREAN_READING_DATA, KOREAN_PERFORM_DATA, KOREAN_HABIT_DATA,
+  KOREAN_WRITING_DATA,
 } from './data/subjects/korean.js';
 import {
   ENGLISH_EXAM_DATA, ENGLISH_HABIT_DATA, ENGLISH_VOCAB_DATA,
@@ -509,6 +510,17 @@ Sitemap: ${BASE}/sitemap-schools-3.xml
         const grammarKey = korGrammarMatch[1];
         if (KOREAN_GRAMMAR_DATA[grammarKey]) {
           return new Response(buildKoreanHabitPage(grammarKey, "grammar", "korean"), {
+            headers: { "Content-Type": "text/html;charset=UTF-8" }
+          });
+        }
+      }
+
+      // 국어 글쓰기 실력 향상 페이지 (basic/diary/book-report/argument/summary/essay/creative/revision)
+      const korWritingMatch = path.match(/^\/study\/korean\/writing\/([^\/]+)\/?$/);
+      if (korWritingMatch) {
+        const writingKey = korWritingMatch[1];
+        if (KOREAN_WRITING_DATA[writingKey]) {
+          return new Response(buildKoreanHabitPage(writingKey, "writing", "korean"), {
             headers: { "Content-Type": "text/html;charset=UTF-8" }
           });
         }
