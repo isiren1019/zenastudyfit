@@ -156,7 +156,7 @@ export function buildKoreanHubPage() {
       ]
     },
     {
-      key: "classic", name: "고전문학 심화", isNew: false, count: 7,
+      key: "classic", name: "고전문학 심화", isNew: true, count: 7,
       items: [
         ["intro", "고전문학 개론"],
         ["sijo", "시조 이해하기"],
@@ -239,6 +239,13 @@ export function buildKoreanHubPage() {
     "vocab/sino": "/study/korean/vocab/sino/",
     "vocab/idiom": "/study/korean/vocab/idiom/",
     "vocab/synonym": "/study/korean/vocab/synonym/",
+    "classic/intro": "/study/korean/classic/intro/",
+    "classic/sijo": "/study/korean/classic/sijo/",
+    "classic/gasa": "/study/korean/classic/gasa/",
+    "classic/hyangga": "/study/korean/classic/hyangga/",
+    "classic/pansori": "/study/korean/classic/pansori/",
+    "classic/folklore": "/study/korean/classic/folklore/",
+    "classic/history": "/study/korean/classic/history/",
   };
 
   let categoriesHtml = "";
