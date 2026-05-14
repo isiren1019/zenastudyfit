@@ -133,16 +133,16 @@ export function buildKoreanHubPage() {
       ]
     },
     {
-      key: "writing", name: "글쓰기 실력 향상", isNew: false, count: 8,
+      key: "writing", name: "글쓰기 실력 향상", isNew: true, count: 8,
       items: [
-        ["essay", "논술 작성법"],
-        ["summary", "요약문 작성법"],
-        ["report", "보고서 작성법"],
-        ["intro", "자기소개서 작성"],
+        ["basic", "글쓰기 기초"],
+        ["diary", "일기·생활문"],
+        ["book-report", "독후감·서평"],
+        ["argument", "논설문"],
+        ["summary", "요약·정리"],
+        ["essay", "자기소개서·수필"],
         ["creative", "창작 글쓰기"],
-        ["practical", "실용문 작성"],
-        ["review", "독서감상문 쓰기"],
-        ["practice", "글쓰기 연습"],
+        ["revision", "글 다듬기"],
       ]
     },
     {
@@ -222,6 +222,14 @@ export function buildKoreanHubPage() {
     "grammar/components": "/study/korean/grammar/components/",
     "grammar/spacing": "/study/korean/grammar/spacing/",
     "grammar/mistakes": "/study/korean/grammar/mistakes/",
+    "writing/basic": "/study/korean/writing/basic/",
+    "writing/diary": "/study/korean/writing/diary/",
+    "writing/book-report": "/study/korean/writing/book-report/",
+    "writing/argument": "/study/korean/writing/argument/",
+    "writing/summary": "/study/korean/writing/summary/",
+    "writing/essay": "/study/korean/writing/essay/",
+    "writing/creative": "/study/korean/writing/creative/",
+    "writing/revision": "/study/korean/writing/revision/",
   };
 
   let categoriesHtml = "";
