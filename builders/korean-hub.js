@@ -146,7 +146,7 @@ export function buildKoreanHubPage() {
       ]
     },
     {
-      key: "literature", name: "문학 작품 분석", isNew: false, count: 6,
+      key: "literature", name: "문학 작품 분석", isNew: true, count: 6,
       items: [
         ["guide", "문학 분석 가이드"],
         ["poem", "시 분석법"],
@@ -230,6 +230,12 @@ export function buildKoreanHubPage() {
     "writing/essay": "/study/korean/writing/essay/",
     "writing/creative": "/study/korean/writing/creative/",
     "writing/revision": "/study/korean/writing/revision/",
+    "literature/guide": "/study/korean/literature/guide/",
+    "literature/poem": "/study/korean/literature/poem/",
+    "literature/novel": "/study/korean/literature/novel/",
+    "literature/modern-poem": "/study/korean/literature/modern-poem/",
+    "literature/modern-novel": "/study/korean/literature/modern-novel/",
+    "literature/criticism": "/study/korean/literature/criticism/",
   };
 
   let categoriesHtml = "";
