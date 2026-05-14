@@ -23,7 +23,7 @@ import { GRADE_SUBJECT_META, SUBJECT_HUB_DATA } from './data/subjects/_meta.js';
 import {
   KOREAN_EXAM_DATA, KOREAN_GRAMMAR_DATA, KOREAN_LITERACY_DATA,
   KOREAN_READING_DATA, KOREAN_PERFORM_DATA, KOREAN_HABIT_DATA,
-  KOREAN_WRITING_DATA,
+  KOREAN_WRITING_DATA, KOREAN_LITERATURE_DATA,
 } from './data/subjects/korean.js';
 import {
   ENGLISH_EXAM_DATA, ENGLISH_HABIT_DATA, ENGLISH_VOCAB_DATA,
@@ -521,6 +521,17 @@ Sitemap: ${BASE}/sitemap-schools-3.xml
         const writingKey = korWritingMatch[1];
         if (KOREAN_WRITING_DATA[writingKey]) {
           return new Response(buildKoreanHabitPage(writingKey, "writing", "korean"), {
+            headers: { "Content-Type": "text/html;charset=UTF-8" }
+          });
+        }
+      }
+
+      // 국어 문학 작품 분석 페이지 (guide/poem/novel/modern-poem/modern-novel/criticism)
+      const korLiteratureMatch = path.match(/^\/study\/korean\/literature\/([^\/]+)\/?$/);
+      if (korLiteratureMatch) {
+        const literatureKey = korLiteratureMatch[1];
+        if (KOREAN_LITERATURE_DATA[literatureKey]) {
+          return new Response(buildKoreanHabitPage(literatureKey, "literature", "korean"), {
             headers: { "Content-Type": "text/html;charset=UTF-8" }
           });
         }
