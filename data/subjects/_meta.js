@@ -28,7 +28,7 @@ import {
   KOREAN_GRADE_DATA, KOREAN_EXAM_DATA, KOREAN_GRAMMAR_DATA,
   KOREAN_LITERACY_DATA, KOREAN_READING_DATA, KOREAN_PERFORM_DATA,
   KOREAN_HABIT_DATA, KOREAN_WRITING_DATA, KOREAN_LITERATURE_DATA,
-  KOREAN_VOCAB_DATA,
+  KOREAN_VOCAB_DATA, KOREAN_CLASSIC_DATA,
 } from './korean.js';
 import {
   ENGLISH_GRADE_DATA, ENGLISH_EXAM_DATA, ENGLISH_HABIT_DATA,
@@ -90,6 +90,7 @@ export const SUBJECT_CATEGORY_META = {
     "writing": { label: "글쓰기 실력 향상", data: () => KOREAN_WRITING_DATA },
     "literature": { label: "문학 작품 분석", data: () => KOREAN_LITERATURE_DATA },
     "vocab": { label: "어휘력", data: () => KOREAN_VOCAB_DATA },
+    "classic": { label: "고전문학 심화", data: () => KOREAN_CLASSIC_DATA },
   },
   "english": {
     name: "영어",
