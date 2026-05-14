@@ -110,13 +110,12 @@ export function buildKoreanHubPage() {
       ]
     },
     {
-      key: "vocab", name: "어휘력 & 한자", isNew: false, count: 5,
+      key: "vocab", name: "어휘력", isNew: true, count: 4,
       items: [
-        ["expand", "어휘 확장"],
-        ["advanced", "고급 어휘 학습"],
-        ["hanja", "한자 학습법"],
-        ["foreign", "외래어/외국어 표기"],
-        ["standard", "표준어 규정"],
+        ["method", "어휘 학습법"],
+        ["sino", "한자어 이해"],
+        ["idiom", "관용어·속담"],
+        ["synonym", "유의어·반의어"],
       ]
     },
     {
@@ -236,6 +235,10 @@ export function buildKoreanHubPage() {
     "literature/modern-poem": "/study/korean/literature/modern-poem/",
     "literature/modern-novel": "/study/korean/literature/modern-novel/",
     "literature/criticism": "/study/korean/literature/criticism/",
+    "vocab/method": "/study/korean/vocab/method/",
+    "vocab/sino": "/study/korean/vocab/sino/",
+    "vocab/idiom": "/study/korean/vocab/idiom/",
+    "vocab/synonym": "/study/korean/vocab/synonym/",
   };
 
   let categoriesHtml = "";
