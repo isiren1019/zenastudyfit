@@ -39,7 +39,7 @@ export function buildKoreanHubPage() {
   // 11개 대분류 + 75개 세부 페이지 데이터
   const KOREAN_CATEGORIES = [
     {
-      key: "grade", name: "학년별 학습 로드맵", isNew: true, count: 14, highlight: true,
+      key: "grade", name: "학년별 학습 로드맵", newUntil: "2026-01-01", count: 14, highlight: true,
       items: [
         ["elem1", "초1"],
         ["elem2", "초2"],
@@ -58,7 +58,7 @@ export function buildKoreanHubPage() {
       ]
     },
     {
-      key: "habit", name: "학습 습관 & 공부법", isNew: true, count: 5,
+      key: "habit", name: "학습 습관 & 공부법", newUntil: "2026-01-01", count: 5,
       items: [
         ["timing", "국어 공부 시간 관리"],
         ["notes", "오답노트 작성법"],
@@ -68,14 +68,14 @@ export function buildKoreanHubPage() {
       ]
     },
     {
-      key: "perform", name: "수행평가 & 서술형", isNew: true, count: 2,
+      key: "perform", name: "수행평가 & 서술형", newUntil: "2026-01-01", count: 2,
       items: [
         ["descriptive", "서술형"],
         ["assessment", "수행평가 대비"],
       ]
     },
     {
-      key: "exam", name: "시험 대비", isNew: false, count: 6,
+      key: "exam", name: "시험 대비", newUntil: "2026-01-01", count: 6,
       items: [
         ["suneung", "수능 국어 대비"],
         ["mock", "모의고사 대비"],
@@ -86,7 +86,7 @@ export function buildKoreanHubPage() {
       ]
     },
     {
-      key: "literacy", name: "문해력 강화", isNew: true, count: 6,
+      key: "literacy", name: "문해력 강화", newUntil: "2026-01-01", count: 6,
       items: [
         ["vocab", "어휘력 기반 문해력"],
         ["info", "비문학 문해력"],
@@ -97,7 +97,7 @@ export function buildKoreanHubPage() {
       ]
     },
     {
-      key: "grammar", name: "문법 완벽 정복", isNew: false, count: 8,
+      key: "grammar", name: "문법 완벽 정복", newUntil: "2026-01-01", count: 8,
       items: [
         ["guide", "문법 완벽 가이드"],
         ["parts", "품사 정리"],
@@ -110,7 +110,7 @@ export function buildKoreanHubPage() {
       ]
     },
     {
-      key: "vocab", name: "어휘력", isNew: true, count: 4,
+      key: "vocab", name: "어휘력", newUntil: "2026-05-29", count: 4,
       items: [
         ["method", "어휘 학습법"],
         ["sino", "한자어 이해"],
@@ -119,7 +119,7 @@ export function buildKoreanHubPage() {
       ]
     },
     {
-      key: "reading", name: "독해력 향상", isNew: false, count: 8,
+      key: "reading", name: "독해력 향상", newUntil: "2026-01-01", count: 8,
       items: [
         ["skill", "독해력 향상 비법"],
         ["nonfiction", "비문학 읽기 전략"],
@@ -132,7 +132,7 @@ export function buildKoreanHubPage() {
       ]
     },
     {
-      key: "writing", name: "글쓰기 실력 향상", isNew: true, count: 8,
+      key: "writing", name: "글쓰기 실력 향상", newUntil: "2026-05-29", count: 8,
       items: [
         ["basic", "글쓰기 기초"],
         ["diary", "일기·생활문"],
@@ -145,7 +145,7 @@ export function buildKoreanHubPage() {
       ]
     },
     {
-      key: "literature", name: "문학 작품 분석", isNew: true, count: 6,
+      key: "literature", name: "문학 작품 분석", newUntil: "2026-05-29", count: 6,
       items: [
         ["guide", "문학 분석 가이드"],
         ["poem", "시 분석법"],
@@ -156,7 +156,7 @@ export function buildKoreanHubPage() {
       ]
     },
     {
-      key: "classic", name: "고전문학 심화", isNew: true, count: 7,
+      key: "classic", name: "고전문학 심화", newUntil: "2026-05-29", count: 7,
       items: [
         ["intro", "고전문학 개론"],
         ["sijo", "시조 이해하기"],
@@ -249,8 +249,9 @@ export function buildKoreanHubPage() {
   };
 
   let categoriesHtml = "";
+  const todayStr = new Date().toISOString().slice(0, 10);
   for (const cat of KOREAN_CATEGORIES) {
-    const newBadge = cat.isNew ? `<span class="cat-new-badge">NEW</span>` : "";
+    const newBadge = (cat.newUntil && cat.newUntil >= todayStr) ? `<span class="cat-new-badge">NEW</span>` : "";
     const sectionClass = cat.highlight ? "sec sec-grade-roadmap" : "sec";
     let itemsHtml = "";
     for (const [slug, label] of cat.items) {
