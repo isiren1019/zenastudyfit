@@ -23,7 +23,7 @@ import { GRADE_SUBJECT_META, SUBJECT_HUB_DATA } from './data/subjects/_meta.js';
 import {
   KOREAN_EXAM_DATA, KOREAN_GRAMMAR_DATA, KOREAN_LITERACY_DATA,
   KOREAN_READING_DATA, KOREAN_PERFORM_DATA, KOREAN_HABIT_DATA,
-  KOREAN_WRITING_DATA, KOREAN_LITERATURE_DATA,
+  KOREAN_WRITING_DATA, KOREAN_LITERATURE_DATA, KOREAN_VOCAB_DATA,
 } from './data/subjects/korean.js';
 import {
   ENGLISH_EXAM_DATA, ENGLISH_HABIT_DATA, ENGLISH_VOCAB_DATA,
@@ -532,6 +532,17 @@ Sitemap: ${BASE}/sitemap-schools-3.xml
         const literatureKey = korLiteratureMatch[1];
         if (KOREAN_LITERATURE_DATA[literatureKey]) {
           return new Response(buildKoreanHabitPage(literatureKey, "literature", "korean"), {
+            headers: { "Content-Type": "text/html;charset=UTF-8" }
+          });
+        }
+      }
+
+      // 국어 어휘력 페이지 (method/sino/idiom/synonym)
+      const korVocabMatch = path.match(/^\/study\/korean\/vocab\/([^\/]+)\/?$/);
+      if (korVocabMatch) {
+        const vocabKey = korVocabMatch[1];
+        if (KOREAN_VOCAB_DATA[vocabKey]) {
+          return new Response(buildKoreanHabitPage(vocabKey, "vocab", "korean"), {
             headers: { "Content-Type": "text/html;charset=UTF-8" }
           });
         }
