@@ -24,6 +24,7 @@ import {
   KOREAN_EXAM_DATA, KOREAN_GRAMMAR_DATA, KOREAN_LITERACY_DATA,
   KOREAN_READING_DATA, KOREAN_PERFORM_DATA, KOREAN_HABIT_DATA,
   KOREAN_WRITING_DATA, KOREAN_LITERATURE_DATA, KOREAN_VOCAB_DATA,
+  KOREAN_CLASSIC_DATA,
 } from './data/subjects/korean.js';
 import {
   ENGLISH_EXAM_DATA, ENGLISH_HABIT_DATA, ENGLISH_VOCAB_DATA,
@@ -543,6 +544,17 @@ Sitemap: ${BASE}/sitemap-schools-3.xml
         const vocabKey = korVocabMatch[1];
         if (KOREAN_VOCAB_DATA[vocabKey]) {
           return new Response(buildKoreanHabitPage(vocabKey, "vocab", "korean"), {
+            headers: { "Content-Type": "text/html;charset=UTF-8" }
+          });
+        }
+      }
+
+      // 국어 고전문학 심화 페이지 (intro/sijo/gasa/hyangga/pansori/folklore/history)
+      const korClassicMatch = path.match(/^\/study\/korean\/classic\/([^\/]+)\/?$/);
+      if (korClassicMatch) {
+        const classicKey = korClassicMatch[1];
+        if (KOREAN_CLASSIC_DATA[classicKey]) {
+          return new Response(buildKoreanHabitPage(classicKey, "classic", "korean"), {
             headers: { "Content-Type": "text/html;charset=UTF-8" }
           });
         }
