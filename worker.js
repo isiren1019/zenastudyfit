@@ -79,6 +79,11 @@ import {
   buildLanguagePage, buildCodingPage, buildSelfStudyPage,
 } from './builders/language.js';
 import { buildKoreanHabitPage } from './builders/habit.js';
+import {
+  buildAcademyIntroPage, buildAcademyLocationHubPage,
+  buildAcademyLocationSidoPage, buildAcademyCenterPage,
+  buildAcademyComingSoonPage,
+} from './builders/academy.js';
 
 
 // ── 메인 라우터 ───────────────────────────────────────────────
@@ -417,6 +422,51 @@ Sitemap: ${BASE}/sitemap-schools-3.xml
     // 자기주도학습 페이지
     if (path === "/self-study") {
       return new Response(buildSelfStudyPage(), {
+        headers: { "Content-Type": "text/html;charset=UTF-8" }
+      });
+    }
+
+    // ── 학원 라우팅 ──────────────────────────────────────────
+    // /academy/ → /academy/intro/ 로 리다이렉트
+    if (path === "/academy" || path === "/academy/") {
+      return Response.redirect(`${url.origin}/academy/intro/`, 301);
+    }
+
+    // /academy/intro/ — 학원 소개
+    if (path === "/academy/intro") {
+      return new Response(buildAcademyIntroPage(), {
+        headers: { "Content-Type": "text/html;charset=UTF-8" }
+      });
+    }
+
+    // /academy/location/ — 시도별 허브
+    if (path === "/academy/location") {
+      return new Response(buildAcademyLocationHubPage(), {
+        headers: { "Content-Type": "text/html;charset=UTF-8" }
+      });
+    }
+
+    // /academy/location/{시도}/ — 시도별 지점 목록
+    const academySidoMatch = path.match(/^\/academy\/location\/([^\/]+)\/?$/);
+    if (academySidoMatch) {
+      const sido = decodeURIComponent(academySidoMatch[1]);
+      return new Response(buildAcademyLocationSidoPage(sido), {
+        headers: { "Content-Type": "text/html;charset=UTF-8" }
+      });
+    }
+
+    // /academy/center/{지점슬러그}/ — 지점 상세
+    const academyCenterMatch = path.match(/^\/academy\/center\/([^\/]+)\/?$/);
+    if (academyCenterMatch) {
+      const slug = decodeURIComponent(academyCenterMatch[1]);
+      return new Response(buildAcademyCenterPage(slug), {
+        headers: { "Content-Type": "text/html;charset=UTF-8" }
+      });
+    }
+
+    // 그 외 /academy/* 경로 — 준비중 폴백
+    if (path.startsWith("/academy/")) {
+      return new Response(buildAcademyComingSoonPage("학원", "intro"), {
         headers: { "Content-Type": "text/html;charset=UTF-8" }
       });
     }
