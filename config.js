@@ -24,6 +24,13 @@ export const STUDY_READY = {
   "history": true,
 };
 
+// 학원 페이지 출시 상태 (false면 준비중 표시, true면 실제 페이지로 연결)
+// intro: 학원 소개 페이지 / location: 학원 위치 안내 페이지
+export const ACADEMY_READY = {
+  "intro":    false,
+  "location": false,
+};
+
 // 사이트 시작 기준일 (페이지별 게시일 계산에 사용)
 export const SITE_LAUNCH_DATE = new Date('2026-01-01');
 
