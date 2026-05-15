@@ -4,7 +4,7 @@
 // 의존: config.js (SITE_NAME, PHONE, FORM_URL, KAKAO_URL, STUDY_READY)
 // ================================================================
 
-import { SITE_NAME, PHONE, FORM_URL, KAKAO_URL, STUDY_READY } from './config.js';
+import { SITE_NAME, PHONE, FORM_URL, KAKAO_URL, STUDY_READY, ACADEMY_READY } from './config.js';
 
 // ── 공통 헤더 CSS ────────────────────────────────────────────
 export const HEADER_CSS = `
@@ -91,6 +91,43 @@ export const HEADER_HTML = `<header class="site-header">
       </div>
     </div>
     <div class="nav-item">
+      <span class="nav-link nav-plain" onclick="toggleDropdown(event,'academyDropdown','academyArrow')" style="cursor:pointer">학원 <span class="nav-arrow" id="academyArrow">▾</span></span>
+      <div class="nav-dropdown" id="academyDropdown">
+        ${ACADEMY_READY.intro
+          ? `<a href="/academy/intro/" class="nav-dropdown-item">
+              <div class="nav-dropdown-icon">🏫</div>
+              <div>
+                <div class="nav-dropdown-title">학원소개</div>
+                <div class="nav-dropdown-sub">운영 방식 · 특장점 · 후기</div>
+              </div>
+            </a>`
+          : `<span class="nav-dropdown-item" style="cursor:not-allowed;opacity:.55">
+              <div class="nav-dropdown-icon">🏫</div>
+              <div>
+                <div class="nav-dropdown-title">학원소개<span class="nav-badge-soon">준비중</span></div>
+                <div class="nav-dropdown-sub">운영 방식 · 특장점 · 후기</div>
+              </div>
+            </span>`
+        }
+        ${ACADEMY_READY.location
+          ? `<a href="/academy/location/" class="nav-dropdown-item">
+              <div class="nav-dropdown-icon">📍</div>
+              <div>
+                <div class="nav-dropdown-title">학원 위치 안내</div>
+                <div class="nav-dropdown-sub">전국 시·도별 지점</div>
+              </div>
+            </a>`
+          : `<span class="nav-dropdown-item" style="cursor:not-allowed;opacity:.55">
+              <div class="nav-dropdown-icon">📍</div>
+              <div>
+                <div class="nav-dropdown-title">학원 위치 안내<span class="nav-badge-soon">준비중</span></div>
+                <div class="nav-dropdown-sub">전국 시·도별 지점</div>
+              </div>
+            </span>`
+        }
+      </div>
+    </div>
+    <div class="nav-item">
       <span class="nav-link nav-plain" onclick="toggleDropdown(event,'langDropdown','langArrow')" style="cursor:pointer">제2외국어 <span class="nav-arrow" id="langArrow">▾</span></span>
       <div class="nav-dropdown" id="langDropdown">
         <a href="/language/english/" class="nav-dropdown-item">
@@ -145,6 +182,15 @@ export const HEADER_HTML = `<header class="site-header">
       ? `<a href="/study/${key}/" class="mobile-menu-sub">${icon} ${name}</a>`
       : `<span class="mobile-menu-sub" style="cursor:not-allowed;opacity:.55">${icon} ${name}<span class="nav-badge-soon">준비중</span></span>`
     ).join("")}
+    <div style="font-size:.72rem;color:#9b6cc0;font-weight:700;margin:16px 0 8px;padding:0 4px">학원</div>
+    ${ACADEMY_READY.intro
+      ? `<a href="/academy/intro/" class="mobile-menu-sub">🏫 학원소개</a>`
+      : `<span class="mobile-menu-sub" style="cursor:not-allowed;opacity:.55">🏫 학원소개<span class="nav-badge-soon">준비중</span></span>`
+    }
+    ${ACADEMY_READY.location
+      ? `<a href="/academy/location/" class="mobile-menu-sub">📍 학원 위치 안내</a>`
+      : `<span class="mobile-menu-sub" style="cursor:not-allowed;opacity:.55">📍 학원 위치 안내<span class="nav-badge-soon">준비중</span></span>`
+    }
     <div style="font-size:.72rem;color:#9b6cc0;font-weight:700;margin:16px 0 8px;padding:0 4px">제2외국어 회화</div>
     <a href="/language/english/" class="mobile-menu-sub">🇺🇸 영어 회화</a>
     <a href="/language/japanese/" class="mobile-menu-sub">🇯🇵 일본어 회화</a>
