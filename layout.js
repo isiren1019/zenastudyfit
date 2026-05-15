@@ -98,14 +98,14 @@ export const HEADER_HTML = `<header class="site-header">
               <div class="nav-dropdown-icon">🏫</div>
               <div>
                 <div class="nav-dropdown-title">학원소개</div>
-                <div class="nav-dropdown-sub">운영 방식 · 특장점 · 후기</div>
+                <div class="nav-dropdown-sub">학원 특·장점 안내</div>
               </div>
             </a>`
           : `<span class="nav-dropdown-item" style="cursor:not-allowed;opacity:.55">
               <div class="nav-dropdown-icon">🏫</div>
               <div>
                 <div class="nav-dropdown-title">학원소개<span class="nav-badge-soon">준비중</span></div>
-                <div class="nav-dropdown-sub">운영 방식 · 특장점 · 후기</div>
+                <div class="nav-dropdown-sub">학원 특·장점 안내</div>
               </div>
             </span>`
         }
@@ -114,14 +114,14 @@ export const HEADER_HTML = `<header class="site-header">
               <div class="nav-dropdown-icon">📍</div>
               <div>
                 <div class="nav-dropdown-title">학원 위치 안내</div>
-                <div class="nav-dropdown-sub">전국 시·도별 지점</div>
+                <div class="nav-dropdown-sub">전국 지점 안내</div>
               </div>
             </a>`
           : `<span class="nav-dropdown-item" style="cursor:not-allowed;opacity:.55">
               <div class="nav-dropdown-icon">📍</div>
               <div>
                 <div class="nav-dropdown-title">학원 위치 안내<span class="nav-badge-soon">준비중</span></div>
-                <div class="nav-dropdown-sub">전국 시·도별 지점</div>
+                <div class="nav-dropdown-sub">전국 지점 안내</div>
               </div>
             </span>`
         }
