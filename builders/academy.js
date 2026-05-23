@@ -377,6 +377,12 @@ const ACADEMY_INTRO_CSS = `
     .grade-grid{grid-template-columns:1fr}
     .review-slide{flex:0 0 calc(100% - 16px)}
   }
+
+  /* 푸터 (layout.js의 FOOTER_HTML 스타일링) */
+  footer{background:#370558;color:rgba(255,255,255,.7);text-align:center;padding:32px 24px;font-size:13px;line-height:1.7;margin-top:0}
+  footer p{margin:0}
+  footer a{color:rgba(255,255,255,.6);text-decoration:none}
+  footer a:hover{color:white}
 `;
 
 
