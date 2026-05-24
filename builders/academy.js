@@ -386,6 +386,103 @@ const ACADEMY_INTRO_CSS = `
 `;
 
 
+// ================================================================
+// ── 학원 위치 안내 페이지 (location) ────────────────────────────
+// ================================================================
+//
+// 시·도 데이터 추가/수정: ACADEMY_LOCATION_SIDOS 배열만 수정하면 됨
+//   - count 합산은 자동(ACADEMY_LOCATION_TOTAL)
+//   - 광역 묶음: 충청도(충남+충북), 대전·세종, 경상도(경북+경남), 제주·강원
+//   - 추후 분리 가능하도록 sub 배열에 원본 시·도 보존
+// ================================================================
+
+const ACADEMY_LOCATION_SIDOS = [
+  // Row 1
+  { slug: "seoul",          name: "서울",      icon: "🏙",  count: 24,  desc: "15개 구",         sub: ["서울"] },
+  { slug: "incheon",        name: "인천",      icon: "🌉",  count: 10,  desc: "8개 구",          sub: ["인천"] },
+  { slug: "gyeonggi",       name: "경기",      icon: "🌿",  count: 100, desc: "22개 시·군",      sub: ["경기"] },
+  { slug: "chungcheong",    name: "충청도",    icon: "🏞",  count: 12,  desc: "충남 6·충북 6",   sub: ["충남", "충북"] },
+  // Row 2
+  { slug: "daejeon-sejong", name: "대전·세종", icon: "🏢",  count: 10,  desc: "대전 9·세종 1",   sub: ["대전", "세종"] },
+  { slug: "gwangju",        name: "광주",      icon: "🌸",  count: 6,   desc: "3개 구",          sub: ["광주"] },
+  { slug: "jeonbuk",        name: "전북",      icon: "🌾",  count: 3,   desc: "전주 외",         sub: ["전북"] },
+  { slug: "daegu",          name: "대구",      icon: "🍎",  count: 16,  desc: "7개 구",          sub: ["대구"] },
+  // Row 3
+  { slug: "ulsan",          name: "울산",      icon: "⚙️",  count: 4,   desc: "남구·북구",       sub: ["울산"] },
+  { slug: "busan",          name: "부산",      icon: "🐟",  count: 5,   desc: "동래·해운대 외",  sub: ["부산"] },
+  { slug: "gyeongsang",     name: "경상도",    icon: "🍎",  count: 8,   desc: "경북 5·경남 3",   sub: ["경북", "경남"] },
+  { slug: "jeju-gangwon",   name: "제주·강원", icon: "🌺",  count: 7,   desc: "강원 6·제주 1",   sub: ["강원", "제주"] },
+];
+
+// 전체 지점 수 자동 합산 (히어로 카피·신뢰지표·메타 description에 사용)
+const ACADEMY_LOCATION_TOTAL = ACADEMY_LOCATION_SIDOS.reduce((sum, s) => sum + s.count, 0);
+
+
+// ── 학원 위치 허브 페이지 CSS ──────────────────────────────────
+// ACADEMY_INTRO_CSS의 .trust-section / .trust-card / .cta-section / .cta-banner / .cta-btn-* 토큰 재사용
+const ACADEMY_LOCATION_HUB_CSS = `
+  /* 위치 허브 - 컨테이너 */
+  .loc-wrap{max-width:1040px;margin:0 auto}
+
+  /* 위치 허브 - 브래드크럼 */
+  .loc-breadcrumb{background:#f5f1e8;padding:10px 24px;font-size:12px;color:#5f5e5a}
+  .loc-breadcrumb a{color:#5f5e5a;text-decoration:none}
+  .loc-breadcrumb a:hover{color:#1e4d3a}
+  .loc-breadcrumb .current{color:#1e4d3a;font-weight:700}
+  .loc-breadcrumb .sep{margin:0 6px;color:#b4b2a9}
+
+  /* 위치 허브 - 히어로 (학원 소개와 동일 컬러 시스템) */
+  .loc-hero{background:linear-gradient(135deg,#1e4d3a 0%,#2f7556 100%);padding:64px 24px 56px;text-align:center;color:white;position:relative;overflow:hidden}
+  .loc-hero::before{content:'';position:absolute;top:-40px;right:-40px;width:200px;height:200px;background:rgba(232,122,60,.08);border-radius:50%}
+  .loc-hero::after{content:'';position:absolute;bottom:-60px;left:-60px;width:240px;height:240px;background:rgba(255,255,255,.04);border-radius:50%}
+  .loc-hero-inner{position:relative;max-width:800px;margin:0 auto}
+  .loc-hero-eyebrow{display:inline-block;color:#ffd9b8;font-size:12px;font-weight:700;letter-spacing:2px;margin-bottom:14px}
+  .loc-hero h1{font-size:32px;font-weight:800;line-height:1.35;margin:0 0 16px;letter-spacing:-0.5px;color:white}
+  .loc-hero h1 .hl{color:#ffb380}
+  .loc-hero p.loc-hero-sub{font-size:15px;line-height:1.7;opacity:.92;margin:0}
+
+  /* 위치 허브 - 시·도 카드 그리드 */
+  .loc-sidos-section{background:white;padding:56px 24px 32px}
+  .loc-sidos-header{max-width:1040px;margin:0 auto 24px}
+  .loc-sidos-header-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
+  .loc-sidos-title{font-size:20px;font-weight:800;color:#1e4d3a;letter-spacing:-0.3px;margin:0}
+  .loc-sidos-count{font-size:12px;color:#888780}
+  .loc-sidos-desc{font-size:14px;color:#5f5e5a;line-height:1.7;margin:0}
+
+  .loc-sidos-grid{max-width:1040px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .loc-sido-card{display:block;background:white;border:1px solid #ebe5d8;border-left:4px solid #1e4d3a;border-radius:0 12px 12px 0;padding:18px 18px 16px;text-decoration:none;color:inherit;transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease}
+  .loc-sido-card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,77,58,.12);border-color:#2f7556}
+  .loc-sido-card-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+  .loc-sido-card-name{font-size:16px;font-weight:800;color:#1a1a1a;letter-spacing:-0.3px}
+  .loc-sido-card-name .ico{margin-right:4px}
+  .loc-sido-card-badge{background:#e8f0eb;color:#0d3527;border:1px solid #2f7556;font-size:13px;font-weight:800;padding:3px 11px;border-radius:100px;min-width:42px;text-align:center}
+  .loc-sido-card-desc{font-size:12px;color:#888780;line-height:1.5}
+
+  /* 반응형 */
+  @media (max-width: 900px){
+    .loc-sidos-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+    .loc-sido-card{padding:14px 14px 12px}
+    .loc-sido-card-name{font-size:14px}
+    .loc-sido-card-badge{font-size:12px;padding:2px 9px}
+  }
+  @media (max-width: 768px){
+    .loc-hero{padding:48px 20px 40px}
+    .loc-hero h1{font-size:24px}
+    .loc-hero p.loc-hero-sub{font-size:13px}
+    .loc-sidos-section{padding:40px 16px 24px}
+    .loc-sidos-title{font-size:17px}
+    .loc-sidos-desc{font-size:12.5px}
+    .loc-sido-card-desc{font-size:11px}
+  }
+  @media (max-width: 480px){
+    .loc-sidos-grid{gap:8px}
+    .loc-sido-card{padding:12px 12px 10px}
+    .loc-sido-card-name{font-size:13px}
+    .loc-breadcrumb{padding:8px 16px;font-size:11px}
+  }
+`;
+
+
 // ── 학원 소개 페이지 자바스크립트 ───────────────────────────────
 const ACADEMY_INTRO_JS = `
   // 와와 학습 시스템 탭 토글
@@ -858,11 +955,121 @@ ${ACADEMY_INTRO_JS}
 
 // ── 학원 위치 안내 허브 (/academy/location/) ───────────────────
 export function buildAcademyLocationHubPage() {
+  // 출시 전이면 준비중 페이지로 폴백
   if (!ACADEMY_READY.location) {
     return buildAcademyComingSoonPage("학원 위치 안내", "location");
   }
-  // TODO: 시도별 지점 카드 그리드 (전국 N개 센터)
-  return buildAcademyComingSoonPage("학원 위치 안내", "location");
+
+  const canonical = `${SITE_DOMAIN}/academy/location/`;
+  const titleTag = `전국 학원 위치 안내 | ${SITE_NAME}`;
+  const description = `전국 ${ACADEMY_LOCATION_TOTAL}개 학습코칭학원 센터 위치를 시·도별로 안내합니다. 우리 동네 가까운 1:1 학습코칭 센터를 찾아보세요. 서울·인천·경기·대구·부산 등 전국 운영.`;
+
+  // 시·도 카드 HTML 생성
+  const sidoCards = ACADEMY_LOCATION_SIDOS.map(sido => `
+    <a href="/academy/location/${sido.slug}/" class="loc-sido-card">
+      <div class="loc-sido-card-top">
+        <div class="loc-sido-card-name"><span class="ico">${sido.icon}</span>${sido.name}</div>
+        <div class="loc-sido-card-badge">${sido.count}</div>
+      </div>
+      <div class="loc-sido-card-desc">${sido.desc}</div>
+    </a>`).join('');
+
+  return `<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>${titleTag}</title>
+  <meta name="description" content="${description}">
+  <link rel="canonical" href="${canonical}">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="${titleTag}">
+  <meta property="og:description" content="${description}">
+  <meta property="og:image" content="${SITE_DOMAIN}/images/og-image.png">
+  <meta property="og:url" content="${canonical}">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <style>
+    ${HEADER_CSS}
+    ${FLOAT_CSS}
+    ${ACADEMY_INTRO_CSS}
+    ${ACADEMY_LOCATION_HUB_CSS}
+  </style>
+</head>
+<body>
+${HEADER_HTML}
+
+<!-- 브래드크럼 -->
+<nav class="loc-breadcrumb" aria-label="현재 위치">
+  <a href="/">홈</a><span class="sep">›</span>
+  <a href="/academy/intro/">학원</a><span class="sep">›</span>
+  <span class="current">위치 안내</span>
+</nav>
+
+<!-- 1. HERO -->
+<section class="loc-hero">
+  <div class="loc-hero-inner">
+    <div class="loc-hero-eyebrow">ACADEMY LOCATION</div>
+    <h1>전국 학습코칭학원<br><span class="hl">센터 찾기</span></h1>
+    <p class="loc-hero-sub">전국 ${ACADEMY_LOCATION_TOTAL}개 센터에서 운영하는 특별한 학원을 만나보세요</p>
+  </div>
+</section>
+
+<!-- 2. 신뢰지표 (학원 소개와 동일 패턴) -->
+<section class="trust-section">
+  <div class="trust-grid">
+    <div class="trust-card"><div class="ico">🏆</div><div class="num">30년</div><div class="lbl">학습코칭 노하우</div></div>
+    <div class="trust-card"><div class="ico">🏫</div><div class="num">${ACADEMY_LOCATION_TOTAL}</div><div class="lbl">전국 센터</div></div>
+    <div class="trust-card"><div class="ico">⭐</div><div class="num">96.7%</div><div class="lbl">학습 만족도</div></div>
+    <div class="trust-card"><div class="ico">📊</div><div class="num">1:1</div><div class="lbl">개별 학습 분석</div></div>
+  </div>
+</section>
+
+<!-- 3. 시·도별 센터 안내 -->
+<section class="loc-sidos-section">
+  <div class="loc-sidos-header">
+    <div class="loc-sidos-header-top">
+      <h2 class="loc-sidos-title">📍 시·도별 센터 안내</h2>
+      <div class="loc-sidos-count">총 ${ACADEMY_LOCATION_TOTAL}개 센터</div>
+    </div>
+    <p class="loc-sidos-desc">지역을 선택하면 해당 시·도의 센터 정보를 확인할 수 있습니다.</p>
+  </div>
+  <div class="loc-sidos-grid">${sidoCards}
+  </div>
+</section>
+
+<!-- 4. 최종 CTA (학원 소개와 동일 패턴) -->
+<section id="cta" class="cta-section">
+  <div class="acm-wrap">
+    <div class="cta-banner">
+      <div class="cta-banner-inner">
+        <div class="cta-badge">✦ 무료 상담 신청</div>
+        <h2 class="cta-title">우리 동네 센터 <span class="hl">상담 받고 싶다면</span></h2>
+        <p class="cta-desc">상담 문의 주시면 가까운 센터 상담 안내 드립니다.<br>상담은 예약제로 운영됩니다.</p>
+        <div class="cta-btn-grid">
+          <a href="${FORM_URL}" target="_blank" rel="noopener" class="cta-btn-primary">
+            <div class="cta-btn-icon">📝</div>
+            <div class="cta-btn-label">무료 상담 신청</div>
+          </a>
+          <a href="${KAKAO_URL}" target="_blank" rel="noopener" class="cta-btn-secondary">
+            <div class="cta-btn-icon">💬</div>
+            <div class="cta-btn-label">카카오톡 상담</div>
+          </a>
+          <a href="tel:${PHONE.replace(/-/g, '')}" class="cta-btn-secondary">
+            <div class="cta-btn-icon">📞</div>
+            <div class="cta-btn-label">전화 상담</div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+${FOOTER_HTML}
+${FLOAT_HTML}
+
+</body>
+</html>`;
 }
 
 
