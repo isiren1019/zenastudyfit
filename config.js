@@ -28,7 +28,7 @@ export const STUDY_READY = {
 // intro: 학원 소개 페이지 / location: 학원 위치 안내 페이지
 export const ACADEMY_READY = {
   "intro":    true,    // ★ 활성화 완료 (학원 소개 페이지 정식 노출)
-  "location": false,   // 지점 데이터 받은 후 true로 변경
+  "location": true,    // ★ 활성화 완료 (학원 위치 허브 페이지 정식 노출)
 };
 
 // 사이트 시작 기준일 (페이지별 게시일 계산에 사용)
