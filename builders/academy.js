@@ -2111,11 +2111,12 @@ export function buildAcademyLocationSidoPage(sido) {
   // 시·군·구별 그룹핑 (가나다 순 정렬)
   const sigunguGroups = {};
   centers.forEach(c => {
-    if (!c.sigungu) return;
-    if (!sigunguGroups[c.sigungu]) {
-      sigunguGroups[c.sigungu] = [];
+    // sigungu 없으면(세종 등 단층제) 시·도명 + "시"로 대체
+    const sg = c.sigungu || (c.sidoName + '시');
+    if (!sigunguGroups[sg]) {
+      sigunguGroups[sg] = [];
     }
-    sigunguGroups[c.sigungu].push(c);
+    sigunguGroups[sg].push(c);
   });
   const sortedSigungu = Object.keys(sigunguGroups).sort((a, b) => a.localeCompare(b, 'ko'));
 
