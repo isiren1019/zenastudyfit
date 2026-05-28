@@ -10669,7 +10669,7 @@ export const ACADEMY_CENTERS = [
     "brand": "wawa",
     "sido": "sejong",
     "sidoName": "세종",
-    "sigungu": null,
+    "sigungu": "세종시",
     "address": "세종특별자치시 새롬중앙로 62-15  해피라움W 305호",
     "eduOffice": "새롬와와학습코칭학원",
     "eduRegNo": "세종특별자치시교육청 등록 제1211호",
