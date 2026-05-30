@@ -43,7 +43,7 @@ import {
 } from './data/subjects/science.js';
 import {
   SOCIAL_EXAM_DATA, SOCIAL_HABIT_DATA, SOCIAL_SOCIETY_DATA,
-  SOCIAL_ETHICS_DATA, SOCIAL_PERFORM_DATA,
+  SOCIAL_ETHICS_DATA, SOCIAL_PERFORM_DATA, SOCIAL_INTEGRATED_DATA,
 } from './data/subjects/social.js';
 import {
   HISTORY_EXAM_DATA, HISTORY_HABIT_DATA, HISTORY_CERT_DATA,
@@ -914,6 +914,17 @@ Sitemap: ${BASE}/sitemap-schools-3.xml
         const ethicsKey = socEthicsMatch[1];
         if (SOCIAL_ETHICS_DATA[ethicsKey]) {
           return new Response(buildKoreanHabitPage(ethicsKey, "ethics", "social"), {
+            headers: { "Content-Type": "text/html;charset=UTF-8" }
+          });
+        }
+      }
+
+      // 사회 통합사회 페이지 (overview/humanity/culture/nature/sustainability/practice)
+      const socIntegratedMatch = path.match(/^\/study\/social\/integrated\/([^\/]+)\/?$/);
+      if (socIntegratedMatch) {
+        const integratedKey = socIntegratedMatch[1];
+        if (SOCIAL_INTEGRATED_DATA[integratedKey]) {
+          return new Response(buildKoreanHabitPage(integratedKey, "integrated", "social"), {
             headers: { "Content-Type": "text/html;charset=UTF-8" }
           });
         }
