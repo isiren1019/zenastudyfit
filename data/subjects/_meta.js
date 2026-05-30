@@ -27,13 +27,12 @@
 import {
   KOREAN_GRADE_DATA, KOREAN_EXAM_DATA, KOREAN_GRAMMAR_DATA,
   KOREAN_LITERACY_DATA, KOREAN_READING_DATA, KOREAN_PERFORM_DATA,
-  KOREAN_HABIT_DATA, KOREAN_WRITING_DATA, KOREAN_LITERATURE_DATA,
-  KOREAN_VOCAB_DATA, KOREAN_CLASSIC_DATA,
+  KOREAN_HABIT_DATA,
 } from './korean.js';
 import {
   ENGLISH_GRADE_DATA, ENGLISH_EXAM_DATA, ENGLISH_HABIT_DATA,
   ENGLISH_VOCAB_DATA, ENGLISH_GRAMMAR_DATA, ENGLISH_READING_DATA,
-  ENGLISH_PERFORM_DATA,
+  ENGLISH_PERFORM_DATA, ENGLISH_WRITING_DATA,
 } from './english.js';
 import {
   MATH_GRADE_DATA, MATH_EXAM_DATA, MATH_HABIT_DATA,
@@ -87,10 +86,6 @@ export const SUBJECT_CATEGORY_META = {
     "literacy": { label: "문해력 강화", data: () => KOREAN_LITERACY_DATA },
     "reading": { label: "독해력 향상", data: () => KOREAN_READING_DATA },
     "grammar": { label: "문법 완벽 정복", data: () => KOREAN_GRAMMAR_DATA },
-    "writing": { label: "글쓰기 실력 향상", data: () => KOREAN_WRITING_DATA },
-    "literature": { label: "문학 작품 분석", data: () => KOREAN_LITERATURE_DATA },
-    "vocab": { label: "어휘력", data: () => KOREAN_VOCAB_DATA },
-    "classic": { label: "고전문학 심화", data: () => KOREAN_CLASSIC_DATA },
   },
   "english": {
     name: "영어",
@@ -100,6 +95,7 @@ export const SUBJECT_CATEGORY_META = {
     "vocab": { label: "영어 어휘", data: () => ENGLISH_VOCAB_DATA },
     "grammar": { label: "영문법", data: () => ENGLISH_GRAMMAR_DATA },
     "reading": { label: "독해 (Reading)", data: () => ENGLISH_READING_DATA },
+    "writing": { label: "작문 (Writing)", data: () => ENGLISH_WRITING_DATA },
   },
   "math": {
     name: "수학",
@@ -212,7 +208,7 @@ export const SUBJECT_HUB_DATA = {
         items: [["basic","기초 듣기"],["dictation","받아쓰기 훈련"],["pronunciation","발음·연음"],["accent","다양한 억양 적응"],["test","시험 듣기 전략"]] },
       { key: "speaking", name: "회화 (Speaking)", count: 5,
         items: [["basic","기초 회화"],["daily","일상 회화"],["pronunciation","발음 교정"],["fluency","유창성 키우기"],["roleplay","롤플레이·상황별"]] },
-      { key: "writing", name: "작문 (Writing)", count: 6,
+      { key: "writing", name: "작문 (Writing)", count: 6, isNew: true,
         items: [["basic","문장 만들기"],["paragraph","단락 쓰기"],["essay","에세이 작성"],["letter","편지·이메일"],["intro","자기소개서"],["correction","문법 첨삭"]] },
       { key: "cert", name: "공인영어시험", count: 6,
         items: [["toeic","TOEIC 대비"],["toefl","TOEFL 대비"],["ielts","IELTS 대비"],["opic","OPIc 대비"],["toeic-speaking","TOEIC Speaking"],["comparison","공인시험 비교 가이드"]] },
