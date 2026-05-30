@@ -47,6 +47,7 @@ import {
 import {
   SOCIAL_GRADE_DATA, SOCIAL_EXAM_DATA, SOCIAL_HABIT_DATA,
   SOCIAL_SOCIETY_DATA, SOCIAL_ETHICS_DATA, SOCIAL_PERFORM_DATA,
+  SOCIAL_INTEGRATED_DATA,
 } from './social.js';
 import {
   HISTORY_GRADE_DATA, HISTORY_EXAM_DATA, HISTORY_HABIT_DATA,
@@ -126,6 +127,7 @@ export const SUBJECT_CATEGORY_META = {
     "perform": { label: "수행평가 & 서술형", data: () => SOCIAL_PERFORM_DATA },
     "society": { label: "사회·문화", data: () => SOCIAL_SOCIETY_DATA },
     "ethics": { label: "윤리", data: () => SOCIAL_ETHICS_DATA },
+    "integrated": { label: "통합사회", data: () => SOCIAL_INTEGRATED_DATA },
   },
   "history": {
     name: "한국사",
@@ -289,7 +291,7 @@ export const SUBJECT_HUB_DATA = {
         items: [["descriptive","사회 서술형"],["assessment","사회 수행평가"],["debate","토론·발표"]] },
       { key: "exam", name: "시험 대비", count: 6,
         items: [["naesin","내신 시험 대비"],["graph","자료·도표 분석"],["case","사례형 문제"],["past","기출문제 분석"],["mock","모의고사 대비"],["suneung","수능 사회탐구 대비"]] },
-      { key: "integrated", name: "통합사회", count: 6,
+      { key: "integrated", name: "통합사회", count: 6, isNew: true,
         items: [["overview","통합사회 개요"],["humanity","인간·사회·환경"],["culture","문화"],["nature","자연환경"],["sustainability","지속가능 발전"],["practice","통합사회 실전"]] },
       { key: "korea-geo", name: "한국지리", count: 6,
         items: [["topography","지형·기후"],["population","인구·도시"],["industry","산업·자원"],["regions","지역 지리"],["culture","문화·관광"],["practice","한국지리 실전"]] },
