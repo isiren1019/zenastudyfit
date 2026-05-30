@@ -543,6 +543,12 @@ export function buildSubjectHubPage(subjectKey) {
       "ethics/bioethics": "/study/social/ethics/bioethics/",
       "ethics/environmental": "/study/social/ethics/environmental/",
       "ethics/practice": "/study/social/ethics/practice/",
+      "integrated/overview": "/study/social/integrated/overview/",
+      "integrated/humanity": "/study/social/integrated/humanity/",
+      "integrated/culture": "/study/social/integrated/culture/",
+      "integrated/nature": "/study/social/integrated/nature/",
+      "integrated/sustainability": "/study/social/integrated/sustainability/",
+      "integrated/practice": "/study/social/integrated/practice/",
     },
   };
   const readyMap = SUBJECT_PAGE_READY[subjectKey] || {};
