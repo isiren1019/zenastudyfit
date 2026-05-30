@@ -335,6 +335,9 @@ export function buildSubjectHubPage(subjectKey) {
       "reading/title": "/study/english/reading/title/",
       "reading/context": "/study/english/reading/context/",
       "reading/speed": "/study/english/reading/speed/",
+      "writing/basic": "/study/english/writing/basic/",
+      "writing/paragraph": "/study/english/writing/paragraph/",
+      "writing/correction": "/study/english/writing/correction/",
     },
     "math": {
       "grade/elem1": "/study/math/grade/elem1/",
@@ -564,10 +567,11 @@ export function buildSubjectHubPage(subjectKey) {
       "listening/pronunciation":"/language/english/skill/pronunciation/",// 발음·연음 → 발음 교정
       "listening/accent":      "/language/english/skill/listening/",     // 다양한 억양 → 듣기 훈련
       "listening/test":        "/language/english/",                     // 시험 듣기 → 메인 허브 (콘텐츠 X)
-      // 작문 (Writing) — 콘텐츠 미작성, 메인 허브로
-      "writing/essay":         "/language/english/",                     // 에세이 → 메인 허브 (purpose/essay 미작성)
-      "writing/letter":        "/language/english/",                     // 편지·이메일 → 메인 허브 (biz/email 미작성)
-      "writing/intro":         "/language/english/",                     // 자기소개서 → 메인 허브
+      // 작문 (Writing) — basic·paragraph·correction은 콘텐츠 작성됨(PAGE_READY 우선)
+      // 나머지 essay·letter·intro는 콘텐츠 미작성, 메인 허브로
+      "writing/essay":         "/language/english/",                     // 에세이 → 메인 허브 (미작성)
+      "writing/letter":        "/language/english/",                     // 편지·이메일 → 메인 허브 (미작성)
+      "writing/intro":         "/language/english/",                     // 자기소개서 → 메인 허브 (미작성)
       // 공인영어시험 (Cert) — 콘텐츠 직접 매칭
       "cert/toeic":            "/language/english/cert/toeic/",          // TOEIC → 토익 페이지
       "cert/toefl":            "/language/english/cert/toefl/",          // TOEFL → 토플 페이지
