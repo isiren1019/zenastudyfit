@@ -29,6 +29,7 @@ import {
 import {
   ENGLISH_EXAM_DATA, ENGLISH_HABIT_DATA, ENGLISH_VOCAB_DATA,
   ENGLISH_GRAMMAR_DATA, ENGLISH_READING_DATA, ENGLISH_PERFORM_DATA,
+  ENGLISH_WRITING_DATA,
 } from './data/subjects/english.js';
 import {
   MATH_EXAM_DATA, MATH_HABIT_DATA, MATH_CONCEPT_DATA,
@@ -671,6 +672,17 @@ Sitemap: ${BASE}/sitemap-schools-3.xml
         const readingKey = engReadingMatch[1];
         if (ENGLISH_READING_DATA[readingKey]) {
           return new Response(buildKoreanHabitPage(readingKey, "reading", "english"), {
+            headers: { "Content-Type": "text/html;charset=UTF-8" }
+          });
+        }
+      }
+
+      // 영어 작문 페이지 (basic/paragraph/correction · essay/letter/intro 추후)
+      const engWritingMatch = path.match(/^\/study\/english\/writing\/([^\/]+)\/?$/);
+      if (engWritingMatch) {
+        const writingKey = engWritingMatch[1];
+        if (ENGLISH_WRITING_DATA[writingKey]) {
+          return new Response(buildKoreanHabitPage(writingKey, "writing", "english"), {
             headers: { "Content-Type": "text/html;charset=UTF-8" }
           });
         }
