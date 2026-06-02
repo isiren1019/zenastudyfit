@@ -44,7 +44,7 @@ import {
 import {
   SOCIAL_EXAM_DATA, SOCIAL_HABIT_DATA, SOCIAL_SOCIETY_DATA,
   SOCIAL_ETHICS_DATA, SOCIAL_PERFORM_DATA, SOCIAL_INTEGRATED_DATA,
-  SOCIAL_LAW_DATA,
+  SOCIAL_LAW_DATA, SOCIAL_KOREAGEO_DATA,
 } from './data/subjects/social.js';
 import {
   HISTORY_EXAM_DATA, HISTORY_HABIT_DATA, HISTORY_CERT_DATA,
@@ -937,6 +937,17 @@ Sitemap: ${BASE}/sitemap-schools-3.xml
         const lawKey = socLawMatch[1];
         if (SOCIAL_LAW_DATA[lawKey]) {
           return new Response(buildKoreanHabitPage(lawKey, "law", "social"), {
+            headers: { "Content-Type": "text/html;charset=UTF-8" }
+          });
+        }
+      }
+
+      // 사회 한국지리 페이지 (topography/population/industry/regions/culture/practice)
+      const socKoreaGeoMatch = path.match(/^\/study\/social\/korea-geo\/([^\/]+)\/?$/);
+      if (socKoreaGeoMatch) {
+        const koreaGeoKey = socKoreaGeoMatch[1];
+        if (SOCIAL_KOREAGEO_DATA[koreaGeoKey]) {
+          return new Response(buildKoreanHabitPage(koreaGeoKey, "korea-geo", "social"), {
             headers: { "Content-Type": "text/html;charset=UTF-8" }
           });
         }
