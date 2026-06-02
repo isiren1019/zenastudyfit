@@ -549,6 +549,11 @@ export function buildSubjectHubPage(subjectKey) {
       "integrated/nature": "/study/social/integrated/nature/",
       "integrated/sustainability": "/study/social/integrated/sustainability/",
       "integrated/practice": "/study/social/integrated/practice/",
+      "law/politics": "/study/social/law/politics/",
+      "law/constitution": "/study/social/law/constitution/",
+      "law/law": "/study/social/law/law/",
+      "law/rights": "/study/social/law/rights/",
+      "law/practice": "/study/social/law/practice/",
     },
   };
   const readyMap = SUBJECT_PAGE_READY[subjectKey] || {};
