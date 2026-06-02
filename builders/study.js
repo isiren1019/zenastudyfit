@@ -554,6 +554,12 @@ export function buildSubjectHubPage(subjectKey) {
       "law/law": "/study/social/law/law/",
       "law/rights": "/study/social/law/rights/",
       "law/practice": "/study/social/law/practice/",
+      "korea-geo/topography": "/study/social/korea-geo/topography/",
+      "korea-geo/population": "/study/social/korea-geo/population/",
+      "korea-geo/industry": "/study/social/korea-geo/industry/",
+      "korea-geo/regions": "/study/social/korea-geo/regions/",
+      "korea-geo/culture": "/study/social/korea-geo/culture/",
+      "korea-geo/practice": "/study/social/korea-geo/practice/",
     },
   };
   const readyMap = SUBJECT_PAGE_READY[subjectKey] || {};
