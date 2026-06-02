@@ -44,6 +44,7 @@ import {
 import {
   SOCIAL_EXAM_DATA, SOCIAL_HABIT_DATA, SOCIAL_SOCIETY_DATA,
   SOCIAL_ETHICS_DATA, SOCIAL_PERFORM_DATA, SOCIAL_INTEGRATED_DATA,
+  SOCIAL_LAW_DATA,
 } from './data/subjects/social.js';
 import {
   HISTORY_EXAM_DATA, HISTORY_HABIT_DATA, HISTORY_CERT_DATA,
@@ -925,6 +926,17 @@ Sitemap: ${BASE}/sitemap-schools-3.xml
         const integratedKey = socIntegratedMatch[1];
         if (SOCIAL_INTEGRATED_DATA[integratedKey]) {
           return new Response(buildKoreanHabitPage(integratedKey, "integrated", "social"), {
+            headers: { "Content-Type": "text/html;charset=UTF-8" }
+          });
+        }
+      }
+
+      // 사회 정치와 법 페이지 (politics/constitution/law/rights/practice)
+      const socLawMatch = path.match(/^\/study\/social\/law\/([^\/]+)\/?$/);
+      if (socLawMatch) {
+        const lawKey = socLawMatch[1];
+        if (SOCIAL_LAW_DATA[lawKey]) {
+          return new Response(buildKoreanHabitPage(lawKey, "law", "social"), {
             headers: { "Content-Type": "text/html;charset=UTF-8" }
           });
         }
