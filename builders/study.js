@@ -565,6 +565,12 @@ export function buildSubjectHubPage(subjectKey) {
       "economy/finance": "/study/social/economy/finance/",
       "economy/macro": "/study/social/economy/macro/",
       "economy/practice": "/study/social/economy/practice/",
+      "world-geo/overview": "/study/social/world-geo/overview/",
+      "world-geo/regions": "/study/social/world-geo/regions/",
+      "world-geo/climate": "/study/social/world-geo/climate/",
+      "world-geo/population": "/study/social/world-geo/population/",
+      "world-geo/culture": "/study/social/world-geo/culture/",
+      "world-geo/practice": "/study/social/world-geo/practice/",
     },
   };
   const readyMap = SUBJECT_PAGE_READY[subjectKey] || {};
