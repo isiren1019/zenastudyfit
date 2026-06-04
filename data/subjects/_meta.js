@@ -48,7 +48,7 @@ import {
   SOCIAL_GRADE_DATA, SOCIAL_EXAM_DATA, SOCIAL_HABIT_DATA,
   SOCIAL_SOCIETY_DATA, SOCIAL_ETHICS_DATA, SOCIAL_PERFORM_DATA,
   SOCIAL_INTEGRATED_DATA, SOCIAL_LAW_DATA, SOCIAL_KOREAGEO_DATA,
-  SOCIAL_ECONOMY_DATA,
+  SOCIAL_ECONOMY_DATA, SOCIAL_WORLDGEO_DATA,
 } from './social.js';
 import {
   HISTORY_GRADE_DATA, HISTORY_EXAM_DATA, HISTORY_HABIT_DATA,
@@ -132,6 +132,7 @@ export const SUBJECT_CATEGORY_META = {
     "law": { label: "정치와 법", data: () => SOCIAL_LAW_DATA },
     "korea-geo": { label: "한국지리", data: () => SOCIAL_KOREAGEO_DATA },
     "economy": { label: "경제", data: () => SOCIAL_ECONOMY_DATA },
+    "world-geo": { label: "세계지리", data: () => SOCIAL_WORLDGEO_DATA },
   },
   "history": {
     name: "한국사",
@@ -299,7 +300,7 @@ export const SUBJECT_HUB_DATA = {
         items: [["overview","통합사회 개요"],["humanity","인간·사회·환경"],["culture","문화"],["nature","자연환경"],["sustainability","지속가능 발전"],["practice","통합사회 실전"]] },
       { key: "korea-geo", name: "한국지리", count: 6, isNew: true,
         items: [["topography","지형·기후"],["population","인구·도시"],["industry","산업·자원"],["regions","지역 지리"],["culture","문화·관광"],["practice","한국지리 실전"]] },
-      { key: "world-geo", name: "세계지리", count: 6,
+      { key: "world-geo", name: "세계지리", count: 6, isNew: true,
         items: [["overview","세계지리 개요"],["regions","대륙별 지리"],["climate","기후 지역"],["population","인구·도시"],["culture","세계 문화"],["practice","세계지리 실전"]] },
       { key: "law", name: "정치와 법", count: 5, isNew: true,
         items: [["politics","민주정치"],["constitution","헌법"],["law","법치주의"],["rights","기본권"],["practice","정치와 법 실전"]] },
