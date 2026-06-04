@@ -45,6 +45,7 @@ import {
   SOCIAL_EXAM_DATA, SOCIAL_HABIT_DATA, SOCIAL_SOCIETY_DATA,
   SOCIAL_ETHICS_DATA, SOCIAL_PERFORM_DATA, SOCIAL_INTEGRATED_DATA,
   SOCIAL_LAW_DATA, SOCIAL_KOREAGEO_DATA, SOCIAL_ECONOMY_DATA,
+  SOCIAL_WORLDGEO_DATA,
 } from './data/subjects/social.js';
 import {
   HISTORY_EXAM_DATA, HISTORY_HABIT_DATA, HISTORY_CERT_DATA,
@@ -959,6 +960,17 @@ Sitemap: ${BASE}/sitemap-schools-3.xml
         const economyKey = socEconomyMatch[1];
         if (SOCIAL_ECONOMY_DATA[economyKey]) {
           return new Response(buildKoreanHabitPage(economyKey, "economy", "social"), {
+            headers: { "Content-Type": "text/html;charset=UTF-8" }
+          });
+        }
+      }
+
+      // 사회 세계지리 페이지 (overview/regions/climate/population/culture/practice)
+      const socWorldGeoMatch = path.match(/^\/study\/social\/world-geo\/([^\/]+)\/?$/);
+      if (socWorldGeoMatch) {
+        const worldGeoKey = socWorldGeoMatch[1];
+        if (SOCIAL_WORLDGEO_DATA[worldGeoKey]) {
+          return new Response(buildKoreanHabitPage(worldGeoKey, "world-geo", "social"), {
             headers: { "Content-Type": "text/html;charset=UTF-8" }
           });
         }
