@@ -44,7 +44,7 @@ import {
 import {
   SOCIAL_EXAM_DATA, SOCIAL_HABIT_DATA, SOCIAL_SOCIETY_DATA,
   SOCIAL_ETHICS_DATA, SOCIAL_PERFORM_DATA, SOCIAL_INTEGRATED_DATA,
-  SOCIAL_LAW_DATA, SOCIAL_KOREAGEO_DATA,
+  SOCIAL_LAW_DATA, SOCIAL_KOREAGEO_DATA, SOCIAL_ECONOMY_DATA,
 } from './data/subjects/social.js';
 import {
   HISTORY_EXAM_DATA, HISTORY_HABIT_DATA, HISTORY_CERT_DATA,
@@ -948,6 +948,17 @@ Sitemap: ${BASE}/sitemap-schools-3.xml
         const koreaGeoKey = socKoreaGeoMatch[1];
         if (SOCIAL_KOREAGEO_DATA[koreaGeoKey]) {
           return new Response(buildKoreanHabitPage(koreaGeoKey, "korea-geo", "social"), {
+            headers: { "Content-Type": "text/html;charset=UTF-8" }
+          });
+        }
+      }
+
+      // 사회 경제 페이지 (basic/market/finance/macro/practice)
+      const socEconomyMatch = path.match(/^\/study\/social\/economy\/([^\/]+)\/?$/);
+      if (socEconomyMatch) {
+        const economyKey = socEconomyMatch[1];
+        if (SOCIAL_ECONOMY_DATA[economyKey]) {
+          return new Response(buildKoreanHabitPage(economyKey, "economy", "social"), {
             headers: { "Content-Type": "text/html;charset=UTF-8" }
           });
         }
