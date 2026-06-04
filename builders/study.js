@@ -560,6 +560,11 @@ export function buildSubjectHubPage(subjectKey) {
       "korea-geo/regions": "/study/social/korea-geo/regions/",
       "korea-geo/culture": "/study/social/korea-geo/culture/",
       "korea-geo/practice": "/study/social/korea-geo/practice/",
+      "economy/basic": "/study/social/economy/basic/",
+      "economy/market": "/study/social/economy/market/",
+      "economy/finance": "/study/social/economy/finance/",
+      "economy/macro": "/study/social/economy/macro/",
+      "economy/practice": "/study/social/economy/practice/",
     },
   };
   const readyMap = SUBJECT_PAGE_READY[subjectKey] || {};
