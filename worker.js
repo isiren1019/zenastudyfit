@@ -50,6 +50,7 @@ import {
 import {
   HISTORY_EXAM_DATA, HISTORY_HABIT_DATA, HISTORY_CERT_DATA,
   HISTORY_PERIOD_DATA, HISTORY_PERFORM_DATA, HISTORY_PEOPLE_DATA,
+  HISTORY_HERITAGE_DATA,
 } from './data/subjects/history.js';
 import {
   ENGLISH_LANG_SKILL_DATA, ENGLISH_LANG_CERT_DATA, ENGLISH_LANG_LEVEL_DATA,
@@ -1037,6 +1038,17 @@ Sitemap: ${BASE}/sitemap-schools-3.xml
         const peopleKey = histPeopleMatch[1];
         if (HISTORY_PEOPLE_DATA[peopleKey]) {
           return new Response(buildKoreanHabitPage(peopleKey, "people", "history"), {
+            headers: { "Content-Type": "text/html;charset=UTF-8" }
+          });
+        }
+      }
+
+      // 한국사 문화재·유물 페이지 (unesco/national/temple/folk/regional)
+      const histHeritageMatch = path.match(/^\/study\/history\/heritage\/([^\/]+)\/?$/);
+      if (histHeritageMatch) {
+        const heritageKey = histHeritageMatch[1];
+        if (HISTORY_HERITAGE_DATA[heritageKey]) {
+          return new Response(buildKoreanHabitPage(heritageKey, "heritage", "history"), {
             headers: { "Content-Type": "text/html;charset=UTF-8" }
           });
         }
