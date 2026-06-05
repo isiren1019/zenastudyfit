@@ -50,7 +50,7 @@ import {
 import {
   HISTORY_EXAM_DATA, HISTORY_HABIT_DATA, HISTORY_CERT_DATA,
   HISTORY_PERIOD_DATA, HISTORY_PERFORM_DATA, HISTORY_PEOPLE_DATA,
-  HISTORY_HERITAGE_DATA,
+  HISTORY_HERITAGE_DATA, HISTORY_MATERIAL_DATA,
 } from './data/subjects/history.js';
 import {
   ENGLISH_LANG_SKILL_DATA, ENGLISH_LANG_CERT_DATA, ENGLISH_LANG_LEVEL_DATA,
@@ -1049,6 +1049,17 @@ Sitemap: ${BASE}/sitemap-schools-3.xml
         const heritageKey = histHeritageMatch[1];
         if (HISTORY_HERITAGE_DATA[heritageKey]) {
           return new Response(buildKoreanHabitPage(heritageKey, "heritage", "history"), {
+            headers: { "Content-Type": "text/html;charset=UTF-8" }
+          });
+        }
+      }
+
+      // 한국사 사료·자료 분석 페이지 (text/map/graph/picture/compare)
+      const histMaterialMatch = path.match(/^\/study\/history\/material\/([^\/]+)\/?$/);
+      if (histMaterialMatch) {
+        const materialKey = histMaterialMatch[1];
+        if (HISTORY_MATERIAL_DATA[materialKey]) {
+          return new Response(buildKoreanHabitPage(materialKey, "material", "history"), {
             headers: { "Content-Type": "text/html;charset=UTF-8" }
           });
         }
