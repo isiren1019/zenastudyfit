@@ -514,6 +514,11 @@ export function buildSubjectHubPage(subjectKey) {
       "heritage/temple": "/study/history/heritage/temple/",
       "heritage/folk": "/study/history/heritage/folk/",
       "heritage/regional": "/study/history/heritage/regional/",
+      "material/text": "/study/history/material/text/",
+      "material/map": "/study/history/material/map/",
+      "material/graph": "/study/history/material/graph/",
+      "material/picture": "/study/history/material/picture/",
+      "material/compare": "/study/history/material/compare/",
     },
     "social": {
       "grade/elem1": "/study/social/grade/elem1/",
