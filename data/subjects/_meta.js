@@ -53,7 +53,7 @@ import {
 import {
   HISTORY_GRADE_DATA, HISTORY_EXAM_DATA, HISTORY_HABIT_DATA,
   HISTORY_CERT_DATA, HISTORY_PERIOD_DATA, HISTORY_PERFORM_DATA,
-  HISTORY_PEOPLE_DATA,
+  HISTORY_PEOPLE_DATA, HISTORY_HERITAGE_DATA,
 } from './history.js';
 import {
   ENGLISH_LANG_SKILL_DATA, ENGLISH_LANG_CERT_DATA, ENGLISH_LANG_LEVEL_DATA,
@@ -143,6 +143,7 @@ export const SUBJECT_CATEGORY_META = {
     "perform": { label: "수행평가 & 서술형", data: () => HISTORY_PERFORM_DATA },
     "habit": { label: "학습 습관 & 공부법", data: () => HISTORY_HABIT_DATA },
     "people": { label: "인물·사건사", data: () => HISTORY_PEOPLE_DATA },
+    "heritage": { label: "문화재·유물", data: () => HISTORY_HERITAGE_DATA },
   },
   // ── 제2외국어 회화 (별도 라우팅: /language/{lang}/{cat}/{slug}/) ──
   "english_lang": {
@@ -339,7 +340,7 @@ export const SUBJECT_HUB_DATA = {
         items: [["text","사료 해석"],["map","역사 지도 분석"],["graph","통계·도표"],["picture","유물·그림 분석"],["compare","사료 비교"]] },
       { key: "people", name: "인물·사건사", count: 6, isNew: true,
         items: [["king","주요 왕·정치가"],["scholar","학자·사상가"],["independence","독립운동가"],["modern","근현대 인물"],["women","여성 인물"],["events","주요 사건 정리"]] },
-      { key: "heritage", name: "문화재·유물", count: 5,
+      { key: "heritage", name: "문화재·유물", count: 5, isNew: true,
         items: [["unesco","유네스코 문화유산"],["national","국보·보물"],["temple","사찰·궁궐"],["folk","민속·생활"],["regional","지역별 문화재"]] },
     ],
   },
