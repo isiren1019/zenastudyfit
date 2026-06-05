@@ -503,6 +503,12 @@ export function buildSubjectHubPage(subjectKey) {
       "habit/slump": "/study/history/habit/slump/",
       "perform/descriptive": "/study/history/perform/descriptive/",
       "perform/assessment": "/study/history/perform/assessment/",
+      "people/king": "/study/history/people/king/",
+      "people/scholar": "/study/history/people/scholar/",
+      "people/independence": "/study/history/people/independence/",
+      "people/modern": "/study/history/people/modern/",
+      "people/women": "/study/history/people/women/",
+      "people/events": "/study/history/people/events/",
     },
     "social": {
       "grade/elem1": "/study/social/grade/elem1/",
