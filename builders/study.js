@@ -592,8 +592,10 @@ export function buildSubjectHubPage(subjectKey) {
   const readyMap = SUBJECT_PAGE_READY[subjectKey] || {};
 
   let categoriesHtml = "";
+  const todayStr = new Date().toISOString().slice(0, 10);
   for (const cat of data.categories) {
-    const newBadge = cat.isNew ? `<span class="cat-new">NEW</span>` : "";
+    const newBadge = (cat.newUntil && cat.newUntil >= todayStr)
+      ? `<span class="cat-new">NEW</span>` : "";
     const highlight = cat.highlight ? " cat-highlight" : "";
 
     // 영어 과목 허브 준비중 항목 → 회화 콘텐츠 페이지 크로스링크 맵
