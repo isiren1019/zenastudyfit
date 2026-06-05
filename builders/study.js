@@ -509,6 +509,11 @@ export function buildSubjectHubPage(subjectKey) {
       "people/modern": "/study/history/people/modern/",
       "people/women": "/study/history/people/women/",
       "people/events": "/study/history/people/events/",
+      "heritage/unesco": "/study/history/heritage/unesco/",
+      "heritage/national": "/study/history/heritage/national/",
+      "heritage/temple": "/study/history/heritage/temple/",
+      "heritage/folk": "/study/history/heritage/folk/",
+      "heritage/regional": "/study/history/heritage/regional/",
     },
     "social": {
       "grade/elem1": "/study/social/grade/elem1/",
