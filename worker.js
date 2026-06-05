@@ -49,7 +49,7 @@ import {
 } from './data/subjects/social.js';
 import {
   HISTORY_EXAM_DATA, HISTORY_HABIT_DATA, HISTORY_CERT_DATA,
-  HISTORY_PERIOD_DATA, HISTORY_PERFORM_DATA,
+  HISTORY_PERIOD_DATA, HISTORY_PERFORM_DATA, HISTORY_PEOPLE_DATA,
 } from './data/subjects/history.js';
 import {
   ENGLISH_LANG_SKILL_DATA, ENGLISH_LANG_CERT_DATA, ENGLISH_LANG_LEVEL_DATA,
@@ -1026,6 +1026,17 @@ Sitemap: ${BASE}/sitemap-schools-3.xml
         const habitKey = histHabitMatch[1];
         if (HISTORY_HABIT_DATA[habitKey]) {
           return new Response(buildKoreanHabitPage(habitKey, "habit", "history"), {
+            headers: { "Content-Type": "text/html;charset=UTF-8" }
+          });
+        }
+      }
+
+      // 한국사 인물·사건사 페이지 (king/scholar/independence/modern/women/events)
+      const histPeopleMatch = path.match(/^\/study\/history\/people\/([^\/]+)\/?$/);
+      if (histPeopleMatch) {
+        const peopleKey = histPeopleMatch[1];
+        if (HISTORY_PEOPLE_DATA[peopleKey]) {
+          return new Response(buildKoreanHabitPage(peopleKey, "people", "history"), {
             headers: { "Content-Type": "text/html;charset=UTF-8" }
           });
         }
