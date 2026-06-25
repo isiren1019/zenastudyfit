@@ -22,7 +22,7 @@ import { SITE_NAME, SITE_DOMAIN, FORM_URL, KAKAO_URL, PHONE } from '../config.js
 import { HEADER_CSS, HEADER_HTML, FOOTER_HTML, FLOAT_CSS, FLOAT_HTML } from '../layout.js';
 import {
   getDisplaySubject, regionVars, seededRandom, getPageDates,
-  buildBreadcrumbJsonLd, buildSocialMeta, buildShareButtons
+  buildBreadcrumbJsonLd, buildSocialMeta, buildShareButtons, pickJosa
 } from '../utils.js';
 import { makeIntro, makeBody, makeConclusion, makeFeatures, FIXED_FAQ } from '../content-pools.js';
 import { buildGradeRoadmapCards } from './_helpers.js';
@@ -35,12 +35,65 @@ export function buildDetailPage(city, gu, dong, grade, subject, slug) {
   // 단일 지역(시·시·시) 또는 시·구·구 패턴에서 중복 제거
   const reg = regionVars(city, gu, dong);
   const titleRegion = (gu === dong) ? `${city} ${gu}` : `${city} ${gu} ${dong}`;
-  const titleTag = `${titleRegion} ${grade} ${subject} 과외 | ${SITE_NAME}`;
-  const description = `${titleRegion} ${grade} ${dispSubject} 과외 전문 선생님을 찾고 계신가요? 제나쌤의 스터디핏 과외에서 ${reg.region_short} 인근 ${grade} ${dispSubject} 과외 선생님을 연결해 드립니다. 내신·수능 대비, 기초부터 심화까지 맞춤 수업. 무료 상담 가능.`;
 
-  // seeded rng
+  // seeded rng (title/description 분산에도 사용하므로 먼저 정의)
   const seedVal = slug.split("").reduce((a,c,i) => (a + c.charCodeAt(0) * (i+1)) % 2147483647, 0);
   const rng = seededRandom(seedVal);
+
+  // ── title / description 패턴 분산 (SEO 자기잠식 방지) ──────────
+  // 같은 학년·과목이라도 지역(슬러그)마다 다른 title이 나오도록 시드로 분산.
+  // 시드 기반이라 같은 페이지는 항상 같은 title (결정적).
+  // ⚠️ 본문(makeIntro 등)의 rng 흐름을 건드리지 않도록 별도 rng 사용
+  //    (메인 rng를 여기서 소비하면 기존 5만 페이지 본문이 전부 바뀜)
+  const rngMeta = seededRandom((seedVal * 131 + 7) % 2147483647);
+  const shortRegion = (gu === dong) ? gu : dong;   // 검색결과 잘림 방지용 축약(동 우선)
+
+  const GRADE_PHRASES = {
+    "초등": ["기초 완성", "흥미·습관", "1:1 맞춤", "눈높이"],
+    "중등": ["내신 대비", "기초 완성", "1:1 맞춤", "성적 향상"],
+    "고등": ["내신·수능 대비", "1:1 맞춤", "기초~심화", "실전 대비"],
+  };
+  const phrasePool = GRADE_PHRASES[grade] || GRADE_PHRASES["중등"];
+  const gradePhrase = phrasePool[Math.floor(rngMeta() * phrasePool.length)];
+
+  // {r}=축약지역, {g}=학년, {s}=과목, {p}=학년별 수식어구
+  const TITLE_PATTERNS = [
+    `{r} {g} {s} 과외 | ${SITE_NAME}`,
+    `{r} {g} {s} 과외 - {p} | 제나쌤 스터디핏`,
+    `{r} {s} 과외 {g} - {p} | 제나쌤 스터디핏`,
+    `{g} {s} 과외 {r} | ${SITE_NAME}`,
+    `{r} {g} {s} 1:1 과외 | 제나쌤 스터디핏`,
+    `{r} {g} {s} 과외 선생님 | 제나쌤 스터디핏`,
+    `{r} {g} {s} 과외 추천 | ${SITE_NAME}`,
+    `{r} {s} 1:1 맞춤 과외 {g} | 제나쌤 스터디핏`,
+    `{r} {g} {s} {p} 과외 | 제나쌤 스터디핏`,
+    `{g} {s} 과외 - {r} {p} | 제나쌤 스터디핏`,
+    `{r} {g} {s} 전문 과외 | ${SITE_NAME}`,
+    `{r} {s} 과외 {g} 맞춤 | 제나쌤 스터디핏`,
+  ];
+  const titlePat = TITLE_PATTERNS[Math.floor(rngMeta() * TITLE_PATTERNS.length)];
+  const titleTag = titlePat
+    .replace(/\{r\}/g, shortRegion)
+    .replace(/\{g\}/g, grade)
+    .replace(/\{s\}/g, dispSubject)
+    .replace(/\{p\}/g, gradePhrase);
+
+  // {full}=전체지역, {g}=학년, {ds}=표시과목, {dsj}=과목+조사, {rs}=짧은지역
+  const DESC_PATTERNS = [
+    `{full} {g} {ds} 과외 전문. {rs} 인근 베테랑 선생님이 {g} {dsj} 1:1로 지도합니다. 내신·수능 대비, 기초부터 심화까지 맞춤 수업. 무료 상담 가능.`,
+    `{full} {g} {ds} 1:1 맞춤 과외. {rs} 지역 {g} 학생을 위한 {ds} 수업으로 기초부터 차근차근. 방문·화상 모두 가능. 무료 시범수업 신청하세요.`,
+    `{rs}에서 {g} {ds} 과외를 찾으신다면 ${SITE_NAME}. {g} 눈높이 1:1 {ds} 수업으로 성적 향상을 돕습니다. 내신·서술형 대비. 무료 상담 가능.`,
+    `{full} {g} {ds} 과외, 어디서 시작할지 고민이신가요? {rs} 인근 선생님이 {g} {dsj} 1:1 맞춤으로 지도합니다. 학생별 커리큘럼. 방문·화상. 무료 시범수업.`,
+    `{full} {g} {ds} 전문 과외. {rs} 학생 맞춤 1:1 수업으로 {ds} 개념부터 실전까지 탄탄하게. 내신·수능 대비. 지금 무료 상담 받아보세요.`,
+    `${SITE_NAME}가 {rs}에서 {g} {ds} 과외를 도와드립니다. {g} 수준별 1:1 {ds} 수업, 기초 보충부터 심화까지. 방문·화상 선택 가능. 무료 상담.`,
+  ];
+  const descPat = DESC_PATTERNS[Math.floor(rngMeta() * DESC_PATTERNS.length)];
+  const description = descPat
+    .replace(/\{full\}/g, titleRegion)
+    .replace(/\{dsj\}/g, dispSubject + pickJosa(dispSubject, "을", "를"))
+    .replace(/\{ds\}/g, dispSubject)
+    .replace(/\{g\}/g, grade)
+    .replace(/\{rs\}/g, reg.region_short);
 
   // 페이지별 의사 갱신일 (SEO 최신성)
   const dates = getPageDates(slug);
