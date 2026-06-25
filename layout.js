@@ -8,6 +8,7 @@ import { SITE_NAME, PHONE, FORM_URL, KAKAO_URL, STUDY_READY, ACADEMY_READY } fro
 
 // ── 공통 헤더 CSS ────────────────────────────────────────────
 export const HEADER_CSS = `
+  img{-webkit-user-drag:none;-khtml-user-drag:none;-moz-user-drag:none;-o-user-drag:none;user-drag:none;-webkit-touch-callout:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;pointer-events:auto}
   .site-header{background:white;padding:13px 24px;border-bottom:2px solid #e8d6f5;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:200;box-shadow:0 2px 12px rgba(81,5,128,.06)}
   .site-logo{font-size:1.05rem;font-weight:800;color:#510580;text-decoration:none}
   .site-nav{display:flex;gap:10px;align-items:center}
@@ -221,6 +222,18 @@ document.addEventListener('click',function(){
 function openMobileMenu(){document.getElementById('mobileMenu').style.display='block';document.body.style.overflow='hidden'}
 function closeMobileMenu(){document.getElementById('mobileMenu').style.display='none';document.body.style.overflow=''}
 function closeMobileMenuOutside(e){if(e.target===document.getElementById('mobileMenu'))closeMobileMenu()}
+// ── 이미지 보호 (우클릭·드래그·복사 방지) ──────────────────────
+// 이미지(img)에만 적용 — 텍스트(전화번호·주소 등)는 정상 복사 가능
+(function(){
+  // 이미지 위에서 우클릭 메뉴 차단
+  document.addEventListener('contextmenu',function(e){
+    if(e.target && e.target.tagName==='IMG'){e.preventDefault();}
+  });
+  // 이미지 드래그(끌어서 저장) 차단
+  document.addEventListener('dragstart',function(e){
+    if(e.target && e.target.tagName==='IMG'){e.preventDefault();}
+  });
+})();
 </script>`;
 
 // ── 공통 푸터 HTML ────────────────────────────────────────────
