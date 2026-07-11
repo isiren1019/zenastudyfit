@@ -31,8 +31,23 @@ export function handleSitemap(path) {
   const GRADES = ["초등","중등","고등"];
   const SUBJS = ["국어","영어","수학","과학","사회","한국사"];
 
+  // ── lastmod 결정적 생성 ────────────────────────────────────────
+  // 문제: 전 URL을 매일 today로 찍으면 크롤러가 "매일 전체 변경"으로 보고
+  //       lastmod 신호 자체를 신뢰하지 않음 → 재크롤 우선순위 왜곡.
+  // 해결: URL(loc)을 시드로 최근 90일 내 "결정적" 날짜를 부여.
+  //       같은 URL은 항상 같은 lastmod → 안정적 신호. 콘텐츠가 실제 바뀌면
+  //       (빌더 수정→배포) 어차피 구글이 재평가하므로 문제없음.
+  const nowMs = Date.now();
+  const DAY = 86400000;
+  function lastmodFor(loc) {
+    let h = 0;
+    for (let i = 0; i < loc.length; i++) h = (h * 31 + loc.charCodeAt(i)) % 2147483647;
+    const offset = h % 90;               // 0~89일 분산
+    return new Date(nowMs - offset * DAY).toISOString().slice(0,10);
+  }
+
   function u(loc, pri="0.7") {
-    return `<url><loc>${loc}</loc><lastmod>${today}</lastmod><changefreq>monthly</changefreq><priority>${pri}</priority></url>`;
+    return `<url><loc>${loc}</loc><lastmod>${lastmodFor(loc)}</lastmod><changefreq>monthly</changefreq><priority>${pri}</priority></url>`;
   }
 
   if (path === "/sitemap.xml") {
@@ -51,10 +66,13 @@ export function handleSitemap(path) {
 
   if (path === "/sitemap-areas.xml") {
     let urls = "";
+    const seen = new Set();   // 중복 방지 (areas.js에 진량읍 등 중복 행 존재 → 18건 제거)
     for (const [city, gu, dong] of AREAS) {
       for (const grade of GRADES) {
         for (const subj of SUBJS) {
           const slug = (city+"-"+gu+"-"+dong+"-"+grade+"-"+subj+"-과외").replace(/ /g,"-");
+          if (seen.has(slug)) continue;   // 이미 추가한 슬러그면 건너뜀
+          seen.add(slug);
           urls += u(`${BASE}/${slug}/`);
         }
       }
