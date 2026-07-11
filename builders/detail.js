@@ -146,6 +146,23 @@ export function buildDetailPage(city, gu, dong, grade, subject, slug) {
   listHtml += `<a href="/self-study/" style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid #f0e6fc;text-decoration:none;background:white;transition:background .12s" onmouseover="this.style.background='#faf5ff'" onmouseout="this.style.background='white'"><div style="display:flex;align-items:center;gap:10px"><div style="width:30px;height:30px;border-radius:50%;background:#f0e6fc;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">📋</div><div><div style="font-size:.85rem;font-weight:700;color:#370558">공부 습관 완성 과외</div><div style="font-size:.72rem;color:#9b6cc0;margin-top:2px">과목별 공부법 · 플랜 관리 · 자기주도학습</div></div></div><div style="font-size:.85rem;color:#c9a3e8;flex-shrink:0">→</div></a>`;
   listHtml += `<a href="/coding/" style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;text-decoration:none;background:white;transition:background .12s" onmouseover="this.style.background='#faf5ff'" onmouseout="this.style.background='white'"><div style="display:flex;align-items:center;gap:10px"><div style="width:30px;height:30px;border-radius:50%;background:#f0e6fc;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">💻</div><div><div style="font-size:.85rem;font-weight:700;color:#370558">AI 시대 코딩 과외</div><div style="font-size:.72rem;color:#9b6cc0;margin-top:2px">자바스크립트 · 파이썬을 통한 컴퓨팅 사고력</div></div></div><div style="font-size:.85rem;color:#c9a3e8;flex-shrink:0">→</div></a>`;
 
+  // ── 학년 스위처: 같은 지역·같은 과목의 다른 학년 링크 ─────────────
+  // SEO 핵심 — 지역축 초등·고등 페이지의 고아(orphan) 상태를 해소.
+  // 기존엔 같은 학년의 다른 과목만 링크 → 초등/고등 페이지로 진입 경로가 없었음.
+  // 이제 3개 학년이 서로를 링크하여 어느 학년으로 진입해도 전 학년 도달 가능.
+  const GRADE_SWITCH = ["초등", "중등", "고등"];
+  const GRADE_SW_ICON = { "초등": "🌱", "중등": "📗", "고등": "🎓" };
+  const shortRegionSw = (gu === dong) ? gu : dong;
+  let gradeSwitchHtml = "";
+  for (const g of GRADE_SWITCH) {
+    if (g === grade) continue;   // 현재 학년 제외
+    const dispG = getDisplaySubject(subject, g);
+    const gHref = `/${city}-${gu}-${dong}-${g}-${subject}-과외/`.replace(/ /g, "-");
+    const gIcon = GRADE_SW_ICON[g] || "📚";
+    gradeSwitchHtml += `<a href="${gHref}" style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid #f0e6fc;text-decoration:none;background:white;transition:background .12s" onmouseover="this.style.background='#faf5ff'" onmouseout="this.style.background='white'"><div style="display:flex;align-items:center;gap:10px"><div style="width:30px;height:30px;border-radius:50%;background:#f0e6fc;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">${gIcon}</div><div><div style="font-size:.85rem;font-weight:700;color:#370558">${shortRegionSw} ${g} ${dispG} 과외</div><div style="font-size:.72rem;color:#9b6cc0;margin-top:2px">${g} 눈높이 맞춤 1:1 ${dispG} 수업</div></div></div><div style="font-size:.85rem;color:#c9a3e8;flex-shrink:0">→</div></a>`;
+  }
+
+
   let featuresHtml = "";
   for (const [icon, title, desc] of features) {
     featuresHtml += `<div class="feature-item"><div class="feature-icon">${icon}</div><div><div class="feature-title">${title}</div><div class="feature-desc">${desc}</div></div></div>`;
@@ -314,6 +331,15 @@ ${HEADER_HTML}
   </div>
 
   ${buildShareButtons(titleTag, canonical)}
+
+  <!-- 학년 스위처: 같은 지역 다른 학년 (고아 페이지 해소 + 내부링크 강화) -->
+  <div style="background:white;border:1px solid #e8d6f5;border-radius:14px;overflow:hidden;margin-top:10px;margin-bottom:10px">
+    <div style="padding:13px 16px;border-bottom:1px solid #f0e6fc;background:#faf5ff;display:flex;align-items:center;justify-content:space-between">
+      <span style="font-size:.88rem;font-weight:700;color:#370558">${shortRegionSw} 다른 학년 ${dispSubject} 과외</span>
+      <span style="font-size:.72rem;color:#9b6cc0">학년별 맞춤 →</span>
+    </div>
+    ${gradeSwitchHtml}
+  </div>
 
   <!-- 리스트형 관련 과목 -->
   <div style="background:white;border:1px solid #e8d6f5;border-radius:14px;overflow:hidden;margin-top:10px;margin-bottom:48px">
