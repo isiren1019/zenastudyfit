@@ -29,8 +29,41 @@ export function buildMainPage() {
   <link rel="canonical" href="${SITE_DOMAIN}/">
   <meta property="og:type" content="website">
   <meta property="og:title" content="전국 방문·화상 과외 전문 | ${SITE_NAME}">
+  <meta property="og:description" content="베테랑 선생님의 1:1 맞춤 과외. 초·중·고 전과목 내신 전문. 무료 시범수업 신청 가능.">
+  <meta property="og:url" content="${SITE_DOMAIN}/">
   <meta property="og:image" content="${SITE_DOMAIN}/images/og-image.png">
+  <meta property="og:site_name" content="${SITE_NAME}">
+  <meta property="og:locale" content="ko_KR">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="전국 방문·화상 과외 전문 | ${SITE_NAME}">
+  <meta name="twitter:description" content="베테랑 선생님의 1:1 맞춤 과외. 초·중·고 전과목 내신 전문. 무료 시범수업 신청 가능.">
+  <meta name="twitter:image" content="${SITE_DOMAIN}/images/og-image.png">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "${SITE_NAME}",
+  "url": "${SITE_DOMAIN}/",
+  "logo": "${SITE_DOMAIN}/images/og-image.png",
+  "description": "초·중·고 전과목 1:1 방문·화상 과외 전문. 베테랑 선생님의 내신·수능 맞춤 수업.",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+82-10-5949-9897",
+    "contactType": "customer service",
+    "areaServed": "KR",
+    "availableLanguage": "Korean"
+  }
+}
+</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "${SITE_NAME}",
+  "url": "${SITE_DOMAIN}/"
+}
+</script>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;800&display=swap" rel="stylesheet">
   <style>
     ${HEADER_CSS}
@@ -114,7 +147,7 @@ export function buildMainPage() {
 ${HEADER_HTML}
 <div class="hero">
   <div class="hero-badge">전국 방문 · 화상 과외 전문</div>
-  <h1>우리 아이 성적 향상,<br>베테랑 선생님과 함께</h1>
+  <h1>전국 방문·화상 1:1 과외<br>우리 아이 성적 향상, 베테랑 선생님과 함께</h1>
   <p>전문 선생님의 1:1 맞춤 수업 · 초·중·고 전과목 내신 전문</p>
   <div class="hero-btns">
     <a href="${FORM_URL}" class="btn-pink" target="_blank">📝 체험신청</a>
@@ -134,7 +167,7 @@ ${HEADER_HTML}
 <div style="background:#fff">
 <div class="sec">
   <div class="sec-label">진단 검사</div>
-  <div class="sec-title">우리 아이의 학습 상태,<br>정확하게 파악하고 있나요?</div>
+  <h2 class="sec-title">우리 아이의 학습 상태,<br>정확하게 파악하고 있나요?</h2>
   <div class="sec-sub">표면적인 성적만으로는 진짜 문제를 알 수 없습니다.<br>상담 전 학습 진단으로 맞춤 학습 방향을 설계해 드립니다.</div>
   <div class="diag-grid">
     <div class="diag-card"><div class="diag-num">01</div><div class="diag-title">학습 수준 진단</div><div class="diag-desc">현재 학습 수준과 취약 단원을 정확히 파악합니다</div></div>
@@ -151,7 +184,7 @@ ${HEADER_HTML}
 <div style="background:#faf5ff">
 <div class="sec">
   <div class="sec-label">학습 시스템</div>
-  <div class="sec-title">수업 시작부터 성적 향상까지<br>체계적인 5단계 관리</div>
+  <h2 class="sec-title">수업 시작부터 성적 향상까지<br>체계적인 5단계 관리</h2>
   <div class="sec-sub">단순한 과외가 아닙니다. 처음부터 끝까지 책임지는 시스템입니다.</div>
   <div class="sys-step"><div class="step-num">1</div><div><div class="step-title">무료 상담 · 진단</div><div class="step-desc">학생의 현재 수준, 목표 성적, 학습 성향을 파악합니다</div></div></div>
   <div class="sys-step"><div class="step-num">2</div><div><div class="step-title">선생님 매칭</div><div class="step-desc">진단 결과에 맞는 검증된 전담 선생님을 배정합니다</div></div></div>
@@ -167,7 +200,7 @@ ${HEADER_HTML}
 <div style="background:#fff">
 <div class="sec">
   <div class="sec-label">선생님 자질 · 역량</div>
-  <div class="sec-title">아무 선생님이 아닙니다<br>검증된 베테랑 선생님입니다</div>
+  <h2 class="sec-title">아무 선생님이 아닙니다<br>검증된 베테랑 선생님입니다</h2>
   <div class="sec-sub">제나쌤 스터디핏의 선생님은 까다로운 검증 과정을 통과한 분들입니다.</div>
   <div class="teacher-grid">
     <div class="teacher-card"><div class="teacher-icon">🎓</div><div class="teacher-title">학력 · 경력 검증</div><div class="teacher-desc">출신 대학, 전공, 과외 경력을 꼼꼼히 확인합니다</div></div>
@@ -182,7 +215,7 @@ ${HEADER_HTML}
 <div style="background:#faf5ff">
 <div class="sec">
   <div class="sec-label">FIND YOUR CLASS</div>
-  <div class="sec-title">수업 찾기</div>
+  <h2 class="sec-title">과목별 · 지역별 과외 수업 찾기</h2>
   <div class="sec-sub">원하는 카테고리를 선택하세요</div>
   <div class="find-tabs">
     <button class="find-tab find-tab-active" data-tab="region">📍 지역별 과외</button>
