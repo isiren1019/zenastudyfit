@@ -31,7 +31,31 @@ import { HEADER_CSS, HEADER_HTML, FOOTER_HTML, FLOAT_CSS, FLOAT_HTML } from '../
 import { seededRandom, getPageDates, buildBreadcrumbJsonLd, buildSocialMeta, buildShareButtons } from '../utils.js';
 import { makeFeatures, FIXED_FAQ } from '../content-pools.js';
 import { SCHOOLS_ELEM, SCHOOLS_MIDDLE, SCHOOLS_HIGH } from '../data/schools.js';
+import { AREAS } from '../data/areas.js';
 import { buildGradeRoadmapCards } from './_helpers.js';
+
+
+// ── 학교 → 지역 페이지 매칭 (SEO: 학교 신뢰도를 지역 페이지로 전달) ─────
+// 학교 데이터는 시·군·구가 "용인시"(시 단위)까지만 있음.
+// areas의 gu는 "용인시 수지구"(시+구)이므로, sigungu로 시작하는 지역을 모두 후보로.
+// - "용인시" → "용인시", "용인시 기흥구", "용인시 수지구", "용인시 처인구" 소속 동 전부
+// - "강남구" → "강남구" 소속 동 전부
+// 시드 셔플로 대표 max개 추출 (결정적).
+// ⚠️ 학교 데이터에 동(洞) 정보가 없어 시 단위 매칭이 한계. 동 정보 추가 시 정밀화 가능.
+function getSchoolAreas(sido, sigungu, rngPick, max = 10) {
+  const pool = AREAS.filter(([s, gu]) =>
+    s === sido && (gu === sigungu || gu.startsWith(sigungu + " "))
+  );
+  const arr = [...pool];
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(rngPick() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return { picked: arr.slice(0, max), total: pool.length };
+}
+
+// 학교 레벨 → 지역 페이지에 걸 대표 학년
+const SCHOOL_LEVEL_GRADE = { "초등": "초등", "중등": "중등", "고등": "고등" };
 
 
 // ── 학교 메인 페이지 (시도 카드) ──────────────────────────────
@@ -594,6 +618,38 @@ export function buildSchoolSubjectPage(sido, sigungu, schoolName, subject, level
 </a>`;
   }
 
+  // ── 학교 → 지역 페이지 링크 섹션 (SEO: 학교 신뢰도를 지역으로 전달) ─────
+  // 별도 rng(rngArea)로 대표 지역을 뽑아 기존 콘텐츠 흐름과 분리.
+  const rngArea = seededRandom((seedVal * 167 + 29) % 2147483647);
+  const areaGrade = SCHOOL_LEVEL_GRADE[level] || "중등";
+  const { picked: schoolAreas, total: schoolAreaTotal } = getSchoolAreas(sido, sigungu, rngArea, 10);
+  let schoolAreasHtml = "";
+  if (schoolAreas.length > 0) {
+    let rows = "";
+    for (const [s, gu, dong] of schoolAreas) {
+      const href = `/${s}-${gu}-${dong}-${areaGrade}-${subject}-과외/`.replace(/ /g, "-");
+      // 표시명: 구가 있으면 "수지구 풍덕천동", 시=구=동이면 "태백시"
+      const areaLabel = (gu === dong)
+        ? gu
+        : (gu.includes(" ") ? gu.split(" ").slice(1).join(" ") + " " + dong : gu + " " + dong);
+      rows += `<a href="${href}" style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid #f0e6fc;text-decoration:none;background:white;transition:background .12s" onmouseover="this.style.background='#faf5ff'" onmouseout="this.style.background='white'"><div style="display:flex;align-items:center;gap:10px"><div style="width:30px;height:30px;border-radius:50%;background:#f0e6fc;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">📍</div><div><div style="font-size:.85rem;font-weight:700;color:#370558">${areaLabel} ${areaGrade} ${subject} 과외</div><div style="font-size:.72rem;color:#9b6cc0;margin-top:2px">${areaLabel} 방문·화상 1:1 ${subject} 수업</div></div></div><div style="font-size:.85rem;color:#c9a3e8;flex-shrink:0">→</div></a>`;
+    }
+    // 전체 지역이 노출 개수보다 많을 때만 "전체 보기" 링크
+    const moreLink = (schoolAreaTotal > schoolAreas.length)
+      ? `<a href="/regions/" style="display:block;padding:11px 16px;text-align:center;font-size:.78rem;font-weight:700;color:#7b2fa8;text-decoration:none;background:#faf5ff">${sigungu} 전체 지역 과외 보기 →</a>`
+      : "";
+    schoolAreasHtml = `
+  <!-- 학교 → 지역 페이지 링크 (SEO 상호링크) -->
+  <div style="background:white;border:1px solid #e8d6f5;border-radius:14px;overflow:hidden;margin-top:24px;margin-bottom:8px">
+    <div style="padding:13px 16px;border-bottom:1px solid #f0e6fc;background:#faf5ff;display:flex;align-items:center;justify-content:space-between">
+      <span style="font-size:.88rem;font-weight:700;color:#370558">${sigungu} 지역별 ${subject} 과외</span>
+      <span style="font-size:.72rem;color:#9b6cc0">동네 방문·화상 →</span>
+    </div>
+    ${rows}
+    ${moreLink}
+  </div>`;
+  }
+
   return `<!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -741,6 +797,7 @@ ${HEADER_HTML}
     <div style="font-size:.72rem;color:#9b6cc0;margin-bottom:12px">학생에게 필요한 다른 과목도 확인해보세요</div>
     <div class="other-subj-grid">${otherSubjectsHtml}</div>
   </div>
+${schoolAreasHtml}
 
   <div class="cta-sec">
     <h2>지금 바로 무료 상담받으세요</h2>
