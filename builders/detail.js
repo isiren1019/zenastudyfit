@@ -41,8 +41,19 @@ const SIDO_SHORT_MAP = {
   "제주도": "제주", "제주특별자치도": "제주",
 };
 
+// 시·군·구 정규화: 라우팅이 넘기는 gu는 "용인시 수지구"처럼 시+구가 붙어 있음.
+// 학교·학원 데이터는 "용인시"(시 단위)만 저장하므로 구(區)를 떼어 시 단위로 맞춤.
+// - "용인시 수지구" → "용인시"  (공백으로 분리, 첫 토막=시)
+// - "강남구"        → "강남구"  (단일 토막이면 그대로)
+// - "태백시"        → "태백시"
+function normSigungu(gu) {
+  const parts = String(gu).trim().split(/\s+/);
+  return parts.length > 1 ? parts[0] : gu;
+}
+
 // 같은 시·군·구 학교를 현재 학년 우선으로 최대 max개 (시드 결정적)
-function getLocalSchools(city, gu, grade, rngPick, max = 6) {
+// guNorm: normSigungu로 정규화된 시·군·구명
+function getLocalSchools(city, guNorm, grade, rngPick, max = 6) {
   const LV_BY_GRADE = { "초등": "초등", "중등": "중등", "고등": "고등" };
   const primaryLv = LV_BY_GRADE[grade] || "중등";
   const buckets = {
@@ -51,7 +62,7 @@ function getLocalSchools(city, gu, grade, rngPick, max = 6) {
   const collect = (lv) => {
     const out = [];
     for (const row of buckets[lv]) {
-      if (row[0] === city && row[1] === gu) out.push({ name: row[2], level: lv });
+      if (row[0] === city && row[1] === guNorm) out.push({ name: row[2], level: lv });
     }
     return out;
   };
@@ -76,13 +87,14 @@ function getLocalSchools(city, gu, grade, rngPick, max = 6) {
 }
 
 // 같은 시·군·구 학원 지점 (지점명 중복 제거, 브랜드명 노출 X)
-function getLocalCenters(city, gu) {
+// guNorm: normSigungu로 정규화된 시·군·구명
+function getLocalCenters(city, guNorm) {
   const short = SIDO_SHORT_MAP[city];
   if (!short) return [];
   const seen = new Set();
   const out = [];
   for (const c of ACADEMY_CENTERS) {
-    if (c.sidoName === short && c.sigungu === gu) {
+    if (c.sidoName === short && c.sigungu === guNorm) {
       if (!seen.has(c.name)) { seen.add(c.name); out.push(c); }
     }
   }
@@ -231,17 +243,20 @@ export function buildDetailPage(city, gu, dong, grade, subject, slug) {
   // 같은 시·군·구 학교(현재 학년 우선 6개)와 학원 지점(있을 때만).
   // 별도 rng(rngLocal)로 뽑아 기존 본문 rng 흐름을 건드리지 않음.
   const rngLocal = seededRandom((seedVal * 251 + 13) % 2147483647);
-  const localSchools = getLocalSchools(city, gu, grade, rngLocal, 6);
-  const localCenters = getLocalCenters(city, gu);
-  const guLabel = (gu === dong) ? gu : gu;   // 시·군·구 라벨
+  const guNorm = normSigungu(gu);            // "용인시 수지구" → "용인시" (데이터 매칭용)
+  const localSchools = getLocalSchools(city, guNorm, grade, rngLocal, 6);
+  const localCenters = getLocalCenters(city, guNorm);
+  const guLabel = guNorm;                     // 섹션 제목엔 시 단위명 사용 (예: 용인시)
 
   // 학교 섹션 HTML (학교가 있을 때만)
   let localSchoolsHtml = "";
   if (localSchools.length > 0) {
     let rows = "";
+    const LV_PREFIX = { "초등": "초", "중등": "중", "고등": "고" };
     for (const sc of localSchools) {
       const icon = SCHOOL_LV_ICON[sc.level] || "🏫";
-      const href = `/school/${sc.level}-${city}-${gu}-${sc.name}-${subject}-과외/`.replace(/ /g, "-");
+      const lvPre = LV_PREFIX[sc.level] || "중";
+      const href = `/school/${lvPre}-${city}-${guNorm}-${sc.name}-${subject}-과외/`.replace(/ /g, "-");
       rows += `<a href="${href}" style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid #f0e6fc;text-decoration:none;background:white;transition:background .12s" onmouseover="this.style.background='#faf5ff'" onmouseout="this.style.background='white'"><div style="display:flex;align-items:center;gap:10px"><div style="width:30px;height:30px;border-radius:50%;background:#f0e6fc;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">${icon}</div><div><div style="font-size:.85rem;font-weight:700;color:#370558">${sc.name} ${dispSubject} 과외</div><div style="font-size:.72rem;color:#9b6cc0;margin-top:2px">${sc.name} 내신·${grade} ${dispSubject} 맞춤 1:1</div></div></div><div style="font-size:.85rem;color:#c9a3e8;flex-shrink:0">→</div></a>`;
     }
     const schoolsHubHref = `/schools/${city}/`.replace(/ /g, "-");
