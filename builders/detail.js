@@ -26,6 +26,70 @@ import {
 } from '../utils.js';
 import { makeIntro, makeBody, makeConclusion, makeFeatures, FIXED_FAQ } from '../content-pools.js';
 import { buildGradeRoadmapCards } from './_helpers.js';
+import { SCHOOLS_ELEM, SCHOOLS_MIDDLE, SCHOOLS_HIGH } from '../data/schools.js';
+import { ACADEMY_CENTERS } from '../data/academy/centers.js';
+
+
+// ── 지역 고유 정보용 헬퍼 (SEO 차별화) ────────────────────────
+// 시·도 정식명(schools.js) → 축약명(centers.js) 매핑
+const SIDO_SHORT_MAP = {
+  "서울특별시": "서울", "경기도": "경기", "인천광역시": "인천", "부산광역시": "부산",
+  "대구광역시": "대구", "대전광역시": "대전", "광주광역시": "광주", "울산광역시": "울산",
+  "세종시": "세종", "세종특별자치시": "세종", "강원도": "강원", "강원특별자치도": "강원",
+  "충청북도": "충북", "충청남도": "충남", "전라북도": "전북", "전북특별자치도": "전북",
+  "전라남도": "전남", "경상북도": "경북", "경상남도": "경남",
+  "제주도": "제주", "제주특별자치도": "제주",
+};
+
+// 같은 시·군·구 학교를 현재 학년 우선으로 최대 max개 (시드 결정적)
+function getLocalSchools(city, gu, grade, rngPick, max = 6) {
+  const LV_BY_GRADE = { "초등": "초등", "중등": "중등", "고등": "고등" };
+  const primaryLv = LV_BY_GRADE[grade] || "중등";
+  const buckets = {
+    "초등": SCHOOLS_ELEM, "중등": SCHOOLS_MIDDLE, "고등": SCHOOLS_HIGH,
+  };
+  const collect = (lv) => {
+    const out = [];
+    for (const row of buckets[lv]) {
+      if (row[0] === city && row[1] === gu) out.push({ name: row[2], level: lv });
+    }
+    return out;
+  };
+  // 학년 순서: 현재 학년 → 나머지
+  const order = [primaryLv, ...["초등", "중등", "고등"].filter(l => l !== primaryLv)];
+  let pool = [];
+  for (const lv of order) pool = pool.concat(collect(lv));
+  // 시드 셔플 (현재 학년 우선을 유지하려면 학년 그룹 내부만 섞음)
+  const grouped = {};
+  for (const it of pool) (grouped[it.level] = grouped[it.level] || []).push(it);
+  let result = [];
+  for (const lv of order) {
+    const arr = grouped[lv] || [];
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(rngPick() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    result = result.concat(arr);
+    if (result.length >= max) break;
+  }
+  return result.slice(0, max);
+}
+
+// 같은 시·군·구 학원 지점 (지점명 중복 제거, 브랜드명 노출 X)
+function getLocalCenters(city, gu) {
+  const short = SIDO_SHORT_MAP[city];
+  if (!short) return [];
+  const seen = new Set();
+  const out = [];
+  for (const c of ACADEMY_CENTERS) {
+    if (c.sidoName === short && c.sigungu === gu) {
+      if (!seen.has(c.name)) { seen.add(c.name); out.push(c); }
+    }
+  }
+  return out;
+}
+
+const SCHOOL_LV_ICON = { "초등": "🌱", "중등": "📗", "고등": "🎓" };
 
 
 // ── 지역×학년×과목 상세 페이지 ────────────────────────────────
@@ -162,6 +226,55 @@ export function buildDetailPage(city, gu, dong, grade, subject, slug) {
     gradeSwitchHtml += `<a href="${gHref}" style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid #f0e6fc;text-decoration:none;background:white;transition:background .12s" onmouseover="this.style.background='#faf5ff'" onmouseout="this.style.background='white'"><div style="display:flex;align-items:center;gap:10px"><div style="width:30px;height:30px;border-radius:50%;background:#f0e6fc;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">${gIcon}</div><div><div style="font-size:.85rem;font-weight:700;color:#370558">${shortRegionSw} ${g} ${dispG} 과외</div><div style="font-size:.72rem;color:#9b6cc0;margin-top:2px">${g} 눈높이 맞춤 1:1 ${dispG} 수업</div></div></div><div style="font-size:.85rem;color:#c9a3e8;flex-shrink:0">→</div></a>`;
   }
 
+
+  // ── 지역 고유 정보: 인근 학교 + 학원 지점 (SEO 콘텐츠 차별화) ─────
+  // 같은 시·군·구 학교(현재 학년 우선 6개)와 학원 지점(있을 때만).
+  // 별도 rng(rngLocal)로 뽑아 기존 본문 rng 흐름을 건드리지 않음.
+  const rngLocal = seededRandom((seedVal * 251 + 13) % 2147483647);
+  const localSchools = getLocalSchools(city, gu, grade, rngLocal, 6);
+  const localCenters = getLocalCenters(city, gu);
+  const guLabel = (gu === dong) ? gu : gu;   // 시·군·구 라벨
+
+  // 학교 섹션 HTML (학교가 있을 때만)
+  let localSchoolsHtml = "";
+  if (localSchools.length > 0) {
+    let rows = "";
+    for (const sc of localSchools) {
+      const icon = SCHOOL_LV_ICON[sc.level] || "🏫";
+      const href = `/school/${sc.level}-${city}-${gu}-${sc.name}-${subject}-과외/`.replace(/ /g, "-");
+      rows += `<a href="${href}" style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid #f0e6fc;text-decoration:none;background:white;transition:background .12s" onmouseover="this.style.background='#faf5ff'" onmouseout="this.style.background='white'"><div style="display:flex;align-items:center;gap:10px"><div style="width:30px;height:30px;border-radius:50%;background:#f0e6fc;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">${icon}</div><div><div style="font-size:.85rem;font-weight:700;color:#370558">${sc.name} ${dispSubject} 과외</div><div style="font-size:.72rem;color:#9b6cc0;margin-top:2px">${sc.name} 내신·${grade} ${dispSubject} 맞춤 1:1</div></div></div><div style="font-size:.85rem;color:#c9a3e8;flex-shrink:0">→</div></a>`;
+    }
+    const schoolsHubHref = `/schools/${city}/`.replace(/ /g, "-");
+    localSchoolsHtml = `
+  <!-- 인근 학교별 과외 (시·군·구 매칭, SEO 차별화) -->
+  <div style="background:white;border:1px solid #e8d6f5;border-radius:14px;overflow:hidden;margin-top:10px;margin-bottom:10px">
+    <div style="padding:13px 16px;border-bottom:1px solid #f0e6fc;background:#faf5ff;display:flex;align-items:center;justify-content:space-between">
+      <span style="font-size:.88rem;font-weight:700;color:#370558">${guLabel} 학교별 ${dispSubject} 과외</span>
+      <span style="font-size:.72rem;color:#9b6cc0">우리 학교 내신 →</span>
+    </div>
+    ${rows}
+    <a href="${schoolsHubHref}" style="display:block;padding:11px 16px;text-align:center;font-size:.78rem;font-weight:700;color:#7b2fa8;text-decoration:none;background:#faf5ff">${city} 전체 학교 보기 →</a>
+  </div>`;
+  }
+
+  // 학원 지점 섹션 HTML (지점이 있을 때만, 브랜드명 노출 X)
+  let localCentersHtml = "";
+  if (localCenters.length > 0) {
+    let rows = "";
+    for (const c of localCenters) {
+      const href = `/academy/center/${c.slug}/`;
+      rows += `<a href="${href}" style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid #f0e6fc;text-decoration:none;background:white;transition:background .12s" onmouseover="this.style.background='#f5fbf7'" onmouseout="this.style.background='white'"><div style="display:flex;align-items:center;gap:10px"><div style="width:30px;height:30px;border-radius:50%;background:#e5f3ea;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">🏫</div><div><div style="font-size:.85rem;font-weight:700;color:#1e4d3a">${c.name} 학습코칭</div><div style="font-size:.72rem;color:#5a8f72;margin-top:2px">${c.sigungu} 소재 · 방문 학습코칭 상담 가능</div></div></div><div style="font-size:.85rem;color:#8fc0a3;flex-shrink:0">→</div></a>`;
+    }
+    localCentersHtml = `
+  <!-- 인근 학습코칭 지점 (시·군·구 매칭, 있을 때만) -->
+  <div style="background:white;border:1px solid #cfe6d8;border-radius:14px;overflow:hidden;margin-top:10px;margin-bottom:10px">
+    <div style="padding:13px 16px;border-bottom:1px solid #e0efe6;background:#f5fbf7;display:flex;align-items:center;justify-content:space-between">
+      <span style="font-size:.88rem;font-weight:700;color:#1e4d3a">${guLabel} 인근 학습코칭 지점</span>
+      <span style="font-size:.72rem;color:#5a8f72">방문 학습코칭 →</span>
+    </div>
+    ${rows}
+  </div>`;
+  }
 
   let featuresHtml = "";
   for (const [icon, title, desc] of features) {
@@ -340,6 +453,8 @@ ${HEADER_HTML}
     </div>
     ${gradeSwitchHtml}
   </div>
+${localSchoolsHtml}
+${localCentersHtml}
 
   <!-- 리스트형 관련 과목 -->
   <div style="background:white;border:1px solid #e8d6f5;border-radius:14px;overflow:hidden;margin-top:10px;margin-bottom:48px">
