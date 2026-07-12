@@ -222,23 +222,6 @@ export function buildDetailPage(city, gu, dong, grade, subject, slug) {
   listHtml += `<a href="/self-study/" style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid #f0e6fc;text-decoration:none;background:white;transition:background .12s" onmouseover="this.style.background='#faf5ff'" onmouseout="this.style.background='white'"><div style="display:flex;align-items:center;gap:10px"><div style="width:30px;height:30px;border-radius:50%;background:#f0e6fc;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">📋</div><div><div style="font-size:.85rem;font-weight:700;color:#370558">공부 습관 완성 과외</div><div style="font-size:.72rem;color:#9b6cc0;margin-top:2px">과목별 공부법 · 플랜 관리 · 자기주도학습</div></div></div><div style="font-size:.85rem;color:#c9a3e8;flex-shrink:0">→</div></a>`;
   listHtml += `<a href="/coding/" style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;text-decoration:none;background:white;transition:background .12s" onmouseover="this.style.background='#faf5ff'" onmouseout="this.style.background='white'"><div style="display:flex;align-items:center;gap:10px"><div style="width:30px;height:30px;border-radius:50%;background:#f0e6fc;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">💻</div><div><div style="font-size:.85rem;font-weight:700;color:#370558">AI 시대 코딩 과외</div><div style="font-size:.72rem;color:#9b6cc0;margin-top:2px">자바스크립트 · 파이썬을 통한 컴퓨팅 사고력</div></div></div><div style="font-size:.85rem;color:#c9a3e8;flex-shrink:0">→</div></a>`;
 
-  // ── 학년 스위처: 같은 지역·같은 과목의 다른 학년 링크 ─────────────
-  // SEO 핵심 — 지역축 초등·고등 페이지의 고아(orphan) 상태를 해소.
-  // 기존엔 같은 학년의 다른 과목만 링크 → 초등/고등 페이지로 진입 경로가 없었음.
-  // 이제 3개 학년이 서로를 링크하여 어느 학년으로 진입해도 전 학년 도달 가능.
-  const GRADE_SWITCH = ["초등", "중등", "고등"];
-  const GRADE_SW_ICON = { "초등": "🌱", "중등": "📗", "고등": "🎓" };
-  const shortRegionSw = (gu === dong) ? gu : dong;
-  let gradeSwitchHtml = "";
-  for (const g of GRADE_SWITCH) {
-    if (g === grade) continue;   // 현재 학년 제외
-    const dispG = getDisplaySubject(subject, g);
-    const gHref = `/${city}-${gu}-${dong}-${g}-${subject}-과외/`.replace(/ /g, "-");
-    const gIcon = GRADE_SW_ICON[g] || "📚";
-    gradeSwitchHtml += `<a href="${gHref}" style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid #f0e6fc;text-decoration:none;background:white;transition:background .12s" onmouseover="this.style.background='#faf5ff'" onmouseout="this.style.background='white'"><div style="display:flex;align-items:center;gap:10px"><div style="width:30px;height:30px;border-radius:50%;background:#f0e6fc;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">${gIcon}</div><div><div style="font-size:.85rem;font-weight:700;color:#370558">${shortRegionSw} ${g} ${dispG} 과외</div><div style="font-size:.72rem;color:#9b6cc0;margin-top:2px">${g} 눈높이 맞춤 1:1 ${dispG} 수업</div></div></div><div style="font-size:.85rem;color:#c9a3e8;flex-shrink:0">→</div></a>`;
-  }
-
-
   // ── 지역 고유 정보: 인근 학교 + 학원 지점 (SEO 콘텐츠 차별화) ─────
   // 같은 시·군·구 학교(현재 학년 우선 6개)와 학원 지점(있을 때만).
   // 별도 rng(rngLocal)로 뽑아 기존 본문 rng 흐름을 건드리지 않음.
@@ -262,7 +245,7 @@ export function buildDetailPage(city, gu, dong, grade, subject, slug) {
     const schoolsHubHref = `/schools/${city}/`.replace(/ /g, "-");
     localSchoolsHtml = `
   <!-- 인근 학교별 과외 (시·군·구 매칭, SEO 차별화) -->
-  <div style="background:white;border:1px solid #e8d6f5;border-radius:14px;overflow:hidden;margin-top:10px;margin-bottom:10px">
+  <div style="background:white;border:1px solid #e8d6f5;border-radius:14px;overflow:hidden;margin-top:10px;margin-bottom:48px">
     <div style="padding:13px 16px;border-bottom:1px solid #f0e6fc;background:#faf5ff;display:flex;align-items:center;justify-content:space-between">
       <span style="font-size:.88rem;font-weight:700;color:#370558">${guLabel} 학교별 ${dispSubject} 과외</span>
       <span style="font-size:.72rem;color:#9b6cc0">우리 학교 내신 →</span>
@@ -278,13 +261,13 @@ export function buildDetailPage(city, gu, dong, grade, subject, slug) {
     let rows = "";
     for (const c of localCenters) {
       const href = `/academy/center/${c.slug}/`;
-      rows += `<a href="${href}" style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid #f0e6fc;text-decoration:none;background:white;transition:background .12s" onmouseover="this.style.background='#f5fbf7'" onmouseout="this.style.background='white'"><div style="display:flex;align-items:center;gap:10px"><div style="width:30px;height:30px;border-radius:50%;background:#e5f3ea;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">🏫</div><div><div style="font-size:.85rem;font-weight:700;color:#1e4d3a">${c.name} 학습코칭</div><div style="font-size:.72rem;color:#5a8f72;margin-top:2px">${c.sigungu} 소재 · 방문 학습코칭 상담 가능</div></div></div><div style="font-size:.85rem;color:#8fc0a3;flex-shrink:0">→</div></a>`;
+      rows += `<a href="${href}" style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid #f0e6fc;text-decoration:none;background:white;transition:background .12s" onmouseover="this.style.background='#f5fbf7'" onmouseout="this.style.background='white'"><div style="display:flex;align-items:center;gap:10px"><div style="width:30px;height:30px;border-radius:50%;background:#e5f3ea;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">🏫</div><div><div style="font-size:.85rem;font-weight:700;color:#1e4d3a">${c.name} 학습코칭학원</div><div style="font-size:.72rem;color:#5a8f72;margin-top:2px">${c.sigungu} 소재 · 방문 학습코칭 상담 가능</div></div></div><div style="font-size:.85rem;color:#8fc0a3;flex-shrink:0">→</div></a>`;
     }
     localCentersHtml = `
-  <!-- 인근 학습코칭 지점 (시·군·구 매칭, 있을 때만) -->
+  <!-- 인근 학습코칭학원 지점 (시·군·구 매칭, 있을 때만) -->
   <div style="background:white;border:1px solid #cfe6d8;border-radius:14px;overflow:hidden;margin-top:10px;margin-bottom:10px">
     <div style="padding:13px 16px;border-bottom:1px solid #e0efe6;background:#f5fbf7;display:flex;align-items:center;justify-content:space-between">
-      <span style="font-size:.88rem;font-weight:700;color:#1e4d3a">${guLabel} 인근 학습코칭 지점</span>
+      <span style="font-size:.88rem;font-weight:700;color:#1e4d3a">${guLabel} 인근 학습코칭학원 지점</span>
       <span style="font-size:.72rem;color:#5a8f72">방문 학습코칭 →</span>
     </div>
     ${rows}
@@ -460,25 +443,16 @@ ${HEADER_HTML}
 
   ${buildShareButtons(titleTag, canonical)}
 
-  <!-- 학년 스위처: 같은 지역 다른 학년 (고아 페이지 해소 + 내부링크 강화) -->
-  <div style="background:white;border:1px solid #e8d6f5;border-radius:14px;overflow:hidden;margin-top:10px;margin-bottom:10px">
-    <div style="padding:13px 16px;border-bottom:1px solid #f0e6fc;background:#faf5ff;display:flex;align-items:center;justify-content:space-between">
-      <span style="font-size:.88rem;font-weight:700;color:#370558">${shortRegionSw} 다른 학년 ${dispSubject} 과외</span>
-      <span style="font-size:.72rem;color:#9b6cc0">학년별 맞춤 →</span>
-    </div>
-    ${gradeSwitchHtml}
-  </div>
-${localSchoolsHtml}
-${localCentersHtml}
-
   <!-- 리스트형 관련 과목 -->
-  <div style="background:white;border:1px solid #e8d6f5;border-radius:14px;overflow:hidden;margin-top:10px;margin-bottom:48px">
+  <div style="background:white;border:1px solid #e8d6f5;border-radius:14px;overflow:hidden;margin-top:10px;margin-bottom:10px">
     <div style="padding:13px 16px;border-bottom:1px solid #f0e6fc;background:#faf5ff;display:flex;align-items:center;justify-content:space-between">
       <span style="font-size:.88rem;font-weight:700;color:#370558">${dong} ${grade} 다른 과목 과외</span>
       <span style="font-size:.72rem;color:#9b6cc0">클릭해서 바로 확인 →</span>
     </div>
     ${listHtml}
   </div>
+${localCentersHtml}
+${localSchoolsHtml}
 </div>
 
 ${FOOTER_HTML}
