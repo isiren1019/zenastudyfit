@@ -19,7 +19,7 @@ import { VALID_SLUGS, parseSlug } from './slug.js';
 // ── 데이터 (라우터에서 직접 페이지 존재 여부 판단용) ────────
 import { AREAS } from './data/areas.js';
 import { SCHOOLS_ELEM, SCHOOLS_MIDDLE, SCHOOLS_HIGH } from './data/schools.js';
-import { GRADE_SUBJECT_META, SUBJECT_HUB_DATA } from './data/subjects/_meta.js';
+import { GRADE_SUBJECT_META, SUBJECT_HUB_DATA, CODING_PAGE_READY } from './data/subjects/_meta.js';
 import {
   KOREAN_EXAM_DATA, KOREAN_GRAMMAR_DATA, KOREAN_LITERACY_DATA,
   KOREAN_READING_DATA, KOREAN_PERFORM_DATA, KOREAN_HABIT_DATA,
@@ -147,9 +147,24 @@ Sitemap: ${BASE}/sitemap-schools-3.xml
       const BASE = "https://zenastudyfit.com";
       const GRADES = ["초등","중등","고등"];
       const SUBJS = ["국어","영어","수학","과학","사회","한국사"];
+      const LIMIT = 100;   // 1회 전송 상한 (IndexNow 자체는 최대 10,000개)
 
-      // 대표 URL 100개만 전송 (IndexNow는 한번에 최대 10,000개)
-      const urls = [BASE + "/", BASE + "/regions/", BASE + "/schools/"];
+      // ⚠️ urls는 앞에서부터 LIMIT개만 전송되므로, 우선순위 높은 URL을 앞에 배치할 것
+      // 1순위: 메인·허브 페이지
+      const urls = [
+        BASE + "/",
+        BASE + "/regions/",
+        BASE + "/schools/",
+        BASE + "/study/",
+        BASE + "/coding/",
+      ];
+
+      // 2순위: 코딩 세부 페이지 23개 (신규 페이지 우선 색인)
+      for (const slug of Object.values(CODING_PAGE_READY)) {
+        urls.push(BASE + slug);
+      }
+
+      // 3순위: 지역 페이지 (남은 자리만큼 채움)
       for (const [city, gu, dong] of AREAS.slice(0, 20)) {
         for (const grade of GRADES) {
           for (const subj of SUBJS) {
@@ -159,6 +174,7 @@ Sitemap: ${BASE}/sitemap-schools-3.xml
         }
       }
 
+      const sendList = urls.slice(0, LIMIT);
       try {
         const res = await fetch("https://searchadvisor.naver.com/indexnow", {
           method: "POST",
@@ -167,12 +183,17 @@ Sitemap: ${BASE}/sitemap-schools-3.xml
             host: "zenastudyfit.com",
             key: KEY,
             keyLocation: `${BASE}/${KEY}.txt`,
-            urlList: urls.slice(0, 100)
+            urlList: sendList
           })
         });
-        return new Response(`IndexNow 요청 완료! 상태코드: ${res.status} / 전송URL: ${urls.length}개`, {
-          headers: { "Content-Type": "text/plain;charset=UTF-8" }
-        });
+        return new Response(
+          `IndexNow 요청 완료! 상태코드: ${res.status}\n` +
+          `전송: ${sendList.length}개 (대기열 ${urls.length}개 중 상위 ${LIMIT}개)\n` +
+          `- 허브: 5개\n` +
+          `- 코딩 세부: ${Object.keys(CODING_PAGE_READY).length}개\n` +
+          `- 지역: ${sendList.length - 5 - Object.keys(CODING_PAGE_READY).length}개`,
+          { headers: { "Content-Type": "text/plain;charset=UTF-8" } }
+        );
       } catch(e) {
         return new Response(`오류: ${e.message}`, { status: 500, headers: { "Content-Type": "text/plain;charset=UTF-8" } });
       }
