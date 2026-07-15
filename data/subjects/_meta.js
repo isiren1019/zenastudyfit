@@ -67,6 +67,10 @@ import {
   CHINESE_LANG_CERT_DATA, CHINESE_LANG_LEVEL_DATA, CHINESE_LANG_SKILL_DATA,
   CHINESE_LANG_PURPOSE_DATA, CHINESE_LANG_SCHOOL_DATA, CHINESE_LANG_BIZ_DATA,
 } from './chinese-lang.js';
+import {
+  CODING_TOOL_DATA, CODING_LEVEL_DATA, CODING_FIELD_DATA,
+  CODING_SCHOOL_DATA, CODING_PURPOSE_DATA,
+} from './coding.js';
 
 
 // ── 1) GRADE_SUBJECT_META — 학년별 페이지 메타 ─────────────────
@@ -188,6 +192,20 @@ export const SUBJECT_CATEGORY_META = {
     "biz":     { label: "비즈니스 중국어", data: () => CHINESE_LANG_BIZ_DATA },
     "purpose": { label: "목적별 수업",     data: () => CHINESE_LANG_PURPOSE_DATA },
     "school":  { label: "진학·유학",       data: () => CHINESE_LANG_SCHOOL_DATA },
+  },
+  // ── 코딩 (별도 라우팅: /coding/{cat}/{slug}/) ──
+  "coding": {
+    name: "코딩",
+    pathPrefix: "/coding",
+    breadcrumbHubLabel: "코딩 과외",
+    breadcrumbHubUrl: "/coding/",
+    breadcrumbSubjectLabel: "코딩 과외",
+    breadcrumbSubjectUrl: "/coding/",
+    "tool":    { label: "언어·도구별",   data: () => CODING_TOOL_DATA },
+    "level":   { label: "대상별 학습",   data: () => CODING_LEVEL_DATA },
+    "field":   { label: "분야별 학습",   data: () => CODING_FIELD_DATA },
+    "school":  { label: "내신·입시",     data: () => CODING_SCHOOL_DATA },
+    "purpose": { label: "목적별 학습",   data: () => CODING_PURPOSE_DATA },
   },
 };
 
@@ -575,4 +593,79 @@ export const LANGUAGE_PAGE_READY = {
     "school/naesin":       "/language/chinese/school/naesin/",
     "school/univ-china":   "/language/chinese/school/univ-china/",
   },
+};
+
+
+// ── 6) CODING_HUB_CATEGORIES — 코딩 페이지 카테고리 카드 데이터 ──
+// buildCodingPage()가 사용 — 코딩 메인 페이지(/coding/)의 카테고리 그리드 표시용
+// SUBJECT_CATEGORY_META와는 별개의 데이터 (코딩 메뉴 페이지 전용 UI 카드)
+// 새 코딩 카테고리 추가 시 여기 + CODING_PAGE_READY 둘 다 수정해야 카드가 활성화됨
+export const CODING_HUB_CATEGORIES = [
+  { key: "tool", name: "언어·도구별", count: 6, isNew: true, highlight: true,
+    items: [
+      ["python",     "🐍 파이썬"],
+      ["block",      "🧩 블록 코딩"],
+      ["javascript", "⚡ 자바스크립트"],
+      ["html-css",   "🎨 HTML + CSS"],
+      ["java",       "☕ 자바"],
+      ["clang",      "⚙️ C언어"],
+    ]},
+  { key: "level", name: "대상별 학습", count: 6, isNew: true,
+    items: [
+      ["elementary",  "🌱 초등 코딩"],
+      ["middle",      "📗 중등 코딩"],
+      ["high",        "🎓 고등 코딩"],
+      ["intl-school", "🌏 국제학교 코딩"],
+      ["university",  "🏛️ 대학생 코딩"],
+      ["adult",       "💼 성인 코딩 입문"],
+    ]},
+  { key: "field", name: "분야별 학습", count: 5, isNew: true,
+    items: [
+      ["game",      "🎮 게임 개발"],
+      ["app",       "📱 앱 개발"],
+      ["web",       "🌐 웹 개발"],
+      ["algorithm", "🧠 알고리즘·코딩테스트"],
+      ["data-ai",   "📊 데이터분석·AI"],
+    ]},
+  { key: "school", name: "내신·입시", count: 4, isNew: true,
+    items: [
+      ["naesin",           "📝 정보 교과 대비"],
+      ["sw-admission",     "🏫 SW 특기자전형"],
+      ["koi",              "🏆 정보올림피아드"],
+      ["curriculum-2022",  "📘 2022 개정 교과"],
+    ]},
+  { key: "purpose", name: "목적별 학습", count: 2, isNew: true,
+    items: [
+      ["digital-literacy", "🔍 디지털 문해력"],
+      ["portfolio",        "📁 포트폴리오 완성"],
+    ]},
+];
+
+// ── 7) CODING_PAGE_READY — 활성화된 코딩 페이지 슬러그 매핑 ──
+// buildCodingPage()가 사용 — 카테고리 카드 클릭 시 실제 존재하는 페이지로만 링크
+// 새 코딩 페이지 추가 시 이 매핑에 추가해야 카드가 클릭 가능해짐
+export const CODING_PAGE_READY = {
+  "tool/python":     "/coding/tool/python/",
+  "tool/block":      "/coding/tool/block/",
+  "tool/javascript": "/coding/tool/javascript/",
+  "tool/html-css":   "/coding/tool/html-css/",
+  "tool/java":       "/coding/tool/java/",
+  "tool/clang":      "/coding/tool/clang/",
+  "level/elementary":  "/coding/level/elementary/",
+  "level/middle":      "/coding/level/middle/",
+  "level/high":        "/coding/level/high/",
+  "level/intl-school": "/coding/level/intl-school/",
+  "level/university":  "/coding/level/university/",
+  "level/adult":       "/coding/level/adult/",
+  "field/game":      "/coding/field/game/",
+  "field/app":       "/coding/field/app/",
+  "field/web":       "/coding/field/web/",
+  "field/algorithm": "/coding/field/algorithm/",
+  "field/data-ai":   "/coding/field/data-ai/",
+  "school/naesin":          "/coding/school/naesin/",
+  "school/sw-admission":    "/coding/school/sw-admission/",
+  "school/koi":             "/coding/school/koi/",
+  "school/curriculum-2022": "/coding/school/curriculum-2022/",
+  "purpose/digital-literacy": "/coding/purpose/digital-literacy/",
+  "purpose/portfolio":        "/coding/purpose/portfolio/",
 };
