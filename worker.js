@@ -64,6 +64,10 @@ import {
   CHINESE_LANG_CERT_DATA, CHINESE_LANG_LEVEL_DATA, CHINESE_LANG_SKILL_DATA,
   CHINESE_LANG_PURPOSE_DATA, CHINESE_LANG_SCHOOL_DATA, CHINESE_LANG_BIZ_DATA,
 } from './data/subjects/chinese-lang.js';
+import {
+  CODING_TOOL_DATA, CODING_LEVEL_DATA, CODING_FIELD_DATA,
+  CODING_SCHOOL_DATA, CODING_PURPOSE_DATA,
+} from './data/subjects/coding.js';
 
 // ── 빌더 ─────────────────────────────────────────────────────
 import { handleSitemap, checkRedirect } from './builders/sitemap.js';
@@ -206,6 +210,61 @@ Sitemap: ${BASE}/sitemap-schools-3.xml
       return new Response(buildCodingPage(), {
         headers: { "Content-Type": "text/html;charset=UTF-8" }
       });
+    }
+
+    // 코딩 언어·도구별 페이지 (/coding/tool/{slug}/)
+    const codingToolMatch = path.match(/^\/coding\/tool\/([^\/]+)\/?$/);
+    if (codingToolMatch) {
+      const toolKey = codingToolMatch[1];
+      if (CODING_TOOL_DATA[toolKey]) {
+        return new Response(buildKoreanHabitPage(toolKey, "tool", "coding"), {
+          headers: { "Content-Type": "text/html;charset=UTF-8" }
+        });
+      }
+    }
+
+    // 코딩 대상별 학습 페이지 (/coding/level/{slug}/)
+    const codingLevelMatch = path.match(/^\/coding\/level\/([^\/]+)\/?$/);
+    if (codingLevelMatch) {
+      const levelKey = codingLevelMatch[1];
+      if (CODING_LEVEL_DATA[levelKey]) {
+        return new Response(buildKoreanHabitPage(levelKey, "level", "coding"), {
+          headers: { "Content-Type": "text/html;charset=UTF-8" }
+        });
+      }
+    }
+
+    // 코딩 분야별 학습 페이지 (/coding/field/{slug}/)
+    const codingFieldMatch = path.match(/^\/coding\/field\/([^\/]+)\/?$/);
+    if (codingFieldMatch) {
+      const fieldKey = codingFieldMatch[1];
+      if (CODING_FIELD_DATA[fieldKey]) {
+        return new Response(buildKoreanHabitPage(fieldKey, "field", "coding"), {
+          headers: { "Content-Type": "text/html;charset=UTF-8" }
+        });
+      }
+    }
+
+    // 코딩 내신·입시 페이지 (/coding/school/{slug}/)
+    const codingSchoolMatch = path.match(/^\/coding\/school\/([^\/]+)\/?$/);
+    if (codingSchoolMatch) {
+      const schoolKey = codingSchoolMatch[1];
+      if (CODING_SCHOOL_DATA[schoolKey]) {
+        return new Response(buildKoreanHabitPage(schoolKey, "school", "coding"), {
+          headers: { "Content-Type": "text/html;charset=UTF-8" }
+        });
+      }
+    }
+
+    // 코딩 목적별 학습 페이지 (/coding/purpose/{slug}/)
+    const codingPurposeMatch = path.match(/^\/coding\/purpose\/([^\/]+)\/?$/);
+    if (codingPurposeMatch) {
+      const purposeKey = codingPurposeMatch[1];
+      if (CODING_PURPOSE_DATA[purposeKey]) {
+        return new Response(buildKoreanHabitPage(purposeKey, "purpose", "coding"), {
+          headers: { "Content-Type": "text/html;charset=UTF-8" }
+        });
+      }
     }
 
     // 제2외국어 회화 페이지 (english/japanese/chinese)
