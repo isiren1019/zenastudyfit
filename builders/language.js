@@ -20,7 +20,7 @@
 import { SITE_NAME, SITE_DOMAIN, FORM_URL, KAKAO_URL, PHONE, CODING_FORM_URL } from '../config.js';
 import { HEADER_CSS, HEADER_HTML, FOOTER_HTML, FLOAT_CSS, FLOAT_HTML } from '../layout.js';
 import { buildShareButtons } from '../utils.js';
-import { LANGUAGE_HUB_CATEGORIES, LANGUAGE_PAGE_READY } from '../data/subjects/_meta.js';
+import { LANGUAGE_HUB_CATEGORIES, LANGUAGE_PAGE_READY, CODING_HUB_CATEGORIES, CODING_PAGE_READY } from '../data/subjects/_meta.js';
 
 
 // ── 회화 메인 페이지 (영어/일본어/중국어) ─────────────────────
@@ -458,6 +458,15 @@ export function buildCodingPage() {
     .curr-tags{padding:0 18px 16px 70px;display:flex;flex-wrap:wrap;gap:5px}
     .curr-tag{font-size:.72rem;background:#e8f0ff;color:#1a3a6a;padding:3px 10px;border-radius:20px;border:1px solid #d0e0ff}
     .cta-sec{background:linear-gradient(140deg,#0a1a3a,#1a3a6a);padding:52px 24px;text-align:center}
+    .coding-cat-grid{display:grid;grid-template-columns:1fr;gap:12px}
+    .coding-cat-card{border:1px solid #d8e2f0;border-radius:12px;overflow:hidden;background:white}
+    .coding-cat-head{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:#f4f8fd;border-bottom:1px solid #e4ecf7}
+    .coding-cat-name{font-size:.9rem;font-weight:800;color:#0a1a3a}
+    .coding-cat-count{font-size:.72rem;font-weight:700;color:#1a3a6a;background:#dbe7f7;border-radius:10px;padding:2px 9px}
+    .coding-cat-items{display:grid;grid-template-columns:1fr 1fr;gap:0}
+    .coding-cat-item{display:block;padding:11px 14px;font-size:.82rem;color:#2a4a7a;text-decoration:none;border-bottom:1px solid #f0f5fb;border-right:1px solid #f0f5fb;transition:background .12s;word-break:keep-all}
+    .coding-cat-item:hover{background:#f4f8fd}
+    .coding-cat-item.disabled{color:#a8b8cc;cursor:default}
     .cta-sec h2{font-size:clamp(1.2rem,3vw,1.6rem);font-weight:800;color:white;margin-bottom:10px}
     .cta-sec p{font-size:.9rem;color:rgba(255,255,255,.75);margin-bottom:28px}
     .cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
@@ -467,7 +476,8 @@ export function buildCodingPage() {
     footer{background:#0a1a3a;color:rgba(255,255,255,.45);text-align:center;padding:24px;font-size:.78rem;line-height:1.8}
     footer p{color:rgba(255,255,255,.45);margin:2px 0}
     footer a{color:rgba(255,255,255,.6);text-decoration:none}
-    @media(max-width:600px){.target-grid{grid-template-columns:1fr}.hero-btns,.cta-btns{flex-direction:column;align-items:center}}
+    @media(max-width:600px){.target-grid{grid-template-columns:1fr}.hero-btns,.cta-btns{flex-direction:column;align-items:center}.coding-cat-items{grid-template-columns:1fr}}
+    @media(min-width:900px){.coding-cat-grid{grid-template-columns:1fr 1fr}.coding-cat-items{grid-template-columns:1fr 1fr}}
   </style>
 </head>
 <body>
@@ -540,6 +550,33 @@ ${HEADER_HTML}
     </div>
   </section>
 </div>
+
+<!-- 코딩 세부 가이드 (카테고리 카드) -->
+<div class="wrap">
+  <section class="sec">
+    <div class="sec-label">세부 가이드</div>
+    <div class="sec-title">관심 분야별 코딩 가이드</div>
+    <div class="sec-sub">언어·대상·분야·입시·목적별로 정리한 ${Object.keys(CODING_PAGE_READY).length}개 가이드를 확인해 보세요.</div>
+    <div class="coding-cat-grid">
+      ${CODING_HUB_CATEGORIES.map(cat => `
+      <div class="coding-cat-card">
+        <div class="coding-cat-head">
+          <span class="coding-cat-name">${cat.name}</span>
+          <span class="coding-cat-count">${cat.count}</span>
+        </div>
+        <div class="coding-cat-items">
+          ${cat.items.map(([key, label]) => {
+            const href = CODING_PAGE_READY[`${cat.key}/${key}`];
+            return href
+              ? `<a href="${href}" class="coding-cat-item">${label}</a>`
+              : `<span class="coding-cat-item disabled">${label}</span>`;
+          }).join("")}
+        </div>
+      </div>`).join("")}
+    </div>
+  </section>
+</div>
+
 <div class="cta-sec">
   <h2>지금 바로 무료 체험 신청하세요</h2>
   <p>첫 수업은 무료 · 부담 없이 경험해 보세요</p>

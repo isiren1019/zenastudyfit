@@ -156,6 +156,7 @@ export function buildKoreanHabitPage(habitKey, categoryKey = "habit", subjectKey
     .phase-period{font-size:.72rem;color:#7b2fa8;font-weight:700;margin-bottom:4px}
     .phase-name{font-size:.92rem;font-weight:800;color:#370558;margin-bottom:4px;word-break:keep-all}
     .phase-desc{font-size:.78rem;color:#666;line-height:1.6;word-break:keep-all}
+    .phase-note{margin-top:10px;padding:10px 12px;background:#faf5ff;border:1px solid #f0e6fc;border-radius:6px;font-size:.76rem;color:#7b2fa8;line-height:1.6;word-break:keep-all}
 
     .area-item{border-left:3px solid #510580;padding:10px 14px;margin-bottom:14px}
     .area-item:last-child{margin-bottom:0}
@@ -215,6 +216,7 @@ export function buildKoreanHabitPage(habitKey, categoryKey = "habit", subjectKey
       .phase-card{padding:18px}
       .phase-name{font-size:1rem}
       .phase-desc{font-size:.82rem}
+      .phase-note{font-size:.8rem;padding:12px 14px;margin-top:12px}
       .tier-card{padding:18px}
       .tier-icon{font-size:1.3rem}
       .tier-label{font-size:1rem}
@@ -270,6 +272,7 @@ ${HEADER_HTML}
     <div class="sec-label">🎯 ${data.phaseTitle}</div>
     <div class="sec-title">${data.phaseSub}</div>
     <div class="phase-grid">${phasesHtml}</div>
+    ${data.phaseNote ? `<div class="phase-note">${data.phaseNote}</div>` : ""}
   </div>
 
   <div class="sec">
