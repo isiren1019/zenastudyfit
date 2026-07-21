@@ -1324,7 +1324,7 @@ const ACADEMY_CENTER_CSS = `
   .ctr-hero h1{font-size:30px;font-weight:700;margin:0;line-height:1.3;color:#fff;letter-spacing:-0.5px}
   .ctr-hero-brand{font-size:15px;font-weight:500;color:rgba(255,255,255,0.85)}
   .ctr-hero-new{background:#fff4ec;color:#a8501f;border:1px solid #e87a3c;font-size:10px;padding:3px 9px;border-radius:4px;font-weight:600;letter-spacing:0.5px}
-  .ctr-hero-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;align-items:center}
+  .ctr-hero-btns{display:flex;gap:10px;justify-content:flex-start;flex-wrap:wrap;align-items:center}
   .ctr-hero-btn{display:inline-block;background:#e87a3c;color:#fff;padding:12px 26px;border:none;border-radius:24px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;text-decoration:none;transition:background .15s ease}
   .ctr-hero-btn:hover{background:#d66b30}
   .ctr-hero-btn-fee{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#fff;padding:11px 24px;border:1.5px solid rgba(255,255,255,.85);border-radius:24px;font-size:14px;font-weight:600;font-family:inherit;text-decoration:none;transition:background .15s ease,border-color .15s ease}
