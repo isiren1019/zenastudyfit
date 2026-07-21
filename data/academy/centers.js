@@ -20,6 +20,7 @@
 //   isNew:       신규 12개 지점 = true
 //   pricingGroup: 1(서울권) | 2(서울외) | 3(특수) - 수업료 그룹
 //   naverMapUrl: 네이버 지도 개별 링크
+//   feeUrl:      센터 교습비 안내 링크 (구글 드라이브 · 새 탭)
 // ================================================================
 
 export const ACADEMY_CENTERS = [
@@ -84,7 +85,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/G2EorHhr"
+    "naverMapUrl": "https://naver.me/G2EorHhr",
+    "feeUrl": "https://drive.google.com/file/d/1rVzQJ7C4ujVAuK9vOT0-HI-qWByuRwH4/view?usp=sharing"
   },
   {
     "slug": "gyeongbuk-gyeongsan-sadong",
@@ -191,7 +193,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/5RhvRCww"
+    "naverMapUrl": "https://naver.me/5RhvRCww",
+    "feeUrl": "https://drive.google.com/file/d/1oSbm78M7Vhjb_X-arFSSJnQqtcefL4lg/view?usp=sharing"
   },
   {
     "slug": "seoul-nowon-hagye",
@@ -281,7 +284,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "A",
     "isNew": false,
     "pricingGroup": 1,
-    "naverMapUrl": "https://naver.me/FIfCvG2D"
+    "naverMapUrl": "https://naver.me/FIfCvG2D",
+    "feeUrl": "https://drive.google.com/file/d/1sWl9oLeetEfm6y0hwn_SCCIVk5bo70vq/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-yongin-suji",
@@ -390,7 +394,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/FFGRnYTP"
+    "naverMapUrl": "https://naver.me/FFGRnYTP",
+    "feeUrl": "https://drive.google.com/file/d/1KMumO8Hy1oX8WhtfREY6o7NK3-043ETT/view?usp=sharing"
   },
   {
     "slug": "daegu-dalseo-igok",
@@ -479,7 +484,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/5XJCUKn5"
+    "naverMapUrl": "https://naver.me/5XJCUKn5",
+    "feeUrl": "https://drive.google.com/file/d/1OQzmquEbFdYkG0_wxcydeYMcZNdT7pdC/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-goyang-tanhyeon",
@@ -562,7 +568,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/xAFe3lba"
+    "naverMapUrl": "https://naver.me/xAFe3lba",
+    "feeUrl": "https://drive.google.com/file/d/1TgSRlhKawlPPI3tfHwCFL2B7xdvPc2S0/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-gwangmyeong-cheolsan",
@@ -632,7 +639,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/5xjf0CkM"
+    "naverMapUrl": "https://naver.me/5xjf0CkM",
+    "feeUrl": "https://drive.google.com/file/d/1oUzlN7R1bEqBFNr8Aq0e2U2ZFkBykfjp/view?usp=sharing"
   },
   {
     "slug": "gwangju-seo-chipyeong",
@@ -710,7 +718,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/FIfmpdSm"
+    "naverMapUrl": "https://naver.me/FIfmpdSm",
+    "feeUrl": "https://drive.google.com/file/d/1LtA9KOrbDrrEUUYRfe9URM-jzy9XJWW0/view?usp=sharing"
   },
   {
     "slug": "daejeon-yuseong-jijok",
@@ -797,7 +806,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/GeUi3xOD"
+    "naverMapUrl": "https://naver.me/GeUi3xOD",
+    "feeUrl": "https://drive.google.com/file/d/1QHtqS4wEhMihbWOe_MueyM7NLi8ftNSw/view?usp=sharing"
   },
   {
     "slug": "gwangju-gwangsan-suwan",
@@ -864,7 +874,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/FMc7wjK6"
+    "naverMapUrl": "https://naver.me/FMc7wjK6",
+    "feeUrl": "https://drive.google.com/file/d/1rVNvy0fWplWhfDbL7RRVGbHHwJVJiZ94/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-suwon-homaesil",
@@ -965,7 +976,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/FQVt5Fuq"
+    "naverMapUrl": "https://naver.me/FQVt5Fuq",
+    "feeUrl": "https://drive.google.com/file/d/1uE2uyom_t72GYFJiF0NDssMa1dV-BYiB/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-uijeongbu-singok",
@@ -1057,7 +1069,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/xDJfMSPC"
+    "naverMapUrl": "https://naver.me/xDJfMSPC",
+    "feeUrl": "https://drive.google.com/file/d/14cQ_66aRmC9R_CUFHQzhqKyJXylgXZO4/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-goyang-haengsin",
@@ -1158,7 +1171,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/F42srOS9"
+    "naverMapUrl": "https://naver.me/F42srOS9",
+    "feeUrl": "https://drive.google.com/file/d/1JHOvxPmsSQO6lVR9ABk798tB-YwNXI60/view?usp=sharing"
   },
   {
     "slug": "jeonbuk-jeonju-seosin",
@@ -1230,7 +1244,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/55rU6cPz"
+    "naverMapUrl": "https://naver.me/55rU6cPz",
+    "feeUrl": "https://drive.google.com/file/d/19kgaLTGR_i34mXOMCWYgvgGqb1RtS57k/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-hanam-central",
@@ -1311,7 +1326,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/FZ2CqbQ6"
+    "naverMapUrl": "https://naver.me/FZ2CqbQ6",
+    "feeUrl": "https://drive.google.com/file/d/1Au8HH1TwbnyScIBtgcWTG1iELXv_OK_G/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-seongnam-migeum",
@@ -1377,7 +1393,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "A",
     "isNew": false,
     "pricingGroup": 1,
-    "naverMapUrl": "https://naver.me/F88gB07s"
+    "naverMapUrl": "https://naver.me/F88gB07s",
+    "feeUrl": "https://drive.google.com/file/d/16S5c5FSWL2ZuSEGBEMNC8Ht-aUYHpxaB/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-seongnam-yatap",
@@ -1464,7 +1481,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/xTT9l5Tq"
+    "naverMapUrl": "https://naver.me/xTT9l5Tq",
+    "feeUrl": "https://drive.google.com/file/d/1893Z9VQpdNcRidWbmyHtBzBCPdQOexgL/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-guri-galmae",
@@ -1564,7 +1582,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/x7nIcvlP"
+    "naverMapUrl": "https://naver.me/x7nIcvlP",
+    "feeUrl": "https://drive.google.com/file/d/1yZ7WnTXeQ-ZtgI5kYRMwuZu47OR74p82/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-goyang-madu",
@@ -1658,7 +1677,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/5vcjOJXl"
+    "naverMapUrl": "https://naver.me/5vcjOJXl",
+    "feeUrl": "https://drive.google.com/file/d/1np8WIbKE9lXZUvjC7lnV0vS9O1KaPYlp/view?usp=sharing"
   },
   {
     "slug": "gwangju-gwangsan-cheomdan",
@@ -1726,7 +1746,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/xGIEb9D0"
+    "naverMapUrl": "https://naver.me/xGIEb9D0",
+    "feeUrl": "https://drive.google.com/file/d/1w35vhr-sPjDTDJZlJ7dqgtmXARUtpbxi/view?usp=sharing"
   },
   {
     "slug": "ulsan-buk-songjeong",
@@ -1827,7 +1848,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/GoDRBpH2"
+    "naverMapUrl": "https://naver.me/GoDRBpH2",
+    "feeUrl": "https://drive.google.com/file/d/1BWPi4adr8jNxO8TUc10_exbC01Oj9t1z/view?usp=sharing"
   },
   {
     "slug": "gyeongnam-changwon-seokdong",
@@ -1871,7 +1893,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/x672Zha9"
+    "naverMapUrl": "https://naver.me/x672Zha9",
+    "feeUrl": "https://drive.google.com/file/d/1R0vPkxVr45fITcOw8jMe6AS5xfYc9DRW/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-seongnam-sujin",
@@ -1934,7 +1957,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/GCvm6TLG"
+    "naverMapUrl": "https://naver.me/GCvm6TLG",
+    "feeUrl": "https://drive.google.com/file/d/1y1_uXuKb_wpW2oVkeHbOvLepKh1jTk5N/view?usp=sharing"
   },
   {
     "slug": "daegu-suseong-suseong-2ga",
@@ -2011,7 +2035,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/5vcjMhi2"
+    "naverMapUrl": "https://naver.me/5vcjMhi2",
+    "feeUrl": "https://drive.google.com/file/d/1DK8auZgRzF4cxI0GzS-HHbf4SK14WlCk/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-yongin-giheung-gucheong",
@@ -2089,7 +2114,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/FRL5reM6"
+    "naverMapUrl": "https://naver.me/FRL5reM6",
+    "feeUrl": "https://drive.google.com/file/d/1Y0lqapkUK3plt0oWnROh7ZKFIW-OqiEI/view?usp=sharing"
   },
   {
     "slug": "daegu-buk-daegu-donam",
@@ -2191,7 +2217,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/xSFi8GY0"
+    "naverMapUrl": "https://naver.me/xSFi8GY0",
+    "feeUrl": "https://drive.google.com/file/d/1iODYdQQ-SbUENxuLHqxgZy_SmWOTCKO3/view?usp=sharing"
   },
   {
     "slug": "daejeon-yuseong-banseok",
@@ -2259,7 +2286,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/IFgxKq7J"
+    "naverMapUrl": "https://naver.me/IFgxKq7J",
+    "feeUrl": "https://drive.google.com/file/d/1T_nzCZ6uMwLTT9qoxJNF-RNip70twtbG/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-hwaseong-hwaseong-taean",
@@ -2326,7 +2354,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/xzxfiwff"
+    "naverMapUrl": "https://naver.me/xzxfiwff",
+    "feeUrl": "https://drive.google.com/file/d/1f6_KbJcJ4QXstOyDArm0yISD-QhnYgXs/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-hwaseong-bongdam",
@@ -2416,7 +2445,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": true,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/GzEYT9VB"
+    "naverMapUrl": "https://naver.me/GzEYT9VB",
+    "feeUrl": "https://drive.google.com/file/d/1A8Jnx307EKm4_xpI9PnDVRfNSctjYBYk/view?usp=sharing"
   },
   {
     "slug": "seoul-gangbuk-samgaksan",
@@ -2522,7 +2552,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "A",
     "isNew": false,
     "pricingGroup": 1,
-    "naverMapUrl": "https://naver.me/FvEOCq5y"
+    "naverMapUrl": "https://naver.me/FvEOCq5y",
+    "feeUrl": "https://drive.google.com/file/d/10rF-MU_IKnRE1eu4Ly9seaboig8x4U4T/view?usp=sharing"
   },
   {
     "slug": "seoul-yeongdeungpo-dangsan",
@@ -2591,7 +2622,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "A",
     "isNew": false,
     "pricingGroup": 1,
-    "naverMapUrl": "https://naver.me/GeUQMcKr"
+    "naverMapUrl": "https://naver.me/GeUQMcKr",
+    "feeUrl": "https://drive.google.com/file/d/1HBcFVVL0Zglpscx_9GHZoqKtRUG--zer/view?usp=sharing"
   },
   {
     "slug": "seoul-eunpyeong-eunpyeong",
@@ -2652,7 +2684,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "A",
     "isNew": false,
     "pricingGroup": 1,
-    "naverMapUrl": "https://naver.me/GkRaiHMp"
+    "naverMapUrl": "https://naver.me/GkRaiHMp",
+    "feeUrl": "https://drive.google.com/file/d/1E4m4PRwW168cKfBfDB8VIw3Rn44ozdaT/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-goyang-hwajeong",
@@ -2732,7 +2765,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/FMc7xL0W"
+    "naverMapUrl": "https://naver.me/FMc7xL0W",
+    "feeUrl": "https://drive.google.com/file/d/1UW7Oo12FCgk4yf5TYMg2tVTKiuG-hbhg/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-guri-inchang",
@@ -2835,7 +2869,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/GvcRFBOz"
+    "naverMapUrl": "https://naver.me/GvcRFBOz",
+    "feeUrl": "https://drive.google.com/file/d/1L5yFKGjY9l5vjItOyY6DaqRxErIgisZd/view?usp=sharing"
   },
   {
     "slug": "seoul-gangseo-yeomchang",
@@ -2898,7 +2933,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "A",
     "isNew": false,
     "pricingGroup": 1,
-    "naverMapUrl": "https://naver.me/FHlPbz5k"
+    "naverMapUrl": "https://naver.me/FHlPbz5k",
+    "feeUrl": "https://drive.google.com/file/d/19aIv6p6u2BTvNeNna_S_pexB0pxEIiGw/view?usp=sharing"
   },
   {
     "slug": "incheon-bupyeong-incheon-samsan",
@@ -3002,7 +3038,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 3,
-    "naverMapUrl": "https://naver.me/59vHcBt5"
+    "naverMapUrl": "https://naver.me/59vHcBt5",
+    "feeUrl": "https://drive.google.com/file/d/1GznySQN0OFs4CynyMeDflvetuYhl-PIB/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-seongnam-imae",
@@ -3105,7 +3142,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/Fafu3VzN"
+    "naverMapUrl": "https://naver.me/Fafu3VzN",
+    "feeUrl": "https://drive.google.com/file/d/1rGgKrQ7u_tF5AdWF19xob7ektq6NJiGr/view?usp=sharing"
   },
   {
     "slug": "daegu-buk-chimsan",
@@ -3199,7 +3237,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/FqWCS6mI"
+    "naverMapUrl": "https://naver.me/FqWCS6mI",
+    "feeUrl": "https://drive.google.com/file/d/1CBjkutpOaVwsGGvY-pg8HIx2i86oBTos/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-osan-osan",
@@ -3298,7 +3337,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/Gj6sRmqf"
+    "naverMapUrl": "https://naver.me/Gj6sRmqf",
+    "feeUrl": "https://drive.google.com/file/d/1YCxKIA8zZYo0rcLNNNdX_I5CvkZKL6Vs/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-namyangju-byeolnae",
@@ -3380,7 +3420,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/FqWQbdZB"
+    "naverMapUrl": "https://naver.me/FqWQbdZB",
+    "feeUrl": "https://drive.google.com/file/d/1bBebCi11f2P2N2dyI1lJW8qowVpA8CNR/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-suwon-yeongtong-gucheong",
@@ -3476,7 +3517,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/IgJETPrB"
+    "naverMapUrl": "https://naver.me/IgJETPrB",
+    "feeUrl": "https://drive.google.com/file/d/1XEPHp6tlFj74KCS1zhiY9XUIvkX9TpuM/view?usp=sharing"
   },
   {
     "slug": "incheon-bupyeong-bupyeong",
@@ -3578,7 +3620,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/xGIjaNOv"
+    "naverMapUrl": "https://naver.me/xGIjaNOv",
+    "feeUrl": "https://drive.google.com/file/d/1oJO0Ih8uOx_txj7fbp2CS91AoJQSLK65/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-goyang-pungdong",
@@ -3653,7 +3696,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/5oEehAHP"
+    "naverMapUrl": "https://naver.me/5oEehAHP",
+    "feeUrl": "https://drive.google.com/file/d/1-r0h-F-EINVJgYsrlEvIh-xq-A18iYuK/view?usp=sharing"
   },
   {
     "slug": "jeonbuk-jeonju-sonkcheon",
@@ -3718,7 +3762,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/Gj6cfYxP"
+    "naverMapUrl": "https://naver.me/Gj6cfYxP",
+    "feeUrl": "https://drive.google.com/file/d/1E7YYGwuu-RsPqLmSaDLC2wixVUGgqLTX/view?usp=sharing"
   },
   {
     "slug": "daejeon-jung-taepyeong",
@@ -3788,7 +3833,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/FtTpwYJb"
+    "naverMapUrl": "https://naver.me/FtTpwYJb",
+    "feeUrl": "https://drive.google.com/file/d/1_vf_w2_7js-C1SIMDF2LLz_NssyujvO1/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-siheung-mokgam-modu",
@@ -3888,7 +3934,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/GoDRFJBm"
+    "naverMapUrl": "https://naver.me/GoDRFJBm",
+    "feeUrl": "https://drive.google.com/file/d/166AO1w0NNyh0ONVPZvyLfdY4G7U3mlvQ/view?usp=drive_link"
   },
   {
     "slug": "daejeon-daedeok-songchon",
@@ -3955,7 +4002,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/x1VzXS07"
+    "naverMapUrl": "https://naver.me/x1VzXS07",
+    "feeUrl": "https://drive.google.com/file/d/1LbuVOcG6WfrwEi-aaTaOuuN5_0LH4p4f/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-bucheon-jungdong",
@@ -4015,7 +4063,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/xzxfFleV"
+    "naverMapUrl": "https://naver.me/xzxfFleV",
+    "feeUrl": "https://drive.google.com/file/d/1S629AeKOy38neMow4WxDALYCEQNUOE3-/view?usp=drive_link"
   },
   {
     "slug": "gyeonggi-bucheon-jungdong-wplus",
@@ -4068,7 +4117,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/5jJ8CnoO"
+    "naverMapUrl": "https://naver.me/5jJ8CnoO",
+    "feeUrl": "https://drive.google.com/file/d/1dT2JWW0JivNCDm7E6NmRAgf2dDBhsgcq/view?usp=drive_link"
   },
   {
     "slug": "gyeonggi-bucheon-sinjungdong",
@@ -4140,7 +4190,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/GzENbx0l"
+    "naverMapUrl": "https://naver.me/GzENbx0l",
+    "feeUrl": "https://drive.google.com/file/d/1JhcUFxtq7XXPWYiTUXrJkuyUUBOt6Mfq/view?usp=drive_link"
   },
   {
     "slug": "gyeonggi-goyang-hwajeong-wplus",
@@ -4203,7 +4254,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/FTXwIBAk"
+    "naverMapUrl": "https://naver.me/FTXwIBAk",
+    "feeUrl": "https://drive.google.com/file/d/1R2RfSjDUMkn3udsW-Hn3Hm-KT1yu2y4z/view?usp=sharing"
   },
   {
     "slug": "gyeongbuk-pohang-yangdeok",
@@ -4302,7 +4354,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/5N1nYxDD"
+    "naverMapUrl": "https://naver.me/5N1nYxDD",
+    "feeUrl": "https://drive.google.com/file/d/1sZ61z3e3AhD_n2iCxyam34QwnDo6gh1L/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-yangju-okjeong",
@@ -4340,7 +4393,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/xWTSpJa9"
+    "naverMapUrl": "https://naver.me/xWTSpJa9",
+    "feeUrl": "https://drive.google.com/file/d/1FzF4qEZhdYbpg-szHvhEiXIHSpYY4Ivw/view?usp=sharing"
   },
   {
     "slug": "seoul-eunpyeong-eunpyeong-gloride",
@@ -4377,7 +4431,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "A",
     "isNew": false,
     "pricingGroup": 1,
-    "naverMapUrl": "https://naver.me/5S9qoixD"
+    "naverMapUrl": "https://naver.me/5S9qoixD",
+    "feeUrl": "https://drive.google.com/file/d/1gXHjSbsI8ii6mK958H3tMtmpE3U2m3eB/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-namyangju-dasan-wplus",
@@ -4423,7 +4478,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/5IS72N5U"
+    "naverMapUrl": "https://naver.me/5IS72N5U",
+    "feeUrl": "https://drive.google.com/file/d/1BK827lNn5X5LTYbwAav1f5gL1bCJSEs1/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-bucheon-okgil-star",
@@ -4475,7 +4531,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/5pwPeF64"
+    "naverMapUrl": "https://naver.me/5pwPeF64",
+    "feeUrl": "https://drive.google.com/file/d/1r5K-ii3QY36_Gmlyg3eLw0X06N43m_Ut/view?usp=sharing"
   },
   {
     "slug": "seoul-gwangjin-gwangjang",
@@ -4548,7 +4605,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "A",
     "isNew": false,
     "pricingGroup": 1,
-    "naverMapUrl": "https://naver.me/FA2qm83c"
+    "naverMapUrl": "https://naver.me/FA2qm83c",
+    "feeUrl": "https://drive.google.com/file/d/1JB_0Yvmj1RlSQk06pIHW86F_gLEBh8ZY/view?usp=sharing"
   },
   {
     "slug": "daegu-jung-banwoldang",
@@ -4650,7 +4708,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/Gxkz6D2f"
+    "naverMapUrl": "https://naver.me/Gxkz6D2f",
+    "feeUrl": "https://drive.google.com/file/d/1GhY7mMSV5iqF3qFp3VsqdfFrB38r1pXa/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-siheung-baegot",
@@ -4733,7 +4792,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/5iTF91xR"
+    "naverMapUrl": "https://naver.me/5iTF91xR",
+    "feeUrl": "https://drive.google.com/file/d/1RxIlEp-RZXhMWHEHiF_rqXxUkOPuJqxY/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-yongin-myeongjidae-yeok",
@@ -4787,7 +4847,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/x4FKQDKN"
+    "naverMapUrl": "https://naver.me/x4FKQDKN",
+    "feeUrl": "https://drive.google.com/file/d/1TcSJFWunhCG4Bgnr5KACT5xL8D1XZzQ-/view?usp=sharing"
   },
   {
     "slug": "chungbuk-chungju-chilgeum",
@@ -4895,7 +4956,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/xf5f38Sf"
+    "naverMapUrl": "https://naver.me/xf5f38Sf",
+    "feeUrl": "https://drive.google.com/file/d/1EQl1vVG7si2Pvw08DdGffOM9pebt270B/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-osan-segyo",
@@ -4984,7 +5046,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/5mIirQ3r"
+    "naverMapUrl": "https://naver.me/5mIirQ3r",
+    "feeUrl": "https://drive.google.com/file/d/1H5Pc5UI6DQEL3xy_TjsKokzA8LPysVW3/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-yongin-suji-gloride",
@@ -5093,7 +5156,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/5T48HGW1"
+    "naverMapUrl": "https://naver.me/5T48HGW1",
+    "feeUrl": "https://drive.google.com/file/d/19NIQXFBiQ_KtGtj0S1oQ3iG4rRpay3A3/view?usp=sharing"
   },
   {
     "slug": "seoul-mapo-mapo-2ho",
@@ -5175,7 +5239,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "A",
     "isNew": false,
     "pricingGroup": 1,
-    "naverMapUrl": "https://naver.me/FzSFfWnq"
+    "naverMapUrl": "https://naver.me/FzSFfWnq",
+    "feeUrl": "https://drive.google.com/file/d/1Bj32uK2GRguE6GkcqRBKEW3GvPEEqKd6/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-namyangju-dasan-donong",
@@ -5258,7 +5323,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/FQVt51y3"
+    "naverMapUrl": "https://naver.me/FQVt51y3",
+    "feeUrl": "https://drive.google.com/file/d/1lHpYzhSlIFx0s5bGr3OP6LBnmEZE5qhf/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-namyangju-byeolgaram",
@@ -5353,7 +5419,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/FN7cuLem"
+    "naverMapUrl": "https://naver.me/FN7cuLem",
+    "feeUrl": "https://drive.google.com/file/d/1efAXs3iaYice36iEq2e8OXBrB4xPQpVC/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-hwaseong-dongtan-mokdong",
@@ -5448,7 +5515,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "A",
     "isNew": false,
     "pricingGroup": 1,
-    "naverMapUrl": "https://naver.me/FZ2CqpnT"
+    "naverMapUrl": "https://naver.me/FZ2CqpnT",
+    "feeUrl": "https://drive.google.com/file/d/1EivkZoaX1zyNqM-DWe0BSUaM1tYN3MOL/view?usp=sharing"
   },
   {
     "slug": "gyeongbuk-pohang-duho",
@@ -5520,7 +5588,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/513kQvx9"
+    "naverMapUrl": "https://naver.me/513kQvx9",
+    "feeUrl": "https://drive.google.com/file/d/1E8_BXUI1HRi14NzBNb90Uauq8wJnRm8H/view?usp=sharing"
   },
   {
     "slug": "gwangju-gwangsan-seonun",
@@ -5593,7 +5662,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/5T48Hf94"
+    "naverMapUrl": "https://naver.me/5T48Hf94",
+    "feeUrl": "https://drive.google.com/file/d/16W6SDSlwye2slqKBROWADHSrApZG2zoe/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-paju-gyoha",
@@ -5652,7 +5722,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/5ZJhObnl"
+    "naverMapUrl": "https://naver.me/5ZJhObnl",
+    "feeUrl": "https://drive.google.com/file/d/1Z43mPQvXPFFpYrXwPcSe6PHxkK0lfduB/view?usp=sharing"
   },
   {
     "slug": "seoul-songpa-songpa-wirye",
@@ -5724,7 +5795,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "A",
     "isNew": false,
     "pricingGroup": 1,
-    "naverMapUrl": "https://naver.me/FEUvacHz"
+    "naverMapUrl": "https://naver.me/FEUvacHz",
+    "feeUrl": "https://drive.google.com/file/d/1kmcbQeUAaA9R4FvxMPmv0lkYHDNt0aR-/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-gunpo-sanbon",
@@ -5794,7 +5866,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/FZ2Cqs4s"
+    "naverMapUrl": "https://naver.me/FZ2Cqs4s",
+    "feeUrl": "https://drive.google.com/file/d/1PeCy7L6Xt5rObCAZ-udsSZLnGabOuzog/view?usp=sharing"
   },
   {
     "slug": "incheon-namdong-guwol",
@@ -5879,7 +5952,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/xhz32mu1"
+    "naverMapUrl": "https://naver.me/xhz32mu1",
+    "feeUrl": "https://drive.google.com/file/d/1_9-kk50IgswGc1rdWcTuuxVB38wxLCHL/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-ansan-gojan",
@@ -5907,7 +5981,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/5xjf029f"
+    "naverMapUrl": "https://naver.me/5xjf029f",
+    "feeUrl": "https://drive.google.com/file/d/1_MwTOAyVIeWO53F97U-nezZEF7jjNVaY/view?usp=sharing"
   },
   {
     "slug": "seoul-seodaemun-gajwa",
@@ -6005,7 +6080,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "A",
     "isNew": false,
     "pricingGroup": 1,
-    "naverMapUrl": "https://naver.me/FdCIP0Dt"
+    "naverMapUrl": "https://naver.me/FdCIP0Dt",
+    "feeUrl": "https://drive.google.com/file/d/1j0ih4SRdImd7ObaZ51sX70Wa_dblKO0L/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-namyangju-hopyeong",
@@ -6108,7 +6184,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/x2jCMtfA"
+    "naverMapUrl": "https://naver.me/x2jCMtfA",
+    "feeUrl": "https://drive.google.com/file/d/1y3HqS6ngj6gqG4Df7OEYetULTeYjSRuF/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-namyangju-pyeongnae",
@@ -6185,7 +6262,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/xWTSp3zP"
+    "naverMapUrl": "https://naver.me/xWTSp3zP",
+    "feeUrl": "https://drive.google.com/file/d/1bNlicT0F0UXH9pUNpDxFA81GGkfb3CAY/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-icheon-bubal",
@@ -6278,7 +6356,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/xQeGILay"
+    "naverMapUrl": "https://naver.me/xQeGILay",
+    "feeUrl": "https://drive.google.com/file/d/1k_OG34gCErHK7bKWRo2vgIREJFFv_qNf/view?usp=sharing"
   },
   {
     "slug": "daegu-dong-yulha",
@@ -6374,7 +6453,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/5r91T4DN"
+    "naverMapUrl": "https://naver.me/5r91T4DN",
+    "feeUrl": "https://drive.google.com/file/d/1VsinCaHKPHAeKH7Ap5VRrhsW8WXs3BEA/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-pyeongtaek-bijeon",
@@ -6442,7 +6522,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/GbDdn8jK"
+    "naverMapUrl": "https://naver.me/GbDdn8jK",
+    "feeUrl": "https://drive.google.com/file/d/1qXICwYaoUapjxPoUggu7pBDrX0SPu0yi/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-bucheon-okgil",
@@ -6506,7 +6587,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/FgHlO3Ws"
+    "naverMapUrl": "https://naver.me/FgHlO3Ws",
+    "feeUrl": "https://drive.google.com/file/d/1FwPpDBhpqmU_-uRlD7EvHSqQqq6nD79S/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-goyang-hugok",
@@ -6577,7 +6659,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/xX7TPhNi"
+    "naverMapUrl": "https://naver.me/xX7TPhNi",
+    "feeUrl": "https://drive.google.com/file/d/1k5ujReBvrwI7fN2HteQ2GEXEU9fdCYwo/view?usp=sharing"
   },
   {
     "slug": "gangwon-wonju-dangu",
@@ -6656,7 +6739,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/5chIDMNH"
+    "naverMapUrl": "https://naver.me/5chIDMNH",
+    "feeUrl": "https://drive.google.com/file/d/1WuZUqX9l2nko8ghWFt6zOnetwjm4cr8V/view?usp=sharing"
   },
   {
     "slug": "chungbuk-cheongju-bokdae",
@@ -6736,7 +6820,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/5Q3gDCHc"
+    "naverMapUrl": "https://naver.me/5Q3gDCHc",
+    "feeUrl": "https://drive.google.com/file/d/1gsbeanPgY5J0WNV1vPie68gZyNGFGqQu/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-seongnam-dandae",
@@ -6807,7 +6892,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/x5GzWeuN"
+    "naverMapUrl": "https://naver.me/x5GzWeuN",
+    "feeUrl": "https://drive.google.com/file/d/1FLwv1sMKb_AhjxibGXEYOJ-Cd2w_q1tU/view?usp=sharing"
   },
   {
     "slug": "seoul-eunpyeong-eunpyeong-wplus",
@@ -6859,7 +6945,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "A",
     "isNew": false,
     "pricingGroup": 1,
-    "naverMapUrl": "https://naver.me/GUw9KeUT"
+    "naverMapUrl": "https://naver.me/GUw9KeUT",
+    "feeUrl": "https://drive.google.com/file/d/1CZ409m2DDq9ZKDXUNDqCqhznB1LIA1d_/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-paju-sannae",
@@ -6924,7 +7011,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/5fI84ehf"
+    "naverMapUrl": "https://naver.me/5fI84ehf",
+    "feeUrl": "https://drive.google.com/file/d/11eEXxQ_DM6nTWLyk3rXiuduTcuWbgOSu/view?usp=sharing"
   },
   {
     "slug": "incheon-yeonsu-donkchun",
@@ -6989,7 +7077,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/G2E7qi8T"
+    "naverMapUrl": "https://naver.me/G2E7qi8T",
+    "feeUrl": "https://drive.google.com/file/d/1HdcgFGd7HUl157RDlwUzw3cNT29ajyEr/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-goyang-hugok-wplus",
@@ -7063,7 +7152,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/xP8rQzWH"
+    "naverMapUrl": "https://naver.me/xP8rQzWH",
+    "feeUrl": "https://drive.google.com/file/d/1KXikoHPmemf0eNx330zpOqoyAY48LThS/view?usp=sharing"
   },
   {
     "slug": "daegu-suseong-alpasiti",
@@ -7165,7 +7255,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/xv3oEAtX"
+    "naverMapUrl": "https://naver.me/xv3oEAtX",
+    "feeUrl": "https://drive.google.com/file/d/1IcuDV4GLDPP4al4w0mmJ7w1FaTNnCFgG/view?usp=sharing"
   },
   {
     "slug": "daegu-dalseo-sin-wolseonk",
@@ -7248,7 +7339,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/GYChuhve"
+    "naverMapUrl": "https://naver.me/GYChuhve",
+    "feeUrl": "https://drive.google.com/file/d/1Z0F217J4a_ov6t-DwOSxGSrLS1eR4m_k/view?usp=sharing"
   },
   {
     "slug": "daegu-jung-daeguyeok",
@@ -7356,7 +7448,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/IGJImIKR"
+    "naverMapUrl": "https://naver.me/IGJImIKR",
+    "feeUrl": "https://drive.google.com/file/d/1fWUfZKnyj6R-rLpvZ1uqhjzpSWtN7oz1/view?usp=sharing"
   },
   {
     "slug": "seoul-gangseo-sinbankhwa",
@@ -7432,7 +7525,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "A",
     "isNew": false,
     "pricingGroup": 1,
-    "naverMapUrl": "https://naver.me/IFgYzW9j"
+    "naverMapUrl": "https://naver.me/IFgYzW9j",
+    "feeUrl": "https://drive.google.com/file/d/1ZQGHf_JiGE50Qks_3e4jTCpL2f_r-PvP/view?usp=sharing"
   },
   {
     "slug": "incheon-seo-cheongna",
@@ -7498,7 +7592,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 3,
-    "naverMapUrl": "https://naver.me/Gq84X7ne"
+    "naverMapUrl": "https://naver.me/Gq84X7ne",
+    "feeUrl": "https://drive.google.com/file/d/1OXA3FyvfSKwzuGlWKMHeC11z4vCGqgv8/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-gwangmyeong-soha",
@@ -7566,7 +7661,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/Gxkz6zEa"
+    "naverMapUrl": "https://naver.me/Gxkz6zEa",
+    "feeUrl": "https://drive.google.com/file/d/1MD9CG9Ym96WblML8no8o8ul2p5cZBN1O/view?usp=sharing"
   },
   {
     "slug": "ulsan-jung-boksan",
@@ -7659,7 +7755,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/FEUXrFfs"
+    "naverMapUrl": "https://naver.me/FEUXrFfs",
+    "feeUrl": "https://drive.google.com/file/d/1h5Z4YhRsG2VLo1JzIxGwjxZzvPN7p18R/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-hwaseong-dongtan-hosu",
@@ -7757,7 +7854,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 1,
-    "naverMapUrl": "https://naver.me/GhbUPTIL"
+    "naverMapUrl": "https://naver.me/GhbUPTIL",
+    "feeUrl": "https://drive.google.com/file/d/11NIf55TKqVyZGpigbeyKCqdrBHQP9D_K/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-yongin-donkbaek",
@@ -7833,7 +7931,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/IIt3ZjIi"
+    "naverMapUrl": "https://naver.me/IIt3ZjIi",
+    "feeUrl": "https://drive.google.com/file/d/1wJ4WEFAYH8rUwMykhk6AF_K90JisMNMc/view?usp=sharing"
   },
   {
     "slug": "jeju-jeju-si-nohyeong",
@@ -7913,7 +8012,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/GBF602mw"
+    "naverMapUrl": "https://naver.me/GBF602mw",
+    "feeUrl": "https://drive.google.com/file/d/1MeZkzMvXXa1Pe1Pi-U8_CtXgbKphECL1/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-gimpo-janggi",
@@ -7983,7 +8083,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/xs3PUaNU"
+    "naverMapUrl": "https://naver.me/xs3PUaNU",
+    "feeUrl": "https://drive.google.com/file/d/14RZ-_GzInuf6K-UAtbt03T0QRM85Mzs8/view?usp=sharing"
   },
   {
     "slug": "busan-haeundae-jwadonk",
@@ -8074,7 +8175,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/Gj6sR0Zs"
+    "naverMapUrl": "https://naver.me/Gj6sR0Zs",
+    "feeUrl": "https://drive.google.com/file/d/1AKWAJpy3XqkpymVaVe0IKiW7HBoE3beT/view?usp=sharing"
   },
   {
     "slug": "chungnam-cheonan-sinbank",
@@ -8141,7 +8243,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/G38cKCy7"
+    "naverMapUrl": "https://naver.me/G38cKCy7",
+    "feeUrl": "https://drive.google.com/file/d/1L3WXzkkfOJlnXUWA4b7xaGDplwEUeLa6/view?usp=sharing"
   },
   {
     "slug": "chungnam-cheonan-ssank-yonk",
@@ -8212,7 +8315,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/5JpmPWor"
+    "naverMapUrl": "https://naver.me/5JpmPWor",
+    "feeUrl": "https://drive.google.com/file/d/1FFkM84SzLFaZNUC4sfVNgKzYhHshsZLr/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-hwaseong-byeonk",
@@ -8316,7 +8420,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 3,
-    "naverMapUrl": "https://naver.me/5k7TqbES"
+    "naverMapUrl": "https://naver.me/5k7TqbES",
+    "feeUrl": "https://drive.google.com/file/d/1ThxQ15gBDQNP7pGwXu0Yy9gLco1FszrL/view?usp=sharing"
   },
   {
     "slug": "chungnam-cheonan-buldank",
@@ -8381,7 +8486,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/FA2UB0El"
+    "naverMapUrl": "https://naver.me/FA2UB0El",
+    "feeUrl": "https://drive.google.com/file/d/16ouA2EsB4rcOuGEPQhdKcQGe5opIkFQX/view?usp=sharing"
   },
   {
     "slug": "incheon-yeonsu-welka-unti",
@@ -8458,7 +8564,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/5XJ1hzlc"
+    "naverMapUrl": "https://naver.me/5XJ1hzlc",
+    "feeUrl": "https://drive.google.com/file/d/1J9xBYPPo1lbiwQR1oNMWkwsqeX_PlNN_/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-goyang-jungsan",
@@ -8535,7 +8642,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": true,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/xQixoaPG"
+    "naverMapUrl": "https://naver.me/xQixoaPG",
+    "feeUrl": "https://drive.google.com/file/d/1Vhw4XfIDdmspo4uOZ0s7do-DEAMOV4DI/view?usp=sharing"
   },
   {
     "slug": "chungbuk-cheongju-gagyeong",
@@ -8618,7 +8726,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": true,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/xYvlTgdw"
+    "naverMapUrl": "https://naver.me/xYvlTgdw",
+    "feeUrl": "https://drive.google.com/file/d/14YxyjjwDqpBlUKpv0b1C3pA8hS0tlJGe/view?usp=sharing"
   },
   {
     "slug": "chungnam-asan-tangjeong-modu",
@@ -8717,7 +8826,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": true,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/GScQs8mB"
+    "naverMapUrl": "https://naver.me/GScQs8mB",
+    "feeUrl": "https://drive.google.com/file/d/1aK_GKQglPBG58FkSdmgHMlrQo9VMbEd4/view?usp=sharing"
   },
   {
     "slug": "daegu-dong-isiapolis",
@@ -8826,7 +8936,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": true,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/GScBQNUd"
+    "naverMapUrl": "https://naver.me/GScBQNUd",
+    "feeUrl": "https://drive.google.com/file/d/1Kpce6Y6h3NJkhL12nmStCdEbNU5X6nA7/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-yongin-sinbong",
@@ -8919,7 +9030,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": true,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/5asZ0oVg"
+    "naverMapUrl": "https://naver.me/5asZ0oVg",
+    "feeUrl": "https://drive.google.com/file/d/1oXVuiOw4Y6nD2ZPD3AoWoJcg8iCXEoul/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-namyangju-toegye-won",
@@ -8995,7 +9107,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/G7Vky0KK"
+    "naverMapUrl": "https://naver.me/G7Vky0KK",
+    "feeUrl": "https://drive.google.com/file/d/1ViaSyWubybddoc7JPh_7m34uYzKzxHRT/view?usp=sharing"
   },
   {
     "slug": "seoul-mapo-mapo",
@@ -9086,7 +9199,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "A",
     "isNew": false,
     "pricingGroup": 1,
-    "naverMapUrl": "https://naver.me/GbDL0t1F"
+    "naverMapUrl": "https://naver.me/GbDL0t1F",
+    "feeUrl": "https://drive.google.com/file/d/1-MeRe5AhIICToS02b7nDuFBxuxwVLNuZ/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-yongin-yonk-inbaekhyeon-modu",
@@ -9179,7 +9293,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": true,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/GFCEnwQM"
+    "naverMapUrl": "https://naver.me/GFCEnwQM",
+    "feeUrl": "https://drive.google.com/file/d/1im4kR9bea4hQmtzxMa6eZLj8tgYcQFWf/view?usp=sharing"
   },
   {
     "slug": "daegu-jung-daeguyeok-2hogwan",
@@ -9285,7 +9400,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": true,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/GdTTThb4"
+    "naverMapUrl": "https://naver.me/GdTTThb4",
+    "feeUrl": "https://drive.google.com/file/d/1HT-qGAgWeAYM1GSbx5_N1f0hrmp4jVhX/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-paju-unjeong-jungang",
@@ -9371,7 +9487,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": true,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/FLeSDTL8"
+    "naverMapUrl": "https://naver.me/FLeSDTL8",
+    "feeUrl": "https://drive.google.com/file/d/1AtBLLrKkXz-AN4j7LRdkbVM1N3gmfCIF/view?usp=sharing"
   },
   {
     "slug": "chungbuk-chungju-chungju-yongsan",
@@ -9474,7 +9591,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": true,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/531Tpw8X"
+    "naverMapUrl": "https://naver.me/531Tpw8X",
+    "feeUrl": "https://drive.google.com/file/d/19UjPos_pxzqw1pEcZr_N964_m6krnqL1/view?usp=sharing"
   },
   {
     "slug": "daegu-dalseo-jincheon-modu",
@@ -9579,7 +9697,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": true,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/xAAXAKEp"
+    "naverMapUrl": "https://naver.me/xAAXAKEp",
+    "feeUrl": "https://drive.google.com/file/d/1aCWrjKIWzN-qW-CzUE3iW9urK61MZRHq/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-namyangju-byeolnaejunk-ank-modu",
@@ -9653,7 +9772,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": true,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/xrCyrYPD"
+    "naverMapUrl": "https://naver.me/xrCyrYPD",
+    "feeUrl": "https://drive.google.com/file/d/1JZisOfim91nslPuskHK3-9pTzLrqqJbM/view?usp=drive_link"
   },
   {
     "slug": "seoul-yangcheon-mokdong",
@@ -9744,7 +9864,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "A",
     "isNew": false,
     "pricingGroup": 1,
-    "naverMapUrl": "https://naver.me/xf50TFFC"
+    "naverMapUrl": "https://naver.me/xf50TFFC",
+    "feeUrl": "https://drive.google.com/file/d/10mbexM9fWTyZMaKKfMkY_WMxifGqU9e5/view?usp=sharing"
   },
   {
     "slug": "seoul-guro-sindorim",
@@ -9831,7 +9952,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "A",
     "isNew": false,
     "pricingGroup": 1,
-    "naverMapUrl": "https://naver.me/xzxsI5KI"
+    "naverMapUrl": "https://naver.me/xzxsI5KI",
+    "feeUrl": "https://drive.google.com/file/d/1dZBHFRmqVEisH8cm9pG8PRlTr-Vq1XWI/view?usp=sharing"
   },
   {
     "slug": "seoul-dongdaemun-jegi",
@@ -9935,7 +10057,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "A",
     "isNew": false,
     "pricingGroup": 1,
-    "naverMapUrl": "https://naver.me/5MVIlFQp"
+    "naverMapUrl": "https://naver.me/5MVIlFQp",
+    "feeUrl": "https://drive.google.com/file/d/1HMDq2VEK8bG03OKmK1A3iDGqshrc34_F/view?usp=sharing"
   },
   {
     "slug": "seoul-seongbuk-jongam",
@@ -10011,7 +10134,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "A",
     "isNew": false,
     "pricingGroup": 1,
-    "naverMapUrl": "https://naver.me/5PVvqPwK"
+    "naverMapUrl": "https://naver.me/5PVvqPwK",
+    "feeUrl": "https://drive.google.com/file/d/1hXGwfNYWz180dBAXHRz7_p759Jyx4kEw/view?usp=sharing"
   },
   {
     "slug": "seoul-gangdong-myeonk-il",
@@ -10075,7 +10199,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "A",
     "isNew": false,
     "pricingGroup": 1,
-    "naverMapUrl": "https://naver.me/xX7g4013"
+    "naverMapUrl": "https://naver.me/xX7g4013",
+    "feeUrl": "https://drive.google.com/file/d/17LIOCcTnopkxqE5ajPljl8rcJ9TYdh7e/view?usp=sharing"
   },
   {
     "slug": "seoul-eunpyeong-gusan",
@@ -10137,7 +10262,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "A",
     "isNew": false,
     "pricingGroup": 1,
-    "naverMapUrl": "https://naver.me/5r9SH1hf"
+    "naverMapUrl": "https://naver.me/5r9SH1hf",
+    "feeUrl": "https://drive.google.com/file/d/1wc5qShKhPV-e6axdSQKMCbZmKYYu8STv/view?usp=sharing"
   },
   {
     "slug": "seoul-gangseo-naebalsan",
@@ -10218,7 +10344,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "A",
     "isNew": false,
     "pricingGroup": 1,
-    "naverMapUrl": "https://naver.me/xIe5uK1h"
+    "naverMapUrl": "https://naver.me/xIe5uK1h",
+    "feeUrl": "https://drive.google.com/file/d/11YzP9rk79EIe6Vi8gsQaz05Yz73kROaA/view?usp=sharing"
   },
   {
     "slug": "seoul-geumcheon-geumcheon",
@@ -10312,7 +10439,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "A",
     "isNew": false,
     "pricingGroup": 1,
-    "naverMapUrl": "https://naver.me/x8taMmjI"
+    "naverMapUrl": "https://naver.me/x8taMmjI",
+    "feeUrl": "https://drive.google.com/file/d/1RgAnTVGG63p-yk_GdwnuTeatJ8G0OC21/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-seongnam-wirye",
@@ -10384,7 +10512,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 1,
-    "naverMapUrl": "https://naver.me/Gdy0W1dl"
+    "naverMapUrl": "https://naver.me/Gdy0W1dl",
+    "feeUrl": "https://drive.google.com/file/d/1d5hTE_E0f8cYI5jdazykn-9dh_UYywem/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-yongin-sankhyeon",
@@ -10463,7 +10592,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/xZVw9HR8"
+    "naverMapUrl": "https://naver.me/xZVw9HR8",
+    "feeUrl": "https://drive.google.com/file/d/14fpxBjAPEv4i9Dakd33Z0v2Lc53nCASL/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-gimpo-sa-u",
@@ -10558,7 +10688,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/5k7T37dy"
+    "naverMapUrl": "https://naver.me/5k7T37dy",
+    "feeUrl": "https://drive.google.com/file/d/1e0JWX0ObaRPkKNnlzYbn8rUxRbhct_4s/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-yongin-suji-wplus",
@@ -10660,7 +10791,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/xKE8JiiR"
+    "naverMapUrl": "https://naver.me/xKE8JiiR",
+    "feeUrl": "https://drive.google.com/file/d/1XiezIsmncUCdWY5VcyaWRX4LcHmZtXre/view?usp=sharing"
   },
   {
     "slug": "sejong-saerom",
@@ -10724,7 +10856,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/GI3E75J7"
+    "naverMapUrl": "https://naver.me/GI3E75J7",
+    "feeUrl": "https://drive.google.com/file/d/15uih_-mugF_kuATSxhdepxIySi3ox38A/view?usp=sharing"
   },
   {
     "slug": "ulsan-nam-samsan",
@@ -10817,7 +10950,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/5pwPGJOX"
+    "naverMapUrl": "https://naver.me/5pwPGJOX",
+    "feeUrl": "https://drive.google.com/file/d/1Y_kugdTxKTubbnufJZ_TYJM-ERwuFvTl/view?usp=sharing"
   },
   {
     "slug": "gyeongnam-changwon-sanknam",
@@ -10868,7 +11002,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/FxFHLRV1"
+    "naverMapUrl": "https://naver.me/FxFHLRV1",
+    "feeUrl": "https://drive.google.com/file/d/1WKiwdEFe7GNb4eKQPqW6RXJKtfEZxeKG/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-hwaseong-hyanknam",
@@ -10936,7 +11071,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/Gipd9LRS"
+    "naverMapUrl": "https://naver.me/Gipd9LRS",
+    "feeUrl": "https://drive.google.com/file/d/1hhGu4GEHqs2Sugms-FqDiOVOEp6RC0Ho/view?usp=sharing"
   },
   {
     "slug": "busan-dongnae-dongnae",
@@ -11008,7 +11144,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/Gq8lpMVE"
+    "naverMapUrl": "https://naver.me/Gq8lpMVE",
+    "feeUrl": "https://drive.google.com/file/d/1TT_pJdP2DN-wqsJTkMWiIEZfGKw3ARUt/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-siheung-jankgok",
@@ -11073,7 +11210,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/5huv3xlQ"
+    "naverMapUrl": "https://naver.me/5huv3xlQ",
+    "feeUrl": "https://drive.google.com/file/d/1GgCNj0VVJN62qRrxnGJ6hlgK8zGokw2a/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-icheon-galsan",
@@ -11163,7 +11301,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/xtgfW9LM"
+    "naverMapUrl": "https://naver.me/xtgfW9LM",
+    "feeUrl": "https://drive.google.com/file/d/16hEy3kG8bEnX1pHqsD2ggUJE81yu57Sn/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-paju-geumleunk",
@@ -11243,7 +11382,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/xQebOAa7"
+    "naverMapUrl": "https://naver.me/xQebOAa7",
+    "feeUrl": "https://drive.google.com/file/d/1mmS9KTKXVAiDrZJr6298KcBmtR764Ptd/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-bucheon-bandal",
@@ -11312,7 +11452,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/FY3iAGwC"
+    "naverMapUrl": "https://naver.me/FY3iAGwC",
+    "feeUrl": "https://drive.google.com/file/d/1xQiE1pOWaG1w2Xf0REQTXDaMuoiIe8OI/view?usp=sharing"
   },
   {
     "slug": "daejeon-yuseong-kwanpyeonk",
@@ -11381,7 +11522,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/xKE8QQyp"
+    "naverMapUrl": "https://naver.me/xKE8QQyp",
+    "feeUrl": "https://drive.google.com/file/d/1fvVDqj5_BZi5J64JfpXKnJHy_nnBSM4f/view?usp=sharing"
   },
   {
     "slug": "chungbuk-cheongju-gaesin",
@@ -11462,7 +11604,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/xiqbvXkG"
+    "naverMapUrl": "https://naver.me/xiqbvXkG",
+    "feeUrl": "https://drive.google.com/file/d/13otvKBXXGInUYRaKvgOPM7F_Vn8PhI6m/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-bucheon-sangdong",
@@ -11521,7 +11664,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/GTnNgSt3"
+    "naverMapUrl": "https://naver.me/GTnNgSt3",
+    "feeUrl": "https://drive.google.com/file/d/1yst4sIxuIJJrqJRlxcIsu52h8D3xsPIC/view?usp=drive_link"
   },
   {
     "slug": "incheon-namdong-nonhyeon",
@@ -11595,7 +11739,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/5VmVnLjK"
+    "naverMapUrl": "https://naver.me/5VmVnLjK",
+    "feeUrl": "https://drive.google.com/file/d/1f4Hr_Nuc_yHVZ4X_7G6CUSnYvUWhJTHQ/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-gwangmyeong-kwankmyeonk",
@@ -11664,7 +11809,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/xLWV1c3f"
+    "naverMapUrl": "https://naver.me/xLWV1c3f",
+    "feeUrl": "https://drive.google.com/file/d/1Pt3inny9xAm_cD5VbQdxgSFBoA3sIibW/view?usp=sharing"
   },
   {
     "slug": "gyeongbuk-gyeongsan-jeonkpyeonk",
@@ -11768,7 +11914,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/5iTFzegF"
+    "naverMapUrl": "https://naver.me/5iTFzegF",
+    "feeUrl": "https://drive.google.com/file/d/1AXdTDlLvJAXHUbKsAVtFxa5MMNyPAbI3/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-hwaseong-yeonkcheon",
@@ -11845,7 +11992,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/5pwPNhCO"
+    "naverMapUrl": "https://naver.me/5pwPNhCO",
+    "feeUrl": "https://drive.google.com/file/d/1rEe-9XZCy7ztZobpYoj4Qf8QhP-73STn/view?usp=sharing"
   },
   {
     "slug": "incheon-yeonsu-songdo",
@@ -11939,7 +12087,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 3,
-    "naverMapUrl": "https://naver.me/IDFXctIN"
+    "naverMapUrl": "https://naver.me/IDFXctIN",
+    "feeUrl": "https://drive.google.com/file/d/1A1PmbOmnKxlWXzQcRFxlVz006RaqdK74/view?usp=sharing"
   },
   {
     "slug": "daejeon-seo-dunsan",
@@ -12002,7 +12151,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/GalEMR7z"
+    "naverMapUrl": "https://naver.me/GalEMR7z",
+    "feeUrl": "https://drive.google.com/file/d/1QBYKIlUiIIxD9Ma1x91qYK-nWjoDvNGr/view?usp=sharing"
   },
   {
     "slug": "daejeon-seo-gwanjeo",
@@ -12090,7 +12240,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/5qDWRXXV"
+    "naverMapUrl": "https://naver.me/5qDWRXXV",
+    "feeUrl": "https://drive.google.com/file/d/1I5xpmGOOdJyDwM-EZYLNVIGEAtY5E5vH/view?usp=sharing"
   },
   {
     "slug": "jeonbuk-wanju-jeonjuhyeoksin",
@@ -12159,7 +12310,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/G8sDmuMF"
+    "naverMapUrl": "https://naver.me/G8sDmuMF",
+    "feeUrl": "https://drive.google.com/file/d/1VKDN_aiMtGhLccY57m6YCX2PA1gDFXYN/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-goyang-ju-yeop",
@@ -12241,7 +12393,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/56RnITj5"
+    "naverMapUrl": "https://naver.me/56RnITj5",
+    "feeUrl": "https://drive.google.com/file/d/1NBpsrDmN0k4HjHXt5MqATOuOwLU2qSw7/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-goyang-ju-yeop2ho",
@@ -12307,7 +12460,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/x2jDPSvt"
+    "naverMapUrl": "https://naver.me/x2jDPSvt",
+    "feeUrl": "https://drive.google.com/file/d/1srXpiEnvSnylkpX91253i3Doo8I1eXL5/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-namyangju-dasan",
@@ -12369,7 +12523,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/5tJ2jTO0"
+    "naverMapUrl": "https://naver.me/5tJ2jTO0",
+    "feeUrl": "https://drive.google.com/file/d/10xM29ypf-xXYhgmuLZR5Et09xStDzsI5/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-anyang-bisan",
@@ -12437,7 +12592,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/xq3zfFYX"
+    "naverMapUrl": "https://naver.me/xq3zfFYX",
+    "feeUrl": "https://drive.google.com/file/d/1DAF3k6vG07h2oZb3E6Z7sjNZpjkJ6yqF/view?usp=sharing"
   },
   {
     "slug": "chungnam-cheonan-dujeonk",
@@ -12493,7 +12649,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/FjbQoQuy"
+    "naverMapUrl": "https://naver.me/FjbQoQuy",
+    "feeUrl": "https://drive.google.com/file/d/1U7WEv3UiYOsh55RMKRcMwCe45m0Vg8Hw/view?usp=sharing"
   },
   {
     "slug": "gangwon-wonju-wonjusicheonk",
@@ -12559,7 +12716,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/x3jn5v9H"
+    "naverMapUrl": "https://naver.me/x3jn5v9H",
+    "feeUrl": "https://drive.google.com/file/d/1tocte5DcDNDQrLxrwPQPRq9c4V4Q421_/view?usp=drive_link"
   },
   {
     "slug": "gyeonggi-osan-osandae-yeok",
@@ -12664,7 +12822,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/GZZmAEei"
+    "naverMapUrl": "https://naver.me/GZZmAEei",
+    "feeUrl": "https://drive.google.com/file/d/11d81v4WhwKLCT5R8bkQCsTEnvxyuOmUL/view?usp=sharing"
   },
   {
     "slug": "gwangju-gwangsan-sinchank",
@@ -12738,7 +12897,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/Gn0DGkwq"
+    "naverMapUrl": "https://naver.me/Gn0DGkwq",
+    "feeUrl": "https://drive.google.com/file/d/1N4z51JB5iUmfH6Gl9fC7RW4CAZrGjRYT/view?usp=sharing"
   },
   {
     "slug": "daegu-buk-chilgok",
@@ -12825,7 +12985,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/GL80KgGo"
+    "naverMapUrl": "https://naver.me/GL80KgGo",
+    "feeUrl": "https://drive.google.com/file/d/15k5KqDbCmEFxzT8qZts-XWrw7p76ALT8/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-paju-unjeong",
@@ -12904,7 +13065,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/GSDeiY9C"
+    "naverMapUrl": "https://naver.me/GSDeiY9C",
+    "feeUrl": "https://drive.google.com/file/d/1aWJGZLX3ncNSj1wHMmCxdDtCQjbc18Er/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-namyangju-dasanjigeum",
@@ -13001,7 +13163,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/xIeKZ7Ty"
+    "naverMapUrl": "https://naver.me/xIeKZ7Ty",
+    "feeUrl": "https://drive.google.com/file/d/1ekgP0fZRPrGFiAeNjncmewEShHTUC_g8/view?usp=sharing"
   },
   {
     "slug": "daegu-suseong-suseonkmanchon",
@@ -13070,7 +13233,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/5JpmHnX8"
+    "naverMapUrl": "https://naver.me/5JpmHnX8",
+    "feeUrl": "https://drive.google.com/file/d/1WiIk2UXzb_ufTQxdsXXrKQvw1NkdH1S_/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-suwon-cheoncheon",
@@ -13172,7 +13336,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/GtUs8ViE"
+    "naverMapUrl": "https://naver.me/GtUs8ViE",
+    "feeUrl": "https://drive.google.com/file/d/1O5JaqhA1ztrkctZAWRBOJ9U7ObM21oQy/view?usp=sharing"
   },
   {
     "slug": "chungbuk-cheongju-sannam",
@@ -13262,7 +13427,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/FY3iUhIi"
+    "naverMapUrl": "https://naver.me/FY3iUhIi",
+    "feeUrl": "https://drive.google.com/file/d/15MU6oyqrxbAJ5B9XISYQOPYI0IlEV00D/view?usp=drive_link"
   },
   {
     "slug": "gangwon-chuncheon-seoksa",
@@ -13309,7 +13475,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/FY3iUp8u"
+    "naverMapUrl": "https://naver.me/FY3iUp8u",
+    "feeUrl": "https://drive.google.com/file/d/1tooh_xe_hU1K9Ae_nQYwHSjVsYwymbdI/view?usp=sharing"
   },
   {
     "slug": "gangwon-chuncheon-hupyeonk",
@@ -13361,7 +13528,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/GfCNPvXL"
+    "naverMapUrl": "https://naver.me/GfCNPvXL",
+    "feeUrl": "https://drive.google.com/file/d/1xkfhXMjunXflkjZ042uRb7Vg54EMI0HO/view?usp=sharing"
   },
   {
     "slug": "gyeongbuk-gumi-okgye",
@@ -13446,7 +13614,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/IGJIu6hB"
+    "naverMapUrl": "https://naver.me/IGJIu6hB",
+    "feeUrl": "https://drive.google.com/file/d/1lOqtLHzwGLXGqTFI6mdV8Apc6Ygrq3uh/view?usp=sharing"
   },
   {
     "slug": "chungnam-dangjin-dankjinjunk-ank",
@@ -13518,7 +13687,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/GlJ8j76q"
+    "naverMapUrl": "https://naver.me/GlJ8j76q",
+    "feeUrl": "https://drive.google.com/file/d/1bl7roUWmdKUy8HZWNzpecHfyfYXBcvSr/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-hanam-misa",
@@ -13590,7 +13760,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/GV2dS2Z6"
+    "naverMapUrl": "https://naver.me/GV2dS2Z6",
+    "feeUrl": "https://drive.google.com/file/d/1ayc6EpsbY0xxvhSRFpmNqi-g8huoIdGr/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-suwon-yeongtong",
@@ -13679,7 +13850,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 1,
-    "naverMapUrl": "https://naver.me/Gn0DUWom"
+    "naverMapUrl": "https://naver.me/Gn0DUWom",
+    "feeUrl": "https://drive.google.com/file/d/1SFEtVXmoNSgMTAJLFxjFDCfgYkKfsesx/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-suwon-mankpo",
@@ -13769,7 +13941,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/xs3KXlte"
+    "naverMapUrl": "https://naver.me/xs3KXlte",
+    "feeUrl": "https://drive.google.com/file/d/1-d4V1oGK8gAP5fRukdKomWUWUrdRn2yg/view?usp=sharing"
   },
   {
     "slug": "gangwon-gangneung-gankleunkgyodonk",
@@ -13835,7 +14008,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/5duYpL9u"
+    "naverMapUrl": "https://naver.me/5duYpL9u",
+    "feeUrl": "https://drive.google.com/file/d/1grckTuhEevfCOF41lRTaYSjDua8nCSxY/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-suwon-seosu-won",
@@ -13932,7 +14106,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/5T48w5B0"
+    "naverMapUrl": "https://naver.me/5T48w5B0",
+    "feeUrl": "https://drive.google.com/file/d/1MsZDo-afnJ9KuWs_XPSoxqseN-Z6lcnn/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-goyang-wondank",
@@ -14025,7 +14200,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/xa5qJOH1"
+    "naverMapUrl": "https://naver.me/xa5qJOH1",
+    "feeUrl": "https://drive.google.com/file/d/1Hc3P16SbBQdtyDuT-HNbAKMUmOrkkNjN/view?usp=sharing"
   },
   {
     "slug": "incheon-yeonsu-songdo-wplus",
@@ -14083,7 +14259,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 3,
-    "naverMapUrl": "https://naver.me/x8taM9Xp"
+    "naverMapUrl": "https://naver.me/x8taM9Xp",
+    "feeUrl": "https://drive.google.com/file/d/1YoGajhAjNJoVv89fstozJAZiFls5xs4a/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-gimpo-un-yank",
@@ -14152,7 +14329,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/xoHPRubz"
+    "naverMapUrl": "https://naver.me/xoHPRubz",
+    "feeUrl": "https://drive.google.com/file/d/17Ds4hHMgM8WCVt6Uj-uSJb4P-rwC7Fgv/view?usp=sharing"
   },
   {
     "slug": "daejeon-seo-doan",
@@ -14221,7 +14399,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/5GpADHOw"
+    "naverMapUrl": "https://naver.me/5GpADHOw",
+    "feeUrl": "https://drive.google.com/file/d/1NQzPqwkdIs8wEGSQzGEELthBmuBO9-r0/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-siheung-siheunkdae-ya",
@@ -14290,7 +14469,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/xSFiQlqs"
+    "naverMapUrl": "https://naver.me/xSFiQlqs",
+    "feeUrl": "https://drive.google.com/file/d/1Qwn4xZbeKNpm0XJ-1OFMxfZiEZ2o7GVF/view?usp=sharing"
   },
   {
     "slug": "daejeon-seo-dunsan-wplus",
@@ -14342,7 +14522,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/x2jDeALU"
+    "naverMapUrl": "https://naver.me/x2jDeALU",
+    "feeUrl": "https://drive.google.com/file/d/19iSsiWVMf4pvTjDiF0odNT3lRBiySdij/view?usp=sharing"
   },
   {
     "slug": "busan-haeundae-ban-yeo",
@@ -14416,7 +14597,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/GZZmnNdq"
+    "naverMapUrl": "https://naver.me/GZZmnNdq",
+    "feeUrl": "https://drive.google.com/file/d/1Qq0cdryWq69yn7iByiBV5POm1PuhFE7I/view?usp=sharing"
   },
   {
     "slug": "busan-buk-hwamyeonk",
@@ -14493,7 +14675,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/5k7TNr0V"
+    "naverMapUrl": "https://naver.me/5k7TNr0V",
+    "feeUrl": "https://drive.google.com/file/d/1hqcd55tCPtmilhUMKXfSAI4-QeSvvcyQ/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-yongin-bola",
@@ -14572,7 +14755,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/FDn3WyFX"
+    "naverMapUrl": "https://naver.me/FDn3WyFX",
+    "feeUrl": "https://drive.google.com/file/d/14wEgQGPyf5mkDMGhnqppmxlg0_QtKkHK/view?usp=sharing"
   },
   {
     "slug": "daegu-dalseo-daegujankgi",
@@ -14646,7 +14830,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/xgNyGjnz"
+    "naverMapUrl": "https://naver.me/xgNyGjnz",
+    "feeUrl": "https://drive.google.com/file/d/1BD61hG-XiO7LvWeP2um1bgNKOGuvoqJL/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-bucheon-beombak",
@@ -14752,7 +14937,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/513kQdyv"
+    "naverMapUrl": "https://naver.me/513kQdyv",
+    "feeUrl": "https://drive.google.com/file/d/187gK8EhRvJSdsevZZdCEqLoLCCzlz433/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-seongnam-wirye-changgok",
@@ -14810,7 +14996,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "A",
     "isNew": false,
     "pricingGroup": 1,
-    "naverMapUrl": "https://naver.me/GXAr0Tse"
+    "naverMapUrl": "https://naver.me/GXAr0Tse",
+    "feeUrl": "https://drive.google.com/file/d/1ILLc1mkd9i-OS17T42-VCSh-QXRhYXNw/view?usp=sharing"
   },
   {
     "slug": "gangwon-wonju-hyeoksin",
@@ -14863,7 +15050,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/xzxfiv6H"
+    "naverMapUrl": "https://naver.me/xzxfiv6H",
+    "feeUrl": "https://drive.google.com/file/d/171mN1t-t5V_EDQ73myoHfOC8IgS92PVc/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-goyang-wonheunk",
@@ -14939,7 +15127,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/xl0fKZJ5"
+    "naverMapUrl": "https://naver.me/xl0fKZJ5",
+    "feeUrl": "https://drive.google.com/file/d/1Cb_lwqG3BjjYUfPCpI0b7j6miCLJTHS_/view?usp=sharing"
   },
   {
     "slug": "gyeongnam-geoje-geojesu-wol",
@@ -14993,7 +15182,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/54LpJxK4"
+    "naverMapUrl": "https://naver.me/54LpJxK4",
+    "feeUrl": "https://drive.google.com/file/d/1bEw8cjhfKaOgvMEZ9xCyxr6CLti6KCfJ/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-goyang-deok-i",
@@ -15074,7 +15264,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/GyYlLYyi"
+    "naverMapUrl": "https://naver.me/GyYlLYyi",
+    "feeUrl": "https://drive.google.com/file/d/1B71TuZ5WzWzFaKGiW03udtKvvs-LDVJB/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-goyang-samsonk",
@@ -15164,7 +15355,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/x2jD2cEM"
+    "naverMapUrl": "https://naver.me/x2jD2cEM",
+    "feeUrl": "https://drive.google.com/file/d/1XZ5EnjKni8OtLm-2ArNLnfa00ybiSFYr/view?usp=sharing"
   },
   {
     "slug": "gwangju-nam-jin-wol",
@@ -15219,7 +15411,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/xQeboJqM"
+    "naverMapUrl": "https://naver.me/xQeboJqM",
+    "feeUrl": "https://drive.google.com/file/d/1RDcQTYeDwO1m1sSQS8ycGq662srBw7C_/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-pyeongtaek-ichunk",
@@ -15303,7 +15496,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/5yPF0xMI"
+    "naverMapUrl": "https://naver.me/5yPF0xMI",
+    "feeUrl": "https://drive.google.com/file/d/1l-bmkd295T_mfUw6tkU2uxVKl-sRsrsv/view?usp=sharing"
   },
   {
     "slug": "incheon-seo-lu-wonsiti",
@@ -15356,7 +15550,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/502dH3ie"
+    "naverMapUrl": "https://naver.me/502dH3ie",
+    "feeUrl": "https://drive.google.com/file/d/1vnp1MJv5LeEZDGL3JIddYzbNv80M1hjx/view?usp=sharing"
   },
   {
     "slug": "daegu-buk-bokhyeon",
@@ -15430,7 +15625,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/GeUi3p9K"
+    "naverMapUrl": "https://naver.me/GeUi3p9K",
+    "feeUrl": "https://drive.google.com/file/d/13VHDs0XygRHYYPUNq-s9WVn51xUnHJwx/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-namyangju-jinjeop",
@@ -15495,7 +15691,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/FjbZuVTn"
+    "naverMapUrl": "https://naver.me/FjbZuVTn",
+    "feeUrl": "https://drive.google.com/file/d/1913WW2VPl4JjE4gJJkzDXVUYR2rFjTaA/view?usp=sharing"
   },
   {
     "slug": "busan-dongnae-sajik",
@@ -15559,7 +15756,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/5oEeoxYL"
+    "naverMapUrl": "https://naver.me/5oEeoxYL",
+    "feeUrl": "https://drive.google.com/file/d/1VtNAwOPvqNpQOijmq_TwZPyPcwRJlBHO/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-paju-unjeonkhosu",
@@ -15652,7 +15850,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/x3jnbddv"
+    "naverMapUrl": "https://naver.me/x3jnbddv",
+    "feeUrl": "https://drive.google.com/file/d/19SIHrQyXkZSkCZnHk9SlSeG5GM_Hlu0X/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-gwangju-si-tanbeol",
@@ -15726,7 +15925,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/xGIEbDuT"
+    "naverMapUrl": "https://naver.me/xGIEbDuT",
+    "feeUrl": "https://drive.google.com/file/d/17P4PvLMsf0dpRtoZzfena-RCp-UOjJVV/view?usp=sharing"
   },
   {
     "slug": "ulsan-jung-nam-oe",
@@ -15795,7 +15995,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/xAFe3D0a"
+    "naverMapUrl": "https://naver.me/xAFe3D0a",
+    "feeUrl": "https://drive.google.com/file/d/1Ubd6ec3Q0JtFI0iJyjRHePAnMtt6_p2f/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-yongin-heunkdeok",
@@ -15904,7 +16105,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/FDn3l6n3"
+    "naverMapUrl": "https://naver.me/FDn3l6n3",
+    "feeUrl": "https://drive.google.com/file/d/1EbvDRonAykNGa6Dr9E8TFNu66ia8HYRN/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-hwaseong-bansonk",
@@ -15982,7 +16184,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "B",
     "isNew": false,
     "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/FV7GcOKi"
+    "naverMapUrl": "https://naver.me/FV7GcOKi",
+    "feeUrl": "https://drive.google.com/file/d/1Cz3k5i45CV_emSktIVKWEQAor29BZPyQ/view?usp=sharing"
   },
   {
     "slug": "seoul-seongbuk-don-am",
@@ -16054,7 +16257,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "A",
     "isNew": false,
     "pricingGroup": 1,
-    "naverMapUrl": "https://naver.me/xa5MKMvW"
+    "naverMapUrl": "https://naver.me/xa5MKMvW",
+    "feeUrl": "https://drive.google.com/file/d/1MjRhJZfnei5B10J8KZlngdmbyHduEze-/view?usp=sharing"
   },
   {
     "slug": "seoul-seongbuk-donksomun",
@@ -16116,7 +16320,8 @@ export const ACADEMY_CENTERS = [
     "feeType": "A",
     "isNew": false,
     "pricingGroup": 1,
-    "naverMapUrl": "https://naver.me/GBFab1zx"
+    "naverMapUrl": "https://naver.me/GBFab1zx",
+    "feeUrl": "https://drive.google.com/file/d/1WxeSdNjDEnda3WQJeWYKuA8ux_9sF3vx/view?usp=sharing"
   },
   {
     "slug": "seoul-mapo-sank-am",
@@ -16182,6 +16387,7 @@ export const ACADEMY_CENTERS = [
     "feeType": "A",
     "isNew": false,
     "pricingGroup": 1,
-    "naverMapUrl": "https://naver.me/xSFVEApX"
+    "naverMapUrl": "https://naver.me/xSFVEApX",
+    "feeUrl": "https://drive.google.com/file/d/1XT6jmbFrUjOh3keKGT4kd71MaQllT5CU/view?usp=sharing"
   }
 ];
