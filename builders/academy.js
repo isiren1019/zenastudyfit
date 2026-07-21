@@ -1324,8 +1324,12 @@ const ACADEMY_CENTER_CSS = `
   .ctr-hero h1{font-size:30px;font-weight:700;margin:0;line-height:1.3;color:#fff;letter-spacing:-0.5px}
   .ctr-hero-brand{font-size:15px;font-weight:500;color:rgba(255,255,255,0.85)}
   .ctr-hero-new{background:#fff4ec;color:#a8501f;border:1px solid #e87a3c;font-size:10px;padding:3px 9px;border-radius:4px;font-weight:600;letter-spacing:0.5px}
+  .ctr-hero-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;align-items:center}
   .ctr-hero-btn{display:inline-block;background:#e87a3c;color:#fff;padding:12px 26px;border:none;border-radius:24px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;text-decoration:none;transition:background .15s ease}
   .ctr-hero-btn:hover{background:#d66b30}
+  .ctr-hero-btn-fee{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#fff;padding:11px 24px;border:1.5px solid rgba(255,255,255,.85);border-radius:24px;font-size:14px;font-weight:600;font-family:inherit;text-decoration:none;transition:background .15s ease,border-color .15s ease}
+  .ctr-hero-btn-fee:hover{background:rgba(255,255,255,.14);border-color:#fff}
+  .ctr-hero-btn-fee-ext{font-size:12px;opacity:.9}
 
   /* 학원 정보 (지도 + 정보) */
   .ctr-info-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:stretch}
@@ -1445,7 +1449,9 @@ const ACADEMY_CENTER_CSS = `
   @media (max-width:640px){
     .ctr-hero{padding:32px 18px}
     .ctr-hero h1{font-size:24px}
+    .ctr-hero-btns{flex-direction:column;gap:8px}
     .ctr-hero-btn{display:block;width:100%;text-align:center}
+    .ctr-hero-btn-fee{width:100%;justify-content:center;box-sizing:border-box}
     .ctr-section{padding:0 16px 20px}
     .ctr-h2{font-size:16px}
     .ctr-info-grid{grid-template-columns:1fr}
@@ -2694,7 +2700,10 @@ ${HEADER_HTML}
       <h1>🏆 ${c.name}${brandSuffix ? `<span class="ctr-hero-brand">${brandSuffix}</span>` : ''} 학습코칭학원</h1>
       ${c.isNew ? '<span class="ctr-hero-new">NEW</span>' : ''}
     </div>
-    <button class="ctr-hero-btn" onclick="window.openAcademyFormModal('${c.name}${brandSuffix} (${c.sidoName} ${c.sigungu})')">📝 ${c.name} 상담신청</button>
+    <div class="ctr-hero-btns">
+      <button class="ctr-hero-btn" onclick="window.openAcademyFormModal('${c.name}${brandSuffix} (${c.sidoName} ${c.sigungu})')">📝 ${c.name} 상담신청</button>
+      ${c.feeUrl ? `<a class="ctr-hero-btn-fee" href="${c.feeUrl}" target="_blank" rel="noopener noreferrer">🧾 교습비 안내 <span class="ctr-hero-btn-fee-ext">↗</span></a>` : ''}
+    </div>
   </div>
 </section>
 
