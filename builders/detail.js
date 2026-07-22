@@ -24,7 +24,7 @@ import {
   getDisplaySubject, regionVars, seededRandom, getPageDates,
   buildBreadcrumbJsonLd, buildSocialMeta, buildShareButtons, pickJosa
 } from '../utils.js';
-import { makeIntro, makeBody, makeConclusion, makeFeatures, FIXED_FAQ } from '../content-pools.js';
+import { makeIntro, makeBody, makeConclusion, makeFeatures, makeSymptoms, makeClassMode, makeProcess, FIXED_FAQ } from '../content-pools.js';
 import { buildGradeRoadmapCards } from './_helpers.js';
 import { SCHOOLS_ELEM, SCHOOLS_MIDDLE, SCHOOLS_HIGH } from '../data/schools.js';
 import { ACADEMY_CENTERS } from '../data/academy/centers.js';
@@ -226,6 +226,13 @@ export function buildDetailPage(city, gu, dong, grade, subject, slug) {
   // 같은 시·군·구 학교(현재 학년 우선 6개)와 학원 지점(있을 때만).
   // 별도 rng(rngLocal)로 뽑아 기존 본문 rng 흐름을 건드리지 않음.
   const rngLocal = seededRandom((seedVal * 251 + 13) % 2147483647);
+
+  // 이미지 그리드 대체 3개 섹션 (별도 rng — 기존 본문 rng 흐름 불변)
+  // 데이터 조회는 원본 subject(고등 통합사회/통합과학 → 사회/과학 매칭), 표시는 dispSubject
+  const rngSec = seededRandom((seedVal * 379 + 29) % 2147483647);
+  const symptomData = makeSymptoms(rngSec, city, gu, dong, grade, subject, dispSubject);
+  const classModeData = makeClassMode(rngSec, city, gu, dong, grade, dispSubject);
+  const processData = makeProcess(rngSec, city, gu, dong, grade, dispSubject);
   const guNorm = normSigungu(gu);            // "용인시 수지구" → "용인시" (데이터 매칭용)
   const localSchools = getLocalSchools(city, guNorm, grade, rngLocal, 6);
   const localCenters = getLocalCenters(city, guNorm);
@@ -399,21 +406,62 @@ ${HEADER_HTML}
 
   ${buildGradeRoadmapCards(grade, subject)}
 
-  <!-- 이미지 그리드 -->
-  <div style="margin-top:24px;display:flex;flex-direction:column;gap:12px">
-    <img src="/images/study-01-desk.jpg" alt="${dong} ${grade} ${subject} 과외 수업 사진" loading="lazy" style="width:100%;height:auto;border-radius:10px;border:1px solid #e8d6f5;display:block">
-    <img src="/images/study-02-book.jpg" alt="${dong} ${grade} ${subject} 과외 수업 사진" loading="lazy" style="width:100%;height:auto;border-radius:10px;border:1px solid #e8d6f5;display:block">
-    <img src="/images/study-03-writing.jpg" alt="${dong} ${grade} ${subject} 과외 수업 사진" loading="lazy" style="width:100%;height:auto;border-radius:10px;border:1px solid #e8d6f5;display:block">
-    <img src="/images/study-04-tutoring.jpg" alt="${dong} ${grade} ${subject} 과외 수업 사진" loading="lazy" style="width:100%;height:auto;border-radius:10px;border:1px solid #e8d6f5;display:block">
-    <img src="/images/study-05-whiteboard.jpg" alt="${dong} ${grade} ${subject} 과외 수업 사진" loading="lazy" style="width:100%;height:auto;border-radius:10px;border:1px solid #e8d6f5;display:block">
-    <img src="/images/study-06-math.jpg" alt="${dong} ${grade} ${subject} 과외 수업 사진" loading="lazy" style="width:100%;height:auto;border-radius:10px;border:1px solid #e8d6f5;display:block">
-    <img src="/images/study-07-english.jpg" alt="${dong} ${grade} ${subject} 과외 수업 사진" loading="lazy" style="width:100%;height:auto;border-radius:10px;border:1px solid #e8d6f5;display:block">
-    <img src="/images/study-08-korean.jpg" alt="${dong} ${grade} ${subject} 과외 수업 사진" loading="lazy" style="width:100%;height:auto;border-radius:10px;border:1px solid #e8d6f5;display:block">
-    <img src="/images/study-09-science.jpg" alt="${dong} ${grade} ${subject} 과외 수업 사진" loading="lazy" style="width:100%;height:auto;border-radius:10px;border:1px solid #e8d6f5;display:block">
-    <img src="/images/study-10-social.jpg" alt="${dong} ${grade} ${subject} 과외 수업 사진" loading="lazy" style="width:100%;height:auto;border-radius:10px;border:1px solid #e8d6f5;display:block">
-    <img src="/images/study-11-result.jpg" alt="${dong} ${grade} ${subject} 과외 수업 사진" loading="lazy" style="width:100%;height:auto;border-radius:10px;border:1px solid #e8d6f5;display:block">
-    <img src="/images/study-12-feedback.jpg" alt="${dong} ${grade} ${subject} 과외 수업 사진" loading="lazy" style="width:100%;height:auto;border-radius:10px;border:1px solid #e8d6f5;display:block">
-    <img src="/images/study-13-smile.jpg" alt="${dong} ${grade} ${subject} 과외 수업 사진" loading="lazy" style="width:100%;height:auto;border-radius:10px;border:1px solid #e8d6f5;display:block">
+  <!-- 체크 포인트 (증상 진단) -->
+  <div class="sec" style="margin-top:28px">
+    <div style="font-size:.8rem;color:#9b6cc0;font-weight:700;margin-bottom:6px">체크 포인트</div>
+    <h2 style="font-size:1.25rem;color:#370558;font-weight:800;margin:0 0 14px;line-height:1.4">${symptomData.title}</h2>
+    <p style="font-size:.95rem;line-height:1.75;color:#3A1D1D;margin:0 0 18px">${symptomData.lead}</p>
+    <div style="background:#faf5ff;border:1px solid #e8d6f5;border-radius:12px;padding:20px 22px;display:flex;flex-direction:column;gap:11px">
+      ${symptomData.items.map(it => `<div style="display:flex;gap:10px;align-items:flex-start"><span style="color:#7b2fa8;flex-shrink:0;font-weight:700">&#10003;</span><span style="font-size:.95rem;line-height:1.6;color:#3A1D1D">${it}</span></div>`).join("")}
+    </div>
+    <p style="font-size:.95rem;line-height:1.75;color:#3A1D1D;margin:16px 0 0">${symptomData.closing}</p>
+  </div>
+
+  <!-- 수업 방식 선택 (방문/화상 비교) -->
+  <div class="sec" style="margin-top:32px">
+    <div style="font-size:.8rem;color:#9b6cc0;font-weight:700;margin-bottom:6px">수업 방식 선택</div>
+    <h2 style="font-size:1.25rem;color:#370558;font-weight:800;margin:0 0 14px;line-height:1.4">${classModeData.title}</h2>
+    <p style="font-size:.95rem;line-height:1.75;color:#3A1D1D;margin:0 0 18px">${classModeData.lead}</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px">
+      <div style="background:#fff;border:1px solid #e8d6f5;border-radius:12px;padding:20px">
+        <div style="font-size:1.02rem;font-weight:800;color:#510580;margin-bottom:12px">방문 과외</div>
+        <p style="font-size:.9rem;line-height:1.65;color:#3A1D1D;margin:0 0 14px">${classModeData.visitDesc}</p>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          ${classModeData.visit.map(v => `<div style="font-size:.9rem;line-height:1.55;color:#3A1D1D">&middot; ${v}</div>`).join("")}
+        </div>
+      </div>
+      <div style="background:#fff;border:1px solid #e8d6f5;border-radius:12px;padding:20px">
+        <div style="font-size:1.02rem;font-weight:800;color:#510580;margin-bottom:12px">화상 과외</div>
+        <p style="font-size:.9rem;line-height:1.65;color:#3A1D1D;margin:0 0 14px">${classModeData.onlineDesc}</p>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          ${classModeData.online.map(v => `<div style="font-size:.9rem;line-height:1.55;color:#3A1D1D">&middot; ${v}</div>`).join("")}
+        </div>
+      </div>
+    </div>
+    <p style="font-size:.95rem;line-height:1.75;color:#3A1D1D;margin:18px 0 0">${classModeData.closing}</p>
+  </div>
+
+  <!-- 진행 절차 -->
+  <div class="sec" style="margin-top:32px">
+    <div style="font-size:.8rem;color:#9b6cc0;font-weight:700;margin-bottom:6px">진행 절차</div>
+    <h2 style="font-size:1.25rem;color:#370558;font-weight:800;margin:0 0 14px;line-height:1.4">${processData.title}</h2>
+    <p style="font-size:.95rem;line-height:1.75;color:#3A1D1D;margin:0 0 24px">${processData.lead}</p>
+    <div style="display:flex;flex-direction:column">
+      ${processData.steps.map(([t,d], i) => {
+        const colors = ["#370558","#510580","#7b2fa8","#9b6cc0"];
+        const isLast = i === processData.steps.length - 1;
+        return `<div style="display:flex;gap:16px;align-items:flex-start">
+        <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0">
+          <div style="width:44px;height:44px;border-radius:50%;background:${colors[i]};color:#fff;display:flex;align-items:center;justify-content:center;font-size:.95rem;font-weight:700">0${i+1}</div>
+          ${isLast ? "" : `<div style="width:2px;height:42px;background:#e8d6f5"></div>`}
+        </div>
+        <div style="padding-top:9px">
+          <div style="font-size:1.02rem;font-weight:800;color:#3A1D1D;margin-bottom:5px">${t}</div>
+          <div style="font-size:.9rem;line-height:1.65;color:#6b5a6b">${d}</div>
+        </div>
+      </div>`;
+      }).join("")}
+    </div>
   </div>
 
   <!-- 결론 -->
