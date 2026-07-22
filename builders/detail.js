@@ -407,57 +407,57 @@ ${HEADER_HTML}
   ${buildGradeRoadmapCards(grade, subject)}
 
   <!-- 체크 포인트 (증상 진단) -->
-  <div class="sec" style="margin-top:28px">
-    <div style="font-size:.8rem;color:#9b6cc0;font-weight:700;margin-bottom:6px">체크 포인트</div>
-    <h2 style="font-size:1.25rem;color:#370558;font-weight:800;margin:0 0 14px;line-height:1.4">${symptomData.title}</h2>
-    <p style="font-size:.95rem;line-height:1.75;color:#3A1D1D;margin:0 0 18px">${symptomData.lead}</p>
-    <div style="background:#faf5ff;border:1px solid #e8d6f5;border-radius:12px;padding:20px 22px;display:flex;flex-direction:column;gap:11px">
-      ${symptomData.items.map(it => `<div style="display:flex;gap:10px;align-items:flex-start"><span style="color:#7b2fa8;flex-shrink:0;font-weight:700">&#10003;</span><span style="font-size:.95rem;line-height:1.6;color:#3A1D1D">${it}</span></div>`).join("")}
+  <div class="sec">
+    <div class="sec-label">체크 포인트</div>
+    <h2 class="sec-title">${symptomData.title}</h2>
+    <p class="sec-body" style="margin:0 0 14px">${symptomData.lead}</p>
+    <div style="background:#faf5ff;border:1px solid #e8d6f5;border-radius:12px;padding:16px 18px;display:flex;flex-direction:column;gap:9px">
+      ${symptomData.items.map(it => `<div style="display:flex;gap:9px;align-items:flex-start"><span style="color:#7b2fa8;flex-shrink:0;font-weight:700;font-size:.85rem">&#10003;</span><span class="sec-body" style="line-height:1.6">${it}</span></div>`).join("")}
     </div>
-    <p style="font-size:.95rem;line-height:1.75;color:#3A1D1D;margin:16px 0 0">${symptomData.closing}</p>
+    <p class="sec-body" style="margin:14px 0 0">${symptomData.closing}</p>
   </div>
 
   <!-- 수업 방식 선택 (방문/화상 비교) -->
-  <div class="sec" style="margin-top:32px">
-    <div style="font-size:.8rem;color:#9b6cc0;font-weight:700;margin-bottom:6px">수업 방식 선택</div>
-    <h2 style="font-size:1.25rem;color:#370558;font-weight:800;margin:0 0 14px;line-height:1.4">${classModeData.title}</h2>
-    <p style="font-size:.95rem;line-height:1.75;color:#3A1D1D;margin:0 0 18px">${classModeData.lead}</p>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px">
-      <div style="background:#fff;border:1px solid #e8d6f5;border-radius:12px;padding:20px">
-        <div style="font-size:1.02rem;font-weight:800;color:#510580;margin-bottom:12px">방문 과외</div>
-        <p style="font-size:.9rem;line-height:1.65;color:#3A1D1D;margin:0 0 14px">${classModeData.visitDesc}</p>
-        <div style="display:flex;flex-direction:column;gap:8px">
-          ${classModeData.visit.map(v => `<div style="font-size:.9rem;line-height:1.55;color:#3A1D1D">&middot; ${v}</div>`).join("")}
+  <div class="sec">
+    <div class="sec-label">수업 방식 선택</div>
+    <h2 class="sec-title">${classModeData.title}</h2>
+    <p class="sec-body" style="margin:0 0 14px">${classModeData.lead}</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px">
+      <div style="background:#fff;border:1px solid #e8d6f5;border-radius:12px;padding:16px 18px">
+        <div style="font-size:.9rem;font-weight:800;color:#510580;margin-bottom:10px">방문 과외</div>
+        <p class="sec-body" style="margin:0 0 12px;line-height:1.7">${classModeData.visitDesc}</p>
+        <div style="display:flex;flex-direction:column;gap:7px">
+          ${classModeData.visit.map(v => `<div class="sec-body" style="line-height:1.6">&middot; ${v}</div>`).join("")}
         </div>
       </div>
-      <div style="background:#fff;border:1px solid #e8d6f5;border-radius:12px;padding:20px">
-        <div style="font-size:1.02rem;font-weight:800;color:#510580;margin-bottom:12px">화상 과외</div>
-        <p style="font-size:.9rem;line-height:1.65;color:#3A1D1D;margin:0 0 14px">${classModeData.onlineDesc}</p>
-        <div style="display:flex;flex-direction:column;gap:8px">
-          ${classModeData.online.map(v => `<div style="font-size:.9rem;line-height:1.55;color:#3A1D1D">&middot; ${v}</div>`).join("")}
+      <div style="background:#fff;border:1px solid #e8d6f5;border-radius:12px;padding:16px 18px">
+        <div style="font-size:.9rem;font-weight:800;color:#510580;margin-bottom:10px">화상 과외</div>
+        <p class="sec-body" style="margin:0 0 12px;line-height:1.7">${classModeData.onlineDesc}</p>
+        <div style="display:flex;flex-direction:column;gap:7px">
+          ${classModeData.online.map(v => `<div class="sec-body" style="line-height:1.6">&middot; ${v}</div>`).join("")}
         </div>
       </div>
     </div>
-    <p style="font-size:.95rem;line-height:1.75;color:#3A1D1D;margin:18px 0 0">${classModeData.closing}</p>
+    <p class="sec-body" style="margin:14px 0 0">${classModeData.closing}</p>
   </div>
 
   <!-- 진행 절차 -->
-  <div class="sec" style="margin-top:32px">
-    <div style="font-size:.8rem;color:#9b6cc0;font-weight:700;margin-bottom:6px">진행 절차</div>
-    <h2 style="font-size:1.25rem;color:#370558;font-weight:800;margin:0 0 14px;line-height:1.4">${processData.title}</h2>
-    <p style="font-size:.95rem;line-height:1.75;color:#3A1D1D;margin:0 0 24px">${processData.lead}</p>
+  <div class="sec">
+    <div class="sec-label">진행 절차</div>
+    <h2 class="sec-title">${processData.title}</h2>
+    <p class="sec-body" style="margin:0 0 18px">${processData.lead}</p>
     <div style="display:flex;flex-direction:column">
       ${processData.steps.map(([t,d], i) => {
         const colors = ["#370558","#510580","#7b2fa8","#9b6cc0"];
         const isLast = i === processData.steps.length - 1;
-        return `<div style="display:flex;gap:16px;align-items:flex-start">
+        return `<div style="display:flex;gap:14px;align-items:flex-start">
         <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0">
-          <div style="width:44px;height:44px;border-radius:50%;background:${colors[i]};color:#fff;display:flex;align-items:center;justify-content:center;font-size:.95rem;font-weight:700">0${i+1}</div>
-          ${isLast ? "" : `<div style="width:2px;height:42px;background:#e8d6f5"></div>`}
+          <div style="width:34px;height:34px;border-radius:50%;background:${colors[i]};color:#fff;display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700">0${i+1}</div>
+          ${isLast ? "" : `<div style="width:2px;height:34px;background:#e8d6f5"></div>`}
         </div>
-        <div style="padding-top:9px">
-          <div style="font-size:1.02rem;font-weight:800;color:#3A1D1D;margin-bottom:5px">${t}</div>
-          <div style="font-size:.9rem;line-height:1.65;color:#6b5a6b">${d}</div>
+        <div style="padding-top:6px">
+          <div style="font-size:.9rem;font-weight:800;color:#370558;margin-bottom:4px">${t}</div>
+          <div class="sec-body" style="line-height:1.7">${d}</div>
         </div>
       </div>`;
       }).join("")}
