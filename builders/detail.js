@@ -363,7 +363,21 @@ export function buildDetailPage(city, gu, dong, grade, subject, slug) {
     footer p{color:rgba(255,255,255,.45);margin:2px 0}
     footer a{color:rgba(255,255,255,.6);text-decoration:none}
     footer a{color:rgba(255,255,255,.6);text-decoration:none}
-    @media(max-width:600px){.hero-btns,.cta-btns{flex-direction:column;align-items:center}}
+    .hero-banner{padding:16px 0 4px}
+    .hero-banner img{width:100%;height:auto;display:block;border-radius:12px}
+    @media(max-width:600px){
+      .hero-banner{padding:12px 0 2px}
+      .hero-banner img{aspect-ratio:21/9;height:auto;object-fit:cover;object-position:center;border-radius:10px}
+    }
+    @media(max-width:600px){.cta-btns{flex-direction:column;align-items:center}}
+    @media(max-width:600px){
+      .hero{padding:26px 16px}
+      .hero h1{margin-bottom:6px}
+      .hero-badge{margin-bottom:9px}
+      .hero-sub{font-size:.78rem;margin-bottom:14px}
+      .hero-btns{flex-wrap:nowrap;gap:8px}
+      .btn-white,.btn-kakao{padding:10px 16px;font-size:.82rem;white-space:nowrap}
+    }
   </style>
 </head>
 <body>
@@ -392,8 +406,8 @@ ${HEADER_HTML}
   </div>
 
   <!-- 히어로 배너 (og:image 동일 이미지 · 네이버 썸네일용) -->
-  <div style="padding:18px 0 4px">
-    <img src="${bannerPath}" alt="${bannerAlt}" width="1200" height="630" style="width:100%;height:auto;display:block;border-radius:12px" fetchpriority="high" decoding="async">
+  <div class="hero-banner">
+    <img src="${bannerPath}" alt="${bannerAlt}" width="1200" height="630" fetchpriority="high" decoding="async">
   </div>
 
   <!-- 서론 -->
