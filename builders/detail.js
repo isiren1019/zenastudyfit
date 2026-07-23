@@ -227,6 +227,14 @@ export function buildDetailPage(city, gu, dong, grade, subject, slug) {
   // 별도 rng(rngLocal)로 뽑아 기존 본문 rng 흐름을 건드리지 않음.
   const rngLocal = seededRandom((seedVal * 251 + 13) % 2147483647);
 
+  // 히어로 배너 겸 og:image (40장 풀에서 시드로 1장 — 지역/학년/과목별 분산)
+  // 파일 위치: output/images/og-01.jpg ~ og-40.jpg (1200x630)
+  const rngBanner = seededRandom((seedVal * 577 + 41) % 2147483647);
+  const bannerNo = String(Math.floor(rngBanner() * 40) + 1).padStart(2, "0");
+  const bannerPath = `/images/og-${bannerNo}.jpg`;
+  const bannerUrl = `${SITE_DOMAIN}${bannerPath}`;
+  const bannerAlt = `${titleRegion} ${grade} ${dispSubject} 과외 - 1:1 맞춤 방문·화상 수업`;
+
   // 이미지 그리드 대체 3개 섹션 (별도 rng — 기존 본문 rng 흐름 불변)
   // 데이터 조회는 원본 subject(고등 통합사회/통합과학 → 사회/과학 매칭), 표시는 dispSubject
   const rngSec = seededRandom((seedVal * 379 + 29) % 2147483647);
@@ -299,7 +307,7 @@ export function buildDetailPage(city, gu, dong, grade, subject, slug) {
   <title>${titleTag}</title>
   <meta name="description" content="${description}">
   <link rel="canonical" href="${canonical}">
-  ${buildSocialMeta({ title: titleTag, description, canonical, ogType: "article", imageAlt: `${titleRegion} ${grade} ${dispSubject} 과외` })}
+  ${buildSocialMeta({ title: titleTag, description, canonical, ogType: "article", imageUrl: bannerUrl, imageAlt: bannerAlt })}
   <meta property="article:published_time" content="${dates.publishedISO}">
   <meta property="article:modified_time" content="${dates.modifiedISO}">
   <script type="application/ld+json">
@@ -381,6 +389,11 @@ ${HEADER_HTML}
     <span>📅 최종 업데이트: ${dates.modifiedKR}</span>
     <span style="color:#ddd">|</span>
     <span>최초 게시: ${dates.publishedKR}</span>
+  </div>
+
+  <!-- 히어로 배너 (og:image 동일 이미지 · 네이버 썸네일용) -->
+  <div style="padding:18px 0 4px">
+    <img src="${bannerPath}" alt="${bannerAlt}" width="1200" height="630" style="width:100%;height:auto;display:block;border-radius:12px" fetchpriority="high" decoding="async">
   </div>
 
   <!-- 서론 -->
