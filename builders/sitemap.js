@@ -150,3 +150,4 @@ export async function notifyIndexNow(urls) {
     });
   } catch(e) {}
 }
+
