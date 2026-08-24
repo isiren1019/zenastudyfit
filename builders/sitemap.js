@@ -22,35 +22,35 @@ import { AREAS } from '../data/areas.js';
 import { SCHOOLS_ELEM, SCHOOLS_MIDDLE, SCHOOLS_HIGH } from '../data/schools.js';
 import { REDIRECT_MAP } from '../slug.js';
 
+// ── 사이트맵 인덱스 lastmod (수동 관리) ────────────────────────
+// 지역/학교 데이터나 페이지 빌더가 실제로 바뀐 날짜만 여기에 기록.
+// 배포할 때마다 무조건 바꾸는 게 아니라, 콘텐츠가 진짜 바뀔 때만 갱신.
+const SITEMAP_LASTMOD = "2026-08-24";
+
 
 // ── 사이트맵 (동적 생성) ──────────────────────────────────────
 export function handleSitemap(path) {
   const headers = { "Content-Type": "application/xml;charset=UTF-8" };
-  const today = new Date().toISOString().slice(0,10);
   const BASE = "https://zenastudyfit.com";
   const GRADES = ["초등","중등","고등"];
   const SUBJS = ["국어","영어","수학","과학","사회","한국사"];
 
-  // ── lastmod 결정적 생성 ────────────────────────────────────────
-  // 문제: 전 URL을 매일 today로 찍으면 크롤러가 "매일 전체 변경"으로 보고
-  //       lastmod 신호 자체를 신뢰하지 않음 → 재크롤 우선순위 왜곡.
-  // 해결: URL(loc)을 시드로 최근 90일 내 "결정적" 날짜를 부여.
-  //       같은 URL은 항상 같은 lastmod → 안정적 신호. 콘텐츠가 실제 바뀌면
-  //       (빌더 수정→배포) 어차피 구글이 재평가하므로 문제없음.
-  const nowMs = Date.now();
-  const DAY = 86400000;
-  function lastmodFor(loc) {
-    let h = 0;
-    for (let i = 0; i < loc.length; i++) h = (h * 31 + loc.charCodeAt(i)) % 2147483647;
-    const offset = h % 90;               // 0~89일 분산
-    return new Date(nowMs - offset * DAY).toISOString().slice(0,10);
-  }
+  // ── lastmod 정책 ──────────────────────────────────────────────
+  // ⚠️ 2026-08-24 수정: 이전 버전은 Date.now() 기준으로 lastmod를 만들어
+  //    같은 URL의 날짜가 매일 하루씩 밀렸음 (오프셋만 고정, 기준점은 이동).
+  //    콘텐츠는 그대로인데 매일 "갱신됨"으로 신고 → 검색엔진이 lastmod 신호
+  //    자체를 불신하게 됨. URL별 lastmod를 전면 제거함.
+  //    (없으면 검색엔진이 자체 판단으로 크롤링 주기를 정함 = 정상 동작)
+  //    changefreq/priority도 구글은 무시하지만, priority는 네이버 참고용으로 유지.
 
   function u(loc, pri="0.7") {
-    return `<url><loc>${loc}</loc><lastmod>${lastmodFor(loc)}</lastmod><changefreq>monthly</changefreq><priority>${pri}</priority></url>`;
+    return `<url><loc>${loc}</loc><priority>${pri}</priority></url>`;
   }
 
   if (path === "/sitemap.xml") {
+    // ⚠️ 실제로 데이터/빌더가 바뀌어 배포할 때만 이 날짜를 손으로 갱신할 것.
+    //    매일 자동으로 바뀌면 안 됨 (그게 이번에 고친 문제의 원인).
+    const today = SITEMAP_LASTMOD;
     const xml = `<?xml version="1.0" encoding="UTF-8"?><sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><sitemap><loc>${BASE}/sitemap-static.xml</loc><lastmod>${today}</lastmod></sitemap><sitemap><loc>${BASE}/sitemap-areas.xml</loc><lastmod>${today}</lastmod></sitemap><sitemap><loc>${BASE}/sitemap-schools-1.xml</loc><lastmod>${today}</lastmod></sitemap><sitemap><loc>${BASE}/sitemap-schools-2.xml</loc><lastmod>${today}</lastmod></sitemap><sitemap><loc>${BASE}/sitemap-schools-3.xml</loc><lastmod>${today}</lastmod></sitemap></sitemapindex>`;
     return new Response(xml, { headers });
   }
