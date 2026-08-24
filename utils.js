@@ -101,18 +101,30 @@ export function getDisplaySubject(subj, grade) {
   return subj;
 }
 
-// ── 페이지별 의사 갱신일 생성 (SEO 최신성 시그널) ──────────────────
-// 시드 기반으로 "최근 60일 이내"의 결정적 날짜를 만듦
-// 같은 페이지는 항상 같은 날짜를 가지되, 60일이 지나면 자동으로 다음 사이클로 회전
+// ── 콘텐츠 기준일 (앵커) — 수동 관리 ─────────────────────────────
+// ⚠️ 2026-08-24 수정 배경
+//   이전 버전은 getPageDates가 new Date() (= 오늘)를 기준으로 날짜를 만들어서
+//   같은 페이지의 "최종 업데이트"가 매일 하루씩 뒤로 밀렸음.
+//   콘텐츠는 그대로인데 사이트맵과 페이지가 함께 "매일 갱신됨"이라고 신고하는
+//   상태였고, 검색엔진이 이 신호를 불신하게 되는 원인이 됨.
+//   → 고정 앵커 기준으로 전환. 같은 페이지는 언제 요청해도 같은 날짜를 반환.
+//
+// 📌 이 날짜를 바꿔야 할 때 / 바꾸지 말아야 할 때
+//   O 바꾼다: 페이지 구성 자체가 달라지는 대규모 개편
+//            (예: 본문 섹션 교체, FAQ·특징 카드 분리, 레이아웃 전면 수정)
+//   X 안 바꾼다: 일반 배포, 페이지 몇 개 추가, 버그 수정, 데이터 소량 변경
+//   애매하면 바꾸지 않는 쪽이 안전함 (거짓 신선도보다 낡은 날짜가 나음)
+export const CONTENT_ANCHOR_DATE = new Date("2026-07-16T00:00:00Z");
+
+// ── 페이지별 갱신일 생성 ──────────────────────────────────────────
+// 앵커 날짜를 기준으로 시드 기반 분산. 같은 페이지 = 항상 같은 날짜(고정).
 export function getPageDates(slug) {
-  // slug를 시드로 0~59 사이 의사 오프셋 생성 (페이지마다 다른 날짜)
+  // slug를 시드로 0~59 사이 오프셋 생성 (페이지마다 다른 날짜로 분산)
   const seed = slug.split("").reduce((a,c,i) => (a + c.charCodeAt(0) * (i+1)) % 2147483647, 0);
   const offset = seed % 60; // 0~59일 분산
 
-  const now = new Date();
-
-  // dateModified: 오늘로부터 (offset)일 전 ~ 즉, 페이지마다 0~59일 전 사이로 분산
-  const modified = new Date(now);
+  // dateModified: 앵커로부터 (offset)일 전 — 오늘 날짜에 의존하지 않음
+  const modified = new Date(CONTENT_ANCHOR_DATE);
   modified.setDate(modified.getDate() - offset);
 
   // datePublished: dateModified로부터 90~180일 전 (시드로 결정)
