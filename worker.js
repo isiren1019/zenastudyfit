@@ -539,6 +539,18 @@ Sitemap: ${BASE}/sitemap-schools-3.xml
       });
     }
 
+    // 폐점 지점 301 리다이렉트 (색인 보존 · soft 404 방지)
+    const ACADEMY_CENTER_REDIRECTS = {
+      "gyeonggi-goyang-ju-yeop2ho": "/academy/center/gyeonggi-goyang-ju-yeop/",
+    };
+    const academyRedirectMatch = path.match(/^\/academy\/center\/([^\/]+)\/?$/);
+    if (academyRedirectMatch) {
+      const rdSlug = decodeURIComponent(academyRedirectMatch[1]);
+      if (ACADEMY_CENTER_REDIRECTS[rdSlug]) {
+        return Response.redirect(`${url.origin}${ACADEMY_CENTER_REDIRECTS[rdSlug]}`, 301);
+      }
+    }
+
     // /academy/center/{지점슬러그}/ — 지점 상세
     const academyCenterMatch = path.match(/^\/academy\/center\/([^\/]+)\/?$/);
     if (academyCenterMatch) {
