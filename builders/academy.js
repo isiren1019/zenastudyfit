@@ -401,7 +401,7 @@ const ACADEMY_LOCATION_SIDOS = [
   // Row 1
   { slug: "seoul",          name: "서울",      icon: "🌆",  count: 24,  desc: "15개 구",         sub: ["서울"] },
   { slug: "incheon",        name: "인천",      icon: "🌉",  count: 10,  desc: "8개 구",          sub: ["인천"] },
-  { slug: "gyeonggi",       name: "경기",      icon: "🌿",  count: 100, desc: "22개 시·군",      sub: ["경기"] },
+  { slug: "gyeonggi",       name: "경기",      icon: "🌿",  count: 99,  desc: "22개 시·군",      sub: ["경기"] },
   { slug: "chungcheong",    name: "충청도",    icon: "🍑",  count: 12,  desc: "충남 6·충북 6",   sub: ["충남", "충북"] },
   // Row 2
   { slug: "daejeon-sejong", name: "대전·세종", icon: "🏢",  count: 10,  desc: "대전 9·세종 1",   sub: ["대전", "세종"] },
