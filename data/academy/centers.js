@@ -7942,7 +7942,7 @@ export const ACADEMY_CENTERS = [
     "sido": "jeju",
     "sidoName": "제주",
     "sigungu": "제주시",
-    "address": "제주특별자치도 제주시 노형동 727-3 대안빌딩  3층",
+    "address": "제주특별자치도 제주시 과원북4길 27  2층",
     "eduOffice": "와와학습코칭학원",
     "eduRegNo": "제주시교육지원청 등록 제2163호",
     "subjects": {
@@ -12368,20 +12368,7 @@ export const ACADEMY_CENTERS = [
         "고3"
       ],
       "science": [],
-      "social": [
-        "초1",
-        "초2",
-        "초3",
-        "초4",
-        "초5",
-        "초6",
-        "중1",
-        "중2",
-        "중3",
-        "고1",
-        "고2",
-        "고3"
-      ]
+      "social": []
     },
     "targets": {
       "elem": [
@@ -12395,73 +12382,6 @@ export const ACADEMY_CENTERS = [
     "pricingGroup": 2,
     "naverMapUrl": "https://naver.me/56RnITj5",
     "feeUrl": "https://drive.google.com/file/d/1NBpsrDmN0k4HjHXt5MqATOuOwLU2qSw7/view?usp=sharing"
-  },
-  {
-    "slug": "gyeonggi-goyang-ju-yeop2ho",
-    "name": "주엽2호점",
-    "fullName": "주엽2호점",
-    "brand": "wawa",
-    "sido": "gyeonggi",
-    "sidoName": "경기",
-    "sigungu": "고양시",
-    "address": "경기 고양시 일산서구 중앙로 1413  동영빌딩 10층 1003",
-    "eduOffice": "주엽2호와와학습코칭학원",
-    "eduRegNo": "고양교육지원청 등록 제5826호",
-    "subjects": {
-      "korean": [],
-      "english": [
-        "초1",
-        "초2",
-        "초3",
-        "초4",
-        "초5",
-        "초6",
-        "중1",
-        "중2",
-        "중3",
-        "고1",
-        "고2",
-        "고3"
-      ],
-      "math": [
-        "초1",
-        "초2",
-        "초3",
-        "초4",
-        "초5",
-        "초6",
-        "중1",
-        "중2",
-        "중3",
-        "고1",
-        "고2"
-      ],
-      "science": [
-        "초1",
-        "초2",
-        "초3",
-        "초4",
-        "초5",
-        "초6",
-        "중1",
-        "중2",
-        "중3",
-        "고1"
-      ],
-      "social": []
-    },
-    "targets": {
-      "elem": [
-        "강선초"
-      ],
-      "middle": [],
-      "high": []
-    },
-    "feeType": "B",
-    "isNew": false,
-    "pricingGroup": 2,
-    "naverMapUrl": "https://naver.me/x2jDPSvt",
-    "feeUrl": "https://drive.google.com/file/d/1srXpiEnvSnylkpX91253i3Doo8I1eXL5/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-namyangju-dasan",
