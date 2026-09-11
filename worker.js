@@ -131,6 +131,61 @@ Sitemap: ${BASE}/sitemap-schools-3.xml
       });
     }
 
+    // ── 전화 버튼 클릭 알림 (텔레그램) ──────────────────────────
+    // 브라우저 → 이 엔드포인트 → 텔레그램. 토큰은 env(Secret)에만 존재.
+    // 미설정 시 알림만 생략되고 사이트 동작에는 영향 없음.
+    if (rawPath === "/api/call-log") {
+      if (request.method !== "POST") {
+        return new Response("Method Not Allowed", { status: 405 });
+      }
+      // 외부 사이트에서의 호출 차단 (알림 스팸 방지)
+      const origin = request.headers.get("Origin") || "";
+      if (origin && origin.indexOf("zenastudyfit.com") === -1) {
+        return new Response(null, { status: 204 });
+      }
+      try {
+        const body = await request.json();
+        const token = env.TELEGRAM_BOT_TOKEN;
+        const chatId = env.TELEGRAM_CHAT_ID;
+        if (token && chatId) {
+          // 사용자 입력이 그대로 들어오므로 길이 제한 + HTML 이스케이프
+          const esc = (v) => String(v == null ? "" : v)
+            .slice(0, 300)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;");
+          const kst = new Date(Date.now() + 9 * 60 * 60 * 1000)
+            .toISOString().replace("T", " ").slice(0, 16);
+          const device = body.device === "mobile" ? "📱 모바일" : "💻 PC";
+          const from = esc(body.from) || "직접 방문 / 즐겨찾기";
+          const text =
+            "📞 <b>전화 버튼 클릭</b>\n\n" +
+            "🕐 " + kst + " (KST)\n" +
+            "📲 " + device + "\n" +
+            "🔘 " + (esc(body.label) || "전화 버튼") + "\n\n" +
+            "📄 " + esc(body.title) + "\n" +
+            "🔗 " + esc(body.page) + "\n\n" +
+            "↩️ 유입: " + from;
+          // waitUntil로 응답을 막지 않고 백그라운드 전송
+          ctx.waitUntil(
+            fetch("https://api.telegram.org/bot" + token + "/sendMessage", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                chat_id: chatId,
+                text: text,
+                parse_mode: "HTML",
+                disable_web_page_preview: true
+              })
+            }).catch(() => {})
+          );
+        }
+      } catch (e) {
+        // 잘못된 요청은 조용히 무시 (사용자 경험에 영향 주지 않음)
+      }
+      return new Response(null, { status: 204 });
+    }
+
     let path = decodeURIComponent(url.pathname).replace(/\/$/, "") || "/";
 
     // IndexNow 키 파일 서빙 (네이버 인증용)

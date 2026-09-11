@@ -234,6 +234,165 @@ function closeMobileMenuOutside(e){if(e.target===document.getElementById('mobile
     if(e.target && e.target.tagName==='IMG'){e.preventDefault();}
   });
 })();
+
+// ── 전화 버튼: PC 안내 팝업 + 텔레그램 클릭 알림 ───────────────
+// 사이트 전체의 <a href="tel:..."> 링크를 위임 방식으로 한 번에 처리.
+// 새 페이지·새 버튼을 추가해도 별도 작업 없이 자동 적용됨.
+(function(){
+  var PHONE_TEXT = '010-5949-9897';
+  var API = '/api/call-log';
+  var modal = null;
+
+  // e.target이 SVG 등일 때도 안전하게 상위 a 태그 탐색
+  function findTelLink(node){
+    while(node && node !== document){
+      if(node.tagName === 'A'){
+        var h = node.getAttribute('href') || '';
+        return h.indexOf('tel:') === 0 ? node : null;
+      }
+      node = node.parentNode;
+    }
+    return null;
+  }
+
+  function isMobile(){
+    if(/Android|iPhone|iPad|iPod|IEMobile|Opera Mini/i.test(navigator.userAgent)) return true;
+    // 아이패드 최신 OS는 데스크톱 UA로 위장하므로 터치 지원으로 판별
+    if(navigator.maxTouchPoints > 1 && /Mac/.test(navigator.platform)) return true;
+    return false;
+  }
+
+  // 어느 버튼에서 눌렀는지 식별 (플로팅 / 히어로 / 하단 CTA 등)
+  function buttonLabel(a){
+    var cls = a.className || '';
+    if(typeof cls !== 'string') cls = '';
+    if(cls.indexOf('float-btn') > -1) return '플로팅 전화 버튼';
+    if(cls.indexOf('hero') > -1) return '상단 히어로 전화 버튼';
+    if(cls.indexOf('cta') > -1) return '하단 CTA 전화 버튼';
+    var t = (a.textContent || '').replace(/\s+/g, ' ').trim();
+    return t ? t.slice(0, 40) : '전화 버튼';
+  }
+
+  function notify(a, mobile){
+    // 같은 세션에서 30초 내 중복 클릭은 전송하지 않음
+    try{
+      var last = sessionStorage.getItem('zsfCallLogAt');
+      if(last && (Date.now() - parseInt(last, 10)) < 30000) return;
+      sessionStorage.setItem('zsfCallLogAt', String(Date.now()));
+    }catch(err){}
+
+    var data = JSON.stringify({
+      page: location.href,
+      title: document.title,
+      device: mobile ? 'mobile' : 'pc',
+      label: buttonLabel(a),
+      from: document.referrer || ''
+    });
+
+    try{
+      if(navigator.sendBeacon){
+        navigator.sendBeacon(API, new Blob([data], { type: 'application/json' }));
+      }else{
+        fetch(API, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: data,
+          keepalive: true
+        }).catch(function(){});
+      }
+    }catch(err){}
+  }
+
+  function buildModal(){
+    var css = document.createElement('style');
+    css.textContent =
+      '.zsf-call-ov{position:fixed;inset:0;background:rgba(20,8,30,.55);z-index:9000;' +
+        'display:none;align-items:center;justify-content:center;padding:20px}' +
+      '.zsf-call-ov.on{display:flex}' +
+      '.zsf-call-box{background:#fff;border-radius:16px;max-width:360px;width:100%;' +
+        'padding:30px 26px 24px;text-align:center;box-shadow:0 18px 50px rgba(0,0,0,.28);' +
+        'position:relative;font-family:inherit}' +
+      '.zsf-call-x{position:absolute;top:12px;right:14px;background:none;border:0;' +
+        'font-size:22px;line-height:1;color:#999;cursor:pointer;padding:4px}' +
+      '.zsf-call-x:hover{color:#333}' +
+      '.zsf-call-ic{width:52px;height:52px;border-radius:50%;background:#4f1787;' +
+        'display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-size:24px}' +
+      '.zsf-call-t{font-size:1.02rem;font-weight:700;color:#1a1a1a;margin:0 0 10px;line-height:1.5}' +
+      '.zsf-call-num{font-size:1.35rem;font-weight:800;color:#4f1787;letter-spacing:.5px;' +
+        'margin:0 0 6px;-webkit-user-select:all;user-select:all}' +
+      '.zsf-call-d{font-size:.85rem;color:#777;margin:0 0 20px;line-height:1.6}' +
+      '.zsf-call-btns{display:flex;gap:8px}' +
+      '.zsf-call-b{flex:1;padding:12px 0;border-radius:9px;font-size:.88rem;font-weight:700;' +
+        'cursor:pointer;border:0;font-family:inherit}' +
+      '.zsf-call-b.copy{background:#4f1787;color:#fff}' +
+      '.zsf-call-b.copy:hover{background:#3d1169}' +
+      '.zsf-call-b.kko{background:#FEE500;color:#3A1D1D;text-decoration:none;' +
+        'display:flex;align-items:center;justify-content:center}' +
+      '@media(max-width:420px){.zsf-call-box{padding:26px 20px 20px}}';
+    document.head.appendChild(css);
+
+    var ov = document.createElement('div');
+    ov.className = 'zsf-call-ov';
+    ov.innerHTML =
+      '<div class="zsf-call-box" role="dialog" aria-modal="true" aria-label="전화 상담 안내">' +
+        '<button class="zsf-call-x" type="button" aria-label="닫기">&times;</button>' +
+        '<div class="zsf-call-ic">📞</div>' +
+        '<p class="zsf-call-t">전화 상담 안내</p>' +
+        '<p class="zsf-call-num">' + PHONE_TEXT + '</p>' +
+        '<p class="zsf-call-d">위 번호로 연락 주시면<br>상담 도와드리겠습니다.</p>' +
+        '<div class="zsf-call-btns">' +
+          '<button class="zsf-call-b copy" type="button">번호 복사</button>' +
+        '</div>' +
+      '</div>';
+    document.body.appendChild(ov);
+
+    function close(){ ov.classList.remove('on'); }
+    ov.querySelector('.zsf-call-x').addEventListener('click', close);
+    ov.addEventListener('click', function(e){ if(e.target === ov) close(); });
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape' && ov.classList.contains('on')) close();
+    });
+
+    var copyBtn = ov.querySelector('.zsf-call-b.copy');
+    copyBtn.addEventListener('click', function(){
+      var done = function(){
+        copyBtn.textContent = '복사되었습니다';
+        setTimeout(function(){ copyBtn.textContent = '번호 복사'; }, 1800);
+      };
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(PHONE_TEXT).then(done, function(){});
+      }else{
+        var ta = document.createElement('textarea');
+        ta.value = PHONE_TEXT;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        try{ document.execCommand('copy'); done(); }catch(err){}
+        document.body.removeChild(ta);
+      }
+    });
+
+    return ov;
+  }
+
+  function openModal(){
+    if(!modal) modal = buildModal();
+    modal.classList.add('on');
+  }
+
+  document.addEventListener('click', function(e){
+    var a = findTelLink(e.target);
+    if(!a) return;
+    var mobile = isMobile();
+    notify(a, mobile);
+    // PC는 전화를 걸 수 없으므로 앱 선택 창 대신 안내 팝업 표시
+    if(!mobile){
+      e.preventDefault();
+      openModal();
+    }
+  });
+})();
 </script>`;
 
 // ── 공통 푸터 HTML ────────────────────────────────────────────
