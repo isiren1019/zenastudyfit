@@ -5161,8 +5161,8 @@ export const ACADEMY_CENTERS = [
   },
   {
     "slug": "seoul-mapo-mapo-2ho",
-    "name": "마포2호점",
-    "fullName": "마포2호점",
+    "name": "마포점",
+    "fullName": "마포점",
     "brand": "wawa",
     "sido": "seoul",
     "sidoName": "서울",
@@ -5208,12 +5208,7 @@ export const ACADEMY_CENTERS = [
         "고3"
       ],
       "science": [],
-      "social": [
-        "초3",
-        "초4",
-        "초5",
-        "초6"
-      ]
+      "social": []
     },
     "targets": {
       "elem": [
@@ -5240,7 +5235,7 @@ export const ACADEMY_CENTERS = [
     "isNew": false,
     "pricingGroup": 1,
     "naverMapUrl": "https://naver.me/FzSFfWnq",
-    "feeUrl": "https://drive.google.com/file/d/1Bj32uK2GRguE6GkcqRBKEW3GvPEEqKd6/view?usp=sharing"
+    "feeUrl": "https://drive.google.com/file/d/1-MeRe5AhIICToS02b7nDuFBxuxwVLNuZ/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-namyangju-dasan-donong",
@@ -9109,98 +9104,6 @@ export const ACADEMY_CENTERS = [
     "pricingGroup": 2,
     "naverMapUrl": "https://naver.me/G7Vky0KK",
     "feeUrl": "https://drive.google.com/file/d/1ViaSyWubybddoc7JPh_7m34uYzKzxHRT/view?usp=sharing"
-  },
-  {
-    "slug": "seoul-mapo-mapo",
-    "name": "마포점",
-    "fullName": "마포점",
-    "brand": "wawa",
-    "sido": "seoul",
-    "sidoName": "서울",
-    "sigungu": "마포구",
-    "address": "서울특별시 마포구 염리동 독막로42길 7  173-3 2층",
-    "eduOffice": "마포점와와학습코칭학원",
-    "eduRegNo": "서울서부교육지원청 등록 제02201800007호",
-    "subjects": {
-      "korean": [
-        "초3",
-        "초4",
-        "초5",
-        "초6",
-        "중1",
-        "중2",
-        "중3",
-        "고1",
-        "고2",
-        "고3"
-      ],
-      "english": [
-        "초3",
-        "초4",
-        "초5",
-        "초6",
-        "중1",
-        "중2",
-        "중3",
-        "고1",
-        "고2",
-        "고3"
-      ],
-      "math": [
-        "초3",
-        "초4",
-        "초5",
-        "초6",
-        "중1",
-        "중2",
-        "중3",
-        "고1",
-        "고2",
-        "고3"
-      ],
-      "science": [
-        "초3",
-        "초4",
-        "초5",
-        "초6",
-        "중1",
-        "중2",
-        "중3"
-      ],
-      "social": [
-        "초3",
-        "초4",
-        "초5",
-        "초6",
-        "중1",
-        "중2",
-        "중3",
-        "고1",
-        "고2",
-        "고3"
-      ]
-    },
-    "targets": {
-      "elem": [
-        "염리초"
-      ],
-      "middle": [
-        "서울여중",
-        "동도중",
-        "신수중",
-        "숭문중"
-      ],
-      "high": [
-        "서울여고",
-        "숭문고",
-        "광성고"
-      ]
-    },
-    "feeType": "A",
-    "isNew": false,
-    "pricingGroup": 1,
-    "naverMapUrl": "https://naver.me/GbDL0t1F",
-    "feeUrl": "https://drive.google.com/file/d/1-MeRe5AhIICToS02b7nDuFBxuxwVLNuZ/view?usp=sharing"
   },
   {
     "slug": "gyeonggi-yongin-yonk-inbaekhyeon-modu",
