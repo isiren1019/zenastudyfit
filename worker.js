@@ -94,6 +94,15 @@ import {
 } from './builders/academy.js';
 
 
+// ── 구글 전용 noindex 헤더 (2026-10-23) ─────────────────────────
+// 대량 자동 생성 페이지(지역·학교·학교+과목·목록)를 구글 색인에서만 제외.
+// "googlebot:" 지정이라 네이버(Yeti) 등 다른 검색엔진에는 적용되지 않음.
+// follow 유지 → 링크 신호는 보존. 페이지 자체는 그대로 정상 서빙됨.
+const GOOGLE_NOINDEX_HTML_HEADERS = {
+  "Content-Type": "text/html;charset=UTF-8",
+  "X-Robots-Tag": "googlebot: noindex, follow",
+};
+
 // ── 메인 라우터 ───────────────────────────────────────────────
 export default {
   async fetch(request, env, ctx) {
@@ -115,13 +124,10 @@ export default {
 User-agent: *
 Allow: /
 
-# 사이트맵 위치 (검색·AI 봇이 사이트 구조를 빠르게 파악)
-Sitemap: ${BASE}/sitemap.xml
+# 사이트맵 위치
+# ⚠️ 2026-10-23: 구글용 핵심 사이트맵만 선언.
+#    전체판(sitemap.xml)은 네이버 서치어드바이저에 직접 제출되어 있음.
 Sitemap: ${BASE}/sitemap-static.xml
-Sitemap: ${BASE}/sitemap-areas.xml
-Sitemap: ${BASE}/sitemap-schools-1.xml
-Sitemap: ${BASE}/sitemap-schools-2.xml
-Sitemap: ${BASE}/sitemap-schools-3.xml
 `;
       return new Response(robotsTxt, {
         headers: {
@@ -277,7 +283,7 @@ Sitemap: ${BASE}/sitemap-schools-3.xml
     // 지역 페이지
     if (path === "/regions") {
       return new Response(buildRegionsPage(), {
-        headers: { "Content-Type": "text/html;charset=UTF-8" }
+        headers: GOOGLE_NOINDEX_HTML_HEADERS
       });
     }
 
@@ -1255,7 +1261,7 @@ Sitemap: ${BASE}/sitemap-schools-3.xml
     // 학교 목록 페이지
     if (path === "/schools") {
       return new Response(buildSchoolsPage(), {
-        headers: { "Content-Type": "text/html;charset=UTF-8" }
+        headers: GOOGLE_NOINDEX_HTML_HEADERS
       });
     }
 
@@ -1267,7 +1273,7 @@ Sitemap: ${BASE}/sitemap-schools-3.xml
       const matchedSido = VALID_SIDOS.find(s => s === sidoSlug || s.replace(/ /g,"-") === sidoSlug);
       if (matchedSido) {
         return new Response(buildSchoolsSidoPage(matchedSido), {
-          headers: { "Content-Type": "text/html;charset=UTF-8" }
+          headers: GOOGLE_NOINDEX_HTML_HEADERS
         });
       }
     }
@@ -1291,7 +1297,7 @@ Sitemap: ${BASE}/sitemap-schools-3.xml
             const candidate = (sido + "-" + sigungu + "-" + name).replace(/ /g, "-");
             if (cleanSlug === candidate) {
               return new Response(buildSchoolSubjectPage(sido, sigungu, name, subj, level), {
-                headers: { "Content-Type": "text/html;charset=UTF-8" }
+                headers: GOOGLE_NOINDEX_HTML_HEADERS
               });
             }
           }
@@ -1313,7 +1319,7 @@ Sitemap: ${BASE}/sitemap-schools-3.xml
           const candidate = (sido + "-" + sigungu + "-" + name).replace(/ /g, "-");
           if (cleanSlug === candidate) {
             return new Response(buildSchoolPage(sido, sigungu, name, level), {
-              headers: { "Content-Type": "text/html;charset=UTF-8" }
+              headers: GOOGLE_NOINDEX_HTML_HEADERS
             });
           }
         }
@@ -1327,7 +1333,7 @@ Sitemap: ${BASE}/sitemap-schools-3.xml
       if (parsed) {
         const { city, gu, dong, grade, subject } = parsed;
         return new Response(buildDetailPage(city, gu, dong, grade, subject, slug), {
-          headers: { "Content-Type": "text/html;charset=UTF-8" }
+          headers: GOOGLE_NOINDEX_HTML_HEADERS
         });
       }
     }
