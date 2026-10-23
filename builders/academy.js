@@ -399,7 +399,7 @@ const ACADEMY_INTRO_CSS = `
 
 const ACADEMY_LOCATION_SIDOS = [
   // Row 1
-  { slug: "seoul",          name: "서울",      icon: "🌆",  count: 24,  desc: "15개 구",         sub: ["서울"] },
+  { slug: "seoul",          name: "서울",      icon: "🌆",  count: 23,  desc: "15개 구",         sub: ["서울"] },
   { slug: "incheon",        name: "인천",      icon: "🌉",  count: 10,  desc: "8개 구",          sub: ["인천"] },
   { slug: "gyeonggi",       name: "경기",      icon: "🌿",  count: 99,  desc: "22개 시·군",      sub: ["경기"] },
   { slug: "chungcheong",    name: "충청도",    icon: "🍑",  count: 12,  desc: "충남 6·충북 6",   sub: ["충남", "충북"] },
