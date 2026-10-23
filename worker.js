@@ -603,6 +603,7 @@ Sitemap: ${BASE}/sitemap-static.xml
     // 폐점 지점 301 리다이렉트 (색인 보존 · soft 404 방지)
     const ACADEMY_CENTER_REDIRECTS = {
       "gyeonggi-goyang-ju-yeop2ho": "/academy/center/gyeonggi-goyang-ju-yeop/",
+      "seoul-mapo-mapo": "/academy/center/seoul-mapo-mapo-2ho/",   // 2026-10: 마포점 통합 (마포2호점이 마포점으로 개명)
     };
     const academyRedirectMatch = path.match(/^\/academy\/center\/([^\/]+)\/?$/);
     if (academyRedirectMatch) {
