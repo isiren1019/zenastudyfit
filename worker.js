@@ -104,7 +104,9 @@ const GOOGLE_NOINDEX_HTML_HEADERS = {
 };
 
 // ── 메인 라우터 ───────────────────────────────────────────────
-export default {
+// (2026-11-16) 기존 라우터 본문은 그대로 두고, 객체 이름만 _router로 바꿈.
+//  실제 진입점은 파일 맨 아래 export default에서 tracker 삽입을 거쳐 호출함.
+const _router = {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
 
@@ -1345,5 +1347,27 @@ Sitemap: ${BASE}/sitemap-static.xml
       status: 404,
       headers: { "Content-Type": "text/html;charset=UTF-8" }
     });
+  }
+};
+
+// ── 방문 기록기(tracker.js) 자동 삽입 (2026-11-16) ─────────────────
+// content-type이 text/html인 응답에만 </body> 직전에 스크립트 1줄을 붙임.
+// 사이트맵·robots.txt·이미지·리다이렉트 등 HTML이 아닌 응답은 그대로 통과.
+const TRACKER_TAG = '<script src="/js/tracker.js" defer></script>';
+
+function injectTracker(response) {
+  const type = response.headers.get("Content-Type") || "";
+  if (!type.toLowerCase().includes("text/html")) return response;
+  return new HTMLRewriter()
+    .on("body", {
+      element(el) { el.append(TRACKER_TAG, { html: true }); }
+    })
+    .transform(response);
+}
+
+export default {
+  async fetch(request, env, ctx) {
+    const response = await _router.fetch(request, env, ctx);
+    return injectTracker(response);
   }
 };
