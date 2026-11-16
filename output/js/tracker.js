@@ -80,13 +80,27 @@
   // 1) 페이지가 열리면 기록
   send('페이지열람');
 
-  // 2) 전화 버튼 / 카카오 버튼 클릭 기록 (링크를 가로채지 않고 기록만 함)
+  // 네이버폼 주소 (config.js의 FORM_URL·CODING_FORM_URL과 같게 유지)
+  // ⚠️ naver.me는 지도 링크에도 쓰이므로, 폼 주소만 정확히 지정함
+  var NAVER_FORMS = {
+    'naver.me/GjySnHpA': '과외',
+    'naver.me/GT40B8Ah': '코딩'
+  };
+  function naverFormType(href) {
+    for (var k in NAVER_FORMS) { if (href.indexOf(k) > -1) return NAVER_FORMS[k]; }
+    if (href.indexOf('form.naver.com') > -1) return '기타';
+    return '';
+  }
+
+  // 2) 전화 / 카카오 / 네이버폼 버튼 클릭 기록 (링크를 가로채지 않고 기록만 함)
   document.addEventListener('click', function (e) {
     var a = e.target && e.target.closest ? e.target.closest('a') : null;
     if (!a) return;
     var href = a.getAttribute('href') || '';
+    var formType;
     if (href.indexOf('tel:') === 0) send('전화클릭');
     else if (href.indexOf('pf.kakao.com') > -1 || href.indexOf('open.kakao.com') > -1) send('카카오클릭');
+    else if ((formType = naverFormType(href))) send('네이버폼클릭', formType);
   }, true);
 
   // 3) 폼 제출 등 다른 곳에서도 쓸 수 있게 공개: zenaTrack('폼제출')
