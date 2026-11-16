@@ -1365,9 +1365,25 @@ function injectTracker(response) {
     .transform(response);
 }
 
+// ── 구글 전용 noindex 헤더를 구글봇에게만 전달 (2026-11-17) ───────────
+// 10/23부터 "googlebot: noindex" 헤더를 모든 방문자에게 보냈는데,
+// 10/29~30 네이버 노출 급감과 시점이 겹쳐 네이버(Yeti) 오해석 가능성을 차단함.
+// → User-Agent에 Googlebot 계열이 있을 때만 헤더를 남기고, 그 외(네이버 포함)는 제거.
+//   GSC URL 검사 도구도 Googlebot UA를 쓰므로 구글 쪽 검증 결과는 동일.
+const GOOGLE_BOT_UA = /googlebot|google-inspectiontool|googleother|adsbot-google|mediapartners-google/i;
+
+function limitNoindexToGoogle(request, response) {
+  if (!response.headers.has("X-Robots-Tag")) return response;
+  const ua = request.headers.get("User-Agent") || "";
+  if (GOOGLE_BOT_UA.test(ua)) return response;
+  const res = new Response(response.body, response);
+  res.headers.delete("X-Robots-Tag");
+  return res;
+}
+
 export default {
   async fetch(request, env, ctx) {
     const response = await _router.fetch(request, env, ctx);
-    return injectTracker(response);
+    return injectTracker(limitNoindexToGoogle(request, response));
   }
 };
