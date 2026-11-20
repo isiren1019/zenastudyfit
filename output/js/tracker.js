@@ -1,11 +1,11 @@
-/* ===== 통합 기록기 (보내는 쪽) v3 =====
+/* ===== 통합 기록기 (보내는 쪽) v5 + 스터디핏 네이버폼 구분 =====
    사이트마다 아래 SITE 값만 바꿔서 사용.
    모든 HTML 페이지의 </body> 바로 위에
    <script src="/js/tracker.js" defer></script>  한 줄로 불러옴.
 */
 (function () {
   var SITE = '제나쌤스터디핏';   // ← 사이트마다 이 줄만 변경 (예: '파워톡', '세이브샵')
-  var URL = 'https://script.google.com/macros/s/AKfycbzgldxTSNY_nZdDV5ZTyOnsVvl9WXj_F45reQXwF48bntbYrfIwZs4GLtT6lGO-NkFsxA/exec';
+  var ENDPOINT = 'https://script.google.com/macros/s/AKfycbzgldxTSNY_nZdDV5ZTyOnsVvl9WXj_F45reQXwF48bntbYrfIwZs4GLtT6lGO-NkFsxA/exec';
 
   var ua = navigator.userAgent || '';
   var params = new URLSearchParams(location.search);
@@ -44,9 +44,20 @@
 
   // utm 꼬리표와 유입처는 첫 페이지에만 붙어 오므로,
   // 같은 방문 동안(탭 닫기 전) 기억해 두고 다음 페이지에서도 사용
+  // 네이버 파워링크를 클릭해 들어오면 주소에 n_keyword(광고 키워드), n_query(실제 검색어)가 붙어 옴
+  var nKeyword = params.get('n_keyword') || '';
+  var nQuery = params.get('n_query') || '';
+  var fromNaverAd = !!(nKeyword || nQuery || params.get('n_media'));
+  var first = {
+    utm_source: params.get('utm_source') || (fromNaverAd ? 'naver_ad' : ''),
+    utm_medium: params.get('utm_medium') || (fromNaverAd ? 'cpc' : ''),
+    utm_campaign: params.get('utm_campaign') || '',
+    utm_term: params.get('utm_term') || nKeyword,
+    query: nQuery
+  };
   var utm = {};
-  ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term'].forEach(function (k) {
-    var v = params.get(k) || '';
+  ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'query'].forEach(function (k) {
+    var v = first[k];
     try {
       if (v) sessionStorage.setItem('zt_' + k, v);
       else v = sessionStorage.getItem('zt_' + k) || '';
@@ -64,15 +75,15 @@
       site: SITE, event: eventName, page: location.pathname,
       referrer: ref, app: app,
       utm_source: utm.utm_source, utm_medium: utm.utm_medium,
-      utm_campaign: utm.utm_campaign, utm_term: utm.utm_term,
+      utm_campaign: utm.utm_campaign, utm_term: utm.utm_term, query: utm.query,
       device: device, visitor: visitor, visit_type: visitType,
       bot: bot, note: note || ''
     });
     try {
       if (navigator.sendBeacon) {
-        navigator.sendBeacon(URL, new Blob([body], { type: 'text/plain' }));
+        navigator.sendBeacon(ENDPOINT, new Blob([body], { type: 'text/plain' }));
       } else {
-        fetch(URL, { method: 'POST', mode: 'no-cors', body: body, keepalive: true });
+        fetch(ENDPOINT, { method: 'POST', mode: 'no-cors', body: body, keepalive: true });
       }
     } catch (e) {}
   }
